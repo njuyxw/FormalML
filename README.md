@@ -1,13 +1,13 @@
 # FormalML: A Benchmark for Evaluating Formal Subgoal Completion in Machine Learning Theory
 
-The offical codebase for our NeurIPS'25 (Datasets and Benchmarks Track) submission "FormalML: A Benchmark for Evaluating Formal Subgoal Completion in Machine Learning Theory".
+The official codebase for our NeurIPS'25 (Datasets and Benchmarks Track) submission "FormalML: A Benchmark for Evaluating Formal Subgoal Completion in Machine Learning Theory".
 
 
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FormalML-yellow.svg)](https://huggingface.co/datasets/zzhisthebest/LeanBenchmark)
 ## Quick Start
 ### Data Extraction Tool 
 
-We construct FormalML from the following libraries:
+We construct FormalML from (our own fork of) the following libraries:
 
 - [optlib](https://github.com/Lizn-zn/optlib)  
 - [lean-rademacher](https://github.com/njuyxw/lean-rademacher)
