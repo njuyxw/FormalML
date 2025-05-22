@@ -7,6 +7,65 @@ The offical codebase for our NeurIPS'25 (Datasets and Benchmarks Track) submissi
 ## Quick Start
 ### Data Extraction Tool 
 
+We construct FormalML from the following libraries:
+
+- [optlib](https://github.com/Lizn-zn/optlib)  
+- [lean-rademacher](https://github.com/njuyxw/lean-rademacher)
+
+---
+
+#### Requirements
+
+- [lean-repl](https://github.com/leanprover-community/repl)
+
+---
+
+#### Installation
+
+##### 2. Update and build AutoML
+
+```bash
+cd extraction
+cd AutoML
+lake update
+lake build
+cd ..
+```
+
+##### 3. Update and build lean-repl
+
+```bash
+cd repl
+lake update
+lake build
+cd ..
+```
+##### 4. Extract theorems from source libraries
+Run the extraction script:
+```bash
+./run_all.sh
+```
+The generated benchmark files will be saved in:
+```
+./AutoML/FormalML
+```
+
+#### Directory Structure (simplified)
+
+```bash
+extraction/
+├── AutoML/
+│   ├── FormalML/       # Output benchmark files
+│   └── ...              # AutoML-related code
+├── repl/                # lean-repl dependency
+├── run_all.sh   # Script for extracting theorems
+```
+
+**Notes**
+
+- Make sure **Python** is installed for running the extraction script.
+- Ensure **Lean** and **lake** are properly installed and available in your `PATH`.
+
 ### Evaluation Framework
 
 We provide a unified evaluation framework for whole proof generation methods. The evaluation process consists of the following steps:
