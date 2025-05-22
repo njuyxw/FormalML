@@ -22,7 +22,7 @@ We construct FormalML from the following libraries:
 
 #### Installation
 
-##### 2. Update and build AutoML
+##### 1. Update and build AutoML
 
 ```bash
 cd extraction
@@ -32,7 +32,7 @@ lake build
 cd ..
 ```
 
-##### 3. Update and build lean-repl
+##### 2. Update and build lean-repl
 
 ```bash
 cd repl
@@ -40,7 +40,7 @@ lake update
 lake build
 cd ..
 ```
-##### 4. Extract theorems from source libraries
+##### 3. Extract theorems from source libraries
 Run the extraction script:
 ```bash
 ./run_all.sh
