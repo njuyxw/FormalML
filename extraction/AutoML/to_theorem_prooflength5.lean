@@ -1,15 +1,14 @@
 import Mathlib.Tactic.Basic
 import Mathlib.Tactic.ExtractGoal
-
 /-
-to_theorem 战术不能用于intro前，因为intro会引入新的变量，但hyps1没有这个新的变量，
-goal2含有这个新的变量，从而hyps1 ⊢ goal2存在错误。
+The to_theorem tactic cannot be used before intro because intro introduces new variables,
+but hyps1 doesn't contain these new variables while goal2 does,
+resulting in an error in hyps1 ⊢ goal2.
 -/
 -- open Lean Elab IO Meta Tactic in
 -- elab "to_theorem" tac:tactic :conv => do
 --    evalTactic tac
 --    return
-
 open Lean Elab IO Meta Tactic in
 elab "to_theorem" tac:tactic ";"?
   tac2:tactic ";"?
@@ -19,7 +18,7 @@ elab "to_theorem" tac:tactic ";"?
   let goal ← getMainGoal
   let type ← goal.getType
   let goal' := (← goal.withContext <| mkFreshExprSyntheticOpaqueMVar type).mvarId!
-  if(← getUnsolvedGoals).length > 1 then--当有多个goal时，不提取。
+  if(← getUnsolvedGoals).length > 1 then--When there are multiple goals, don't extract
     evalTactic tac
     evalTactic tac2
     evalTactic tac3
@@ -40,7 +39,7 @@ elab "to_theorem" tac:tactic ";"?
     {tac5}"
     let goals ← getUnsolvedGoals
     logInfo m! "tactic states after the tactic:{goals}"
-    if goals.length==0 then--即已经没有unsolved goals
+    if goals.length==0 then--i.e., when there are no unsolved goals
       setGoals [goal']
     else
       let newGoals ← goals.mapM fun goal2 => do
@@ -48,10 +47,7 @@ elab "to_theorem" tac:tactic ";"?
         let t ← goal'.getType
         let p ← mkFreshExprMVar t MetavarKind.syntheticOpaque `h_original_goal
         let (_, goal') ← MVarId.intro1P $ ← goal'.assert `h_original_goal t p
-
-
         --logInfo m! "goal':{goal'}"
-
         goal2.withContext do
           --logInfo m! "goal2:{goal2}"
           let goal2_lctx ← getLCtx
@@ -80,14 +76,13 @@ elab "to_theorem" tac:tactic ";"?
               newGoalsList := newGoalsList.concat goal'
             return newGoalsList
       setGoals (List.flatten newGoals)
-
     let newGoals ← getUnsolvedGoals
     for _ in List.range (newGoals.length) do
         let g ← getMainGoal
         let ty ← instantiateMVars (← g.getType)
         if !ty.hasExprMVar then
           logInfo m! "tactic state of the extracted theorem:{g}"
-          evalTactic (← `(tactic| try set_option pp.proofs true in extract_goal using $(mkIdent `extracted_formal_statement)))
-          evalTactic (← `(tactic| try set_option pp.maxSteps 1000000 in set_option pp.all true in extract_goal using $(mkIdent `extracted_full_formal_statement)))
+          evalTactic (← `(tactic| try set_option pp.proofs true in extract_goal using $(mkIdent` extracted_formal_statement)))
+          evalTactic (← `(tactic| try set_option pp.maxSteps 1000000 in set_option pp.all true in extract_goal using $(mkIdent` extracted_full_formal_statement)))
         let _ ← popMainGoal
     setGoals goals
