@@ -6,7 +6,6 @@ from tqdm import tqdm,trange
 import time
 import psutil
 
-import sys
 sys.path.append("./kimina-lean-server")
 
 from client.client import Lean4Client
@@ -51,9 +50,9 @@ if __name__ == "__main__":
     
     def evaluate_category(category_data, category_name):
         if category_name=='optlib':
-            os.environ["REPL_WORKING_PATH"] = "./optlib"
+            os.environ["REPL_WORKING_PATH"] = os.path.abspath("./kimina-lean-server/optlib")
         elif category_name=='foml':
-            os.environ["REPL_WORKING_PATH"] = "./lean-rademacher"
+            os.environ["REPL_WORKING_PATH"] = os.path.abspath("./kimina-lean-server/lean-rademacher")
         codes = []
         problem_id_map = []
         for problem in category_data:

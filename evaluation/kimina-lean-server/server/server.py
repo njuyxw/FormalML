@@ -65,7 +65,7 @@ async def _repl_cleaner():
             logger.info(f"Closed {id} repl")
 
 
-async def _stat_printer():
+async def _stat_printer():#print status of the cache every 15 seconds
     update_interval = 15
     while True:
         await asyncio.sleep(update_interval)
@@ -82,7 +82,7 @@ async def lifespan(app: FastAPI):
     relp_cache_tasks = [
         asyncio.create_task(_repl_cleaner()),
         asyncio.create_task(_repl_creater()),
-        asyncio.create_task(_stat_printer()),
+        # asyncio.create_task(_stat_printer()),
     ]
 
     # Prefill repl_cache, The pre-filled amount should not be greater than settings.MAX_REPLS.

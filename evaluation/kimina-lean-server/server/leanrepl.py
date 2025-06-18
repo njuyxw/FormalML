@@ -26,6 +26,7 @@ class LeanCrashError(Exception):
 
 class LeanREPL:
     def __init__(self):
+        self.process = None  # 先初始化为 None
         # Start the REPL process
         self.error_file = tempfile.TemporaryFile(
             "w+",
@@ -133,6 +134,8 @@ class LeanREPL:
         return response
 
     def start_process(self):
+        # print(path_to_repl)
+        # print(path_to_mathlib)
         self.process = subprocess.Popen(
             ["lake", "env", path_to_repl],
             stdin=subprocess.PIPE,
@@ -156,6 +159,8 @@ class LeanREPL:
         """
         Terminate the REPL process and all its child processes.
         """
+        if self.process is None:
+            return
         try:
             # Terminate the entire process group
             os.killpg(os.getpgid(self.process.pid), signal.SIGKILL)

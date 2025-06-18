@@ -19,12 +19,10 @@ def main():
     parser = argparse.ArgumentParser(description='Generate proofs using whole-generation prover')
     parser.add_argument('--prover_name', type=str, default='goedel',
                       help='Prover to use')
-    parser.add_argument('--num_samples', type=int, default=-1,
-                      help='Number of samples to generate')
     parser.add_argument('--gpu', type=int, default=1,
                       help='Number of GPUs to use')
-    parser.add_argument('--n', type=int, default=8,
-                      help='Number of samples to generate')
+    parser.add_argument('--num_samples', type=int, default=8,
+                      help='Number of samples to generate')#pass@n中的n
     parser.add_argument('--max_tokens', type=int, default=2048,
                       help='Maximum number of tokens to generate')
     parser.add_argument('--temperature', type=float, default=1.0,
@@ -33,7 +31,7 @@ def main():
                       help='Top-p sampling parameter')
     parser.add_argument('--total_segments', type=int, default=1,
                       help='Total number of segments to split data into')
-    parser.add_argument('--dataset_path', type=str, default='zzhisthebest/LeanBenchmark',
+    parser.add_argument('--dataset_path', type=str, default='zzhisthebest/FormalML',
                       help='Path or name of the dataset to use')
     args = parser.parse_args()
 
@@ -61,25 +59,24 @@ def main():
         data_list = data_list[:total_data_size]
         
 
-    print(f"total_data_size: {total_data_size}")
+    print(f"total_data_size: {total_data_size}")#4937
     # Initialize prover
     
     prover = prover_dict[args.prover_name](
         gpu=args.gpu,
-        n=args.n,
+        n=args.num_samples,
         max_tokens=args.max_tokens,
         temperature=args.temperature,
         top_p=args.top_p
     )
     
     segment_size = total_data_size // args.total_segments
-    
+    # print(f"segment_size: {segment_size}")
     all_formatted_results = []
     
     for segment in range(1, args.total_segments + 1):
         start_idx = (segment - 1) * segment_size
         end_idx = segment * segment_size if segment < args.total_segments else total_data_size
-        
         current_segment_data = data_list[start_idx:end_idx]
         
         print(f"process {segment}/{args.total_segments} segment, range: {start_idx} to {end_idx-1}, {len(current_segment_data)} samples")
@@ -109,14 +106,14 @@ def main():
         # save current segment results
         else:
             dataset_name = "leanbench"
-        segment_output_path = f"results/{dataset_name}_{args.num_samples}_{args.prover_name}_{args.n}_segment{segment}_of_{args.total_segments}_results2.json"
+        segment_output_path = f"results/{dataset_name}_{args.num_samples}_{args.prover_name}_segment{segment}_of_{args.total_segments}_results2.json"
         with open(segment_output_path, "w") as f:
             json.dump(segment_formatted_results, f, indent=2, ensure_ascii=False)
         
         print(f"segment {segment} results saved to {segment_output_path}")
     
     # save all results
-    all_output_path = f"results/{dataset_name}_{args.num_samples}_{args.prover_name}_{args.n}_results_all2.json"
+    all_output_path = f"results/{dataset_name}_{args.num_samples}_{args.prover_name}_results.json"
     with open(all_output_path, "w") as f:
         json.dump(all_formatted_results, f, indent=2, ensure_ascii=False)
     

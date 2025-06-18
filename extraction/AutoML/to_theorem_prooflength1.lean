@@ -10,7 +10,7 @@ resulting in an error in `hyps1 ⊢ goal2`.
 --    evalTactic tac
 --    return
 open Lean Elab IO Meta Tactic in
-elab "to_theorem" tac:tactic :tactic => do
+elab "to_theorem" tac:tacticSeq :tactic => do
   let goal ← getMainGoal
   let type ← goal.getType
   let goal' := (← goal.withContext <| mkFreshExprSyntheticOpaqueMVar type).mvarId!

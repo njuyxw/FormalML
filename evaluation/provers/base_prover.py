@@ -4,6 +4,7 @@ from vllm import LLM, SamplingParams
 import re
 import logging
 from datasets import load_dataset
+from tqdm import tqdm
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -19,7 +20,7 @@ class BaseProver(ABC):
             swap_space=8,
             tensor_parallel_size=gpu,
             max_model_len=max_model_len,
-            download_dir="/data3/yxw/hub",  # 明确指定下载目录
+            download_dir="/data0/zzh/hub",  # 明确指定下载目录
         )   
         self.sampling_params = SamplingParams(
             temperature=temperature,
@@ -38,11 +39,22 @@ class BaseProver(ABC):
 
     def __call__(self, data_list, use_tqdm=True):
         model_inputs = [self.build_prompt(data) for data in data_list]
-        model_outputs = self.model.generate(
-            model_inputs,
-            self.sampling_params,
-            use_tqdm=use_tqdm,
-        )
+        # model_outputs = self.model.generate(
+        #     model_inputs,
+        #     self.sampling_params,#pass@n中的n
+        #     use_tqdm=False,
+        # )
+        model_outputs = []
+        iterator = tqdm(model_inputs, desc="Generating", total=len(model_inputs)) if use_tqdm else model_inputs
+
+        for prompt in iterator:
+            result = self.model.generate(
+                [prompt],
+                self.sampling_params,  
+                use_tqdm=False,        # 禁用 vLLM 自带进度条
+            )
+            model_outputs.extend(result)
+        
         assert len(model_outputs) == len(model_inputs)
         results = []
         for i, data in enumerate(data_list):
@@ -50,7 +62,7 @@ class BaseProver(ABC):
             results.append(result)
         return results
 
- 
+
 class GoedelProver(BaseProver):
     def __init__(self, model_path="Goedel-LM/Goedel-Prover-SFT", gpu=1, max_model_len=4096, temperature=1.0, max_tokens=2048, top_p=0.95, n=32,seed=0, **kwargs):
         super().__init__(model_path, gpu, max_model_len, temperature, max_tokens, top_p, n, seed, **kwargs)

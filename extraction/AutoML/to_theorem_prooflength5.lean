@@ -82,7 +82,7 @@ elab "to_theorem" tac:tactic ";"?
         let ty ← instantiateMVars (← g.getType)
         if !ty.hasExprMVar then
           logInfo m! "tactic state of the extracted theorem:{g}"
-          evalTactic (← `(tactic| try set_option pp.proofs true in extract_goal using $(mkIdent` extracted_formal_statement)))
-          evalTactic (← `(tactic| try set_option pp.maxSteps 1000000 in set_option pp.all true in extract_goal using $(mkIdent` extracted_full_formal_statement)))
+          evalTactic (← `(tactic| try set_option pp.proofs true in extract_goal using $(mkIdent `extracted_formal_statement)))
+          evalTactic (← `(tactic| try set_option pp.maxSteps 1000000 in set_option pp.all true in extract_goal using $(mkIdent `extracted_full_formal_statement)))
         let _ ← popMainGoal
     setGoals goals
