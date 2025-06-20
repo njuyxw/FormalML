@@ -16,14 +16,20 @@ def parse_args():
     
     # Allow multiple source directories, default is two given directories
     parser.add_argument('--source_dirs', type=str, nargs='*', 
-                        default=['AutoML/.lake/packages/optlib/Optlib/Algorithm', 'AutoML/.lake/packages/FoML/FoML'], 
-                        # default=['AutoML/.lake/packages/FoML/FoML/ForMathlib'],
+                        default=['AutoML/.lake/packages/PrimeNumberTheoremAnd', 
+                                 'AutoML/.lake/packages/PFR',
+                                 'AutoML/.lake/packages/PhysLean',
+                                 'AutoML/.lake/packages/scilean',
+                                 'AutoML/.lake/packages/mathlib'],
                         help="Source directories where the Lean files are located.")
     
     # Allow multiple target directories, default is two given directories
     parser.add_argument('--target_dirs', type=str, nargs='*', 
-                        default=['AutoML/FormalML/ProofLength3/convex', 'AutoML/FormalML/ProofLength3/probability'], 
-                        # default=['AutoML/FormalML/ProofLength3/probability'], 
+                        default=['AutoML/FormalML/PrimeNumberTheoremAnd', 
+                                 'AutoML/FormalML/PFR',
+                                 'AutoML/FormalML/PhysLean',
+                                 'AutoML/FormalML/scilean',
+                                 'AutoML/FormalML/mathlib'],
                         help="Target directories where the processed benchmarks will be saved.")
     
     parser.add_argument('--proofLength', type=int, default=1,
@@ -36,9 +42,6 @@ with open(os.path.join(math_dir,"to_theorem.lean"), "r", encoding="utf-8") as f:
 def extractOriginalTheoremAndProof(module_path: str) -> list[dict]:
     """
     在 AutoML 目录执行 lake 命令并返回解析后的定理列表
-    
-    参数:
-        module_path: 如 "Optlib/Algorithm"
     
     返回:
         list[dict]: 解析后的定理和Proof字典列表
@@ -213,6 +216,6 @@ else:
         all_tasks.extend(tasks)
     # 2. Global parallel processing
     all_tasks = [(task[0], task[1], args.proofLength) for task in all_tasks]
-    with Pool(processes=cpu_count()) as pool:
+    with Pool(processes=cpu_count()//2) as pool:
         pool.starmap(process_lean_file, all_tasks)
    

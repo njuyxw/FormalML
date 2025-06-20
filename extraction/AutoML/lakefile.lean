@@ -32,13 +32,13 @@ require optlib from git
 require FoML from git
   "https://github.com/njuyxw/lean-rademacher" @ "lizn_dev"
 
-require PNT from git
+require PrimeNumberTheoremAnd from git
   "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd.git" @ "9561bbe027f28f10319fb5e31008cf66aeb3eb10"
 
 require PFR from git
   "https://github.com/teorth/pfr.git" @ "v4.18.0"
 
-require HEP from git
+require PhysLean from git
   "https://github.com/HEPLean/PhysLean.git" @ "v4.18.0"
 
 require scilean from
