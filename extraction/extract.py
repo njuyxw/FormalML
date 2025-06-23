@@ -104,12 +104,12 @@ def process_lean_file(sourcePath, targetPath, proofLength):
     parts = sourcePath.split('/')
     pkg_index = parts.index('packages') + 2  # 跳过.packages和包名
     modulePath='/'.join(parts[pkg_index:])
-    heads = ["import Mathlib", f"import {parts[pkg_index]}", "\n"]
     OriginalTheoremAndProofs=extractOriginalTheoremAndProof(modulePath)
     imports = [line for line in open(sourcePath) if line.startswith("import ")]
+    opens =  [line for line in open(sourcePath) if line.startswith("open ") and not line.rstrip().endswith(" in")]
+    heads = [f"import {parts[pkg_index]}"] + imports +opens
     for t in OriginalTheoremAndProofs:
         t['theoremContent'] = t['theoremContent'].split(':= by', 1)[0] + (':= by')
-    process = run_env_build(math_dir, repl_dir, log_file)
     #接下来处理
     grouped_msgs = {}
     for t in OriginalTheoremAndProofs:
@@ -123,7 +123,10 @@ def process_lean_file(sourcePath, targetPath, proofLength):
         count=0
         for tacticSeq in grouped_tactics:
             # print(theorem_text+"\n"+"\tto_theorem"+"\n"+indent_tactics(tacticSeq))
+            process = run_env_build(math_dir, repl_dir, log_file)
             output_data=send_input_to_process(process, {"cmd": theorem_text+"\n"+"    to_theorem"+"\n"+indent_tactics(tacticSeq)})
+            process.kill()
+            process.wait()
             # print(output_data)
             # return
             if(checkReplOutput(output_data)):
@@ -142,7 +145,8 @@ def process_lean_file(sourcePath, targetPath, proofLength):
                     grouped_msgs[key].append(msg)
             theorem_text=theorem_text+"\n"+indent_tactics(tacticSeq)
             # print(theorem_text)
-            # return
+                # return
+
     idx = 0
     res = []
     goals = []
@@ -216,6 +220,6 @@ else:
         all_tasks.extend(tasks)
     # 2. Global parallel processing
     all_tasks = [(task[0], task[1], args.proofLength) for task in all_tasks]
-    with Pool(processes=cpu_count()//2) as pool:
+    with Pool(processes=cpu_count()) as pool:
         pool.starmap(process_lean_file, all_tasks)
    
