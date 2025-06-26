@@ -16,24 +16,26 @@ def parse_args():
     
     # Allow multiple source directories, default is two given directories
     parser.add_argument('--source_dirs', type=str, nargs='*', 
-                        default=['AutoML/.lake/packages/PrimeNumberTheoremAnd', 
-                                 'AutoML/.lake/packages/PFR',
-                                 'AutoML/.lake/packages/PhysLean',
-                                 'AutoML/.lake/packages/scilean',
-                                 'AutoML/.lake/packages/mathlib'],
+                        # default=['AutoML/.lake/packages/PrimeNumberTheoremAnd', 
+                        #          'AutoML/.lake/packages/PFR',
+                        #          'AutoML/.lake/packages/PhysLean',
+                        #          'AutoML/.lake/packages/scilean',
+                        #          'AutoML/.lake/packages/mathlib'],
+                        default=['AutoML/.lake/packages/optlib/Optlib/Algorithm', 'AutoML/.lake/packages/FoML/FoML'], 
                         help="Source directories where the Lean files are located.")
     
     # Allow multiple target directories, default is two given directories
     parser.add_argument('--target_dirs', type=str, nargs='*', 
-                        default=['AutoML/FormalML/PrimeNumberTheoremAnd', 
-                                 'AutoML/FormalML/PFR',
-                                 'AutoML/FormalML/PhysLean',
-                                 'AutoML/FormalML/scilean',
-                                 'AutoML/FormalML/mathlib'],
+                        # default=['AutoML/FormalML/PrimeNumberTheoremAnd', 
+                        #          'AutoML/FormalML/PFR',
+                        #          'AutoML/FormalML/PhysLean',
+                        #          'AutoML/FormalML/scilean',
+                        #          'AutoML/FormalML/mathlib'],
+                        default=['AutoML/FormalML/ProofLength1/convex', 'AutoML/FormalML/ProofLength1/probability'],
                         help="Target directories where the processed benchmarks will be saved.")
-    
     parser.add_argument('--proofLength', type=int, default=1,
                          help='the proof length')
+    
     return parser.parse_args()
 # Definition of to_theorem
 with open(os.path.join(math_dir,"to_theorem.lean"), "r", encoding="utf-8") as f:
@@ -63,9 +65,10 @@ def extractOriginalTheoremAndProof(module_path: str) -> list[dict]:
     return json.loads(result.stdout)
 
 def checkReplOutput(data):
-    for msg in data['messages']:
-        if msg['severity'] == 'error':
-            return False
+    if 'messages' in data.keys():
+        for msg in data['messages']:
+            if msg['severity'] == 'error':
+                return False
     return True
 
 def checkTheorem(theorem_text):
@@ -74,9 +77,11 @@ def checkTheorem(theorem_text):
         cmds = {"cmd": "".join(theorem_text)}
         write_to_process(process.stdin, cmds)
         ret = read_from_process(process.stdout)
-        for msg in ret['messages']:
-            if msg['severity'] == 'error':
-                return False
+        # print(ret)
+        if 'messages' in ret.keys():
+            for msg in ret['messages']:
+                if msg['severity'] == 'error':
+                    return False
         return True
     finally:
         # Ensure subprocess is closed whether successful or not
@@ -91,8 +96,8 @@ def indent_tactics(tacticSeq):
     return "\n".join(f"    {line}" for line in all_lines)
 
 def process_lean_file(sourcePath, targetPath, proofLength):
-    # if os.path.exists(target_file.replace(".lean", ".json")): 
-    #     return
+    if os.path.exists(targetPath.replace(".lean", ".json")): 
+        return
     print(f"Processing file: {sourcePath}->{targetPath}")
     lake_dir = os.path.join(math_dir, '.lake')
     if (not os.path.isdir(lake_dir)):
@@ -106,18 +111,18 @@ def process_lean_file(sourcePath, targetPath, proofLength):
     modulePath='/'.join(parts[pkg_index:])
     OriginalTheoremAndProofs=extractOriginalTheoremAndProof(modulePath)
     imports = [line for line in open(sourcePath) if line.startswith("import ")]
-    opens =  [line for line in open(sourcePath) if line.startswith("open ") and not line.rstrip().endswith(" in")]
+    opens = [line for line in open(sourcePath) if line.startswith("open ") and not line.rstrip().endswith(" in")]
+    opens+= [line.replace("namespace ","open ")for line in open(sourcePath) if line.startswith("namespace ")]
     heads = [f"import {parts[pkg_index]}"] + imports +opens
     for t in OriginalTheoremAndProofs:
         t['theoremContent'] = t['theoremContent'].split(':= by', 1)[0] + (':= by')
     #接下来处理
     grouped_msgs = {}
     for t in OriginalTheoremAndProofs:
-        proofState_stack = []
         theorem_text="\n".join(imports)+"\n"+to_theorem_tactic+"\n"+t['context']+"\n"+t['theoremContent']
         # 分组处理（丢弃最后不足proofLength的部分
         grouped_tactics = [
-            t['tactics'][i:i + proofLength] 
+            t['tactics'][i:i + proofLength]
             for i in range(0, len(t['tactics']) - proofLength + 1, proofLength)
         ]
         count=0
@@ -130,19 +135,24 @@ def process_lean_file(sourcePath, targetPath, proofLength):
             # print(output_data)
             # return
             if(checkReplOutput(output_data)):
-                for msg in output_data["messages"]:
-                    try:
-                        key = (
-                            (msg.get("pos", {}).get("line"), msg.get("pos", {}).get("column")),
-                            (msg.get("endPos", {}).get("line"), msg.get("endPos", {}).get("column"))
-                        )
-                    except Exception as e:
-                        raise RuntimeError(f"Bad output_data: {output_data}") from e
-                    if key not in grouped_msgs:
-                        grouped_msgs[key] = []
-                        count+=1
-                        print(count)
-                    grouped_msgs[key].append(msg)
+                if 'messages' in output_data.keys():
+                    for msg in output_data["messages"]:
+                        try:
+                            key = (
+                                (msg.get("pos", {}).get("line"), msg.get("pos", {}).get("column")),
+                                (msg.get("endPos", {}).get("line"), msg.get("endPos", {}).get("column"))
+                            )
+                        except Exception as e:
+                            raise RuntimeError(f"Bad output_data: {output_data}") from e
+                        if key not in grouped_msgs:
+                            grouped_msgs[key] = {}
+                            grouped_msgs[key]['msgs'] = []
+                            grouped_msgs[key]['original_theorem_importsAndContext']="\n".join(imports)+"\n"+t['context']
+                            grouped_msgs[key]['original_theorem_content']=t['theoremContent']
+                            grouped_msgs[key]['original_theorem_name']=t['theoremName']
+                            count+=1
+                            print(count)
+                        grouped_msgs[key]['msgs'].append(msg)
             theorem_text=theorem_text+"\n"+indent_tactics(tacticSeq)
             # print(theorem_text)
                 # return
@@ -153,39 +163,40 @@ def process_lean_file(sourcePath, targetPath, proofLength):
     # Iterate through groups
     for _, group in grouped_msgs.items():
         formal_statement=""
-        full_formal_statement = ""
         tactic = ""
         tactic_state_before = ""
         tactic_state_after = ""
-        for msg in group:
+        for msg in group['msgs']:
             # print(msg)
             if "tactic state before the tactic:" in msg['data']:
                 tactic_state_before = msg['data'].split("tactic state before the tactic:")[1]
             elif "executed tactic:" in msg['data']:
                 tactic = msg['data'].split("executed tactic:")[1] 
+                tactic += "\n  try repeat assumption"
             elif "tactic states after the tactic:" in msg['data']:
                 tactic_state_after = msg['data'].split("tactic states after the tactic:")[1] 
             elif "tactic state of the extracted theorem:" in msg['data']:
                 theorem_tactic_state = msg['data'].split("tactic state of the extracted theorem:")[1]
             elif "theorem" in msg['data'] and "extracted_formal_statement" in msg['data']:
                 formal_statement = msg['data'].replace("extracted_formal_statement", f"extracted_formal_statement_{idx}")
-            elif "theorem" in msg['data'] and "extracted_full_formal_statement" in msg['data']:
-                full_formal_statement = msg['data'].replace("extracted_full_formal_statement", f"extracted_full_formal_statement_{idx}")
-                if(checkTheorem("\n".join(heads) + "\n" + full_formal_statement)):
+                # print("\n".join(heads) + "\n" + formal_statement.replace("sorry","by\n  "+tactic))
+                if(checkTheorem("\n".join(heads) + "\n" + formal_statement.replace("sorry","by\n  "+tactic))):
                     idx += 1
                     # print(source_file,idx)
                     res.append({
                         "filename": sourcePath.partition(".lake/packages/")[2] or sourcePath,
                         "line": msg['pos']['line']-to_theorem_tactic.count("\n"),
                         "tactic_state_before": tactic_state_before,
-                        "tactic": tactic,
+                        "proof": tactic,
                         "tactic_state_after": tactic_state_after,
                         "goal": theorem_tactic_state,
-                        "theorem_header": "\n".join(heads),
+                        "header": "\n".join(heads),
                         "formal_statement": formal_statement,
-                        "full_formal_statement": full_formal_statement
+                        "original_theorem_name":group['original_theorem_name'],
+                        "original_theorem_importsAndContext":group['original_theorem_importsAndContext'],
+                        "original_theorem_content":group['original_theorem_content'],
                     })  
-                    goals.append(full_formal_statement)
+                    goals.append(formal_statement)
     print(f"{sourcePath} finally get {idx} goals")
     open(targetPath, "w").write("\n".join(heads) + "\n" + "\n\n\n".join(goals))
     # Write JSON file
