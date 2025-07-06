@@ -3,14 +3,14 @@ import subprocess
 import json
 
 def run_lake_build(directory, target_name):
-    print(f'{"-"*20} build {target_name} {"-"*20}')
+    # print(f'{"-"*20} build {target_name} {"-"*20}')
     result = subprocess.run(
         ['lake', 'build', target_name],
         cwd=directory,
         text=True,
         capture_output=True
     )
-    print(result.stdout.strip())
+    # print(result.stdout.strip())
     return 
         
 def run_version_query():
@@ -40,14 +40,15 @@ def run_env_build(math_dir, repl_dir, log_file):
 
 def read_from_process(stdin) -> dict:
     s = ""
-    for _ in range(100000000):
+    for _ in range(10000):
         s = s + stdin.readline()
         try: 
             res = json.loads(s)
         except json.JSONDecodeError as e: 
             continue
         return res
-    raise json.JSONDecodeError("The JSON object must be read in 100000000 lines", s, 100)
+    # raise json.JSONDecodeError(f"The JSON object must be read in 10000 lines,s is {s}", s, 100)
+    return False#产生了比"msg['severity'] == 'error'"更底层的报错，比如栈溢出。
 
 def write_to_process(stdout, obj):
     stdout.write(json.dumps(obj, ensure_ascii=False) + '\n\n')

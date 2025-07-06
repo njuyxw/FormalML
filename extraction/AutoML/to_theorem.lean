@@ -1,6 +1,5 @@
 import Mathlib.Tactic.Basic
 import Mathlib.Tactic.ExtractGoal
-import Mathlib
 /-
 The `to_theorem` tactic cannot be used before `intro` because `intro` introduces new variables,
 but `hyps1` doesn't have these new variables, while `goal2` contains them,
