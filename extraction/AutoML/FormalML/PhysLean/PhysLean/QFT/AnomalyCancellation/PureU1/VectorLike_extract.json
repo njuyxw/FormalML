@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "PhysLean/PhysLean/QFT/AnomalyCancellation/PureU1/VectorLike.lean",
+        "line": 27,
+        "tactic_state_before": "n : ℕ\n⊢ n + 1 + n = 2 * n + 1",
+        "proof": "omega\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\n⊢ n + 1 + n = 2 * n + 1",
+        "header": "import PhysLean\nimport PhysLean.QFT.AnomalyCancellation.PureU1.Sorts\n\nopen Nat\n\nopen Finset\n\nopen BigOperators\n\nopen PureU1\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (n : ℕ) : n + 1 + n = 2 * n + 1 := sorry",
+        "original_theorem_name": "PureU1.split_odd",
+        "original_theorem_importsAndContext": "import PhysLean.QFT.AnomalyCancellation.PureU1.Sorts\n\n/-!\n# Vector like charges\n\nFor the `n`-even case we define the property of a charge assignment being vector like.\n\n-/\nuniverse v u\n\nopen Nat\nopen Finset\nopen BigOperators\n\nnamespace PureU1\n\nvariable {n : ℕ}\n\n/--\n  Given a natural number `n`, this lemma proves that `n + n` is equal to `2 * n`.\n-/\nlemma split_equal (n : ℕ) : n + n = 2 * n := (Nat.two_mul n).symm\n\n",
+        "original_theorem_content": "lemma split_odd (n : ℕ) : n + 1 + n = 2 * n + 1 := by"
+    }
+]

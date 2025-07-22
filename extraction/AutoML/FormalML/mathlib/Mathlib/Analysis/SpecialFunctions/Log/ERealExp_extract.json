@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ERealExp.lean",
+        "line": 41,
+        "tactic_state_before": "⊢ exp 0 = 1",
+        "proof": "simp [exp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ exp 0 = 1",
+        "header": "import Mathlib\nimport Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\nopen scoped ENNReal\n\nopen EReal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 : exp 0 = 1 := sorry",
+        "original_theorem_name": "EReal.exp.eq_2",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\n/-!\n# Extended Nonnegative Real Exponential\n\nWe define `exp` as an extension of the exponential of a real\nto the extended reals `EReal`. The function takes values\nin the extended nonnegative reals `ℝ≥0∞`, with `exp ⊥ = 0` and `exp ⊤ = ⊤`.\n\n## Main Definitions\n- `EReal.exp`: The extension of the real exponential to `EReal`.\n\n## Main Results\n- `EReal.exp_strictMono`: `exp` is increasing;\n- `EReal.exp_neg`, `EReal.exp_add`: `exp` satisfies\nthe identities `exp (-x) = (exp x)⁻¹` and `exp (x + y) = exp x * exp y`.\n\n## Tags\nENNReal, EReal, exponential\n-/\nnamespace EReal\n\nopen scoped ENNReal\n\n/-! ### Definition -/\nsection Definition\n\n/-- Exponential as a function from `EReal` to `ℝ≥0∞`. -/\nnoncomputable\ndef exp : EReal → ℝ≥0∞\n  | ⊥ => 0\n  | ⊤ => ∞\n  | (x : ℝ) => ENNReal.ofReal (Real.exp x)\n\n@[simp] lemma exp_bot : exp ⊥ = 0 := rfl\n",
+        "original_theorem_content": "@[simp] lemma exp_zero : exp 0 = 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ERealExp.lean",
+        "line": 41,
+        "tactic_state_before": "⊢ exp 0 = 1",
+        "proof": "simp [exp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ exp 0 = 1",
+        "header": "import Mathlib\nimport Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\nopen scoped ENNReal\n\nopen EReal\n",
+        "formal_statement": "theorem extracted_formal_statement_1 : exp 0 = 1 := sorry",
+        "original_theorem_name": "EReal.exp.eq_2",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\n/-!\n# Extended Nonnegative Real Exponential\n\nWe define `exp` as an extension of the exponential of a real\nto the extended reals `EReal`. The function takes values\nin the extended nonnegative reals `ℝ≥0∞`, with `exp ⊥ = 0` and `exp ⊤ = ⊤`.\n\n## Main Definitions\n- `EReal.exp`: The extension of the real exponential to `EReal`.\n\n## Main Results\n- `EReal.exp_strictMono`: `exp` is increasing;\n- `EReal.exp_neg`, `EReal.exp_add`: `exp` satisfies\nthe identities `exp (-x) = (exp x)⁻¹` and `exp (x + y) = exp x * exp y`.\n\n## Tags\nENNReal, EReal, exponential\n-/\nnamespace EReal\n\nopen scoped ENNReal\n\n/-! ### Definition -/\nsection Definition\n\n/-- Exponential as a function from `EReal` to `ℝ≥0∞`. -/\nnoncomputable\ndef exp : EReal → ℝ≥0∞\n  | ⊥ => 0\n  | ⊤ => ∞\n  | (x : ℝ) => ENNReal.ofReal (Real.exp x)\n\n@[simp] lemma exp_bot : exp ⊥ = 0 := rfl\n",
+        "original_theorem_content": "@[simp] lemma exp_zero : exp 0 = 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ERealExp.lean",
+        "line": 41,
+        "tactic_state_before": "⊢ exp 0 = 1",
+        "proof": "simp [exp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ exp 0 = 1",
+        "header": "import Mathlib\nimport Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\nopen scoped ENNReal\n\nopen EReal\n",
+        "formal_statement": "theorem extracted_formal_statement_2 : exp 0 = 1 := sorry",
+        "original_theorem_name": "EReal.exp.eq_2",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\n/-!\n# Extended Nonnegative Real Exponential\n\nWe define `exp` as an extension of the exponential of a real\nto the extended reals `EReal`. The function takes values\nin the extended nonnegative reals `ℝ≥0∞`, with `exp ⊥ = 0` and `exp ⊤ = ⊤`.\n\n## Main Definitions\n- `EReal.exp`: The extension of the real exponential to `EReal`.\n\n## Main Results\n- `EReal.exp_strictMono`: `exp` is increasing;\n- `EReal.exp_neg`, `EReal.exp_add`: `exp` satisfies\nthe identities `exp (-x) = (exp x)⁻¹` and `exp (x + y) = exp x * exp y`.\n\n## Tags\nENNReal, EReal, exponential\n-/\nnamespace EReal\n\nopen scoped ENNReal\n\n/-! ### Definition -/\nsection Definition\n\n/-- Exponential as a function from `EReal` to `ℝ≥0∞`. -/\nnoncomputable\ndef exp : EReal → ℝ≥0∞\n  | ⊥ => 0\n  | ⊤ => ∞\n  | (x : ℝ) => ENNReal.ofReal (Real.exp x)\n\n@[simp] lemma exp_bot : exp ⊥ = 0 := rfl\n",
+        "original_theorem_content": "@[simp] lemma exp_zero : exp 0 = 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ERealExp.lean",
+        "line": 41,
+        "tactic_state_before": "⊢ exp 0 = 1",
+        "proof": "simp [exp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ exp 0 = 1",
+        "header": "import Mathlib\nimport Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\nopen scoped ENNReal\n\nopen EReal\n",
+        "formal_statement": "theorem extracted_formal_statement_3 : exp 0 = 1 := sorry",
+        "original_theorem_name": "EReal.exp.eq_2",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Complex.Exponential\n\nimport Mathlib.Data.EReal.Basic\n\n/-!\n# Extended Nonnegative Real Exponential\n\nWe define `exp` as an extension of the exponential of a real\nto the extended reals `EReal`. The function takes values\nin the extended nonnegative reals `ℝ≥0∞`, with `exp ⊥ = 0` and `exp ⊤ = ⊤`.\n\n## Main Definitions\n- `EReal.exp`: The extension of the real exponential to `EReal`.\n\n## Main Results\n- `EReal.exp_strictMono`: `exp` is increasing;\n- `EReal.exp_neg`, `EReal.exp_add`: `exp` satisfies\nthe identities `exp (-x) = (exp x)⁻¹` and `exp (x + y) = exp x * exp y`.\n\n## Tags\nENNReal, EReal, exponential\n-/\nnamespace EReal\n\nopen scoped ENNReal\n\n/-! ### Definition -/\nsection Definition\n\n/-- Exponential as a function from `EReal` to `ℝ≥0∞`. -/\nnoncomputable\ndef exp : EReal → ℝ≥0∞\n  | ⊥ => 0\n  | ⊤ => ∞\n  | (x : ℝ) => ENNReal.ofReal (Real.exp x)\n\n@[simp] lemma exp_bot : exp ⊥ = 0 := rfl\n",
+        "original_theorem_content": "@[simp] lemma exp_zero : exp 0 = 1 := by"
+    }
+]

@@ -1,0 +1,23 @@
+import Mathlib
+import Mathlib.CategoryTheory.Monoidal.CommMon_
+
+import Mathlib.CategoryTheory.Monoidal.Comon_
+
+import Mathlib.CategoryTheory.Monoidal.FunctorCategory
+
+open CategoryTheory MonoidalCategory
+
+open MonFunctorCategoryEquivalence
+
+open ComonFunctorCategoryEquivalence
+
+open CommMonFunctorCategoryEquivalence
+
+open CategoryTheory.Monoidal
+
+open MonFunctorCategoryEquivalence
+
+open ComonFunctorCategoryEquivalence
+
+open CommMonFunctorCategoryEquivalence
+

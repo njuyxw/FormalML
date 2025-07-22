@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Cast/Order/Field.lean",
+        "line": 47,
+        "tactic_state_before": "case refine_2\nα : Type u_1\ninst✝ : LinearOrderedSemifield α\nn m : ℕ\nh : n < m\n⊢ ↑n + 1 < ↑m + 1",
+        "proof": "simpa\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : LinearOrderedSemifield α\nn m : ℕ\nh : n < m\n⊢ ↑n + 1 < ↑m + 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Field.Basic\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : LinearOrderedSemifield α] {n m : ℕ} (h : n < m) :\n  ↑n + 1 < ↑m + 1 := sorry",
+        "original_theorem_name": "Nat.one_div_lt_one_div",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Field.Basic\n\n/-!\n# Cast of naturals into ordered fields\n\nThis file concerns the canonical homomorphism `ℕ → F`, where `F` is a `LinearOrderedSemifield`.\n\n## Main results\n\n * `Nat.cast_div_le`: in all cases, `↑(m / n) ≤ ↑m / ↑ n`\n-/\n\n\nnamespace Nat\n\nvariable {α : Type*} [LinearOrderedSemifield α]\n\nlemma cast_inv_le_one : ∀ n : ℕ, (n⁻¹ : α) ≤ 1\n  | 0 => by simp\n  | n + 1 => inv_le_one_of_one_le₀ <| by simp [Nat.cast_nonneg]\n\n/-- Natural division is always less than division in the field. -/\ntheorem cast_div_le {m n : ℕ} : ((m / n : ℕ) : α) ≤ m / n := by\n  cases n\n  · rw [cast_zero, div_zero, Nat.div_zero, cast_zero]\n  rw [le_div_iff₀, ← Nat.cast_mul, @Nat.cast_le]\n  · exact Nat.div_mul_le_self m _\n  · exact Nat.cast_pos.2 (Nat.succ_pos _)\n\ntheorem inv_pos_of_nat {n : ℕ} : 0 < ((n : α) + 1)⁻¹ :=\n  inv_pos.2 <| add_pos_of_nonneg_of_pos n.cast_nonneg zero_lt_one\n\ntheorem one_div_pos_of_nat {n : ℕ} : 0 < 1 / ((n : α) + 1) := by\n  rw [one_div]\n  exact inv_pos_of_nat\n\ntheorem one_div_le_one_div {n m : ℕ} (h : n ≤ m) : 1 / ((m : α) + 1) ≤ 1 / ((n : α) + 1) := by\n  refine one_div_le_one_div_of_le ?_ ?_\n  · exact Nat.cast_add_one_pos _\n  · simpa\n\n",
+        "original_theorem_content": "theorem one_div_lt_one_div {n m : ℕ} (h : n < m) : 1 / ((m : α) + 1) < 1 / ((n : α) + 1) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Cast/Order/Field.lean",
+        "line": 42,
+        "tactic_state_before": "case refine_2\nα : Type u_1\ninst✝ : LinearOrderedSemifield α\nn m : ℕ\nh : n ≤ m\n⊢ ↑n + 1 ≤ ↑m + 1",
+        "proof": "simpa\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : LinearOrderedSemifield α\nn m : ℕ\nh : n ≤ m\n⊢ ↑n + 1 ≤ ↑m + 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Field.Basic\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : LinearOrderedSemifield α] {n m : ℕ} (h : n ≤ m) :\n  ↑n + 1 ≤ ↑m + 1 := sorry",
+        "original_theorem_name": "Nat.one_div_le_one_div",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Field.Basic\n\n/-!\n# Cast of naturals into ordered fields\n\nThis file concerns the canonical homomorphism `ℕ → F`, where `F` is a `LinearOrderedSemifield`.\n\n## Main results\n\n * `Nat.cast_div_le`: in all cases, `↑(m / n) ≤ ↑m / ↑ n`\n-/\n\n\nnamespace Nat\n\nvariable {α : Type*} [LinearOrderedSemifield α]\n\nlemma cast_inv_le_one : ∀ n : ℕ, (n⁻¹ : α) ≤ 1\n  | 0 => by simp\n  | n + 1 => inv_le_one_of_one_le₀ <| by simp [Nat.cast_nonneg]\n\n/-- Natural division is always less than division in the field. -/\ntheorem cast_div_le {m n : ℕ} : ((m / n : ℕ) : α) ≤ m / n := by\n  cases n\n  · rw [cast_zero, div_zero, Nat.div_zero, cast_zero]\n  rw [le_div_iff₀, ← Nat.cast_mul, @Nat.cast_le]\n  · exact Nat.div_mul_le_self m _\n  · exact Nat.cast_pos.2 (Nat.succ_pos _)\n\ntheorem inv_pos_of_nat {n : ℕ} : 0 < ((n : α) + 1)⁻¹ :=\n  inv_pos.2 <| add_pos_of_nonneg_of_pos n.cast_nonneg zero_lt_one\n\ntheorem one_div_pos_of_nat {n : ℕ} : 0 < 1 / ((n : α) + 1) := by\n  rw [one_div]\n  exact inv_pos_of_nat\n\n",
+        "original_theorem_content": "theorem one_div_le_one_div {n m : ℕ} (h : n ≤ m) : 1 / ((m : α) + 1) ≤ 1 / ((n : α) + 1) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Cast/Order/Field.lean",
+        "line": 30,
+        "tactic_state_before": "case succ\nα : Type u_1\ninst✝ : LinearOrderedSemifield α\nm n✝ : ℕ\n⊢ 0 < ↑(n✝ + 1)",
+        "proof": "exact Nat.cast_pos.2 (Nat.succ_pos _)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : LinearOrderedSemifield α\nm n✝ : ℕ\n⊢ 0 < ↑(n✝ + 1)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Field.Basic\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : LinearOrderedSemifield α] (n : ℕ) :\n  0 < ↑(n + 1) := sorry",
+        "original_theorem_name": "Nat.cast_div_le",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Field.Basic\n\n/-!\n# Cast of naturals into ordered fields\n\nThis file concerns the canonical homomorphism `ℕ → F`, where `F` is a `LinearOrderedSemifield`.\n\n## Main results\n\n * `Nat.cast_div_le`: in all cases, `↑(m / n) ≤ ↑m / ↑ n`\n-/\n\n\nnamespace Nat\n\nvariable {α : Type*} [LinearOrderedSemifield α]\n\nlemma cast_inv_le_one : ∀ n : ℕ, (n⁻¹ : α) ≤ 1\n  | 0 => by simp\n  | n + 1 => inv_le_one_of_one_le₀ <| by simp [Nat.cast_nonneg]\n\n",
+        "original_theorem_content": "/-- Natural division is always less than division in the field. -/\ntheorem cast_div_le {m n : ℕ} : ((m / n : ℕ) : α) ≤ m / n := by"
+    }
+]

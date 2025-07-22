@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Monoidal/Braided/Opposite.lean",
+        "line": 31,
+        "tactic_state_before": "C : Type u_2\ninst✝² : Category.{u_3, u_2} C\ninst✝¹ : MonoidalCategory C\ninst✝ : BraidedCategory C\nX Y W Z : C\n⊢ (tensorμ X W Y Z).op = tensorμ (op X) (op Y) (op W) (op Z)",
+        "proof": "simp only [op_tensorObj, tensorμ, op_comp, op_inv_associator, op_whiskerLeft, op_hom_associator,\n  op_whiskerRight, op_hom_braiding, Category.assoc]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u_2\ninst✝² : Category.{u_3, u_2} C\ninst✝¹ : MonoidalCategory C\ninst✝ : BraidedCategory C\nX Y W Z : C\n⊢ (tensorμ X W Y Z).op = tensorμ (op X) (op Y) (op W) (op Z)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Monoidal.Braided.Basic\n\nimport Mathlib.CategoryTheory.Monoidal.Opposite\n\nopen CategoryTheory MonoidalCategory BraidedCategory Opposite\n\nopen CategoryTheory.BraidedCategory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u_2} [inst : Category.{u_3, u_2} C]\n  [inst_1 : MonoidalCategory C] [inst_2 : BraidedCategory C] (X Y W Z : C) :\n  (tensorμ X W Y Z).op = tensorμ (op X) (op Y) (op W) (op Z) := sorry",
+        "original_theorem_name": "CategoryTheory.BraidedCategory.op_tensorμ",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Monoidal.Braided.Basic\n\nimport Mathlib.CategoryTheory.Monoidal.Opposite\n\n/-!\n# If `C` is braided, so is `Cᵒᵖ`.\n\nTodo: we should also do `Cᵐᵒᵖ`.\n-/\n\nopen CategoryTheory MonoidalCategory BraidedCategory Opposite\n\nvariable {C : Type*} [Category C] [MonoidalCategory C] [BraidedCategory C]\n\ninstance : BraidedCategory Cᵒᵖ where\n  braiding X Y := (β_ (unop Y) (unop X)).op\n\nnamespace CategoryTheory.BraidedCategory\n\n@[simp] lemma unop_tensorμ {C : Type*} [Category C] [MonoidalCategory C]\n    [BraidedCategory C] (X Y W Z : Cᵒᵖ) :\n    (tensorμ X W Y Z).unop = tensorμ X.unop Y.unop W.unop Z.unop := by\n  simp only [unop_tensorObj, tensorμ, unop_comp, unop_inv_associator, unop_whiskerLeft,\n    unop_hom_associator, unop_whiskerRight, unop_hom_braiding, Category.assoc]\n\n",
+        "original_theorem_content": "@[simp] lemma op_tensorμ {C : Type*} [Category C] [MonoidalCategory C]\n    [BraidedCategory C] (X Y W Z : C) :\n    (tensorμ X W Y Z).op = tensorμ (op X) (op Y) (op W) (op Z) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Monoidal/Braided/Opposite.lean",
+        "line": 25,
+        "tactic_state_before": "C : Type u_2\ninst✝² : Category.{u_3, u_2} C\ninst✝¹ : MonoidalCategory C\ninst✝ : BraidedCategory C\nX Y W Z : Cᵒᵖ\n⊢ (tensorμ X W Y Z).unop = tensorμ (unop X) (unop Y) (unop W) (unop Z)",
+        "proof": "simp only [unop_tensorObj, tensorμ, unop_comp, unop_inv_associator, unop_whiskerLeft,\n  unop_hom_associator, unop_whiskerRight, unop_hom_braiding, Category.assoc]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u_2\ninst✝² : Category.{u_3, u_2} C\ninst✝¹ : MonoidalCategory C\ninst✝ : BraidedCategory C\nX Y W Z : Cᵒᵖ\n⊢ (tensorμ X W Y Z).unop = tensorμ (unop X) (unop Y) (unop W) (unop Z)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Monoidal.Braided.Basic\n\nimport Mathlib.CategoryTheory.Monoidal.Opposite\n\nopen CategoryTheory MonoidalCategory BraidedCategory Opposite\n\nopen CategoryTheory.BraidedCategory\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {C : Type u_2} [inst : Category.{u_3, u_2} C]\n  [inst_1 : MonoidalCategory C] [inst_2 : BraidedCategory C] (X Y W Z : Cᵒᵖ) :\n  (tensorμ X W Y Z).unop = tensorμ (unop X) (unop Y) (unop W) (unop Z) := sorry",
+        "original_theorem_name": "CategoryTheory.BraidedCategory.unop_tensorμ",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Monoidal.Braided.Basic\n\nimport Mathlib.CategoryTheory.Monoidal.Opposite\n\n/-!\n# If `C` is braided, so is `Cᵒᵖ`.\n\nTodo: we should also do `Cᵐᵒᵖ`.\n-/\n\nopen CategoryTheory MonoidalCategory BraidedCategory Opposite\n\nvariable {C : Type*} [Category C] [MonoidalCategory C] [BraidedCategory C]\n\ninstance : BraidedCategory Cᵒᵖ where\n  braiding X Y := (β_ (unop Y) (unop X)).op\n\nnamespace CategoryTheory.BraidedCategory\n\n",
+        "original_theorem_content": "@[simp] lemma unop_tensorμ {C : Type*} [Category C] [MonoidalCategory C]\n    [BraidedCategory C] (X Y W Z : Cᵒᵖ) :\n    (tensorμ X W Y Z).unop = tensorμ X.unop Y.unop W.unop Z.unop := by"
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "scilean/SciLean/Util/Alternatives.lean",
+        "line": 25,
+        "tactic_state_before": "α : Sort u_1\na b : α\nap : Alternatives a b\n⊢ a = b",
+        "proof": "rw [ap.eq]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Sort u_1\na b : α\nap : Alternatives a b\n⊢ a = b",
+        "header": "import SciLean\nimport Lean\n\nopen SciLean\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Sort u_1} {a b : α} (ap : Alternatives a b) : a = b := sorry",
+        "original_theorem_name": "SciLean.Alternatives.pick_snd",
+        "original_theorem_importsAndContext": "import Lean\n\nnamespace SciLean\n\n/--\nGadget structure providing a term that is either `a` or `b`.\n\nSometimes you know that a certain term has multiple alternative forms and you do not want to pick one or the other. The decision which version should\n-/\nstructure Alternatives {α} (a b : α) where\n  eq : a = b\n\nset_option linter.unusedVariables false in\n@[irreducible]\ndef Alternatives.choose {α} (a b : α) (ap : Alternatives a b) : α := a\n\ntheorem Alternatives.pick_fst {α} {a b : α} (ap : Alternatives a b)\n  : ap.choose = a := by unfold Alternatives.choose; rfl\n\n",
+        "original_theorem_content": "theorem Alternatives.pick_snd {α} {a b : α} (ap : Alternatives a b)\n  : ap.choose = b := by"
+    },
+    {
+        "filename": "scilean/SciLean/Util/Alternatives.lean",
+        "line": 22,
+        "tactic_state_before": "α : Sort u_1\na b : α\nap : Alternatives a b\n⊢ a = a",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Sort u_1\na b : α\nap : Alternatives a b\n⊢ a = a",
+        "header": "import SciLean\nimport Lean\n\nopen SciLean\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Sort u_1} {a b : α} (ap : Alternatives a b) : a = a := sorry",
+        "original_theorem_name": "SciLean.Alternatives.pick_fst",
+        "original_theorem_importsAndContext": "import Lean\n\nnamespace SciLean\n\n/--\nGadget structure providing a term that is either `a` or `b`.\n\nSometimes you know that a certain term has multiple alternative forms and you do not want to pick one or the other. The decision which version should\n-/\nstructure Alternatives {α} (a b : α) where\n  eq : a = b\n\nset_option linter.unusedVariables false in\n@[irreducible]\ndef Alternatives.choose {α} (a b : α) (ap : Alternatives a b) : α := a\n\n",
+        "original_theorem_content": "theorem Alternatives.pick_fst {α} {a b : α} (ap : Alternatives a b)\n  : ap.choose = a := by"
+    }
+]

@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Trigonometric/Cotangent.lean",
+        "line": 46,
+        "tactic_state_before": "z : ℍ\nh1 :\n  ↑π * ((cexp (2 * ↑π * I * ↑z) + 1) / (I * (1 - cexp (2 * ↑π * I * ↑z)))) =\n    -↑π * I * ((cexp (2 * ↑π * I * ↑z) + 1) * (1 / (1 - cexp (2 * ↑π * I * ↑z))))\n⊢ -↑π * I * (2 * ∑' (i : ℕ), cexp (2 * ↑π * I * ↑z) ^ i - 1) =\n    ↑π * I - 2 * ↑π * I * ∑' (n : ℕ), cexp (2 * ↑π * I * ↑z) ^ n",
+        "proof": "ring\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "z : ℍ\nh1 :\n  ↑π * ((cexp (2 * ↑π * I * ↑z) + 1) / (I * (1 - cexp (2 * ↑π * I * ↑z)))) =\n    -↑π * I * ((cexp (2 * ↑π * I * ↑z) + 1) * (1 / (1 - cexp (2 * ↑π * I * ↑z))))\n⊢ -↑π * I * (2 * ∑' (i : ℕ), cexp (2 * ↑π * I * ↑z) ^ i - 1) =\n    ↑π * I - 2 * ↑π * I * ∑' (n : ℕ), cexp (2 * ↑π * I * ↑z) ^ n",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (z : ℍ)\n  (h1 :\n    ↑π * ((cexp (2 * ↑π * I * ↑z) + 1) / (I * (1 - cexp (2 * ↑π * I * ↑z)))) =\n      -↑π * I * ((cexp (2 * ↑π * I * ↑z) + 1) * (1 / (1 - cexp (2 * ↑π * I * ↑z))))) :\n  -↑π * I * (2 * ∑' (i : ℕ), cexp (2 * ↑π * I * ↑z) ^ i - 1) =\n    ↑π * I - 2 * ↑π * I * ∑' (n : ℕ), cexp (2 * ↑π * I * ↑z) ^ n := sorry",
+        "original_theorem_name": "pi_mul_cot_pi_q_exp",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\n/-!\n# Cotangent\n\nThis file contains lemmas about the cotangent function, including useful series expansions.\n-/\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n\nlemma Complex.cot_eq_exp_ratio (z : ℂ) :\n    cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by\n  rw [Complex.cot, Complex.sin, Complex.cos]\n  field_simp\n  have h1 : exp (z * I) + exp (-(z * I)) = exp (-(z * I)) * (exp (2 * I * z) + 1) := by\n    rw [mul_add, ← Complex.exp_add]\n    simp only [mul_one, add_left_inj]\n    ring_nf\n  have h2 : (exp (-(z * I)) - exp (z * I)) * I = exp (-(z * I)) * (I * (1 - exp (2 * I * z))) := by\n    ring_nf\n    rw [mul_assoc, ← Complex.exp_add]\n    ring_nf\n  rw [h1, h2, mul_div_mul_left _ _ (Complex.exp_ne_zero _)]\n\n/- The version one probably wants to use more. -/\nlemma Complex.cot_pi_eq_exp_ratio (z : ℂ) :\n    cot (π * z) = (Complex.exp (2 * π * I * z) + 1) / (I * (1 - Complex.exp (2 * π * I * z))) := by\n  rw [cot_eq_exp_ratio (π * z)]\n  ring_nf\n\n/- This is the version one probably wants, which is why the pi's are there. -/\n",
+        "original_theorem_content": "theorem pi_mul_cot_pi_q_exp (z : ℍ) :\n    π * cot (π * z) = π * I - 2 * π * I * ∑' n : ℕ, Complex.exp (2 * π * I * z) ^ n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Trigonometric/Cotangent.lean",
+        "line": 32,
+        "tactic_state_before": "z : ℂ\n⊢ (↑π * z).cot = (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))",
+        "proof": "rw [cot_eq_exp_ratio (π * z)]\n  try repeat assumption",
+        "tactic_state_after": "[z : ℂ\n ⊢ (cexp (2 * I * (↑π * z)) + 1) / (I * (1 - cexp (2 * I * (↑π * z)))) =\n     (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))]",
+        "goal": "z : ℂ\nh :\n  (cexp (2 * I * (↑π * z)) + 1) / (I * (1 - cexp (2 * I * (↑π * z)))) =\n    (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))\n⊢ (↑π * z).cot = (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (z : ℂ)\n  (h :\n    (cexp (2 * I * (↑π * z)) + 1) / (I * (1 - cexp (2 * I * (↑π * z)))) =\n      (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))) :\n  (↑π * z).cot = (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z))) := sorry",
+        "original_theorem_name": "Complex.cot_pi_eq_exp_ratio",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\n/-!\n# Cotangent\n\nThis file contains lemmas about the cotangent function, including useful series expansions.\n-/\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n\nlemma Complex.cot_eq_exp_ratio (z : ℂ) :\n    cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by\n  rw [Complex.cot, Complex.sin, Complex.cos]\n  field_simp\n  have h1 : exp (z * I) + exp (-(z * I)) = exp (-(z * I)) * (exp (2 * I * z) + 1) := by\n    rw [mul_add, ← Complex.exp_add]\n    simp only [mul_one, add_left_inj]\n    ring_nf\n  have h2 : (exp (-(z * I)) - exp (z * I)) * I = exp (-(z * I)) * (I * (1 - exp (2 * I * z))) := by\n    ring_nf\n    rw [mul_assoc, ← Complex.exp_add]\n    ring_nf\n  rw [h1, h2, mul_div_mul_left _ _ (Complex.exp_ne_zero _)]\n\n/- The version one probably wants to use more. -/\n",
+        "original_theorem_content": "lemma Complex.cot_pi_eq_exp_ratio (z : ℂ) :\n    cot (π * z) = (Complex.exp (2 * π * I * z) + 1) / (I * (1 - Complex.exp (2 * π * I * z))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Trigonometric/Cotangent.lean",
+        "line": 33,
+        "tactic_state_before": "z : ℂ\n⊢ (cexp (2 * I * (↑π * z)) + 1) / (I * (1 - cexp (2 * I * (↑π * z)))) =\n    (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))",
+        "proof": "ring_nf\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "z : ℂ\n⊢ (cexp (2 * I * (↑π * z)) + 1) / (I * (1 - cexp (2 * I * (↑π * z)))) =\n    (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z)))",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (z : ℂ) :\n  (cexp (2 * I * (↑π * z)) + 1) / (I * (1 - cexp (2 * I * (↑π * z)))) =\n    (cexp (2 * ↑π * I * z) + 1) / (I * (1 - cexp (2 * ↑π * I * z))) := sorry",
+        "original_theorem_name": "Complex.cot_pi_eq_exp_ratio",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\n/-!\n# Cotangent\n\nThis file contains lemmas about the cotangent function, including useful series expansions.\n-/\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n\nlemma Complex.cot_eq_exp_ratio (z : ℂ) :\n    cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by\n  rw [Complex.cot, Complex.sin, Complex.cos]\n  field_simp\n  have h1 : exp (z * I) + exp (-(z * I)) = exp (-(z * I)) * (exp (2 * I * z) + 1) := by\n    rw [mul_add, ← Complex.exp_add]\n    simp only [mul_one, add_left_inj]\n    ring_nf\n  have h2 : (exp (-(z * I)) - exp (z * I)) * I = exp (-(z * I)) * (I * (1 - exp (2 * I * z))) := by\n    ring_nf\n    rw [mul_assoc, ← Complex.exp_add]\n    ring_nf\n  rw [h1, h2, mul_div_mul_left _ _ (Complex.exp_ne_zero _)]\n\n/- The version one probably wants to use more. -/\n",
+        "original_theorem_content": "lemma Complex.cot_pi_eq_exp_ratio (z : ℂ) :\n    cot (π * z) = (Complex.exp (2 * π * I * z) + 1) / (I * (1 - Complex.exp (2 * π * I * z))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Trigonometric/Cotangent.lean",
+        "line": 17,
+        "tactic_state_before": "z : ℂ\n⊢ z.cot = (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))",
+        "proof": "rw [Complex.cot, Complex.sin, Complex.cos]\n  try repeat assumption",
+        "tactic_state_after": "[z : ℂ\n ⊢ (cexp (z * I) + cexp (-z * I)) / 2 / ((cexp (-z * I) - cexp (z * I)) * I / 2) =\n     (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))]",
+        "goal": "z : ℂ\nh :\n  (cexp (z * I) + cexp (-z * I)) / 2 / ((cexp (-z * I) - cexp (z * I)) * I / 2) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))\n⊢ z.cot = (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (z : ℂ)\n  (h :\n    (cexp (z * I) + cexp (-z * I)) / 2 / ((cexp (-z * I) - cexp (z * I)) * I / 2) =\n      (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))) :\n  z.cot = (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z))) := sorry",
+        "original_theorem_name": "Complex.cot_eq_exp_ratio",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\n/-!\n# Cotangent\n\nThis file contains lemmas about the cotangent function, including useful series expansions.\n-/\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n\n",
+        "original_theorem_content": "lemma Complex.cot_eq_exp_ratio (z : ℂ) :\n    cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Trigonometric/Cotangent.lean",
+        "line": 18,
+        "tactic_state_before": "z : ℂ\n⊢ (cexp (z * I) + cexp (-z * I)) / 2 / ((cexp (-z * I) - cexp (z * I)) * I / 2) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))",
+        "proof": "field_simp\n  try repeat assumption",
+        "tactic_state_after": "[z : ℂ\n ⊢ (cexp (z * I) + cexp (-(z * I))) / ((cexp (-(z * I)) - cexp (z * I)) * I) =\n     (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))]",
+        "goal": "z : ℂ\nh :\n  (cexp (z * I) + cexp (-(z * I))) / ((cexp (-(z * I)) - cexp (z * I)) * I) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))\n⊢ (cexp (z * I) + cexp (-z * I)) / 2 / ((cexp (-z * I) - cexp (z * I)) * I / 2) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (z : ℂ)\n  (h :\n    (cexp (z * I) + cexp (-(z * I))) / ((cexp (-(z * I)) - cexp (z * I)) * I) =\n      (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))) :\n  (cexp (z * I) + cexp (-z * I)) / 2 / ((cexp (-z * I) - cexp (z * I)) * I / 2) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z))) := sorry",
+        "original_theorem_name": "Complex.cot_eq_exp_ratio",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\n/-!\n# Cotangent\n\nThis file contains lemmas about the cotangent function, including useful series expansions.\n-/\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n\n",
+        "original_theorem_content": "lemma Complex.cot_eq_exp_ratio (z : ℂ) :\n    cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Trigonometric/Cotangent.lean",
+        "line": 29,
+        "tactic_state_before": "z : ℂ\nh1 : cexp (z * I) + cexp (-(z * I)) = cexp (-(z * I)) * (cexp (2 * I * z) + 1)\nh2 : (cexp (-(z * I)) - cexp (z * I)) * I = cexp (-(z * I)) * (I * (1 - cexp (2 * I * z)))\n⊢ (cexp (z * I) + cexp (-(z * I))) / ((cexp (-(z * I)) - cexp (z * I)) * I) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))",
+        "proof": "rw [h1, h2, mul_div_mul_left _ _ (Complex.exp_ne_zero _)]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "z : ℂ\nh1 : cexp (z * I) + cexp (-(z * I)) = cexp (-(z * I)) * (cexp (2 * I * z) + 1)\nh2 : (cexp (-(z * I)) - cexp (z * I)) * I = cexp (-(z * I)) * (I * (1 - cexp (2 * I * z)))\n⊢ (cexp (z * I) + cexp (-(z * I))) / ((cexp (-(z * I)) - cexp (z * I)) * I) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z)))",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n",
+        "formal_statement": "theorem extracted_formal_statement_5 (z : ℂ)\n  (h1 : cexp (z * I) + cexp (-(z * I)) = cexp (-(z * I)) * (cexp (2 * I * z) + 1))\n  (h2 : (cexp (-(z * I)) - cexp (z * I)) * I = cexp (-(z * I)) * (I * (1 - cexp (2 * I * z)))) :\n  (cexp (z * I) + cexp (-(z * I))) / ((cexp (-(z * I)) - cexp (z * I)) * I) =\n    (cexp (2 * I * z) + 1) / (I * (1 - cexp (2 * I * z))) := sorry",
+        "original_theorem_name": "Complex.cot_eq_exp_ratio",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Exp\n\n/-!\n# Cotangent\n\nThis file contains lemmas about the cotangent function, including useful series expansions.\n-/\n\nopen Real Complex\n\nopen scoped UpperHalfPlane\n\n",
+        "original_theorem_content": "lemma Complex.cot_eq_exp_ratio (z : ℂ) :\n    cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by"
+    }
+]

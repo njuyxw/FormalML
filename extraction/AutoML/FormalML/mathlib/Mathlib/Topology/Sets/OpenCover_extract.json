@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Sets/OpenCover.lean",
+        "line": 50,
+        "tactic_state_before": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nu : ι → Opens X\nhu : IsOpenCover u\ns : Set X\n⊢ ⋃ i, s ∩ ↑(u i) = s",
+        "proof": "simp [← inter_iUnion, hu.iSup_set_eq_univ]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nu : ι → Opens X\nhu : IsOpenCover u\ns : Set X\n⊢ ⋃ i, s ∩ ↑(u i) = s",
+        "header": "import Mathlib\nimport Mathlib.Topology.Sets.Opens\n\nopen Set Topology\n\nopen TopologicalSpace\n\nopen IsOpenCover\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {X : Type u_3} [inst : TopologicalSpace X]\n  {u : ι → Opens X} (hu : IsOpenCover u) (s : Set X) : ⋃ i, s ∩ ↑(u i) = s := sorry",
+        "original_theorem_name": "TopologicalSpace.IsOpenCover.iUnion_inter",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Sets.Opens\n\n/-!\n# Open covers\n\nWe define `IsOpenCover` as a predicate on indexed families of open sets in a topological space `X`,\nasserting that their union is `X`. This is an example of a declaration whose name is actually\nlonger than its content; but giving it a name serves as a way of standardizing API.\n-/\n\nopen Set Topology\n\nnamespace TopologicalSpace\n\n/-- An indexed family of open sets whose union is `X`. -/\ndef IsOpenCover {ι X : Type*} [TopologicalSpace X] (u : ι → Opens X) : Prop :=\n  iSup u = ⊤\n\nvariable {ι κ X Y : Type*} [TopologicalSpace X] {u : ι → Opens X}\n  [TopologicalSpace Y] {v : κ → Opens Y}\n\nnamespace IsOpenCover\n\nlemma mk (h : iSup u = ⊤) : IsOpenCover u := h\n\nlemma of_sets {v : ι → Set X} (h_open : ∀ i, IsOpen (v i)) (h_iUnion : ⋃ i, v i = univ) :\n    IsOpenCover (fun i ↦ ⟨v i, h_open i⟩) := by\n  simp [IsOpenCover, h_iUnion]\n\nlemma iSup_eq_top (hu : IsOpenCover u) : ⨆ i, u i = ⊤ := hu\n\nlemma iSup_set_eq_univ (hu : IsOpenCover u) : ⋃ i, (u i : Set X) = univ := by\n  simpa [← SetLike.coe_set_eq] using hu.iSup_eq_top\n\n/-- Pullback of a covering of `Y` by a continuous map `X → Y`, giving a covering of `X` with the\nsame index type. -/\nlemma comap (hv : IsOpenCover v) (f : C(X, Y)) : IsOpenCover fun k ↦ (v k).comap f :=\n  by simp [IsOpenCover, ← preimage_iUnion, hv.iSup_set_eq_univ]\n\nlemma exists_mem (hu : IsOpenCover u) (a : X) : ∃ i, a ∈ u i := by\n  simpa [← hu.iSup_set_eq_univ] using mem_univ a\n\nlemma exists_mem_nhds (hu : IsOpenCover u) (a : X) : ∃ i, (u i : Set X) ∈ 𝓝 a :=\n  match hu.exists_mem a with | ⟨i, hi⟩ => ⟨i, (u i).isOpen.mem_nhds hi⟩\n\n",
+        "original_theorem_content": "lemma iUnion_inter (hu : IsOpenCover u) (s : Set X) :\n    ⋃ i, s ∩ u i = s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Sets/OpenCover.lean",
+        "line": 43,
+        "tactic_state_before": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nu : ι → Opens X\nhu : IsOpenCover u\na : X\n⊢ ∃ i, a ∈ u i",
+        "proof": "simpa [← hu.iSup_set_eq_univ] using mem_univ a\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nu : ι → Opens X\nhu : IsOpenCover u\na : X\n⊢ ∃ i, a ∈ u i",
+        "header": "import Mathlib\nimport Mathlib.Topology.Sets.Opens\n\nopen Set Topology\n\nopen TopologicalSpace\n\nopen IsOpenCover\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {X : Type u_3} [inst : TopologicalSpace X]\n  {u : ι → Opens X} (hu : IsOpenCover u) (a : X) : ∃ i, a ∈ u i := sorry",
+        "original_theorem_name": "TopologicalSpace.IsOpenCover.exists_mem",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Sets.Opens\n\n/-!\n# Open covers\n\nWe define `IsOpenCover` as a predicate on indexed families of open sets in a topological space `X`,\nasserting that their union is `X`. This is an example of a declaration whose name is actually\nlonger than its content; but giving it a name serves as a way of standardizing API.\n-/\n\nopen Set Topology\n\nnamespace TopologicalSpace\n\n/-- An indexed family of open sets whose union is `X`. -/\ndef IsOpenCover {ι X : Type*} [TopologicalSpace X] (u : ι → Opens X) : Prop :=\n  iSup u = ⊤\n\nvariable {ι κ X Y : Type*} [TopologicalSpace X] {u : ι → Opens X}\n  [TopologicalSpace Y] {v : κ → Opens Y}\n\nnamespace IsOpenCover\n\nlemma mk (h : iSup u = ⊤) : IsOpenCover u := h\n\nlemma of_sets {v : ι → Set X} (h_open : ∀ i, IsOpen (v i)) (h_iUnion : ⋃ i, v i = univ) :\n    IsOpenCover (fun i ↦ ⟨v i, h_open i⟩) := by\n  simp [IsOpenCover, h_iUnion]\n\nlemma iSup_eq_top (hu : IsOpenCover u) : ⨆ i, u i = ⊤ := hu\n\nlemma iSup_set_eq_univ (hu : IsOpenCover u) : ⋃ i, (u i : Set X) = univ := by\n  simpa [← SetLike.coe_set_eq] using hu.iSup_eq_top\n\n/-- Pullback of a covering of `Y` by a continuous map `X → Y`, giving a covering of `X` with the\nsame index type. -/\nlemma comap (hv : IsOpenCover v) (f : C(X, Y)) : IsOpenCover fun k ↦ (v k).comap f :=\n  by simp [IsOpenCover, ← preimage_iUnion, hv.iSup_set_eq_univ]\n\n",
+        "original_theorem_content": "lemma exists_mem (hu : IsOpenCover u) (a : X) : ∃ i, a ∈ u i := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Sets/OpenCover.lean",
+        "line": 30,
+        "tactic_state_before": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nv : ι → Set X\nh_open : ∀ (i : ι), IsOpen (v i)\nh_iUnion : ⋃ i, v i = univ\n⊢ IsOpenCover fun i => { carrier := v i, is_open' := ⋯ }",
+        "proof": "simp [IsOpenCover, h_iUnion]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nv : ι → Set X\nh_open : ∀ (i : ι), IsOpen (v i)\nh_iUnion : ⋃ i, v i = univ\n⊢ IsOpenCover fun i => { carrier := v i, is_open' := ⋯ }",
+        "header": "import Mathlib\nimport Mathlib.Topology.Sets.Opens\n\nopen Set Topology\n\nopen TopologicalSpace\n\nopen IsOpenCover\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {ι : Type u_1} {X : Type u_3} [inst : TopologicalSpace X] {v : ι → Set X}\n  (h_open : ∀ (i : ι), IsOpen (v i)) (h_iUnion : ⋃ i, v i = univ) :\n  IsOpenCover fun i => { carrier := v i, is_open' := h_open i } := sorry",
+        "original_theorem_name": "TopologicalSpace.IsOpenCover.of_sets",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Sets.Opens\n\n/-!\n# Open covers\n\nWe define `IsOpenCover` as a predicate on indexed families of open sets in a topological space `X`,\nasserting that their union is `X`. This is an example of a declaration whose name is actually\nlonger than its content; but giving it a name serves as a way of standardizing API.\n-/\n\nopen Set Topology\n\nnamespace TopologicalSpace\n\n/-- An indexed family of open sets whose union is `X`. -/\ndef IsOpenCover {ι X : Type*} [TopologicalSpace X] (u : ι → Opens X) : Prop :=\n  iSup u = ⊤\n\nvariable {ι κ X Y : Type*} [TopologicalSpace X] {u : ι → Opens X}\n  [TopologicalSpace Y] {v : κ → Opens Y}\n\nnamespace IsOpenCover\n\nlemma mk (h : iSup u = ⊤) : IsOpenCover u := h\n\n",
+        "original_theorem_content": "lemma of_sets {v : ι → Set X} (h_open : ∀ i, IsOpen (v i)) (h_iUnion : ⋃ i, v i = univ) :\n    IsOpenCover (fun i ↦ ⟨v i, h_open i⟩) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Sets/OpenCover.lean",
+        "line": 30,
+        "tactic_state_before": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nv : ι → Set X\nh_open : ∀ (i : ι), IsOpen (v i)\nh_iUnion : ⋃ i, v i = univ\n⊢ IsOpenCover fun i => { carrier := v i, is_open' := ⋯ }",
+        "proof": "simp [IsOpenCover, h_iUnion]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nX : Type u_3\ninst✝ : TopologicalSpace X\nv : ι → Set X\nh_open : ∀ (i : ι), IsOpen (v i)\nh_iUnion : ⋃ i, v i = univ\n⊢ IsOpenCover fun i => { carrier := v i, is_open' := ⋯ }",
+        "header": "import Mathlib\nimport Mathlib.Topology.Sets.Opens\n\nopen Set Topology\n\nopen TopologicalSpace\n\nopen IsOpenCover\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {ι : Type u_1} {X : Type u_3} [inst : TopologicalSpace X] {v : ι → Set X}\n  (h_open : ∀ (i : ι), IsOpen (v i)) (h_iUnion : ⋃ i, v i = univ) :\n  IsOpenCover fun i => { carrier := v i, is_open' := h_open i } := sorry",
+        "original_theorem_name": "TopologicalSpace.IsOpenCover.of_sets",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Sets.Opens\n\n/-!\n# Open covers\n\nWe define `IsOpenCover` as a predicate on indexed families of open sets in a topological space `X`,\nasserting that their union is `X`. This is an example of a declaration whose name is actually\nlonger than its content; but giving it a name serves as a way of standardizing API.\n-/\n\nopen Set Topology\n\nnamespace TopologicalSpace\n\n/-- An indexed family of open sets whose union is `X`. -/\ndef IsOpenCover {ι X : Type*} [TopologicalSpace X] (u : ι → Opens X) : Prop :=\n  iSup u = ⊤\n\nvariable {ι κ X Y : Type*} [TopologicalSpace X] {u : ι → Opens X}\n  [TopologicalSpace Y] {v : κ → Opens Y}\n\nnamespace IsOpenCover\n\nlemma mk (h : iSup u = ⊤) : IsOpenCover u := h\n\n",
+        "original_theorem_content": "lemma of_sets {v : ι → Set X} (h_open : ∀ i, IsOpen (v i)) (h_iUnion : ⋃ i, v i = univ) :\n    IsOpenCover (fun i ↦ ⟨v i, h_open i⟩) := by"
+    }
+]

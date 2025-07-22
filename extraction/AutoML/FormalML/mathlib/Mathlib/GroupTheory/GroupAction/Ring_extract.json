@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/GroupAction/Ring.lean",
+        "line": 37,
+        "tactic_state_before": "α : Type u_1\ninst✝ : NonUnitalNonAssocSemiring α\nn : ℕ\nx y : α\n⊢ (n • x) • y = n • x • y",
+        "proof": "induction n with\n| zero => simp [zero_nsmul]\n| succ n ih => simp_rw [succ_nsmul, ← ih, smul_eq_mul, add_mul]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : NonUnitalNonAssocSemiring α\nn : ℕ\nx y : α\n⊢ (n • x) • y = n • x • y",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Action.Defs\n\nimport Mathlib.Algebra.Ring.Defs\n\nopen scoped Int\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : NonUnitalNonAssocSemiring α] (n : ℕ) (x y : α) :\n  (n • x) • y = n • x • y := sorry",
+        "original_theorem_name": "NonUnitalNonAssocSemiring.nat_isScalarTower",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Action.Defs\n\nimport Mathlib.Algebra.Ring.Defs\n\n/-!\n# Commutativity and associativity of action of integers on rings\n\nThis file proves that `ℕ` and `ℤ` act commutatively and associatively on (semi)rings.\n\n## TODO\n\nThose instances are in their own file only because they require much less imports than any existing\nfile they could go to. This is unfortunate and should be fixed by reorganising files.\n-/\n\nopen scoped Int\n\nvariable {α : Type*}\n\ninstance NonUnitalNonAssocSemiring.toDistribSMul [NonUnitalNonAssocSemiring α] :\n    DistribSMul α α where smul_add := mul_add\n\n/-- Note that `AddMonoid.nat_smulCommClass` requires stronger assumptions on `α`. -/\ninstance NonUnitalNonAssocSemiring.nat_smulCommClass [NonUnitalNonAssocSemiring α] :\n    SMulCommClass ℕ α α where\n  smul_comm n x y := by\n    induction n with\n    | zero => simp [zero_nsmul]\n    | succ n ih => simp_rw [succ_nsmul, smul_eq_mul, mul_add, ← smul_eq_mul, ih]\n\n",
+        "original_theorem_content": "/-- Note that `AddCommMonoid.nat_isScalarTower` requires stronger assumptions on `α`. -/\ninstance NonUnitalNonAssocSemiring.nat_isScalarTower [NonUnitalNonAssocSemiring α] :\n    IsScalarTower ℕ α α where\n  smul_assoc n x y := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/GroupAction/Ring.lean",
+        "line": 29,
+        "tactic_state_before": "α : Type u_1\ninst✝ : NonUnitalNonAssocSemiring α\nn : ℕ\nx y : α\n⊢ n • x • y = x • n • y",
+        "proof": "induction n with\n| zero => simp [zero_nsmul]\n| succ n ih => simp_rw [succ_nsmul, smul_eq_mul, mul_add, ← smul_eq_mul, ih]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : NonUnitalNonAssocSemiring α\nn : ℕ\nx y : α\n⊢ n • x • y = x • n • y",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Action.Defs\n\nimport Mathlib.Algebra.Ring.Defs\n\nopen scoped Int\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : NonUnitalNonAssocSemiring α] (n : ℕ) (x y : α) :\n  n • x • y = x • n • y := sorry",
+        "original_theorem_name": "NonUnitalNonAssocSemiring.nat_smulCommClass",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Action.Defs\n\nimport Mathlib.Algebra.Ring.Defs\n\n/-!\n# Commutativity and associativity of action of integers on rings\n\nThis file proves that `ℕ` and `ℤ` act commutatively and associatively on (semi)rings.\n\n## TODO\n\nThose instances are in their own file only because they require much less imports than any existing\nfile they could go to. This is unfortunate and should be fixed by reorganising files.\n-/\n\nopen scoped Int\n\nvariable {α : Type*}\n\ninstance NonUnitalNonAssocSemiring.toDistribSMul [NonUnitalNonAssocSemiring α] :\n    DistribSMul α α where smul_add := mul_add\n\n",
+        "original_theorem_content": "/-- Note that `AddMonoid.nat_smulCommClass` requires stronger assumptions on `α`. -/\ninstance NonUnitalNonAssocSemiring.nat_smulCommClass [NonUnitalNonAssocSemiring α] :\n    SMulCommClass ℕ α α where\n  smul_comm n x y := by"
+    }
+]

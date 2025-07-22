@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Homology/HomologicalComplexBiprod.lean",
+        "line": 24,
+        "tactic_state_before": "C : Type u_1\nι : Type u_2\ninst✝² : Category.{u_3, u_1} C\ninst✝¹ : Preadditive C\nc : ComplexShape ι\nK L : HomologicalComplex C c\ninst✝ : ∀ (i : ι), HasBinaryBiproduct (K.X i) (L.X i)\ni : ι\n⊢ HasBinaryBiproduct (K.X i) (L.X i)",
+        "proof": "infer_instance\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u_1\nι : Type u_2\ninst✝² : Category.{u_3, u_1} C\ninst✝¹ : Preadditive C\nc : ComplexShape ι\nK L : HomologicalComplex C c\ninst✝ : ∀ (i : ι), HasBinaryBiproduct (K.X i) (L.X i)\ni : ι\n⊢ HasBinaryBiproduct (K.X i) (L.X i)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Homology.HomologicalComplexLimits\n\nimport Mathlib.Algebra.Homology.Additive\n\nopen CategoryTheory Limits\n\nopen HomologicalComplex\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u_1} {ι : Type u_2} [inst : Category.{u_3, u_1} C]\n  [inst_1 : Preadditive C] {c : ComplexShape ι} (K L : HomologicalComplex C c)\n  [inst_2 : ∀ (i : ι), HasBinaryBiproduct (K.X i) (L.X i)] (i : ι) : HasBinaryBiproduct (K.X i) (L.X i) := sorry",
+        "original_theorem_name": "HomologicalComplex.instHasBinaryBiproductObjEval",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Homology.HomologicalComplexLimits\n\nimport Mathlib.Algebra.Homology.Additive\n\n/-! Binary biproducts of homological complexes\n\nIn this file, it is shown that if two homological complex `K` and `L` in\na preadditive category are such that for all `i : ι`, the binary biproduct\n`K.X i ⊞ L.X i` exists, then `K ⊞ L` exists, and there is an isomorphism\n`biprodXIso K L i : (K ⊞ L).X i ≅ (K.X i) ⊞ (L.X i)`.\n\n-/\nopen CategoryTheory Limits\n\nnamespace HomologicalComplex\n\nvariable {C ι : Type*} [Category C] [Preadditive C] {c : ComplexShape ι}\n  (K L : HomologicalComplex C c) [∀ i, HasBinaryBiproduct (K.X i) (L.X i)]\n\n",
+        "original_theorem_content": "instance (i : ι) : HasBinaryBiproduct ((eval C c i).obj K) ((eval C c i).obj L) := by"
+    }
+]

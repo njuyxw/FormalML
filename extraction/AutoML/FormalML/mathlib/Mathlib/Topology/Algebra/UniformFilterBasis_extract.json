@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Algebra/UniformFilterBasis.lean",
+        "line": 47,
+        "tactic_state_before": "G : Type u_1\ninst✝ : AddCommGroup G\nB : AddGroupFilterBasis G\nF : Filter G\nthis✝ : UniformSpace G := B.uniformSpace\nthis : IsUniformAddGroup G\n⊢ Tendsto (fun x => x.2 - x.1) (F ×ˢ F) (nhds 0) ↔ ∀ U ∈ B, ∃ M ∈ F, ∀ x ∈ M, ∀ y ∈ M, y - x ∈ U",
+        "proof": "simp [(basis_sets F).prod_self.tendsto_iff B.nhds_zero_hasBasis, @forall_swap (_ ∈ _) G]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G : Type u_1\ninst✝ : AddCommGroup G\nB : AddGroupFilterBasis G\nF : Filter G\nthis✝ : UniformSpace G := B.uniformSpace\nthis : IsUniformAddGroup G\n⊢ Tendsto (fun x => x.2 - x.1) (F ×ˢ F) (nhds 0) ↔ ∀ U ∈ B, ∃ M ∈ F, ∀ x ∈ M, ∀ y ∈ M, y - x ∈ U",
+        "header": "import Mathlib\nimport Mathlib.Topology.Algebra.FilterBasis\n\nimport Mathlib.Topology.Algebra.IsUniformGroup.Defs\n\nopen uniformity Filter\n\nopen Filter\n\nopen AddGroupFilterBasis\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {G : Type u_1} [inst : AddCommGroup G] (B : AddGroupFilterBasis G)\n  {F : Filter G} :\n  let this_1 := B.uniformSpace;\n  IsUniformAddGroup G →\n    (Tendsto (fun x => x.2 - x.1) (F ×ˢ F) (nhds 0) ↔ ∀ U ∈ B, ∃ M ∈ F, ∀ x ∈ M, ∀ y ∈ M, y - x ∈ U) := sorry",
+        "original_theorem_name": "AddGroupFilterBasis.cauchy_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Algebra.FilterBasis\n\nimport Mathlib.Topology.Algebra.IsUniformGroup.Defs\n\n/-!\n# Uniform properties of neighborhood bases in topological algebra\n\nThis files contains properties of filter bases on algebraic structures that also require the theory\nof uniform spaces.\n\nThe only result so far is a characterization of Cauchy filters in topological groups.\n\n-/\n\n\nopen uniformity Filter\n\nopen Filter\n\nnamespace AddGroupFilterBasis\n\nvariable {G : Type*} [AddCommGroup G] (B : AddGroupFilterBasis G)\n\n/-- The uniform space structure associated to an abelian group filter basis via the associated\ntopological abelian group structure. -/\nprotected def uniformSpace : UniformSpace G :=\n  @IsTopologicalAddGroup.toUniformSpace G _ B.topology B.isTopologicalAddGroup\n\n/-- The uniform space structure associated to an abelian group filter basis via the associated\ntopological abelian group structure is compatible with its group structure. -/\nprotected theorem isUniformAddGroup : @IsUniformAddGroup G B.uniformSpace _ :=\n  @isUniformAddGroup_of_addCommGroup G _ B.topology B.isTopologicalAddGroup\n\n@[deprecated (since := \"2025-03-27\")] alias uniformAddGroup := AddGroupFilterBasis.isUniformAddGroup\n\n",
+        "original_theorem_content": "theorem cauchy_iff {F : Filter G} :\n    @Cauchy G B.uniformSpace F ↔\n      F.NeBot ∧ ∀ U ∈ B, ∃ M ∈ F, ∀ᵉ (x ∈ M) (y ∈ M), y - x ∈ U := by"
+    }
+]

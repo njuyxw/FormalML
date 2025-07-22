@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "PhysLean/PhysLean/QFT/AnomalyCancellation/SM/NoGrav/Basic.lean",
+        "line": 51,
+        "tactic_state_before": "n : ℕ\nS : (SMNoGrav n).Sols\n⊢ accCube S.val = 0",
+        "proof": "exact S.cubicSol\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\nS : (SMNoGrav n).Sols\n⊢ accCube S.val = 0",
+        "header": "import PhysLean\nimport PhysLean.QFT.AnomalyCancellation.SM.Basic\n\nopen SMCharges\n\nopen SMACCs\n\nopen BigOperators\n\nopen SM\n\nopen SMNoGrav\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {n : ℕ} (S : (SMNoGrav n).Sols) : accCube S.val = 0 := sorry",
+        "original_theorem_name": "SM.SMNoGrav.cubeSol",
+        "original_theorem_importsAndContext": "import PhysLean.QFT.AnomalyCancellation.SM.Basic\n\n/-!\n# Anomaly Cancellation in the Standard Model without Gravity\n\nThis file defines the system of anomaly equations for the SM without RHN, and\nwithout the gravitational ACC.\n\n-/\nuniverse v u\n\nnamespace SM\nopen SMCharges\nopen SMACCs\nopen BigOperators\n\n/-- The ACC system for the standard model without RHN and without the gravitational ACC. -/\n@[simps!]\ndef SMNoGrav (n : ℕ) : ACCSystem where\n  numberLinear := 2\n  linearACCs := fun i =>\n    match i with\n    | 0 => @accSU2 n\n    | 1 => accSU3\n  numberQuadratic := 0\n  quadraticACCs := by\n    intro i\n    exact Fin.elim0 i\n  cubicACC := accCube\n\nnamespace SMNoGrav\n\nvariable {n : ℕ}\n\n/-- The charges in `(SMNoGrav n).LinSols` satisfy the `SU(2)` anomaly-equation. -/\nlemma SU2Sol (S : (SMNoGrav n).LinSols) : accSU2 S.val = 0 := by\n  have hS := S.linearSol\n  simp only [SMNoGrav_numberLinear, SMNoGrav_linearACCs, Fin.isValue] at hS\n  exact hS 0\n\n/-- The charges in `(SMNoGrav n).LinSols` satisfy the `SU(3)` anomaly-equation. -/\nlemma SU3Sol (S : (SMNoGrav n).LinSols) : accSU3 S.val = 0 := by\n  have hS := S.linearSol\n  simp only [SMNoGrav_numberLinear, SMNoGrav_linearACCs, Fin.isValue] at hS\n  exact hS 1\n\n",
+        "original_theorem_content": "/-- The charges in `(SMNoGrav n).Sols` satisfy the cubic anomaly-equation. -/\nlemma cubeSol (S : (SMNoGrav n).Sols) : accCube S.val = 0 := by"
+    }
+]

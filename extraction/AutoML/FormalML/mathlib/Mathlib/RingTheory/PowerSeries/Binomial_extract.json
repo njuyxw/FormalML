@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/PowerSeries/Binomial.lean",
+        "line": 74,
+        "tactic_state_before": "A : Type u_2\ninst✝ : CommRing A\nd n : ℕ\nh : ¬d < n\nk : ℕ\nhk : k ∈ range (d + 1)\nhkn : k ≠ n\n⊢ (if n = k then ↑(d.choose k) else 0) = 0",
+        "proof": "exact if_neg (Ne.symm hkn)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "A : Type u_2\ninst✝ : CommRing A\nd n : ℕ\nh : ¬d < n\nk : ℕ\nhk : k ∈ range (d + 1)\nhkn : k ≠ n\n⊢ (if n = k then ↑(d.choose k) else 0) = 0",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Binomial\n\nimport Mathlib.RingTheory.PowerSeries.WellKnown\n\nopen Finset BigOperators\n\nopen PowerSeries\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {A : Type u_2} [inst : CommRing A] (d n : ℕ) (h : ¬d < n) (k : ℕ)\n  (hk : k ∈ range (d + 1)) (hkn : k ≠ n) : (if n = k then ↑(d.choose k) else 0) = 0 := sorry",
+        "original_theorem_name": "PowerSeries.binomialSeries_nat",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Binomial\n\nimport Mathlib.RingTheory.PowerSeries.WellKnown\n\n/-!\n# Binomial Power Series\nWe introduce formal power series of the form `(1 + X) ^ r`, where `r` is an element of a\ncommutative binomial ring `R`.\n\n## Main Definitions\n * `PowerSeries.binomialSeries`: A power series expansion of `(1 + X) ^ r`, where `r` is an element\n  of a commutative binomial ring `R`.\n\n## Main Results\n * `PowerSeries.binomial_add`: Adding exponents yields multiplication of series.\n * `PowerSeries.binomialSeries_nat`: when `r` is a natural number, we get `(1 + X) ^ r`.\n * `PowerSeries.rescale_neg_one_invOneSubPow`: The image of `(1 - X) ^ (-d)` under the map\n   `X ↦ (-X)` is `(1 + X) ^ (-d)`\n\n## TODO\n * When `A` is a commutative `R`-algebra, the exponentiation action makes the multiplicative group\n   `1 + XA[[X]]` into an `R`-module.\n\n-/\n\nopen Finset BigOperators\n\nsuppress_compilation\n\nvariable {R A : Type*}\n\nnamespace PowerSeries\n\nvariable [CommRing R] [BinomialRing R]\n\n/-- The power series for `(1 + X) ^ r`. -/\ndef binomialSeries (A) [One A] [SMul R A] (r : R) : PowerSeries A :=\n  mk fun n => Ring.choose r n • 1\n\n@[simp]\nlemma binomialSeries_coeff [Semiring A] [SMul R A] (r : R) (n : ℕ) :\n    (coeff A n) (binomialSeries A r) = Ring.choose r n • 1 :=\n  coeff_mk n fun n ↦ Ring.choose r n • 1\n\n@[simp]\nlemma binomialSeries_add [Semiring A] [Algebra R A] (r s : R) :\n    binomialSeries A (r + s) = binomialSeries A r * binomialSeries A s := by\n  ext n\n  simp only [binomialSeries_coeff, Ring.add_choose_eq n (Commute.all r s), coeff_mul,\n    Algebra.mul_smul_comm, mul_one, sum_smul]\n  refine sum_congr rfl fun ab hab => ?_\n  rw [mul_comm, mul_smul]\n\n",
+        "original_theorem_content": "@[simp]\nlemma binomialSeries_nat [CommRing A] (d : ℕ) :\n    binomialSeries A (d : ℤ) = (1 + X) ^ d := by"
+    }
+]

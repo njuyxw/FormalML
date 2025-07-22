@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Archive/Imo/Imo2011Q3.lean",
+        "line": 45,
+        "tactic_state_before": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nx : ℝ\nhx : x ≤ 0\n⊢ f x = 0",
+        "proof": "obtain (h_x_neg : x < 0) | (rfl : x = 0) := hx.lt_or_eq\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n f : ℝ → ℝ\n hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\n hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\n h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\n h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\n h_f_nonpos : ∀ (x : ℝ), f x ≤ 0\n h_fx_zero_of_neg : ∀ x < 0, f x = 0\n x : ℝ\n hx : x ≤ 0\n h_x_neg : x < 0\n ⊢ f x = 0,\n case inr\n f : ℝ → ℝ\n hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\n hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\n h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\n h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\n h_f_nonpos : ∀ (x : ℝ), f x ≤ 0\n h_fx_zero_of_neg : ∀ x < 0, f x = 0\n hx : 0 ≤ 0\n ⊢ f 0 = 0]",
+        "goal": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nx : ℝ\nhx : x ≤ 0\nh✝ : f x = 0\nh : f 0 = 0\n⊢ f x = 0",
+        "header": "import Archive\nimport Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (f : ℝ → ℝ) (hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x))\n  (hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x))\n  (h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b) (h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a)\n  (h_f_nonpos : ∀ (x : ℝ), f x ≤ 0) (h_fx_zero_of_neg : ∀ x < 0, f x = 0) (x : ℝ) (hx : x ≤ 0) (h_1 : f x = 0)\n  (h : f 0 = 0) : f x = 0 := sorry",
+        "original_theorem_name": "imo2011_q3",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 2011 Q3\n\nLet f : ℝ → ℝ be a function that satisfies\n\n   f(x + y) ≤ y * f(x) + f(f(x))\n\nfor all x and y. Prove that f(x) = 0 for all x ≤ 0.\n\n# Solution\n\nDirect translation of the solution found in https://www.imo-official.org/problems/IMO2011SL.pdf\n-/\n\n\n",
+        "original_theorem_content": "theorem imo2011_q3 (f : ℝ → ℝ) (hf : ∀ x y, f (x + y) ≤ y * f x + f (f x)) : ∀ x ≤ 0, f x = 0 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2011Q3.lean",
+        "line": 47,
+        "tactic_state_before": "case inr\nf : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\n⊢ f 0 = 0",
+        "proof": "suffices 0 ≤ f 0 from le_antisymm (h_f_nonpos 0) this\n  try repeat assumption",
+        "tactic_state_after": "[case inr\n f : ℝ → ℝ\n hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\n hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\n h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\n h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\n h_f_nonpos : ∀ (x : ℝ), f x ≤ 0\n h_fx_zero_of_neg : ∀ x < 0, f x = 0\n hx : 0 ≤ 0\n ⊢ 0 ≤ f 0]",
+        "goal": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nh : 0 ≤ f 0\n⊢ f 0 = 0",
+        "header": "import Archive\nimport Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (f : ℝ → ℝ) (hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x))\n  (hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x))\n  (h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b) (h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a)\n  (h_f_nonpos : ∀ (x : ℝ), f x ≤ 0) (h_fx_zero_of_neg : ∀ x < 0, f x = 0) (h : 0 ≤ f 0) : f 0 = 0 := sorry",
+        "original_theorem_name": "imo2011_q3",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 2011 Q3\n\nLet f : ℝ → ℝ be a function that satisfies\n\n   f(x + y) ≤ y * f(x) + f(f(x))\n\nfor all x and y. Prove that f(x) = 0 for all x ≤ 0.\n\n# Solution\n\nDirect translation of the solution found in https://www.imo-official.org/problems/IMO2011SL.pdf\n-/\n\n\n",
+        "original_theorem_content": "theorem imo2011_q3 (f : ℝ → ℝ) (hf : ∀ x y, f (x + y) ≤ y * f x + f (f x)) : ∀ x ≤ 0, f x = 0 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2011Q3.lean",
+        "line": 48,
+        "tactic_state_before": "case inr\nf : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\n⊢ 0 ≤ f 0",
+        "proof": "have hno : f (-1) = 0 := h_fx_zero_of_neg (-1) neg_one_lt_zero\n  try repeat assumption",
+        "tactic_state_after": "[case inr\n f : ℝ → ℝ\n hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\n hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\n h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\n h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\n h_f_nonpos : ∀ (x : ℝ), f x ≤ 0\n h_fx_zero_of_neg : ∀ x < 0, f x = 0\n hx : 0 ≤ 0\n hno : f (-1) = 0\n ⊢ 0 ≤ f 0]",
+        "goal": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\n⊢ f (-1) = 0",
+        "header": "import Archive\nimport Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (f : ℝ → ℝ) (hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x))\n  (hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x))\n  (h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b) (h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a)\n  (h_f_nonpos : ∀ (x : ℝ), f x ≤ 0) (h_fx_zero_of_neg : ∀ x < 0, f x = 0) : f (-1) = 0 := sorry",
+        "original_theorem_name": "imo2011_q3",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 2011 Q3\n\nLet f : ℝ → ℝ be a function that satisfies\n\n   f(x + y) ≤ y * f(x) + f(f(x))\n\nfor all x and y. Prove that f(x) = 0 for all x ≤ 0.\n\n# Solution\n\nDirect translation of the solution found in https://www.imo-official.org/problems/IMO2011SL.pdf\n-/\n\n\n",
+        "original_theorem_content": "theorem imo2011_q3 (f : ℝ → ℝ) (hf : ∀ x y, f (x + y) ≤ y * f x + f (f x)) : ∀ x ≤ 0, f x = 0 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2011Q3.lean",
+        "line": 49,
+        "tactic_state_before": "case inr\nf : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nhno : f (-1) = 0\n⊢ 0 ≤ f 0",
+        "proof": "have hp := hxt (-1) (-1)\n  try repeat assumption",
+        "tactic_state_after": "[case inr\n f : ℝ → ℝ\n hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\n hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\n h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\n h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\n h_f_nonpos : ∀ (x : ℝ), f x ≤ 0\n h_fx_zero_of_neg : ∀ x < 0, f x = 0\n hx : 0 ≤ 0\n hno : f (-1) = 0\n hp : f (-1) ≤ -1 * f (-1) - -1 * f (-1) + f (f (-1))\n ⊢ 0 ≤ f 0]",
+        "goal": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nhno : f (-1) = 0\n⊢ f (-1) ≤ -1 * f (-1) - -1 * f (-1) + f (f (-1))",
+        "header": "import Archive\nimport Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (f : ℝ → ℝ) (hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x))\n  (hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x))\n  (h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b) (h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a)\n  (h_f_nonpos : ∀ (x : ℝ), f x ≤ 0) (h_fx_zero_of_neg : ∀ x < 0, f x = 0) (hno : f (-1) = 0) :\n  f (-1) ≤ -1 * f (-1) - -1 * f (-1) + f (f (-1)) := sorry",
+        "original_theorem_name": "imo2011_q3",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 2011 Q3\n\nLet f : ℝ → ℝ be a function that satisfies\n\n   f(x + y) ≤ y * f(x) + f(f(x))\n\nfor all x and y. Prove that f(x) = 0 for all x ≤ 0.\n\n# Solution\n\nDirect translation of the solution found in https://www.imo-official.org/problems/IMO2011SL.pdf\n-/\n\n\n",
+        "original_theorem_content": "theorem imo2011_q3 (f : ℝ → ℝ) (hf : ∀ x y, f (x + y) ≤ y * f x + f (f x)) : ∀ x ≤ 0, f x = 0 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2011Q3.lean",
+        "line": 50,
+        "tactic_state_before": "case inr\nf : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nhno : f (-1) = 0\nhp : f (-1) ≤ -1 * f (-1) - -1 * f (-1) + f (f (-1))\n⊢ 0 ≤ f 0",
+        "proof": "rw [hno] at hp\n  try repeat assumption",
+        "tactic_state_after": "[case inr\n f : ℝ → ℝ\n hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\n hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\n h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\n h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\n h_f_nonpos : ∀ (x : ℝ), f x ≤ 0\n h_fx_zero_of_neg : ∀ x < 0, f x = 0\n hx : 0 ≤ 0\n hno : f (-1) = 0\n hp : 0 ≤ -1 * 0 - -1 * 0 + f 0\n ⊢ 0 ≤ f 0]",
+        "goal": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nhno : f (-1) = 0\nhp : f (-1) ≤ -1 * f (-1) - -1 * f (-1) + f (f (-1))\n⊢ 0 ≤ -1 * 0 - -1 * 0 + f 0",
+        "header": "import Archive\nimport Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (f : ℝ → ℝ) (hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x))\n  (hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x))\n  (h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b) (h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a)\n  (h_f_nonpos : ∀ (x : ℝ), f x ≤ 0) (h_fx_zero_of_neg : ∀ x < 0, f x = 0) (hno : f (-1) = 0)\n  (hp : f (-1) ≤ -1 * f (-1) - -1 * f (-1) + f (f (-1))) : 0 ≤ -1 * 0 - -1 * 0 + f 0 := sorry",
+        "original_theorem_name": "imo2011_q3",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 2011 Q3\n\nLet f : ℝ → ℝ be a function that satisfies\n\n   f(x + y) ≤ y * f(x) + f(f(x))\n\nfor all x and y. Prove that f(x) = 0 for all x ≤ 0.\n\n# Solution\n\nDirect translation of the solution found in https://www.imo-official.org/problems/IMO2011SL.pdf\n-/\n\n\n",
+        "original_theorem_content": "theorem imo2011_q3 (f : ℝ → ℝ) (hf : ∀ x y, f (x + y) ≤ y * f x + f (f x)) : ∀ x ≤ 0, f x = 0 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2011Q3.lean",
+        "line": 51,
+        "tactic_state_before": "case inr\nf : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nhno : f (-1) = 0\nhp : 0 ≤ -1 * 0 - -1 * 0 + f 0\n⊢ 0 ≤ f 0",
+        "proof": "linarith\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "f : ℝ → ℝ\nhf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x)\nhxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x)\nh_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b\nh_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a\nh_f_nonpos : ∀ (x : ℝ), f x ≤ 0\nh_fx_zero_of_neg : ∀ x < 0, f x = 0\nhx : 0 ≤ 0\nhno : f (-1) = 0\nhp : 0 ≤ -1 * 0 - -1 * 0 + f 0\n⊢ 0 ≤ f 0",
+        "header": "import Archive\nimport Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n",
+        "formal_statement": "theorem extracted_formal_statement_5 (f : ℝ → ℝ) (hf : ∀ (x y : ℝ), f (x + y) ≤ y * f x + f (f x))\n  (hxt : ∀ (x t : ℝ), f t ≤ t * f x - x * f x + f (f x))\n  (h_ab_combined : ∀ (a b : ℝ), a * f a + b * f b ≤ 2 * f a * f b) (h_f_nonneg_of_pos : ∀ a < 0, 0 ≤ f a)\n  (h_f_nonpos : ∀ (x : ℝ), f x ≤ 0) (h_fx_zero_of_neg : ∀ x < 0, f x = 0) (hno : f (-1) = 0)\n  (hp : 0 ≤ -1 * 0 - -1 * 0 + f 0) : 0 ≤ f 0 := sorry",
+        "original_theorem_name": "imo2011_q3",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.Basic\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 2011 Q3\n\nLet f : ℝ → ℝ be a function that satisfies\n\n   f(x + y) ≤ y * f(x) + f(f(x))\n\nfor all x and y. Prove that f(x) = 0 for all x ≤ 0.\n\n# Solution\n\nDirect translation of the solution found in https://www.imo-official.org/problems/IMO2011SL.pdf\n-/\n\n\n",
+        "original_theorem_content": "theorem imo2011_q3 (f : ℝ → ℝ) (hf : ∀ x y, f (x + y) ≤ y * f x + f (f x)) : ∀ x ≤ 0, f x = 0 := by"
+    }
+]

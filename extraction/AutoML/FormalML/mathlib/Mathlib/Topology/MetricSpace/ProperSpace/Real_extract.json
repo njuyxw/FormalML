@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/ProperSpace/Real.lean",
+        "line": 32,
+        "tactic_state_before": "x r : ℝ\n⊢ IsCompact (Metric.closedBall x r)",
+        "proof": "rw [Real.closedBall_eq_Icc]\n  try repeat assumption",
+        "tactic_state_after": "[x r : ℝ\n ⊢ IsCompact (Icc (x - r) (x + r))]",
+        "goal": "x r : ℝ\nh : IsCompact (Icc (x - r) (x + r))\n⊢ IsCompact (Metric.closedBall x r)",
+        "header": "import Mathlib\nimport Mathlib.Data.Rat.Encodable\n\nimport Mathlib.Topology.MetricSpace.Isometry\n\nimport Mathlib.Topology.MetricSpace.ProperSpace\n\nimport Mathlib.Topology.Order.Compact\n\nimport Mathlib.Topology.Order.MonotoneContinuity\n\nimport Mathlib.Topology.Order.Real\n\nimport Mathlib.Topology.UniformSpace.Real\n\nopen Set Topology TopologicalSpace\n\nopen EReal\n\nopen NNReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (x r : ℝ) (h : IsCompact (Icc (x - r) (x + r))) :\n  IsCompact (Metric.closedBall x r) := sorry",
+        "original_theorem_name": "instProperSpaceReal",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Rat.Encodable\n\nimport Mathlib.Topology.MetricSpace.Isometry\n\nimport Mathlib.Topology.MetricSpace.ProperSpace\n\nimport Mathlib.Topology.Order.Compact\n\nimport Mathlib.Topology.Order.MonotoneContinuity\n\nimport Mathlib.Topology.Order.Real\n\nimport Mathlib.Topology.UniformSpace.Real\n\n/-!\n# Second countability of the reals\n\nWe prove that `ℝ`, `EReal`, `ℝ≥0` and `ℝ≥0∞` are second countable.\nIn the process, we also provide instances `ProperSpace ℝ` and `ProperSpace ℝ≥0`.\n-/\n\nassert_not_exists IsTopologicalRing UniformContinuousConstSMul UniformOnFun\n\nnoncomputable section\n\nopen Set Topology TopologicalSpace\n\n",
+        "original_theorem_content": "instance : ProperSpace ℝ where\n  isCompact_closedBall x r := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/ProperSpace/Real.lean",
+        "line": 33,
+        "tactic_state_before": "x r : ℝ\n⊢ IsCompact (Icc (x - r) (x + r))",
+        "proof": "apply isCompact_Icc\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x r : ℝ\n⊢ IsCompact (Icc (x - r) (x + r))",
+        "header": "import Mathlib\nimport Mathlib.Data.Rat.Encodable\n\nimport Mathlib.Topology.MetricSpace.Isometry\n\nimport Mathlib.Topology.MetricSpace.ProperSpace\n\nimport Mathlib.Topology.Order.Compact\n\nimport Mathlib.Topology.Order.MonotoneContinuity\n\nimport Mathlib.Topology.Order.Real\n\nimport Mathlib.Topology.UniformSpace.Real\n\nopen Set Topology TopologicalSpace\n\nopen EReal\n\nopen NNReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (x r : ℝ) : IsCompact (Icc (x - r) (x + r)) := sorry",
+        "original_theorem_name": "instProperSpaceReal",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Rat.Encodable\n\nimport Mathlib.Topology.MetricSpace.Isometry\n\nimport Mathlib.Topology.MetricSpace.ProperSpace\n\nimport Mathlib.Topology.Order.Compact\n\nimport Mathlib.Topology.Order.MonotoneContinuity\n\nimport Mathlib.Topology.Order.Real\n\nimport Mathlib.Topology.UniformSpace.Real\n\n/-!\n# Second countability of the reals\n\nWe prove that `ℝ`, `EReal`, `ℝ≥0` and `ℝ≥0∞` are second countable.\nIn the process, we also provide instances `ProperSpace ℝ` and `ProperSpace ℝ≥0`.\n-/\n\nassert_not_exists IsTopologicalRing UniformContinuousConstSMul UniformOnFun\n\nnoncomputable section\n\nopen Set Topology TopologicalSpace\n\n",
+        "original_theorem_content": "instance : ProperSpace ℝ where\n  isCompact_closedBall x r := by"
+    }
+]

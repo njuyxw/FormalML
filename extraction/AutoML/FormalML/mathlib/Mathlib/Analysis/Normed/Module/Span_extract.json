@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Module/Span.lean",
+        "line": 38,
+        "tactic_state_before": "𝕜 : Type u_1\nE : Type u_2\ninst✝³ : NormedDivisionRing 𝕜\ninst✝² : SeminormedAddCommGroup E\ninst✝¹ : Module 𝕜 E\ninst✝ : IsBoundedSMul 𝕜 E\nx : E\nc : 𝕜\n⊢ ‖(toSpanSingleton 𝕜 E x) c‖ = ‖x‖ * ‖c‖",
+        "proof": "rw [mul_comm]\n  try repeat assumption",
+        "tactic_state_after": "[𝕜 : Type u_1\n E : Type u_2\n inst✝³ : NormedDivisionRing 𝕜\n inst✝² : SeminormedAddCommGroup E\n inst✝¹ : Module 𝕜 E\n inst✝ : IsBoundedSMul 𝕜 E\n x : E\n c : 𝕜\n ⊢ ‖(toSpanSingleton 𝕜 E x) c‖ = ‖c‖ * ‖x‖]",
+        "goal": "𝕜 : Type u_1\nE : Type u_2\ninst✝³ : NormedDivisionRing 𝕜\ninst✝² : SeminormedAddCommGroup E\ninst✝¹ : Module 𝕜 E\ninst✝ : IsBoundedSMul 𝕜 E\nx : E\nc : 𝕜\nh : ‖(toSpanSingleton 𝕜 E x) c‖ = ‖c‖ * ‖x‖\n⊢ ‖(toSpanSingleton 𝕜 E x) c‖ = ‖x‖ * ‖c‖",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Operator.LinearIsometry\n\nimport Mathlib.Analysis.Normed.Operator.ContinuousLinearMap\n\nimport Mathlib.Analysis.Normed.Module.Basic\n\nimport Mathlib.LinearAlgebra.Basis.VectorSpace\n\nopen LinearMap\n\nopen ContinuousLinearEquiv\n\nopen LinearIsometryEquiv\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (𝕜 : Type u_1) {E : Type u_2} [inst : NormedDivisionRing 𝕜]\n  [inst_1 : SeminormedAddCommGroup E] [inst_2 : Module 𝕜 E] [inst_3 : IsBoundedSMul 𝕜 E] (x : E) (c : 𝕜)\n  (h : ‖(toSpanSingleton 𝕜 E x) c‖ = ‖c‖ * ‖x‖) : ‖(toSpanSingleton 𝕜 E x) c‖ = ‖x‖ * ‖c‖ := sorry",
+        "original_theorem_name": "LinearMap.toSpanSingleton_homothety",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Operator.LinearIsometry\n\nimport Mathlib.Analysis.Normed.Operator.ContinuousLinearMap\n\nimport Mathlib.Analysis.Normed.Module.Basic\n\nimport Mathlib.LinearAlgebra.Basis.VectorSpace\n\n/-!\n# The span of a single vector\n\nThe equivalence of `𝕜` and `𝕜 • x` for `x ≠ 0` are defined as continuous linear equivalence and\nisometry.\n\n## Main definitions\n\n* `ContinuousLinearEquiv.toSpanNonzeroSingleton`: The continuous linear equivalence between `𝕜` and\n`𝕜 • x` for `x ≠ 0`.\n* `LinearIsometryEquiv.toSpanUnitSingleton`: For `‖x‖ = 1` the continuous linear equivalence is a\nlinear isometry equivalence.\n\n-/\n\nvariable {𝕜 E : Type*}\n\nnamespace LinearMap\n\nvariable (𝕜)\n\nsection Seminormed\n\nvariable [NormedDivisionRing 𝕜] [SeminormedAddCommGroup E] [Module 𝕜 E] [IsBoundedSMul 𝕜 E]\n\n",
+        "original_theorem_content": "theorem toSpanSingleton_homothety (x : E) (c : 𝕜) :\n    ‖LinearMap.toSpanSingleton 𝕜 E x c‖ = ‖x‖ * ‖c‖ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Module/Span.lean",
+        "line": 39,
+        "tactic_state_before": "𝕜 : Type u_1\nE : Type u_2\ninst✝³ : NormedDivisionRing 𝕜\ninst✝² : SeminormedAddCommGroup E\ninst✝¹ : Module 𝕜 E\ninst✝ : IsBoundedSMul 𝕜 E\nx : E\nc : 𝕜\n⊢ ‖(toSpanSingleton 𝕜 E x) c‖ = ‖c‖ * ‖x‖",
+        "proof": "exact norm_smul _ _\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "𝕜 : Type u_1\nE : Type u_2\ninst✝³ : NormedDivisionRing 𝕜\ninst✝² : SeminormedAddCommGroup E\ninst✝¹ : Module 𝕜 E\ninst✝ : IsBoundedSMul 𝕜 E\nx : E\nc : 𝕜\n⊢ ‖(toSpanSingleton 𝕜 E x) c‖ = ‖c‖ * ‖x‖",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Operator.LinearIsometry\n\nimport Mathlib.Analysis.Normed.Operator.ContinuousLinearMap\n\nimport Mathlib.Analysis.Normed.Module.Basic\n\nimport Mathlib.LinearAlgebra.Basis.VectorSpace\n\nopen LinearMap\n\nopen ContinuousLinearEquiv\n\nopen LinearIsometryEquiv\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (𝕜 : Type u_1) {E : Type u_2} [inst : NormedDivisionRing 𝕜]\n  [inst_1 : SeminormedAddCommGroup E] [inst_2 : Module 𝕜 E] [inst_3 : IsBoundedSMul 𝕜 E] (x : E) (c : 𝕜) :\n  ‖(toSpanSingleton 𝕜 E x) c‖ = ‖c‖ * ‖x‖ := sorry",
+        "original_theorem_name": "LinearMap.toSpanSingleton_homothety",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Operator.LinearIsometry\n\nimport Mathlib.Analysis.Normed.Operator.ContinuousLinearMap\n\nimport Mathlib.Analysis.Normed.Module.Basic\n\nimport Mathlib.LinearAlgebra.Basis.VectorSpace\n\n/-!\n# The span of a single vector\n\nThe equivalence of `𝕜` and `𝕜 • x` for `x ≠ 0` are defined as continuous linear equivalence and\nisometry.\n\n## Main definitions\n\n* `ContinuousLinearEquiv.toSpanNonzeroSingleton`: The continuous linear equivalence between `𝕜` and\n`𝕜 • x` for `x ≠ 0`.\n* `LinearIsometryEquiv.toSpanUnitSingleton`: For `‖x‖ = 1` the continuous linear equivalence is a\nlinear isometry equivalence.\n\n-/\n\nvariable {𝕜 E : Type*}\n\nnamespace LinearMap\n\nvariable (𝕜)\n\nsection Seminormed\n\nvariable [NormedDivisionRing 𝕜] [SeminormedAddCommGroup E] [Module 𝕜 E] [IsBoundedSMul 𝕜 E]\n\n",
+        "original_theorem_content": "theorem toSpanSingleton_homothety (x : E) (c : 𝕜) :\n    ‖LinearMap.toSpanSingleton 𝕜 E x c‖ = ‖x‖ * ‖c‖ := by"
+    }
+]

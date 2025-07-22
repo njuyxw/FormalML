@@ -1,0 +1,93 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 66,
+        "tactic_state_before": "case cons\nα : Type u_1\nn✝ : ℕ\ninst✝ : DecidableEq α\na : α\nn : ℕ\nx : α\nxs : List.Vector α n\nhxs : #{i | xs.get i = a} = List.count a xs.toList\n⊢ #{i | (x ::ᵥ xs).get i = a} = List.count a (x ::ᵥ xs).toList",
+        "proof": "simp_rw [card_filter_univ_succ', Vector.get_cons_zero, Vector.toList_cons, Vector.get_cons_succ, hxs,\n  List.count_cons, add_comm (ite (x = a) 1 0), beq_iff_eq]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nn✝ : ℕ\ninst✝ : DecidableEq α\na : α\nn : ℕ\nx : α\nxs : List.Vector α n\nhxs : #{i | xs.get i = a} = List.count a xs.toList\n⊢ #{i | (x ::ᵥ xs).get i = a} = List.count a (x ::ᵥ xs).toList",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {n_1 : ℕ} [inst : DecidableEq α] (a : α) {n : ℕ} {x : α}\n  {xs : List.Vector α n} (hxs : #{i | xs.get i = a} = List.count a xs.toList) :\n  #{i | (x ::ᵥ xs).get i = a} = List.count a (x ::ᵥ xs).toList := sorry",
+        "original_theorem_name": "Fin.card_filter_univ_eq_vector_get_eq_count",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by\n  ext i\n  simp only [mem_filter, mem_Ioi, mem_map, mem_univ, Function.Embedding.coeFn_mk, exists_true_left]\n  constructor\n  · refine cases ?_ ?_ i\n    · rintro ⟨⟨⟩⟩\n    · intro i hi\n      exact ⟨i, succ_lt_succ_iff.mp hi, rfl⟩\n  · rintro ⟨i, hi, rfl⟩\n    simpa\n\n@[simp]\ntheorem Iio_castSucc (i : Fin n) : Iio (castSucc i) = (Iio i).map Fin.castSuccEmb := by\n  apply Finset.map_injective Fin.valEmbedding\n  rw [Finset.map_map, Fin.map_valEmbedding_Iio]\n  exact (Fin.map_valEmbedding_Iio i).symm\n\ntheorem card_filter_univ_succ (p : Fin (n + 1) → Prop) [DecidablePred p] :\n    #{x | p x} = if p 0 then #{x | p (.succ x)} + 1 else #{x | p (.succ x)} := by\n  rw [Fin.univ_succ, filter_cons, apply_ite Finset.card, card_cons, filter_map, card_map]; rfl\n\ntheorem card_filter_univ_succ' (p : Fin (n + 1) → Prop) [DecidablePred p] :\n    #{x | p x} = ite (p 0) 1 0 + #{x | p (.succ x)}:= by\n  rw [card_filter_univ_succ]; split_ifs <;> simp [add_comm]\n\n",
+        "original_theorem_content": "theorem card_filter_univ_eq_vector_get_eq_count [DecidableEq α] (a : α) (v : List.Vector α n) :\n    #{i | v.get i = a} = v.toList.count a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 50,
+        "tactic_state_before": "n : ℕ\ni : Fin n\n⊢ Iio i.castSucc = map castSuccEmb (Iio i)",
+        "proof": "apply Finset.map_injective Fin.valEmbedding\n  try repeat assumption",
+        "tactic_state_after": "[case a\n n : ℕ\n i : Fin n\n ⊢ map valEmbedding (Iio i.castSucc) = map valEmbedding (map castSuccEmb (Iio i))]",
+        "goal": "n : ℕ\ni : Fin n\nh : map valEmbedding (Iio i.castSucc) = map valEmbedding (map castSuccEmb (Iio i))\n⊢ Iio i.castSucc = map castSuccEmb (Iio i)",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {n : ℕ} (i : Fin n)\n  (h : map valEmbedding (Iio i.castSucc) = map valEmbedding (map castSuccEmb (Iio i))) :\n  Iio i.castSucc = map castSuccEmb (Iio i) := sorry",
+        "original_theorem_name": "Fin.Iio_castSucc",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by\n  ext i\n  simp only [mem_filter, mem_Ioi, mem_map, mem_univ, Function.Embedding.coeFn_mk, exists_true_left]\n  constructor\n  · refine cases ?_ ?_ i\n    · rintro ⟨⟨⟩⟩\n    · intro i hi\n      exact ⟨i, succ_lt_succ_iff.mp hi, rfl⟩\n  · rintro ⟨i, hi, rfl⟩\n    simpa\n\n",
+        "original_theorem_content": "@[simp]\ntheorem Iio_castSucc (i : Fin n) : Iio (castSucc i) = (Iio i).map Fin.castSuccEmb := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 51,
+        "tactic_state_before": "case a\nn : ℕ\ni : Fin n\n⊢ map valEmbedding (Iio i.castSucc) = map valEmbedding (map castSuccEmb (Iio i))",
+        "proof": "rw [Finset.map_map, Fin.map_valEmbedding_Iio]\n  try repeat assumption",
+        "tactic_state_after": "[case a\n n : ℕ\n i : Fin n\n ⊢ Iio ↑i.castSucc = map (castSuccEmb.trans valEmbedding) (Iio i)]",
+        "goal": "n : ℕ\ni : Fin n\nh : Iio ↑i.castSucc = map (castSuccEmb.trans valEmbedding) (Iio i)\n⊢ map valEmbedding (Iio i.castSucc) = map valEmbedding (map castSuccEmb (Iio i))",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {n : ℕ} (i : Fin n)\n  (h : Iio ↑i.castSucc = map (castSuccEmb.trans valEmbedding) (Iio i)) :\n  map valEmbedding (Iio i.castSucc) = map valEmbedding (map castSuccEmb (Iio i)) := sorry",
+        "original_theorem_name": "Fin.Iio_castSucc",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by\n  ext i\n  simp only [mem_filter, mem_Ioi, mem_map, mem_univ, Function.Embedding.coeFn_mk, exists_true_left]\n  constructor\n  · refine cases ?_ ?_ i\n    · rintro ⟨⟨⟩⟩\n    · intro i hi\n      exact ⟨i, succ_lt_succ_iff.mp hi, rfl⟩\n  · rintro ⟨i, hi, rfl⟩\n    simpa\n\n",
+        "original_theorem_content": "@[simp]\ntheorem Iio_castSucc (i : Fin n) : Iio (castSucc i) = (Iio i).map Fin.castSuccEmb := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 52,
+        "tactic_state_before": "case a\nn : ℕ\ni : Fin n\n⊢ Iio ↑i.castSucc = map (castSuccEmb.trans valEmbedding) (Iio i)",
+        "proof": "exact (Fin.map_valEmbedding_Iio i).symm\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\ni : Fin n\n⊢ Iio ↑i.castSucc = map (castSuccEmb.trans valEmbedding) (Iio i)",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {n : ℕ} (i : Fin n) :\n  Iio ↑i.castSucc = map (castSuccEmb.trans valEmbedding) (Iio i) := sorry",
+        "original_theorem_name": "Fin.Iio_castSucc",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by\n  ext i\n  simp only [mem_filter, mem_Ioi, mem_map, mem_univ, Function.Embedding.coeFn_mk, exists_true_left]\n  constructor\n  · refine cases ?_ ?_ i\n    · rintro ⟨⟨⟩⟩\n    · intro i hi\n      exact ⟨i, succ_lt_succ_iff.mp hi, rfl⟩\n  · rintro ⟨i, hi, rfl⟩\n    simpa\n\n",
+        "original_theorem_content": "@[simp]\ntheorem Iio_castSucc (i : Fin n) : Iio (castSucc i) = (Iio i).map Fin.castSuccEmb := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 39,
+        "tactic_state_before": "case h\nn : ℕ\ni✝ : Fin n\ni : Fin (n + 1)\n⊢ i ∈ Ioi i✝.succ ↔ i ∈ map (succEmb n) (Ioi i✝)",
+        "proof": "simp only [mem_filter, mem_Ioi, mem_map, mem_univ, Function.Embedding.coeFn_mk, exists_true_left]\n  try repeat assumption",
+        "tactic_state_after": "[case h\n n : ℕ\n i✝ : Fin n\n i : Fin (n + 1)\n ⊢ i✝.succ < i ↔ ∃ a, i✝ < a ∧ (succEmb n) a = i]",
+        "goal": "n : ℕ\ni✝ : Fin n\ni : Fin (n + 1)\nh : i✝.succ < i ↔ ∃ a, i✝ < a ∧ (succEmb n) a = i\n⊢ i ∈ Ioi i✝.succ ↔ i ∈ map (succEmb n) (Ioi i✝)",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {n : ℕ} (i_1 : Fin n) (i : Fin (n + 1))\n  (h : i_1.succ < i ↔ ∃ a, i_1 < a ∧ (succEmb n) a = i) : i ∈ Ioi i_1.succ ↔ i ∈ map (succEmb n) (Ioi i_1) := sorry",
+        "original_theorem_name": "Fin.Ioi_succ",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 40,
+        "tactic_state_before": "case h\nn : ℕ\ni✝ : Fin n\ni : Fin (n + 1)\n⊢ i✝.succ < i ↔ ∃ a, i✝ < a ∧ (succEmb n) a = i",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case h.mp\n n : ℕ\n i✝ : Fin n\n i : Fin (n + 1)\n ⊢ i✝.succ < i → ∃ a, i✝ < a ∧ (succEmb n) a = i,\n case h.mpr\n n : ℕ\n i✝ : Fin n\n i : Fin (n + 1)\n ⊢ (∃ a, i✝ < a ∧ (succEmb n) a = i) → i✝.succ < i]",
+        "goal": "n : ℕ\ni✝ : Fin n\ni : Fin (n + 1)\nh✝ : i✝.succ < i → ∃ a, i✝ < a ∧ (succEmb n) a = i\nh : (∃ a, i✝ < a ∧ (succEmb n) a = i) → i✝.succ < i\n⊢ i✝.succ < i ↔ ∃ a, i✝ < a ∧ (succEmb n) a = i",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {n : ℕ} (i_1 : Fin n) (i : Fin (n + 1))\n  (h_1 : i_1.succ < i → ∃ a, i_1 < a ∧ (succEmb n) a = i) (h : (∃ a, i_1 < a ∧ (succEmb n) a = i) → i_1.succ < i) :\n  i_1.succ < i ↔ ∃ a, i_1 < a ∧ (succEmb n) a = i := sorry",
+        "original_theorem_name": "Fin.Ioi_succ",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Fin.lean",
+        "line": 46,
+        "tactic_state_before": "case h.mpr.intro.intro\nn : ℕ\ni✝ i : Fin n\nhi : i✝ < i\n⊢ i✝.succ < (succEmb n) i",
+        "proof": "simpa\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\ni✝ i : Fin n\nhi : i✝ < i\n⊢ i✝.succ < (succEmb n) i",
+        "header": "import Mathlib\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nopen Fin\n",
+        "formal_statement": "theorem extracted_formal_statement_6 {n : ℕ} (i_1 i : Fin n) (hi : i_1 < i) : i_1.succ < (succEmb n) i := sorry",
+        "original_theorem_name": "Fin.Ioi_succ",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Data.Vector.Basic\n\n/-!\n# The structure of `Fintype (Fin n)`\n\nThis file contains some basic results about the `Fintype` instance for `Fin`,\nespecially properties of `Finset.univ : Finset (Fin n)`.\n-/\n\nopen List (Vector)\n\nopen Finset\n\nopen Fintype\n\nnamespace Fin\n\nvariable {α β : Type*} {n : ℕ}\n\ntheorem map_valEmbedding_univ : (Finset.univ : Finset (Fin n)).map Fin.valEmbedding = Iio n := by\n  ext\n  simp [orderIsoSubtype.symm.surjective.exists, OrderIso.symm]\n\n@[simp]\ntheorem Ioi_zero_eq_map : Ioi (0 : Fin n.succ) = univ.map (Fin.succEmb _) :=\n  coe_injective <| by ext; simp [pos_iff_ne_zero]\n\n@[simp]\ntheorem Iio_last_eq_map : Iio (Fin.last n) = Finset.univ.map Fin.castSuccEmb :=\n  coe_injective <| by ext; simp [lt_def]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem Ioi_succ (i : Fin n) : Ioi i.succ = (Ioi i).map (Fin.succEmb _) := by"
+    }
+]

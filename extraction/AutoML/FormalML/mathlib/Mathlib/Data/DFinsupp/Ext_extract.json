@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/DFinsupp/Ext.lean",
+        "line": 45,
+        "tactic_state_before": "ι : Type u\nβ : ι → Type v\ninst✝² : DecidableEq ι\ninst✝¹ : (i : ι) → AddZeroClass (β i)\nγ : Type w\ninst✝ : AddZeroClass γ\nf✝ g : (Π₀ (i : ι), β i) →+ γ\nH : ∀ (i : ι) (y : β i), f✝ (single i y) = g (single i y)\nf : Π₀ (i : ι), β i\nhf : f ∈ ⋃ i, Set.range (single i)\n⊢ f✝ f = g f",
+        "proof": "simp only [Set.mem_iUnion, Set.mem_range] at hf\n  try repeat assumption",
+        "tactic_state_after": "[ι : Type u\n β : ι → Type v\n inst✝² : DecidableEq ι\n inst✝¹ : (i : ι) → AddZeroClass (β i)\n γ : Type w\n inst✝ : AddZeroClass γ\n f✝ g : (Π₀ (i : ι), β i) →+ γ\n H : ∀ (i : ι) (y : β i), f✝ (single i y) = g (single i y)\n f : Π₀ (i : ι), β i\n hf : ∃ i y, single i y = f\n ⊢ f✝ f = g f]",
+        "goal": "ι : Type u\nβ : ι → Type v\ninst✝² : DecidableEq ι\ninst✝¹ : (i : ι) → AddZeroClass (β i)\nγ : Type w\ninst✝ : AddZeroClass γ\nf✝ g : (Π₀ (i : ι), β i) →+ γ\nH : ∀ (i : ι) (y : β i), f✝ (single i y) = g (single i y)\nf : Π₀ (i : ι), β i\nhf : f ∈ ⋃ i, Set.range (single i)\n⊢ ∃ i y, single i y = f",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Submonoid.Basic\n\nimport Mathlib.Data.DFinsupp.Defs\n\nopen DFinsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u} {β : ι → Type v} [inst : DecidableEq ι]\n  [inst_1 : (i : ι) → AddZeroClass (β i)] {γ : Type w} [inst_2 : AddZeroClass γ] ⦃f_1 g : (Π₀ (i : ι), β i) →+ γ⦄\n  (H : ∀ (i : ι) (y : β i), f_1 (single i y) = g (single i y)) (f : Π₀ (i : ι), β i)\n  (hf : f ∈ ⋃ i, Set.range (single i)) : ∃ i y, single i y = f := sorry",
+        "original_theorem_name": "DFinsupp.addHom_ext",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Submonoid.Basic\n\nimport Mathlib.Data.DFinsupp.Defs\n\n/-!\n# Extensionality principles for `DFinsupp`\n\n## Main results\n\n* `DFinsupp.addHom_ext`, `DFinsupp.addHom_ext'`: if two additive homomorphisms from `Π₀ i, β i`\n  are equal on each `single a b`, then they are equal.\n-/\n\n\nuniverse u u₁ u₂ v v₁ v₂ v₃ w x y l\n\nvariable {ι : Type u} {γ : Type w} {β : ι → Type v} {β₁ : ι → Type v₁} {β₂ : ι → Type v₂}\n\nnamespace DFinsupp\n\nsection DecidableEq\nvariable [DecidableEq ι]\n\nsection AddMonoid\n\nvariable [∀ i, AddZeroClass (β i)]\n\n@[simp]\ntheorem add_closure_iUnion_range_single :\n    AddSubmonoid.closure (⋃ i : ι, Set.range (single i : β i → Π₀ i, β i)) = ⊤ :=\n  top_unique fun x _ => by\n    apply DFinsupp.induction x\n    · exact AddSubmonoid.zero_mem _\n    exact fun a b f _ _ hf =>\n      AddSubmonoid.add_mem _\n        (AddSubmonoid.subset_closure <| Set.mem_iUnion.2 ⟨a, Set.mem_range_self _⟩) hf\n\n",
+        "original_theorem_content": "/-- If two additive homomorphisms from `Π₀ i, β i` are equal on each `single a b`, then\nthey are equal. -/\ntheorem addHom_ext {γ : Type w} [AddZeroClass γ] ⦃f g : (Π₀ i, β i) →+ γ⦄\n    (H : ∀ (i : ι) (y : β i), f (single i y) = g (single i y)) : f = g := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/DFinsupp/Ext.lean",
+        "line": 47,
+        "tactic_state_before": "case intro.intro\nι : Type u\nβ : ι → Type v\ninst✝² : DecidableEq ι\ninst✝¹ : (i : ι) → AddZeroClass (β i)\nγ : Type w\ninst✝ : AddZeroClass γ\nf g : (Π₀ (i : ι), β i) →+ γ\nH : ∀ (i : ι) (y : β i), f (single i y) = g (single i y)\nx : ι\ny : β x\n⊢ f (single x y) = g (single x y)",
+        "proof": "apply H\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u\nβ : ι → Type v\ninst✝² : DecidableEq ι\ninst✝¹ : (i : ι) → AddZeroClass (β i)\nγ : Type w\ninst✝ : AddZeroClass γ\nf g : (Π₀ (i : ι), β i) →+ γ\nH : ∀ (i : ι) (y : β i), f (single i y) = g (single i y)\nx : ι\ny : β x\n⊢ f (single x y) = g (single x y)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Submonoid.Basic\n\nimport Mathlib.Data.DFinsupp.Defs\n\nopen DFinsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u} {β : ι → Type v} [inst : DecidableEq ι]\n  [inst_1 : (i : ι) → AddZeroClass (β i)] {γ : Type w} [inst_2 : AddZeroClass γ] ⦃f g : (Π₀ (i : ι), β i) →+ γ⦄\n  (H : ∀ (i : ι) (y : β i), f (single i y) = g (single i y)) (x : ι) (y : β x) :\n  f (single x y) = g (single x y) := sorry",
+        "original_theorem_name": "DFinsupp.addHom_ext",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Submonoid.Basic\n\nimport Mathlib.Data.DFinsupp.Defs\n\n/-!\n# Extensionality principles for `DFinsupp`\n\n## Main results\n\n* `DFinsupp.addHom_ext`, `DFinsupp.addHom_ext'`: if two additive homomorphisms from `Π₀ i, β i`\n  are equal on each `single a b`, then they are equal.\n-/\n\n\nuniverse u u₁ u₂ v v₁ v₂ v₃ w x y l\n\nvariable {ι : Type u} {γ : Type w} {β : ι → Type v} {β₁ : ι → Type v₁} {β₂ : ι → Type v₂}\n\nnamespace DFinsupp\n\nsection DecidableEq\nvariable [DecidableEq ι]\n\nsection AddMonoid\n\nvariable [∀ i, AddZeroClass (β i)]\n\n@[simp]\ntheorem add_closure_iUnion_range_single :\n    AddSubmonoid.closure (⋃ i : ι, Set.range (single i : β i → Π₀ i, β i)) = ⊤ :=\n  top_unique fun x _ => by\n    apply DFinsupp.induction x\n    · exact AddSubmonoid.zero_mem _\n    exact fun a b f _ _ hf =>\n      AddSubmonoid.add_mem _\n        (AddSubmonoid.subset_closure <| Set.mem_iUnion.2 ⟨a, Set.mem_range_self _⟩) hf\n\n",
+        "original_theorem_content": "/-- If two additive homomorphisms from `Π₀ i, β i` are equal on each `single a b`, then\nthey are equal. -/\ntheorem addHom_ext {γ : Type w} [AddZeroClass γ] ⦃f g : (Π₀ i, β i) →+ γ⦄\n    (H : ∀ (i : ι) (y : β i), f (single i y) = g (single i y)) : f = g := by"
+    }
+]

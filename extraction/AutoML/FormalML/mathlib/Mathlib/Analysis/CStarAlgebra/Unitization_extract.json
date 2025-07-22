@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/CStarAlgebra/Unitization.lean",
+        "line": 30,
+        "tactic_state_before": "𝕜 : Type u_1\nE : Type u_2\ninst✝⁷ : NontriviallyNormedField 𝕜\ninst✝⁶ : NonUnitalNormedRing E\ninst✝⁵ : StarRing E\ninst✝⁴ : NormedStarGroup E\ninst✝³ : NormedSpace 𝕜 E\ninst✝² : IsScalarTower 𝕜 E E\ninst✝¹ : SMulCommClass 𝕜 E E\ninst✝ : RegularNormedAlgebra 𝕜 E\na : E\n⊢ ‖(mul 𝕜 E).flip a‖ = ‖a‖",
+        "proof": "refine\n  le_antisymm (opNorm_le_bound _ (norm_nonneg _) fun b => by simpa only [mul_comm] using norm_mul_le b a) ?_\n  try repeat assumption",
+        "tactic_state_after": "[𝕜 : Type u_1\n E : Type u_2\n inst✝⁷ : NontriviallyNormedField 𝕜\n inst✝⁶ : NonUnitalNormedRing E\n inst✝⁵ : StarRing E\n inst✝⁴ : NormedStarGroup E\n inst✝³ : NormedSpace 𝕜 E\n inst✝² : IsScalarTower 𝕜 E E\n inst✝¹ : SMulCommClass 𝕜 E E\n inst✝ : RegularNormedAlgebra 𝕜 E\n a : E\n ⊢ ‖a‖ ≤ ‖(mul 𝕜 E).flip a‖]",
+        "goal": "𝕜 : Type u_1\nE : Type u_2\ninst✝⁷ : NontriviallyNormedField 𝕜\ninst✝⁶ : NonUnitalNormedRing E\ninst✝⁵ : StarRing E\ninst✝⁴ : NormedStarGroup E\ninst✝³ : NormedSpace 𝕜 E\ninst✝² : IsScalarTower 𝕜 E E\ninst✝¹ : SMulCommClass 𝕜 E E\ninst✝ : RegularNormedAlgebra 𝕜 E\na : E\nh : ‖a‖ ≤ ‖(mul 𝕜 E).flip a‖\n⊢ ‖(mul 𝕜 E).flip a‖ = ‖a‖",
+        "header": "import Mathlib\nimport Mathlib.Analysis.CStarAlgebra.Classes\n\nimport Mathlib.Analysis.Normed.Algebra.Unitization\n\nopen ContinuousLinearMap\n\nopen ContinuousLinearMap\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (𝕜 : Type u_1) {E : Type u_2} [inst : NontriviallyNormedField 𝕜]\n  [inst_1 : NonUnitalNormedRing E] [inst_2 : StarRing E] [inst_3 : NormedStarGroup E] [inst_4 : NormedSpace 𝕜 E]\n  [inst_5 : IsScalarTower 𝕜 E E] [inst_6 : SMulCommClass 𝕜 E E] [inst_7 : RegularNormedAlgebra 𝕜 E] (a : E)\n  (h : ‖a‖ ≤ ‖(mul 𝕜 E).flip a‖) : ‖(mul 𝕜 E).flip a‖ = ‖a‖ := sorry",
+        "original_theorem_name": "ContinuousLinearMap.opNorm_mul_flip_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.CStarAlgebra.Classes\n\nimport Mathlib.Analysis.Normed.Algebra.Unitization\n\n/-! # The minimal unitization of a C⋆-algebra\n\nThis file shows that when `E` is a C⋆-algebra (over a densely normed field `𝕜`), that the minimal\n`Unitization` is as well. In order to ensure that the norm structure is available, we must first\nshow that every C⋆-algebra is a `RegularNormedAlgebra`.\n\nIn addition, we show that in a `RegularNormedAlgebra` which is a `StarRing` for which the\ninvolution is isometric, that multiplication on the right is also an isometry (i.e.,\n`Isometry (ContinuousLinearMap.mul 𝕜 E).flip`).\n-/\n\nopen ContinuousLinearMap\n\nlocal postfix:max \"⋆\" => star\n\nvariable (𝕜 : Type*) {E : Type*}\n\nnamespace ContinuousLinearMap\n\nvariable [NontriviallyNormedField 𝕜] [NonUnitalNormedRing E] [StarRing E] [NormedStarGroup E]\nvariable [NormedSpace 𝕜 E] [IsScalarTower 𝕜 E E] [SMulCommClass 𝕜 E E] [RegularNormedAlgebra 𝕜 E]\n\n",
+        "original_theorem_content": "lemma opNorm_mul_flip_apply (a : E) : ‖(mul 𝕜 E).flip a‖ = ‖a‖ := by"
+    }
+]

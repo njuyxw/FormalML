@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "PFR/PFR/ForMathlib/AffineSpaceDim.lean",
+        "line": 34,
+        "tactic_state_before": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝⁵ : Ring k\ninst✝⁴ : AddCommGroup V\ninst✝³ : Module k V\ninst✝² : AddTorsor V P\ns : Set P\nS : Submodule k V\ninst✝¹ : StrongRankCondition k\ninst✝ : Module.Finite k ↥S\nq : P\nhs : ∀ p ∈ s, p -ᵥ q ∈ S\n⊢ finrank k s ≤ S.finrank",
+        "proof": "refine Submodule.finrank_mono ?_\n  try repeat assumption",
+        "tactic_state_after": "[k : Type u_1\n V : Type u_2\n P : Type u_3\n inst✝⁵ : Ring k\n inst✝⁴ : AddCommGroup V\n inst✝³ : Module k V\n inst✝² : AddTorsor V P\n s : Set P\n S : Submodule k V\n inst✝¹ : StrongRankCondition k\n inst✝ : Module.Finite k ↥S\n q : P\n hs : ∀ p ∈ s, p -ᵥ q ∈ S\n ⊢ vectorSpan k s ≤ S]",
+        "goal": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝⁵ : Ring k\ninst✝⁴ : AddCommGroup V\ninst✝³ : Module k V\ninst✝² : AddTorsor V P\ns : Set P\nS : Submodule k V\ninst✝¹ : StrongRankCondition k\ninst✝ : Module.Finite k ↥S\nq : P\nhs : ∀ p ∈ s, p -ᵥ q ∈ S\nh : vectorSpan k s ≤ S\n⊢ finrank k s ≤ S.finrank",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nopen AffineSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {k : Type u_1} {V : Type u_2} {P : Type u_3} [inst : Ring k]\n  [inst_1 : AddCommGroup V] [inst_2 : Module k V] [inst_3 : AddTorsor V P] {s : Set P} {S : Submodule k V}\n  [inst_4 : StrongRankCondition k] [inst_5 : Module.Finite k ↥S] (q : P) (hs : ∀ p ∈ s, p -ᵥ q ∈ S)\n  (h : vectorSpan k s ≤ S) : finrank k s ≤ S.finrank := sorry",
+        "original_theorem_name": "AffineSpace.finrank_le_submoduleFinrank",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nnamespace AffineSpace\nvariable {k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P] {s : Set P}\n  {S : Submodule k V}\n\nvariable (k) in\nopen scoped Classical in\n/-- The dimension of the affine span over `ℤ` of a subset of an additive group. -/\nnoncomputable def finrank (s : Set P) : ℕ := (vectorSpan k s).finrank\n\nvariable (k) in\n@[simp]\nlemma finrank_vadd_set (s : Set P) (v : V) : finrank k (v +ᵥ s) = AffineSpace.finrank k s := by\n  simp [finrank]\n\nvariable (k) in\n@[simp] lemma finrank_empty [Nontrivial k] : finrank k (∅ : Set P) = 0 := by simp [finrank]\n\nvariable [StrongRankCondition k]\n\n",
+        "original_theorem_content": "lemma finrank_le_submoduleFinrank [Module.Finite k S] (q : P) (hs : ∀ p ∈ s, p -ᵥ q ∈ S) :\n    finrank k s ≤ S.finrank := by"
+    },
+    {
+        "filename": "PFR/PFR/ForMathlib/AffineSpaceDim.lean",
+        "line": 35,
+        "tactic_state_before": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝⁵ : Ring k\ninst✝⁴ : AddCommGroup V\ninst✝³ : Module k V\ninst✝² : AddTorsor V P\ns : Set P\nS : Submodule k V\ninst✝¹ : StrongRankCondition k\ninst✝ : Module.Finite k ↥S\nq : P\nhs : ∀ p ∈ s, p -ᵥ q ∈ S\n⊢ vectorSpan k s ≤ S",
+        "proof": "simpa [vectorSpan, Submodule.span_le, Set.vsub_subset_iff] using fun a ha b hb ↦\n  S.sub_mem (hs _ ha) (hs _ hb)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝⁵ : Ring k\ninst✝⁴ : AddCommGroup V\ninst✝³ : Module k V\ninst✝² : AddTorsor V P\ns : Set P\nS : Submodule k V\ninst✝¹ : StrongRankCondition k\ninst✝ : Module.Finite k ↥S\nq : P\nhs : ∀ p ∈ s, p -ᵥ q ∈ S\n⊢ vectorSpan k s ≤ S",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nopen AffineSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {k : Type u_1} {V : Type u_2} {P : Type u_3} [inst : Ring k]\n  [inst_1 : AddCommGroup V] [inst_2 : Module k V] [inst_3 : AddTorsor V P] {s : Set P} {S : Submodule k V}\n  [inst_4 : StrongRankCondition k] [inst_5 : Module.Finite k ↥S] (q : P) (hs : ∀ p ∈ s, p -ᵥ q ∈ S) :\n  vectorSpan k s ≤ S := sorry",
+        "original_theorem_name": "AffineSpace.finrank_le_submoduleFinrank",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nnamespace AffineSpace\nvariable {k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P] {s : Set P}\n  {S : Submodule k V}\n\nvariable (k) in\nopen scoped Classical in\n/-- The dimension of the affine span over `ℤ` of a subset of an additive group. -/\nnoncomputable def finrank (s : Set P) : ℕ := (vectorSpan k s).finrank\n\nvariable (k) in\n@[simp]\nlemma finrank_vadd_set (s : Set P) (v : V) : finrank k (v +ᵥ s) = AffineSpace.finrank k s := by\n  simp [finrank]\n\nvariable (k) in\n@[simp] lemma finrank_empty [Nontrivial k] : finrank k (∅ : Set P) = 0 := by simp [finrank]\n\nvariable [StrongRankCondition k]\n\n",
+        "original_theorem_content": "lemma finrank_le_submoduleFinrank [Module.Finite k S] (q : P) (hs : ∀ p ∈ s, p -ᵥ q ∈ S) :\n    finrank k s ≤ S.finrank := by"
+    },
+    {
+        "filename": "PFR/PFR/ForMathlib/AffineSpaceDim.lean",
+        "line": 25,
+        "tactic_state_before": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝³ : Ring k\ninst✝² : AddCommGroup V\ninst✝¹ : Module k V\ninst✝ : AddTorsor V P\ns : Set P\nv : V\n⊢ finrank k (v +ᵥ s) = finrank k s",
+        "proof": "simp [finrank]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝³ : Ring k\ninst✝² : AddCommGroup V\ninst✝¹ : Module k V\ninst✝ : AddTorsor V P\ns : Set P\nv : V\n⊢ finrank k (v +ᵥ s) = finrank k s",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nopen AffineSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (k : Type u_1) {V : Type u_2} {P : Type u_3} [inst : Ring k]\n  [inst_1 : AddCommGroup V] [inst_2 : Module k V] [inst_3 : AddTorsor V P] (s : Set P) (v : V) :\n  finrank k (v +ᵥ s) = finrank k s := sorry",
+        "original_theorem_name": "AffineSpace.finrank_vadd_set",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nnamespace AffineSpace\nvariable {k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P] {s : Set P}\n  {S : Submodule k V}\n\nvariable (k) in\nopen scoped Classical in\n/-- The dimension of the affine span over `ℤ` of a subset of an additive group. -/\nnoncomputable def finrank (s : Set P) : ℕ := (vectorSpan k s).finrank\n\n",
+        "original_theorem_content": "variable (k) in\n@[simp]\nlemma finrank_vadd_set (s : Set P) (v : V) : finrank k (v +ᵥ s) = AffineSpace.finrank k s := by"
+    },
+    {
+        "filename": "PFR/PFR/ForMathlib/AffineSpaceDim.lean",
+        "line": 25,
+        "tactic_state_before": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝³ : Ring k\ninst✝² : AddCommGroup V\ninst✝¹ : Module k V\ninst✝ : AddTorsor V P\ns : Set P\nv : V\n⊢ finrank k (v +ᵥ s) = finrank k s",
+        "proof": "simp [finrank]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "k : Type u_1\nV : Type u_2\nP : Type u_3\ninst✝³ : Ring k\ninst✝² : AddCommGroup V\ninst✝¹ : Module k V\ninst✝ : AddTorsor V P\ns : Set P\nv : V\n⊢ finrank k (v +ᵥ s) = finrank k s",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nopen AffineSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (k : Type u_1) {V : Type u_2} {P : Type u_3} [inst : Ring k]\n  [inst_1 : AddCommGroup V] [inst_2 : Module k V] [inst_3 : AddTorsor V P] (s : Set P) (v : V) :\n  finrank k (v +ᵥ s) = finrank k s := sorry",
+        "original_theorem_name": "AffineSpace.finrank_vadd_set",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.AffineSpace.AffineSubspace.Basic\n\nimport Mathlib.LinearAlgebra.Dimension.Constructions\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport PFR.Mathlib.LinearAlgebra.Dimension.Finrank\n\nopen scoped Pointwise\n\nnamespace AffineSpace\nvariable {k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P] {s : Set P}\n  {S : Submodule k V}\n\nvariable (k) in\nopen scoped Classical in\n/-- The dimension of the affine span over `ℤ` of a subset of an additive group. -/\nnoncomputable def finrank (s : Set P) : ℕ := (vectorSpan k s).finrank\n\n",
+        "original_theorem_content": "variable (k) in\n@[simp]\nlemma finrank_vadd_set (s : Set P) (v : V) : finrank k (v +ᵥ s) = AffineSpace.finrank k s := by"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Int/CharZero.lean",
+        "line": 25,
+        "tactic_state_before": "k : Type u_3\ninst✝¹ : DivisionRing k\ninst✝ : CharZero k\nm n : ℤ\nn_dvd : n ∣ m\n⊢ ↑(m / n) = ↑m / ↑n",
+        "proof": "rcases eq_or_ne n 0 with (rfl | hn)\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n k : Type u_3\n inst✝¹ : DivisionRing k\n inst✝ : CharZero k\n m : ℤ\n n_dvd : 0 ∣ m\n ⊢ ↑(m / 0) = ↑m / ↑0,\n case inr\n k : Type u_3\n inst✝¹ : DivisionRing k\n inst✝ : CharZero k\n m n : ℤ\n n_dvd : n ∣ m\n hn : n ≠ 0\n ⊢ ↑(m / n) = ↑m / ↑n]",
+        "goal": "k : Type u_3\ninst✝¹ : DivisionRing k\ninst✝ : CharZero k\nm n : ℤ\nn_dvd : n ∣ m\nh✝ : ↑(m / 0) = ↑m / ↑0\nh : ↑(m / n) = ↑m / ↑n\n⊢ ↑(m / n) = ↑m / ↑n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Support\n\nimport Mathlib.Data.Int.Cast.Field\n\nimport Mathlib.Data.Int.Cast.Lemmas\n\nimport Mathlib.Data.Int.Cast.Pi\n\nopen Nat Set\n\nopen Int\n\nopen Function\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {k : Type u_3} [inst : DivisionRing k] [inst_1 : CharZero k] {m n : ℤ}\n  (n_dvd : n ∣ m) (h_1 : ↑(m / 0) = ↑m / ↑0) (h : ↑(m / n) = ↑m / ↑n) : ↑(m / n) = ↑m / ↑n := sorry",
+        "original_theorem_name": "Int.cast_div_charZero",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Support\n\nimport Mathlib.Data.Int.Cast.Field\n\nimport Mathlib.Data.Int.Cast.Lemmas\n\nimport Mathlib.Data.Int.Cast.Pi\n\n/-!\n# Injectivity of `Int.Cast` into characteristic zero rings and fields.\n\n-/\n\nopen Nat Set\n\nvariable {α β : Type*}\n\nnamespace Int\n\n",
+        "original_theorem_content": "@[simp, norm_cast]\ntheorem cast_div_charZero {k : Type*} [DivisionRing k] [CharZero k] {m n : ℤ} (n_dvd : n ∣ m) :\n    ((m / n : ℤ) : k) = m / n := by"
+    }
+]

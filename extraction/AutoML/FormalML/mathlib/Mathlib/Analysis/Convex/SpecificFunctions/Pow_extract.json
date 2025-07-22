@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Convex/SpecificFunctions/Pow.lean",
+        "line": 33,
+        "tactic_state_before": "p : ℝ\nhp₀ : 0 < p\nhp₁ : p < 1\n⊢ StrictConcaveOn ℝ≥0 univ fun x => x ^ p",
+        "proof": "have hp₀' : 0 < 1 / p := div_pos zero_lt_one hp₀\n  try repeat assumption",
+        "tactic_state_after": "[p : ℝ\n hp₀ : 0 < p\n hp₁ : p < 1\n hp₀' : 0 < 1 / p\n ⊢ StrictConcaveOn ℝ≥0 univ fun x => x ^ p]",
+        "goal": "p : ℝ\nhp₀ : 0 < p\nhp₁ : p < 1\n⊢ 0 < 1 / p",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Convex.SpecificFunctions.Basic\n\nimport Mathlib.Analysis.SpecialFunctions.Pow.NNReal\n\nopen Set\n\nopen NNReal\n\nopen NNReal\n\nopen Real\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) : 0 < 1 / p := sorry",
+        "original_theorem_name": "NNReal.strictConcaveOn_rpow",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Convex.SpecificFunctions.Basic\n\nimport Mathlib.Analysis.SpecialFunctions.Pow.NNReal\n\n/-!\n# Convexity properties of `rpow`\n\nWe prove basic convexity properties of the `rpow` function. The proofs are elementary and do not\nrequire calculus, and as such this file has only moderate dependencies.\n\n## Main declarations\n\n* `NNReal.strictConcaveOn_rpow`, `Real.strictConcaveOn_rpow`: strict concavity of\n  `fun x ↦ x ^ p` for p ∈ (0,1)\n* `NNReal.concaveOn_rpow`, `Real.concaveOn_rpow`: concavity of `fun x ↦ x ^ p` for p ∈ [0,1]\n\nNote that convexity for `p > 1` can be found in `Analysis.Convex.SpecificFunctions.Basic`, which\nrequires slightly less imports.\n\n## TODO\n\n* Prove convexity for negative powers.\n-/\n\nopen Set\n\nnamespace NNReal\n\n",
+        "original_theorem_content": "lemma strictConcaveOn_rpow {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) :\n    StrictConcaveOn ℝ≥0 univ fun x : ℝ≥0 ↦ x ^ p := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/Convex/SpecificFunctions/Pow.lean",
+        "line": 34,
+        "tactic_state_before": "p : ℝ\nhp₀ : 0 < p\nhp₁ : p < 1\nhp₀' : 0 < 1 / p\n⊢ StrictConcaveOn ℝ≥0 univ fun x => x ^ p",
+        "proof": "have hp₁' : 1 < 1 / p := by rw [one_lt_div hp₀]; exact hp₁\n  try repeat assumption",
+        "tactic_state_after": "[p : ℝ\n hp₀ : 0 < p\n hp₁ : p < 1\n hp₀' : 0 < 1 / p\n hp₁' : 1 < 1 / p\n ⊢ StrictConcaveOn ℝ≥0 univ fun x => x ^ p]",
+        "goal": "p : ℝ\nhp₀ : 0 < p\nhp₁ : p < 1\nhp₀' : 0 < 1 / p\n⊢ 1 < 1 / p",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Convex.SpecificFunctions.Basic\n\nimport Mathlib.Analysis.SpecialFunctions.Pow.NNReal\n\nopen Set\n\nopen NNReal\n\nopen NNReal\n\nopen Real\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) (hp₀' : 0 < 1 / p) : 1 < 1 / p := sorry",
+        "original_theorem_name": "NNReal.strictConcaveOn_rpow",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Convex.SpecificFunctions.Basic\n\nimport Mathlib.Analysis.SpecialFunctions.Pow.NNReal\n\n/-!\n# Convexity properties of `rpow`\n\nWe prove basic convexity properties of the `rpow` function. The proofs are elementary and do not\nrequire calculus, and as such this file has only moderate dependencies.\n\n## Main declarations\n\n* `NNReal.strictConcaveOn_rpow`, `Real.strictConcaveOn_rpow`: strict concavity of\n  `fun x ↦ x ^ p` for p ∈ (0,1)\n* `NNReal.concaveOn_rpow`, `Real.concaveOn_rpow`: concavity of `fun x ↦ x ^ p` for p ∈ [0,1]\n\nNote that convexity for `p > 1` can be found in `Analysis.Convex.SpecificFunctions.Basic`, which\nrequires slightly less imports.\n\n## TODO\n\n* Prove convexity for negative powers.\n-/\n\nopen Set\n\nnamespace NNReal\n\n",
+        "original_theorem_content": "lemma strictConcaveOn_rpow {p : ℝ} (hp₀ : 0 < p) (hp₁ : p < 1) :\n    StrictConcaveOn ℝ≥0 univ fun x : ℝ≥0 ↦ x ^ p := by"
+    }
+]

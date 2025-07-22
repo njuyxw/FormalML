@@ -124,17 +124,10 @@ class DeepSeekProverV2CoT(BaseProver):
         return prompt
     def postprocess(self, model_input, model_output):
         def extract_code(text):
-            # 匹配 ### Complete Lean 4 Proof 后允许有任意空白和空行
-            match = re.search(r'### Complete Lean 4 Proof\s*\n*```lean4\n(.*?)\n```', text, re.DOTALL)
+            match = re.search(r'(theorem extracted_formal_statement_.*?)```', text, re.DOTALL)
             if match:
                 return match.group(1).strip()
-            match = re.search(r'### Complete Lean 4 Proof\s*\n*```lean4\n([\s\S]*)', text, re.DOTALL)
-            if match:
-                return match.group(1).strip()
-            # 回退到普通的 ```lean4 ... ``` 匹配
-            match = re.search(r'```lean4\n(.*?)\n```', text, re.DOTALL)
-            if match:
-                return match.group(1).strip()
+           
             return "None"
         outputs = [output.text for output in model_output.outputs]
         full_codes = [extract_code(out) for out in outputs]
@@ -187,19 +180,11 @@ class DeepSeekProverV2nonCoT(BaseProver):
         return prompt
     def postprocess(self, model_input, model_output):
         def extract_code(text):
-            # 1. 匹配```lean ... ```
-            match = re.search(r'```lean4\n([\s\S]*?)\n```', text,re.DOTALL)
+            match = re.search(r'(theorem extracted_formal_statement_.*?)```', text, re.DOTALL)
             if match:
                 return match.group(1).strip()
-            # 2. 匹配lean ... ```
-            match = re.search(r'lean4\n([\s\S]*?)\n```', text,re.DOTALL)
-            if match:
-                return match.group(1).strip()
-            # 3. 匹配```lean后面所有内容
-            match = re.search(r'```lean4\n([\s\S]*)', text,re.DOTALL)
-            if match:
-                return match.group(1).strip()
-            return text
+            return "None"
+        
         outputs = [output.text for output in model_output.outputs]
         full_codes = [extract_code(out) for out in outputs]
         return {

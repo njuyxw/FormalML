@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/NeZero.lean",
+        "line": 19,
+        "tactic_state_before": "R : Type u_1\ninst✝ : Zero R\nn : R\n⊢ ¬NeZero n ↔ n = 0",
+        "proof": "simp [neZero_iff]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝ : Zero R\nn : R\n⊢ ¬NeZero n ↔ n = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Notation.Defs\n\nimport Mathlib.Logic.Basic\n\nimport Mathlib.Order.Defs.PartialOrder\n\nopen NeZero\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : Zero R] {n : R} : ¬NeZero n ↔ n = 0 := sorry",
+        "original_theorem_name": "not_neZero",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Notation.Defs\n\nimport Mathlib.Logic.Basic\n\nimport Mathlib.Order.Defs.PartialOrder\n\n/-!\n# `NeZero` typeclass\n\nWe give basic facts about the `NeZero n` typeclass.\n\n-/\n\nvariable {R : Type*} [Zero R]\n\n",
+        "original_theorem_content": "theorem not_neZero {n : R} : ¬NeZero n ↔ n = 0 := by"
+    }
+]

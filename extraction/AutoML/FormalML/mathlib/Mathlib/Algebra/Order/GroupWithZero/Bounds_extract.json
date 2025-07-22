@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/GroupWithZero/Bounds.lean",
+        "line": 20,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf : BddAbove (range f)\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\n⊢ BddAbove (range fun x => g (f x))",
+        "proof": "suffices hg' : BddAbove (g '' range f) by rwa [← Function.comp_def, Set.range_comp]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n β : Type u_2\n γ : Type u_3\n inst✝³ : Nonempty α\n inst✝² : Preorder β\n inst✝¹ : Zero β\n inst✝ : Preorder γ\n f : α → β\n g : β → γ\n hf : BddAbove (range f)\n hf0 : 0 ≤ f\n hg : MonotoneOn g {x | 0 ≤ x}\n ⊢ BddAbove (g '' range f)]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf : BddAbove (range f)\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\nh : BddAbove (g '' range f)\n⊢ BddAbove (range fun x => g (f x))",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {β : Type u_2} {γ : Type u_3} [inst : Nonempty α]\n  [inst_1 : Preorder β] [inst_2 : Zero β] [inst_3 : Preorder γ] {f : α → β} {g : β → γ} (hf : BddAbove (range f))\n  (hf0 : 0 ≤ f) (hg : MonotoneOn g {x | 0 ≤ x}) (h : BddAbove (g '' range f)) :\n  BddAbove (range fun x => g (f x)) := sorry",
+        "original_theorem_name": "BddAbove.range_comp_of_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\n/-!\n# Lemmas about `BddAbove`\n-/\n\nopen Set\n\n",
+        "original_theorem_content": "/-- A variant of `BddAbove.range_comp` that assumes that `f` is nonnegative and `g` is monotone on\n  nonnegative values. -/\nlemma BddAbove.range_comp_of_nonneg {α β γ : Type*} [Nonempty α] [Preorder β] [Zero β] [Preorder γ]\n    {f : α → β} {g : β → γ} (hf : BddAbove (range f)) (hf0 : 0 ≤ f)\n    (hg : MonotoneOn g {x : β | 0 ≤ x}) : BddAbove (range (fun x => g (f x))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/GroupWithZero/Bounds.lean",
+        "line": 21,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf : BddAbove (range f)\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\n⊢ BddAbove (g '' range f)",
+        "proof": "apply hg.map_bddAbove (by rintro x ⟨a, rfl⟩; exact hf0 a)\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n β : Type u_2\n γ : Type u_3\n inst✝³ : Nonempty α\n inst✝² : Preorder β\n inst✝¹ : Zero β\n inst✝ : Preorder γ\n f : α → β\n g : β → γ\n hf : BddAbove (range f)\n hf0 : 0 ≤ f\n hg : MonotoneOn g {x | 0 ≤ x}\n ⊢ (upperBounds (range f) ∩ {x | 0 ≤ x}).Nonempty]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf : BddAbove (range f)\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\nh : (upperBounds (range f) ∩ {x | 0 ≤ x}).Nonempty\n⊢ BddAbove (g '' range f)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {β : Type u_2} {γ : Type u_3} [inst : Nonempty α]\n  [inst_1 : Preorder β] [inst_2 : Zero β] [inst_3 : Preorder γ] {f : α → β} {g : β → γ} (hf : BddAbove (range f))\n  (hf0 : 0 ≤ f) (hg : MonotoneOn g {x | 0 ≤ x}) (h : (upperBounds (range f) ∩ {x | 0 ≤ x}).Nonempty) :\n  BddAbove (g '' range f) := sorry",
+        "original_theorem_name": "BddAbove.range_comp_of_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\n/-!\n# Lemmas about `BddAbove`\n-/\n\nopen Set\n\n",
+        "original_theorem_content": "/-- A variant of `BddAbove.range_comp` that assumes that `f` is nonnegative and `g` is monotone on\n  nonnegative values. -/\nlemma BddAbove.range_comp_of_nonneg {α β γ : Type*} [Nonempty α] [Preorder β] [Zero β] [Preorder γ]\n    {f : α → β} {g : β → γ} (hf : BddAbove (range f)) (hf0 : 0 ≤ f)\n    (hg : MonotoneOn g {x : β | 0 ≤ x}) : BddAbove (range (fun x => g (f x))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/GroupWithZero/Bounds.lean",
+        "line": 23,
+        "tactic_state_before": "case intro\nα : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\nb : β\nhb : b ∈ upperBounds (range f)\n⊢ (upperBounds (range f) ∩ {x | 0 ≤ x}).Nonempty",
+        "proof": "use b, hb\n  try repeat assumption",
+        "tactic_state_after": "[case right\n α : Type u_1\n β : Type u_2\n γ : Type u_3\n inst✝³ : Nonempty α\n inst✝² : Preorder β\n inst✝¹ : Zero β\n inst✝ : Preorder γ\n f : α → β\n g : β → γ\n hf0 : 0 ≤ f\n hg : MonotoneOn g {x | 0 ≤ x}\n b : β\n hb : b ∈ upperBounds (range f)\n ⊢ b ∈ {x | 0 ≤ x}]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\nb : β\nhb : b ∈ upperBounds (range f)\nh : b ∈ {x | 0 ≤ x}\n⊢ (upperBounds (range f) ∩ {x | 0 ≤ x}).Nonempty",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} {β : Type u_2} {γ : Type u_3} [inst : Nonempty α]\n  [inst_1 : Preorder β] [inst_2 : Zero β] [inst_3 : Preorder γ] {f : α → β} {g : β → γ} (hf0 : 0 ≤ f)\n  (hg : MonotoneOn g {x | 0 ≤ x}) (b : β) (hb : b ∈ upperBounds (range f)) (h : b ∈ {x | 0 ≤ x}) :\n  (upperBounds (range f) ∩ {x | 0 ≤ x}).Nonempty := sorry",
+        "original_theorem_name": "BddAbove.range_comp_of_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\n/-!\n# Lemmas about `BddAbove`\n-/\n\nopen Set\n\n",
+        "original_theorem_content": "/-- A variant of `BddAbove.range_comp` that assumes that `f` is nonnegative and `g` is monotone on\n  nonnegative values. -/\nlemma BddAbove.range_comp_of_nonneg {α β γ : Type*} [Nonempty α] [Preorder β] [Zero β] [Preorder γ]\n    {f : α → β} {g : β → γ} (hf : BddAbove (range f)) (hf0 : 0 ≤ f)\n    (hg : MonotoneOn g {x : β | 0 ≤ x}) : BddAbove (range (fun x => g (f x))) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/GroupWithZero/Bounds.lean",
+        "line": 25,
+        "tactic_state_before": "case right\nα : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\nb : β\nhb : ∀ (a : α), f a ≤ b\n⊢ b ∈ {x | 0 ≤ x}",
+        "proof": "exact le_trans (hf0 Classical.ofNonempty) (hb Classical.ofNonempty)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\ninst✝³ : Nonempty α\ninst✝² : Preorder β\ninst✝¹ : Zero β\ninst✝ : Preorder γ\nf : α → β\ng : β → γ\nhf0 : 0 ≤ f\nhg : MonotoneOn g {x | 0 ≤ x}\nb : β\nhb : ∀ (a : α), f a ≤ b\n⊢ b ∈ {x | 0 ≤ x}",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} {β : Type u_2} {γ : Type u_3} [inst : Nonempty α]\n  [inst_1 : Preorder β] [inst_2 : Zero β] [inst_3 : Preorder γ] {f : α → β} {g : β → γ} (hf0 : 0 ≤ f)\n  (hg : MonotoneOn g {x | 0 ≤ x}) (b : β) (hb : ∀ (a : α), f a ≤ b) : b ∈ {x | 0 ≤ x} := sorry",
+        "original_theorem_name": "BddAbove.range_comp_of_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.GroupWithZero.Unbundled\n\nimport Mathlib.Order.Bounds.Basic\n\nimport Mathlib.Order.Bounds.Image\n\n/-!\n# Lemmas about `BddAbove`\n-/\n\nopen Set\n\n",
+        "original_theorem_content": "/-- A variant of `BddAbove.range_comp` that assumes that `f` is nonnegative and `g` is monotone on\n  nonnegative values. -/\nlemma BddAbove.range_comp_of_nonneg {α β γ : Type*} [Nonempty α] [Preorder β] [Zero β] [Preorder γ]\n    {f : α → β} {g : β → γ} (hf : BddAbove (range f)) (hf0 : 0 ≤ f)\n    (hg : MonotoneOn g {x : β | 0 ≤ x}) : BddAbove (range (fun x => g (f x))) := by"
+    }
+]

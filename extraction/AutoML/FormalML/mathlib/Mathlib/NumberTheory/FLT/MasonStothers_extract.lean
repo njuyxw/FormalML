@@ -1,0 +1,5 @@
+import Mathlib
+import Mathlib.RingTheory.Polynomial.Radical
+
+open Polynomial UniqueFactorizationMonoid UniqueFactorizationDomain EuclideanDomain
+

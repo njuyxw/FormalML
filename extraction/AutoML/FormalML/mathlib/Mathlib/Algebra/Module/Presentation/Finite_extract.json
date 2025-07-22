@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Module/Presentation/Finite.lean",
+        "line": 61,
+        "tactic_state_before": "case mpr.intro.intro\nA : Type u\ninst✝² : Ring A\nM : Type v\ninst✝¹ : AddCommGroup M\ninst✝ : Module A M\npres : Presentation A M\nleft✝ : Finite pres.G\nright✝ : Finite pres.R\n⊢ FinitePresentation A M",
+        "proof": "exact pres.finitePresentation\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "A : Type u\ninst✝² : Ring A\nM : Type v\ninst✝¹ : AddCommGroup M\ninst✝ : Module A M\npres : Presentation A M\nleft✝ : Finite pres.G\nright✝ : Finite pres.R\n⊢ FinitePresentation A M",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Module.Presentation.Basic\n\nimport Mathlib.Algebra.Module.FinitePresentation\n\nopen Module\n\nopen Presentation\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {A : Type u} [inst : Ring A] {M : Type v} [inst_1 : AddCommGroup M]\n  [inst_2 : Module A M] (pres : Presentation A M) (left : Finite pres.G) (right : Finite pres.R) :\n  FinitePresentation A M := sorry",
+        "original_theorem_name": "Module.finitePresentation_iff_exists_presentation",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Module.Presentation.Basic\n\nimport Mathlib.Algebra.Module.FinitePresentation\n\n/-!\n# Characterization of finitely presented modules\n\nA module is finitely presented (in the sense of `Module.FinitePresentation`) iff\nit admits a presentation with finitely many generators and relations.\n\n-/\n\nuniverse w₀ w₁ v u\n\nnamespace Module\n\nvariable {A : Type u} [Ring A] {M : Type v} [AddCommGroup M] [Module A M]\n\nnamespace Presentation\n\nvariable (pres : Presentation A M)\n\nlemma finite [Finite pres.G] :\n    Module.Finite A M :=\n  Finite.of_surjective _ pres.surjective_π\n\nlemma finitePresentation [Finite pres.G] [Finite pres.R] :\n    Module.FinitePresentation A M :=\n  Module.finitePresentation_of_surjective _ pres.surjective_π (by\n    rw [pres.ker_π]\n    exact Submodule.fg_span (Set.finite_range _))\n\nend Presentation\n\n",
+        "original_theorem_content": "lemma finitePresentation_iff_exists_presentation :\n    Module.FinitePresentation A M ↔\n      ∃ (pres : Presentation.{w₀, w₁} A M), Finite pres.G ∧ Finite pres.R := by"
+    }
+]

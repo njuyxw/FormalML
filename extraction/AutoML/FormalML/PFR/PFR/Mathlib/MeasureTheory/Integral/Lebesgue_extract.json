@@ -1,0 +1,93 @@
+[
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 43,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSingletonClass α\nμ : Measure α\ns : Finset α\nf : α → ℝ≥0∞\n⊢ ∫⁻ (x : α) in ↑s, f x ∂μ = ∑ x ∈ s, μ {x} * f x",
+        "proof": "simp_rw [mul_comm, lintegral_finset]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSingletonClass α\nμ : Measure α\ns : Finset α\nf : α → ℝ≥0∞\n⊢ ∫⁻ (x : α) in ↑s, f x ∂μ = ∑ x ∈ s, μ {x} * f x",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : MeasurableSpace α] [inst_1 : MeasurableSingletonClass α]\n  (μ : Measure α) (s : Finset α) (f : α → ℝ≥0∞) : ∫⁻ (x : α) in ↑s, f x ∂μ = ∑ x ∈ s, μ {x} * f x := sorry",
+        "original_theorem_name": "MeasureTheory.setLIntegral_eq_sum",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\nlemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by\n  rw [← lintegral_add_compl f hmes, setLIntegral_measure_zero sᶜ f hs,\n    setLIntegral_congr_fun (f := f) (g := fun _ ↦ 0) hmes]\n  · simp\n  exact ae_of_all μ hf\n\nlemma lintegral_eq_setLIntegral (hs : μ sᶜ = 0) (f : α → ℝ≥0∞) :\n    ∫⁻ x, f x ∂μ = ∫⁻ x in s, f x ∂μ := by\n  rw [← setLIntegral_univ, ← setLIntegral_congr]; rwa [ae_eq_univ]\n\nvariable [MeasurableSingletonClass α]\n\n-- TODO: Change RHS of `lintegral_fintype`\nlemma lintegral_eq_sum (μ : Measure α) (f : α → ℝ≥0∞) [Fintype α] :\n    ∫⁻ x, f x ∂μ = ∑ x, μ {x} * f x := by\n  simp_rw [lintegral_fintype, mul_comm]\n\nlemma lintegral_eq_tsum (μ : Measure α) (f : α → ℝ≥0∞) [Countable α] :\n    ∫⁻ x, f x ∂μ = ∑' x, μ {x} * f x := by\n  simp_rw [lintegral_countable', mul_comm]\n\n-- TODO: Change RHS of `lintegral_finset`\n",
+        "original_theorem_content": "lemma setLIntegral_eq_sum (μ : Measure α) (s : Finset α) (f : α → ℝ≥0∞) :\n    ∫⁻ x in s, f x ∂μ = ∑ x ∈ s, μ {x} * f x := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 38,
+        "tactic_state_before": "α : Type u_1\ninst✝² : MeasurableSpace α\ninst✝¹ : MeasurableSingletonClass α\nμ : Measure α\nf : α → ℝ≥0∞\ninst✝ : Countable α\n⊢ ∫⁻ (x : α), f x ∂μ = ∑' (x : α), μ {x} * f x",
+        "proof": "simp_rw [lintegral_countable', mul_comm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝² : MeasurableSpace α\ninst✝¹ : MeasurableSingletonClass α\nμ : Measure α\nf : α → ℝ≥0∞\ninst✝ : Countable α\n⊢ ∫⁻ (x : α), f x ∂μ = ∑' (x : α), μ {x} * f x",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : MeasurableSpace α] [inst_1 : MeasurableSingletonClass α]\n  (μ : Measure α) (f : α → ℝ≥0∞) [inst_2 : Countable α] : ∫⁻ (x : α), f x ∂μ = ∑' (x : α), μ {x} * f x := sorry",
+        "original_theorem_name": "MeasureTheory.lintegral_eq_tsum",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\nlemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by\n  rw [← lintegral_add_compl f hmes, setLIntegral_measure_zero sᶜ f hs,\n    setLIntegral_congr_fun (f := f) (g := fun _ ↦ 0) hmes]\n  · simp\n  exact ae_of_all μ hf\n\nlemma lintegral_eq_setLIntegral (hs : μ sᶜ = 0) (f : α → ℝ≥0∞) :\n    ∫⁻ x, f x ∂μ = ∫⁻ x in s, f x ∂μ := by\n  rw [← setLIntegral_univ, ← setLIntegral_congr]; rwa [ae_eq_univ]\n\nvariable [MeasurableSingletonClass α]\n\n-- TODO: Change RHS of `lintegral_fintype`\nlemma lintegral_eq_sum (μ : Measure α) (f : α → ℝ≥0∞) [Fintype α] :\n    ∫⁻ x, f x ∂μ = ∑ x, μ {x} * f x := by\n  simp_rw [lintegral_fintype, mul_comm]\n\n",
+        "original_theorem_content": "lemma lintegral_eq_tsum (μ : Measure α) (f : α → ℝ≥0∞) [Countable α] :\n    ∫⁻ x, f x ∂μ = ∑' x, μ {x} * f x := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 34,
+        "tactic_state_before": "α : Type u_1\ninst✝² : MeasurableSpace α\ninst✝¹ : MeasurableSingletonClass α\nμ : Measure α\nf : α → ℝ≥0∞\ninst✝ : Fintype α\n⊢ ∫⁻ (x : α), f x ∂μ = ∑ x, μ {x} * f x",
+        "proof": "simp_rw [lintegral_fintype, mul_comm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝² : MeasurableSpace α\ninst✝¹ : MeasurableSingletonClass α\nμ : Measure α\nf : α → ℝ≥0∞\ninst✝ : Fintype α\n⊢ ∫⁻ (x : α), f x ∂μ = ∑ x, μ {x} * f x",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : MeasurableSpace α] [inst_1 : MeasurableSingletonClass α]\n  (μ : Measure α) (f : α → ℝ≥0∞) [inst_2 : Fintype α] : ∫⁻ (x : α), f x ∂μ = ∑ x, μ {x} * f x := sorry",
+        "original_theorem_name": "MeasureTheory.lintegral_eq_sum",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\nlemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by\n  rw [← lintegral_add_compl f hmes, setLIntegral_measure_zero sᶜ f hs,\n    setLIntegral_congr_fun (f := f) (g := fun _ ↦ 0) hmes]\n  · simp\n  exact ae_of_all μ hf\n\nlemma lintegral_eq_setLIntegral (hs : μ sᶜ = 0) (f : α → ℝ≥0∞) :\n    ∫⁻ x, f x ∂μ = ∫⁻ x in s, f x ∂μ := by\n  rw [← setLIntegral_univ, ← setLIntegral_congr]; rwa [ae_eq_univ]\n\nvariable [MeasurableSingletonClass α]\n\n-- TODO: Change RHS of `lintegral_fintype`\n",
+        "original_theorem_content": "lemma lintegral_eq_sum (μ : Measure α) (f : α → ℝ≥0∞) [Fintype α] :\n    ∫⁻ x, f x ∂μ = ∑ x, μ {x} * f x := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 27,
+        "tactic_state_before": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nhs : μ sᶜ = 0\nf : α → ℝ≥0∞\n⊢ ∫⁻ (x : α), f x ∂μ = ∫⁻ (x : α) in s, f x ∂μ",
+        "proof": "rw [← setLIntegral_univ, ← setLIntegral_congr]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : MeasurableSpace α\n μ : Measure α\n s : Set α\n hs : μ sᶜ = 0\n f : α → ℝ≥0∞\n ⊢ s =ᶠ[ae μ] Set.univ]",
+        "goal": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nhs : μ sᶜ = 0\nf : α → ℝ≥0∞\nh : s =ᶠ[ae μ] Set.univ\n⊢ ∫⁻ (x : α), f x ∂μ = ∫⁻ (x : α) in s, f x ∂μ",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} [inst : MeasurableSpace α] {μ : Measure α} {s : Set α}\n  (hs : μ sᶜ = 0) (f : α → ℝ≥0∞) (h : s =ᶠ[ae μ] Set.univ) : ∫⁻ (x : α), f x ∂μ = ∫⁻ (x : α) in s, f x ∂μ := sorry",
+        "original_theorem_name": "MeasureTheory.lintegral_eq_setLIntegral",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\nlemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by\n  rw [← lintegral_add_compl f hmes, setLIntegral_measure_zero sᶜ f hs,\n    setLIntegral_congr_fun (f := f) (g := fun _ ↦ 0) hmes]\n  · simp\n  exact ae_of_all μ hf\n\n",
+        "original_theorem_content": "lemma lintegral_eq_setLIntegral (hs : μ sᶜ = 0) (f : α → ℝ≥0∞) :\n    ∫⁻ x, f x ∂μ = ∫⁻ x in s, f x ∂μ := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 28,
+        "tactic_state_before": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nhs : μ sᶜ = 0\nf : α → ℝ≥0∞\n⊢ s =ᶠ[ae μ] Set.univ",
+        "proof": "rwa [ae_eq_univ]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nhs : μ sᶜ = 0\nf : α → ℝ≥0∞\n⊢ s =ᶠ[ae μ] Set.univ",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {α : Type u_1} [inst : MeasurableSpace α] {μ : Measure α} {s : Set α}\n  (hs : μ sᶜ = 0) : s =ᶠ[ae μ] Set.univ := sorry",
+        "original_theorem_name": "MeasureTheory.lintegral_eq_setLIntegral",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\nlemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by\n  rw [← lintegral_add_compl f hmes, setLIntegral_measure_zero sᶜ f hs,\n    setLIntegral_congr_fun (f := f) (g := fun _ ↦ 0) hmes]\n  · simp\n  exact ae_of_all μ hf\n\n",
+        "original_theorem_content": "lemma lintegral_eq_setLIntegral (hs : μ sᶜ = 0) (f : α → ℝ≥0∞) :\n    ∫⁻ x, f x ∂μ = ∫⁻ x in s, f x ∂μ := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 20,
+        "tactic_state_before": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nf : α → ℝ≥0∞\nhs : μ sᶜ = 0\nhf : ∀ x ∈ s, f x = 0\nhmes : MeasurableSet s\n⊢ ∫⁻ (x : α), f x ∂μ = 0",
+        "proof": "rw [← lintegral_add_compl f hmes, setLIntegral_measure_zero sᶜ f hs,\n  setLIntegral_congr_fun (f := f) (g := fun _ ↦ 0) hmes]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : MeasurableSpace α\n μ : Measure α\n s : Set α\n f : α → ℝ≥0∞\n hs : μ sᶜ = 0\n hf : ∀ x ∈ s, f x = 0\n hmes : MeasurableSet s\n ⊢ ∫⁻ (x : α) in s, 0 ∂μ + 0 = 0,\n α : Type u_1\n inst✝ : MeasurableSpace α\n μ : Measure α\n s : Set α\n f : α → ℝ≥0∞\n hs : μ sᶜ = 0\n hf : ∀ x ∈ s, f x = 0\n hmes : MeasurableSet s\n ⊢ ∀ᵐ (x : α) ∂μ, x ∈ s → f x = 0]",
+        "goal": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nf : α → ℝ≥0∞\nhs : μ sᶜ = 0\nhf : ∀ x ∈ s, f x = 0\nhmes : MeasurableSet s\nh✝ : ∫⁻ (x : α) in s, 0 ∂μ + 0 = 0\nh : ∀ᵐ (x : α) ∂μ, x ∈ s → f x = 0\n⊢ ∫⁻ (x : α), f x ∂μ = 0",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {α : Type u_1} [inst : MeasurableSpace α] {μ : Measure α} {s : Set α}\n  {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0) (hmes : MeasurableSet s) (h_1 : ∫⁻ (x : α) in s, 0 ∂μ + 0 = 0)\n  (h : ∀ᵐ (x : α) ∂μ, x ∈ s → f x = 0) : ∫⁻ (x : α), f x ∂μ = 0 := sorry",
+        "original_theorem_name": "MeasureTheory.lintegral_eq_zero_of_ae_zero",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\n",
+        "original_theorem_content": "lemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/MeasureTheory/Integral/Lebesgue.lean",
+        "line": 23,
+        "tactic_state_before": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nf : α → ℝ≥0∞\nhs : μ sᶜ = 0\nhf : ∀ x ∈ s, f x = 0\nhmes : MeasurableSet s\n⊢ ∀ᵐ (x : α) ∂μ, x ∈ s → f x = 0",
+        "proof": "exact ae_of_all μ hf\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : MeasurableSpace α\nμ : Measure α\ns : Set α\nf : α → ℝ≥0∞\nhs : μ sᶜ = 0\nhf : ∀ x ∈ s, f x = 0\nhmes : MeasurableSet s\n⊢ ∀ᵐ (x : α) ∂μ, x ∈ s → f x = 0",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Integral.Lebesgue\n\nopen ENNReal\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_6 {α : Type u_1} [inst : MeasurableSpace α] {μ : Measure α} {s : Set α}\n  {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0) (hmes : MeasurableSet s) :\n  ∀ᵐ (x : α) ∂μ, x ∈ s → f x = 0 := sorry",
+        "original_theorem_name": "MeasureTheory.lintegral_eq_zero_of_ae_zero",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Integral.Lebesgue\n\n/-!\n# TODO\n\nRename `setLIntegral_congr` to `setLIntegral_congr_set`\n-/\n\nopen ENNReal\n\nnamespace MeasureTheory\nvariable {α : Type*} [MeasurableSpace α] {μ : Measure α} {s : Set α}\n\nattribute [simp] lintegral_dirac\n\n",
+        "original_theorem_content": "lemma lintegral_eq_zero_of_ae_zero {f : α → ℝ≥0∞} (hs : μ sᶜ = 0) (hf : ∀ x ∈ s, f x = 0)\n    (hmes : MeasurableSet s) : ∫⁻ x, f x ∂μ = 0 := by"
+    }
+]

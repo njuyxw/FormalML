@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/Wilson.lean",
+        "line": 45,
+        "tactic_state_before": "p : ℕ\ninst✝ : Fact (Nat.Prime p)\n⊢ ∏ x ∈ Ico 1 (p - 1).succ, ↑x = ∏ x, ↑x",
+        "proof": "have hp : 0 < p := (Fact.out (p := p.Prime)).pos\n  try repeat assumption",
+        "tactic_state_after": "[p : ℕ\n inst✝ : Fact (Nat.Prime p)\n hp : 0 < p\n ⊢ ∏ x ∈ Ico 1 (p - 1).succ, ↑x = ∏ x, ↑x]",
+        "goal": "p : ℕ\ninst✝ : Fact (Nat.Prime p)\n⊢ 0 < p",
+        "header": "import Mathlib\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen Finset Nat FiniteField ZMod\n\nopen scoped Nat\n\nopen ZMod\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (p : ℕ) [inst : Fact (Nat.Prime p)] : 0 < p := sorry",
+        "original_theorem_name": "ZMod.wilsons_lemma",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# Wilson's theorem.\n\nThis file contains a proof of Wilson's theorem.\n\nThe heavy lifting is mostly done by the previous `wilsons_lemma`,\nbut here we also prove the other logical direction.\n\nThis could be generalized to similar results about finite abelian groups.\n\n## References\n\n* [Wilson's Theorem](https://en.wikipedia.org/wiki/Wilson%27s_theorem)\n\n## TODO\n\n* Give `wilsons_lemma` a descriptive name.\n-/\n\nassert_not_exists legendreSym.quadratic_reciprocity\n\nopen Finset Nat FiniteField ZMod\n\nopen scoped Nat\n\nnamespace ZMod\n\nvariable (p : ℕ) [Fact p.Prime]\n\n",
+        "original_theorem_content": "/-- **Wilson's Lemma**: the product of `1`, ..., `p-1` is `-1` modulo `p`. -/\n@[simp]\ntheorem wilsons_lemma : ((p - 1)! : ZMod p) = -1 := by"
+    }
+]

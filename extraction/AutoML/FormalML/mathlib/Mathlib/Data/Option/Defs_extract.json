@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Option/Defs.lean",
+        "line": 47,
+        "tactic_state_before": "α : Type u_3\na b : α\n⊢ a ∈ some b ↔ b = a",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_3\na b : α\n⊢ a ∈ some b ↔ b = a",
+        "header": "import Mathlib\nimport Mathlib.Tactic.Lemma\n\nimport Mathlib.Tactic.TypeStar\n\nopen Option\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_3} {a b : α} : a ∈ some b ↔ b = a := sorry",
+        "original_theorem_name": "Option.mem_some_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.Lemma\n\nimport Mathlib.Tactic.TypeStar\n\n/-!\n# Extra definitions on `Option`\n\nThis file defines more operations involving `Option α`. Lemmas about them are located in other\nfiles under `Mathlib.Data.Option`.\nOther basic operations on `Option` are defined in the core library.\n-/\n\nnamespace Option\n\n/-- Traverse an object of `Option α` with a function `f : α → F β` for an applicative `F`. -/\nprotected def traverse.{u, v}\n    {F : Type u → Type v} [Applicative F] {α : Type*} {β : Type u} (f : α → F β) :\n    Option α → F (Option β)\n  | none => pure none\n  | some x => some <$> f x\n\nvariable {α : Type*} {β : Type*}\n\n/-- An elimination principle for `Option`. It is a nondependent version of `Option.rec`. -/\nprotected def elim' (b : β) (f : α → β) : Option α → β\n  | some a => f a\n  | none => b\n\n@[simp]\ntheorem elim'_none (b : β) (f : α → β) : Option.elim' b f none = b := rfl\n\n@[simp]\ntheorem elim'_some {a : α} (b : β) (f : α → β) : Option.elim' b f (some a) = f a := rfl\n\n@[simp]\ntheorem elim'_none_some (f : Option α → β) : (Option.elim' (f none) (f ∘ some)) = f :=\n  funext fun o ↦ by cases o <;> rfl\n\nlemma elim'_eq_elim {α β : Type*} (b : β) (f : α → β) (a : Option α) :\n    Option.elim' b f a = Option.elim a b f := by\n  cases a <;> rfl\n\n\n",
+        "original_theorem_content": "theorem mem_some_iff {α : Type*} {a b : α} : a ∈ some b ↔ b = a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Option/Defs.lean",
+        "line": 45,
+        "tactic_state_before": "case some\nα : Type u_3\nβ : Type u_4\nb : β\nf : α → β\nval✝ : α\n⊢ Option.elim' b f (some val✝) = (some val✝).elim b f",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_3\nβ : Type u_4\nb : β\nf : α → β\nval✝ : α\n⊢ Option.elim' b f (some val✝) = (some val✝).elim b f",
+        "header": "import Mathlib\nimport Mathlib.Tactic.Lemma\n\nimport Mathlib.Tactic.TypeStar\n\nopen Option\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_3} {β : Type u_4} (b : β) (f : α → β) (val : α) :\n  Option.elim' b f (some val) = (some val).elim b f := sorry",
+        "original_theorem_name": "Option.elim'_eq_elim",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.Lemma\n\nimport Mathlib.Tactic.TypeStar\n\n/-!\n# Extra definitions on `Option`\n\nThis file defines more operations involving `Option α`. Lemmas about them are located in other\nfiles under `Mathlib.Data.Option`.\nOther basic operations on `Option` are defined in the core library.\n-/\n\nnamespace Option\n\n/-- Traverse an object of `Option α` with a function `f : α → F β` for an applicative `F`. -/\nprotected def traverse.{u, v}\n    {F : Type u → Type v} [Applicative F] {α : Type*} {β : Type u} (f : α → F β) :\n    Option α → F (Option β)\n  | none => pure none\n  | some x => some <$> f x\n\nvariable {α : Type*} {β : Type*}\n\n/-- An elimination principle for `Option`. It is a nondependent version of `Option.rec`. -/\nprotected def elim' (b : β) (f : α → β) : Option α → β\n  | some a => f a\n  | none => b\n\n@[simp]\ntheorem elim'_none (b : β) (f : α → β) : Option.elim' b f none = b := rfl\n\n@[simp]\ntheorem elim'_some {a : α} (b : β) (f : α → β) : Option.elim' b f (some a) = f a := rfl\n\n@[simp]\ntheorem elim'_none_some (f : Option α → β) : (Option.elim' (f none) (f ∘ some)) = f :=\n  funext fun o ↦ by cases o <;> rfl\n\n",
+        "original_theorem_content": "lemma elim'_eq_elim {α β : Type*} (b : β) (f : α → β) (a : Option α) :\n    Option.elim' b f a = Option.elim a b f := by"
+    }
+]

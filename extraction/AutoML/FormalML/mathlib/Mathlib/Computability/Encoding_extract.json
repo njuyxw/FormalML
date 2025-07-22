@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Computability/Encoding.lean",
+        "line": 78,
+        "tactic_state_before": "case true\n⊢ sectionΓ'Bool (inclusionBoolΓ' true) = true",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ sectionΓ'Bool (inclusionBoolΓ' true) = true",
+        "header": "import Mathlib\nimport Mathlib.Data.Fintype.Basic\n\nimport Mathlib.Data.Num.Lemmas\n\nimport Mathlib.Data.Option.Basic\n\nimport Mathlib.SetTheory.Cardinal.Basic\n\nimport Mathlib.Tactic.DeriveFintype\n\nopen Cardinal\n\nopen Computability\n",
+        "formal_statement": "theorem extracted_formal_statement_0 : sectionΓ'Bool (inclusionBoolΓ' true) = true := sorry",
+        "original_theorem_name": "Computability.sectionΓ'Bool_inclusionBoolΓ'",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Fintype.Basic\n\nimport Mathlib.Data.Num.Lemmas\n\nimport Mathlib.Data.Option.Basic\n\nimport Mathlib.SetTheory.Cardinal.Basic\n\nimport Mathlib.Tactic.DeriveFintype\n\n/-!\n# Encodings\n\nThis file contains the definition of a (finite) encoding, a map from a type to\nstrings in an alphabet, used in defining computability by Turing machines.\nIt also contains several examples:\n\n## Examples\n\n- `finEncodingNatBool`  : a binary encoding of ℕ in a simple alphabet.\n- `finEncodingNatΓ'`    : a binary encoding of ℕ in the alphabet used for TM's.\n- `unaryFinEncodingNat` : a unary encoding of ℕ\n- `finEncodingBoolBool` : an encoding of bool.\n-/\n\n\nuniverse u v\n\nopen Cardinal\n\nnamespace Computability\n\n/-- An encoding of a type in a certain alphabet, together with a decoding. -/\nstructure Encoding (α : Type u) where\n  Γ : Type v\n  encode : α → List Γ\n  decode : List Γ → Option α\n  decode_encode : ∀ x, decode (encode x) = some x\n\ntheorem Encoding.encode_injective {α : Type u} (e : Encoding α) : Function.Injective e.encode := by\n  refine fun _ _ h => Option.some_injective _ ?_\n  rw [← e.decode_encode, ← e.decode_encode, h]\n\n/-- An encoding plus a guarantee of finiteness of the alphabet. -/\nstructure FinEncoding (α : Type u) extends Encoding.{u, 0} α where\n  ΓFin : Fintype Γ\n\ninstance Γ.fintype {α : Type u} (e : FinEncoding α) : Fintype e.toEncoding.Γ :=\n  e.ΓFin\n\n/-- A standard Turing machine alphabet, consisting of blank,bit0,bit1,bra,ket,comma. -/\ninductive Γ'\n  | blank\n  | bit (b : Bool)\n  | bra\n  | ket\n  | comma\n  deriving DecidableEq, Fintype\n\ninstance inhabitedΓ' : Inhabited Γ' :=\n  ⟨Γ'.blank⟩\n\n/-- The natural inclusion of bool in Γ'. -/\ndef inclusionBoolΓ' : Bool → Γ' :=\n  Γ'.bit\n\n/-- An arbitrary section of the natural inclusion of bool in Γ'. -/\ndef sectionΓ'Bool : Γ' → Bool\n  | Γ'.bit b => b\n  | _ => Inhabited.default\n\n",
+        "original_theorem_content": "@[simp]\ntheorem sectionΓ'Bool_inclusionBoolΓ' {b} : sectionΓ'Bool (inclusionBoolΓ' b) = b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Computability/Encoding.lean",
+        "line": 44,
+        "tactic_state_before": "α : Type u\ne : Encoding α\nx✝¹ x✝ : α\nh : e.encode x✝¹ = e.encode x✝\n⊢ some x✝¹ = some x✝",
+        "proof": "rw [← e.decode_encode, ← e.decode_encode, h]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u\ne : Encoding α\nx✝¹ x✝ : α\nh : e.encode x✝¹ = e.encode x✝\n⊢ some x✝¹ = some x✝",
+        "header": "import Mathlib\nimport Mathlib.Data.Fintype.Basic\n\nimport Mathlib.Data.Num.Lemmas\n\nimport Mathlib.Data.Option.Basic\n\nimport Mathlib.SetTheory.Cardinal.Basic\n\nimport Mathlib.Tactic.DeriveFintype\n\nopen Cardinal\n\nopen Computability\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u} (e : Encoding α) (x x_1 : α) (h : e.encode x = e.encode x_1) :\n  some x = some x_1 := sorry",
+        "original_theorem_name": "Computability.Encoding.encode_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Fintype.Basic\n\nimport Mathlib.Data.Num.Lemmas\n\nimport Mathlib.Data.Option.Basic\n\nimport Mathlib.SetTheory.Cardinal.Basic\n\nimport Mathlib.Tactic.DeriveFintype\n\n/-!\n# Encodings\n\nThis file contains the definition of a (finite) encoding, a map from a type to\nstrings in an alphabet, used in defining computability by Turing machines.\nIt also contains several examples:\n\n## Examples\n\n- `finEncodingNatBool`  : a binary encoding of ℕ in a simple alphabet.\n- `finEncodingNatΓ'`    : a binary encoding of ℕ in the alphabet used for TM's.\n- `unaryFinEncodingNat` : a unary encoding of ℕ\n- `finEncodingBoolBool` : an encoding of bool.\n-/\n\n\nuniverse u v\n\nopen Cardinal\n\nnamespace Computability\n\n/-- An encoding of a type in a certain alphabet, together with a decoding. -/\nstructure Encoding (α : Type u) where\n  Γ : Type v\n  encode : α → List Γ\n  decode : List Γ → Option α\n  decode_encode : ∀ x, decode (encode x) = some x\n\n",
+        "original_theorem_content": "theorem Encoding.encode_injective {α : Type u} (e : Encoding α) : Function.Injective e.encode := by"
+    }
+]

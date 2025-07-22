@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Groupoid/Basic.lean",
+        "line": 21,
+        "tactic_state_before": "C : Type u_1\ninst✝ : Groupoid C\nh : ∀ (c : C), Subsingleton (c ⟶ c)\nc d : C\nf g : c ⟶ d\n⊢ f = g",
+        "proof": "haveI := h d\n  try repeat assumption",
+        "tactic_state_after": "[C : Type u_1\n inst✝ : Groupoid C\n h : ∀ (c : C), Subsingleton (c ⟶ c)\n c d : C\n f g : c ⟶ d\n this : Subsingleton (d ⟶ d)\n ⊢ f = g]",
+        "goal": "C : Type u_1\ninst✝ : Groupoid C\nh : ∀ (c : C), Subsingleton (c ⟶ c)\nc d : C\nf g : c ⟶ d\n⊢ Subsingleton (d ⟶ d)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Groupoid\n\nimport Mathlib.Combinatorics.Quiver.Basic\n\nopen CategoryTheory\n\nopen Groupoid\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (C : Type u_1) [inst : Groupoid C] (h : ∀ (c : C), Subsingleton (c ⟶ c))\n  (d : C) : Subsingleton (d ⟶ d) := sorry",
+        "original_theorem_name": "CategoryTheory.Groupoid.isThin_iff",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Groupoid\n\nimport Mathlib.Combinatorics.Quiver.Basic\n\n/-!\nThis file defines a few basic properties of groupoids.\n-/\n\nnamespace CategoryTheory\n\nnamespace Groupoid\n\nvariable (C : Type*) [Groupoid C]\n\nsection Thin\n\n",
+        "original_theorem_content": "theorem isThin_iff : Quiver.IsThin C ↔ ∀ c : C, Subsingleton (c ⟶ c) := by"
+    }
+]

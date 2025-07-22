@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Dynamics/FixedPoints/Topology.lean",
+        "line": 31,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : TopologicalSpace α\ninst✝ : T2Space α\nf : α → α\nx y : α\nhy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\nhf : ContinuousAt f y\n⊢ IsFixedPt f y",
+        "proof": "refine tendsto_nhds_unique ((tendsto_add_atTop_iff_nat 1).1 ?_) hy\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝¹ : TopologicalSpace α\n inst✝ : T2Space α\n f : α → α\n x y : α\n hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\n hf : ContinuousAt f y\n ⊢ Tendsto (fun n => f^[n + 1] x) atTop (𝓝 (f y))]",
+        "goal": "α : Type u_1\ninst✝¹ : TopologicalSpace α\ninst✝ : T2Space α\nf : α → α\nx y : α\nhy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\nhf : ContinuousAt f y\nh : Tendsto (fun n => f^[n + 1] x) atTop (𝓝 (f y))\n⊢ IsFixedPt f y",
+        "header": "import Mathlib\nimport Mathlib.Dynamics.FixedPoints.Basic\n\nimport Mathlib.Topology.Separation.Hausdorff\n\nopen Function Filter\n\nopen Topology\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : TopologicalSpace α] [inst_1 : T2Space α] {f : α → α}\n  {x y : α} (hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)) (hf : ContinuousAt f y)\n  (h : Tendsto (fun n => f^[n + 1] x) atTop (𝓝 (f y))) : IsFixedPt f y := sorry",
+        "original_theorem_name": "isFixedPt_of_tendsto_iterate",
+        "original_theorem_importsAndContext": "import Mathlib.Dynamics.FixedPoints.Basic\n\nimport Mathlib.Topology.Separation.Hausdorff\n\n/-!\n# Topological properties of fixed points\n\nCurrently this file contains two lemmas:\n\n- `isFixedPt_of_tendsto_iterate`: if `f^n(x) → y` and `f` is continuous at `y`, then `f y = y`;\n- `isClosed_fixedPoints`: the set of fixed points of a continuous map is a closed set.\n\n## TODO\n\nfixed points, iterates\n-/\n\n\nvariable {α : Type*} [TopologicalSpace α] [T2Space α] {f : α → α}\n\nopen Function Filter\n\nopen Topology\n\n",
+        "original_theorem_content": "/-- If the iterates `f^[n] x` converge to `y` and `f` is continuous at `y`,\nthen `y` is a fixed point for `f`. -/\ntheorem isFixedPt_of_tendsto_iterate {x y : α} (hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y))\n    (hf : ContinuousAt f y) : IsFixedPt f y := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Dynamics/FixedPoints/Topology.lean",
+        "line": 32,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : TopologicalSpace α\ninst✝ : T2Space α\nf : α → α\nx y : α\nhy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\nhf : ContinuousAt f y\n⊢ Tendsto (fun n => f^[n + 1] x) atTop (𝓝 (f y))",
+        "proof": "simp only [iterate_succ' f]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝¹ : TopologicalSpace α\n inst✝ : T2Space α\n f : α → α\n x y : α\n hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\n hf : ContinuousAt f y\n ⊢ Tendsto (fun n => (f ∘ f^[n]) x) atTop (𝓝 (f y))]",
+        "goal": "α : Type u_1\ninst✝¹ : TopologicalSpace α\ninst✝ : T2Space α\nf : α → α\nx y : α\nhy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\nhf : ContinuousAt f y\nh : Tendsto (fun n => (f ∘ f^[n]) x) atTop (𝓝 (f y))\n⊢ Tendsto (fun n => f^[n + 1] x) atTop (𝓝 (f y))",
+        "header": "import Mathlib\nimport Mathlib.Dynamics.FixedPoints.Basic\n\nimport Mathlib.Topology.Separation.Hausdorff\n\nopen Function Filter\n\nopen Topology\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : TopologicalSpace α] [inst_1 : T2Space α] {f : α → α}\n  {x y : α} (hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)) (hf : ContinuousAt f y)\n  (h : Tendsto (fun n => (f ∘ f^[n]) x) atTop (𝓝 (f y))) : Tendsto (fun n => f^[n + 1] x) atTop (𝓝 (f y)) := sorry",
+        "original_theorem_name": "isFixedPt_of_tendsto_iterate",
+        "original_theorem_importsAndContext": "import Mathlib.Dynamics.FixedPoints.Basic\n\nimport Mathlib.Topology.Separation.Hausdorff\n\n/-!\n# Topological properties of fixed points\n\nCurrently this file contains two lemmas:\n\n- `isFixedPt_of_tendsto_iterate`: if `f^n(x) → y` and `f` is continuous at `y`, then `f y = y`;\n- `isClosed_fixedPoints`: the set of fixed points of a continuous map is a closed set.\n\n## TODO\n\nfixed points, iterates\n-/\n\n\nvariable {α : Type*} [TopologicalSpace α] [T2Space α] {f : α → α}\n\nopen Function Filter\n\nopen Topology\n\n",
+        "original_theorem_content": "/-- If the iterates `f^[n] x` converge to `y` and `f` is continuous at `y`,\nthen `y` is a fixed point for `f`. -/\ntheorem isFixedPt_of_tendsto_iterate {x y : α} (hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y))\n    (hf : ContinuousAt f y) : IsFixedPt f y := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Dynamics/FixedPoints/Topology.lean",
+        "line": 33,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : TopologicalSpace α\ninst✝ : T2Space α\nf : α → α\nx y : α\nhy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\nhf : ContinuousAt f y\n⊢ Tendsto (fun n => (f ∘ f^[n]) x) atTop (𝓝 (f y))",
+        "proof": "exact hf.tendsto.comp hy\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : TopologicalSpace α\ninst✝ : T2Space α\nf : α → α\nx y : α\nhy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)\nhf : ContinuousAt f y\n⊢ Tendsto (fun n => (f ∘ f^[n]) x) atTop (𝓝 (f y))",
+        "header": "import Mathlib\nimport Mathlib.Dynamics.FixedPoints.Basic\n\nimport Mathlib.Topology.Separation.Hausdorff\n\nopen Function Filter\n\nopen Topology\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : TopologicalSpace α] [inst_1 : T2Space α] {f : α → α}\n  {x y : α} (hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y)) (hf : ContinuousAt f y) :\n  Tendsto (fun n => (f ∘ f^[n]) x) atTop (𝓝 (f y)) := sorry",
+        "original_theorem_name": "isFixedPt_of_tendsto_iterate",
+        "original_theorem_importsAndContext": "import Mathlib.Dynamics.FixedPoints.Basic\n\nimport Mathlib.Topology.Separation.Hausdorff\n\n/-!\n# Topological properties of fixed points\n\nCurrently this file contains two lemmas:\n\n- `isFixedPt_of_tendsto_iterate`: if `f^n(x) → y` and `f` is continuous at `y`, then `f y = y`;\n- `isClosed_fixedPoints`: the set of fixed points of a continuous map is a closed set.\n\n## TODO\n\nfixed points, iterates\n-/\n\n\nvariable {α : Type*} [TopologicalSpace α] [T2Space α] {f : α → α}\n\nopen Function Filter\n\nopen Topology\n\n",
+        "original_theorem_content": "/-- If the iterates `f^[n] x` converge to `y` and `f` is continuous at `y`,\nthen `y` is a fixed point for `f`. -/\ntheorem isFixedPt_of_tendsto_iterate {x y : α} (hy : Tendsto (fun n => f^[n] x) atTop (𝓝 y))\n    (hf : ContinuousAt f y) : IsFixedPt f y := by"
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Ideal/Basis.lean",
+        "line": 35,
+        "tactic_state_before": "ι : Type u_1\nR : Type u_2\nS : Type u_3\ninst✝³ : CommSemiring R\ninst✝² : CommRing S\ninst✝¹ : IsDomain S\ninst✝ : Algebra R S\nb : Basis ι R S\nx : S\nhx : x ≠ 0\ni : ι\n⊢ ↑((basisSpanSingleton b hx) i) = x * b i",
+        "proof": "simp only [basisSpanSingleton, Basis.map_apply, LinearEquiv.trans_apply,\n  Submodule.restrictScalarsEquiv_apply, LinearEquiv.ofInjective_apply, LinearEquiv.coe_ofEq_apply,\n  LinearEquiv.restrictScalars_apply, LinearMap.mulLeft_apply, LinearMap.mul_apply']\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nR : Type u_2\nS : Type u_3\ninst✝³ : CommSemiring R\ninst✝² : CommRing S\ninst✝¹ : IsDomain S\ninst✝ : Algebra R S\nb : Basis ι R S\nx : S\nhx : x ≠ 0\ni : ι\n⊢ ↑((basisSpanSingleton b hx) i) = x * b i",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Algebra.Bilinear\n\nimport Mathlib.LinearAlgebra.Basis.Defs\n\nimport Mathlib.LinearAlgebra.Basis.Submodule\n\nimport Mathlib.RingTheory.Ideal.Span\n\nopen Ideal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {R : Type u_2} {S : Type u_3} [inst : CommSemiring R]\n  [inst_1 : CommRing S] [inst_2 : IsDomain S] [inst_3 : Algebra R S] (b : Basis ι R S) {x : S} (hx : x ≠ 0) (i : ι) :\n  ↑((basisSpanSingleton b hx) i) = x * b i := sorry",
+        "original_theorem_name": "Ideal.basisSpanSingleton.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Algebra.Bilinear\n\nimport Mathlib.LinearAlgebra.Basis.Defs\n\nimport Mathlib.LinearAlgebra.Basis.Submodule\n\nimport Mathlib.RingTheory.Ideal.Span\n\n/-!\n# The basis of ideals\n\nSome results involving `Ideal` and `Basis`.\n-/\n\nnamespace Ideal\n\nvariable {ι R S : Type*} [CommSemiring R] [CommRing S] [IsDomain S] [Algebra R S]\n\n/-- A basis on `S` gives a basis on `Ideal.span {x}`, by multiplying everything by `x`. -/\nnoncomputable def basisSpanSingleton (b : Basis ι R S) {x : S} (hx : x ≠ 0) :\n    Basis ι R (span ({x} : Set S)) :=\n  b.map <|\n    LinearEquiv.ofInjective (LinearMap.mulLeft R x) (mul_right_injective₀ hx) ≪≫ₗ\n        LinearEquiv.ofEq _ _\n          (by\n            ext\n            simp [mem_span_singleton', mul_comm]) ≪≫ₗ\n      (Submodule.restrictScalarsEquiv R S S (Ideal.span ({x} : Set S))).restrictScalars R\n\n",
+        "original_theorem_content": "@[simp]\ntheorem basisSpanSingleton_apply (b : Basis ι R S) {x : S} (hx : x ≠ 0) (i : ι) :\n    (basisSpanSingleton b hx i : S) = x * b i := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Ideal/Basis.lean",
+        "line": 35,
+        "tactic_state_before": "ι : Type u_1\nR : Type u_2\nS : Type u_3\ninst✝³ : CommSemiring R\ninst✝² : CommRing S\ninst✝¹ : IsDomain S\ninst✝ : Algebra R S\nb : Basis ι R S\nx : S\nhx : x ≠ 0\ni : ι\n⊢ ↑((basisSpanSingleton b hx) i) = x * b i",
+        "proof": "simp only [basisSpanSingleton, Basis.map_apply, LinearEquiv.trans_apply,\n  Submodule.restrictScalarsEquiv_apply, LinearEquiv.ofInjective_apply, LinearEquiv.coe_ofEq_apply,\n  LinearEquiv.restrictScalars_apply, LinearMap.mulLeft_apply, LinearMap.mul_apply']\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nR : Type u_2\nS : Type u_3\ninst✝³ : CommSemiring R\ninst✝² : CommRing S\ninst✝¹ : IsDomain S\ninst✝ : Algebra R S\nb : Basis ι R S\nx : S\nhx : x ≠ 0\ni : ι\n⊢ ↑((basisSpanSingleton b hx) i) = x * b i",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Algebra.Bilinear\n\nimport Mathlib.LinearAlgebra.Basis.Defs\n\nimport Mathlib.LinearAlgebra.Basis.Submodule\n\nimport Mathlib.RingTheory.Ideal.Span\n\nopen Ideal\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {R : Type u_2} {S : Type u_3} [inst : CommSemiring R]\n  [inst_1 : CommRing S] [inst_2 : IsDomain S] [inst_3 : Algebra R S] (b : Basis ι R S) {x : S} (hx : x ≠ 0) (i : ι) :\n  ↑((basisSpanSingleton b hx) i) = x * b i := sorry",
+        "original_theorem_name": "Ideal.basisSpanSingleton.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Algebra.Bilinear\n\nimport Mathlib.LinearAlgebra.Basis.Defs\n\nimport Mathlib.LinearAlgebra.Basis.Submodule\n\nimport Mathlib.RingTheory.Ideal.Span\n\n/-!\n# The basis of ideals\n\nSome results involving `Ideal` and `Basis`.\n-/\n\nnamespace Ideal\n\nvariable {ι R S : Type*} [CommSemiring R] [CommRing S] [IsDomain S] [Algebra R S]\n\n/-- A basis on `S` gives a basis on `Ideal.span {x}`, by multiplying everything by `x`. -/\nnoncomputable def basisSpanSingleton (b : Basis ι R S) {x : S} (hx : x ≠ 0) :\n    Basis ι R (span ({x} : Set S)) :=\n  b.map <|\n    LinearEquiv.ofInjective (LinearMap.mulLeft R x) (mul_right_injective₀ hx) ≪≫ₗ\n        LinearEquiv.ofEq _ _\n          (by\n            ext\n            simp [mem_span_singleton', mul_comm]) ≪≫ₗ\n      (Submodule.restrictScalarsEquiv R S S (Ideal.span ({x} : Set S))).restrictScalars R\n\n",
+        "original_theorem_content": "@[simp]\ntheorem basisSpanSingleton_apply (b : Basis ι R S) {x : S} (hx : x ≠ 0) (i : ι) :\n    (basisSpanSingleton b hx i : S) = x * b i := by"
+    }
+]

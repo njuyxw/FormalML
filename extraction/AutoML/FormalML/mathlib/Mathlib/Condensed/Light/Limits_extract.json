@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Condensed/Light/Limits.lean",
+        "line": 18,
+        "tactic_state_before": "⊢ HasLimitsOfSize.{u, u, u + 1, u + 1} (Sheaf (coherentTopology LightProfinite) (Type u))",
+        "proof": "infer_instance\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ HasLimitsOfSize.{u, u, u + 1, u + 1}\n    (Sheaf (coherentTopology LightProfinite) (Type u))",
+        "header": "import Mathlib\nimport Mathlib.Condensed.Light.Module\n\nopen CategoryTheory Limits\n",
+        "formal_statement": "theorem extracted_formal_statement_0 :\n  HasLimitsOfSize.{u, u, u + 1, u + 1} (Sheaf (coherentTopology LightProfinite) (Type u)) := sorry",
+        "original_theorem_name": "instHasLimitsOfSizeLightCondSet",
+        "original_theorem_importsAndContext": "import Mathlib.Condensed.Light.Module\n\n/-!\n\n# Limits in categories of light condensed objects\n\nThis file adds some instances for limits in light condensed sets and modules.\n-/\n\nuniverse u\n\nopen CategoryTheory Limits\n\n",
+        "original_theorem_content": "instance : HasLimitsOfSize.{u, u} LightCondSet.{u} := by"
+    }
+]

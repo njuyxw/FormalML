@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/PrimesCongruentOne.lean",
+        "line": 23,
+        "tactic_state_before": "k n : ℕ\nhk0 : k ≠ 0\n⊢ ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD k]",
+        "proof": "rcases(one_le_iff_ne_zero.2 hk0).eq_or_lt with (rfl | hk1)\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n n : ℕ\n hk0 : 1 ≠ 0\n ⊢ ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD 1],\n case inr\n k n : ℕ\n hk0 : k ≠ 0\n hk1 : 1 < k\n ⊢ ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD k]]",
+        "goal": "k n : ℕ\nhk0 : k ≠ 0\nh✝ : ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD 1]\nh : ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD k]\n⊢ ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD k]",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Polynomial.Cyclotomic.Eval\n\nopen Polynomial Nat Filter\n\nopen scoped Nat\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {k : ℕ} (n : ℕ) (hk0 : k ≠ 0) (h_1 : ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD 1])\n  (h : ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD k]) : ∃ p, Prime p ∧ n < p ∧ p ≡ 1 [MOD k] := sorry",
+        "original_theorem_name": "Nat.exists_prime_gt_modEq_one",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Polynomial.Cyclotomic.Eval\n\n/-!\n# Primes congruent to one\n\nWe prove that, for any positive `k : ℕ`, there are infinitely many primes `p` such that\n`p ≡ 1 [MOD k]`.\n-/\n\n\nnamespace Nat\n\nopen Polynomial Nat Filter\n\nopen scoped Nat\n\n",
+        "original_theorem_content": "/-- For any positive `k : ℕ` there exists an arbitrarily large prime `p` such that\n`p ≡ 1 [MOD k]`. -/\ntheorem exists_prime_gt_modEq_one {k : ℕ} (n : ℕ) (hk0 : k ≠ 0) :\n    ∃ p : ℕ, Nat.Prime p ∧ n < p ∧ p ≡ 1 [MOD k] := by"
+    }
+]

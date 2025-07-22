@@ -1,3 +1,6 @@
 [submodule "extraction/repl"]
 	path = extraction/repl
 	url = https://github.com/leanprover-community/repl.git
+[submodule "evaluation/evaluation/lean-ray-server"]
+	path = evaluation/evaluation/lean-ray-server
+	url = https://github.com/Lizn-zn/lean-ray-server

@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Order/IsLocallyClosed.lean",
+        "line": 46,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIciTopology X\n⊢ IsLocallyClosed (Set.Ico a b)",
+        "proof": "rw [← Set.Iio_inter_Ici]\n  try repeat assumption",
+        "tactic_state_after": "[X : Type u_1\n inst✝² : TopologicalSpace X\n a b : X\n inst✝¹ : LinearOrder X\n inst✝ : ClosedIciTopology X\n ⊢ IsLocallyClosed (Set.Iio b ∩ Set.Ici a)]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIciTopology X\nh : IsLocallyClosed (Set.Iio b ∩ Set.Ici a)\n⊢ IsLocallyClosed (Set.Ico a b)",
+        "header": "import Mathlib\nimport Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {X : Type u_1} [inst : TopologicalSpace X] {a b : X} [inst_1 : LinearOrder X]\n  [inst_2 : ClosedIciTopology X] (h : IsLocallyClosed (Set.Iio b ∩ Set.Ici a)) : IsLocallyClosed (Set.Ico a b) := sorry",
+        "original_theorem_name": "isLocallyClosed_Ico",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n\n/-!\n# Intervals are locally closed\n\nWe prove that the intervals on a topological ordered space are locally closed.\n-/\n\nvariable {X : Type*} [TopologicalSpace X] {a b : X}\n\ntheorem isLocallyClosed_Icc [Preorder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Icc a b) :=\n  isClosed_Icc.isLocallyClosed\n\ntheorem isLocallyClosed_Ioo [LinearOrder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Ioo a b) :=\n  isOpen_Ioo.isLocallyClosed\n\ntheorem isLocallyClosed_Ici [Preorder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Ici a) :=\n  isClosed_Ici.isLocallyClosed\n\ntheorem isLocallyClosed_Iic [Preorder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Iic a) :=\n  isClosed_Iic.isLocallyClosed\n\ntheorem isLocallyClosed_Ioi [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioi a) :=\n  isOpen_Ioi.isLocallyClosed\n\ntheorem isLocallyClosed_Iio [LinearOrder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Iio a) :=\n  isOpen_Iio.isLocallyClosed\n\ntheorem isLocallyClosed_Ioc [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioc a b) := by\n  rw [← Set.Iic_inter_Ioi]\n  exact isLocallyClosed_Iic.inter isLocallyClosed_Ioi\n\n",
+        "original_theorem_content": "theorem isLocallyClosed_Ico [LinearOrder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Ico a b) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Order/IsLocallyClosed.lean",
+        "line": 47,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIciTopology X\n⊢ IsLocallyClosed (Set.Iio b ∩ Set.Ici a)",
+        "proof": "exact isLocallyClosed_Iio.inter isLocallyClosed_Ici\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIciTopology X\n⊢ IsLocallyClosed (Set.Iio b ∩ Set.Ici a)",
+        "header": "import Mathlib\nimport Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {X : Type u_1} [inst : TopologicalSpace X] {a b : X} [inst_1 : LinearOrder X]\n  [inst_2 : ClosedIciTopology X] : IsLocallyClosed (Set.Iio b ∩ Set.Ici a) := sorry",
+        "original_theorem_name": "isLocallyClosed_Ico",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n\n/-!\n# Intervals are locally closed\n\nWe prove that the intervals on a topological ordered space are locally closed.\n-/\n\nvariable {X : Type*} [TopologicalSpace X] {a b : X}\n\ntheorem isLocallyClosed_Icc [Preorder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Icc a b) :=\n  isClosed_Icc.isLocallyClosed\n\ntheorem isLocallyClosed_Ioo [LinearOrder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Ioo a b) :=\n  isOpen_Ioo.isLocallyClosed\n\ntheorem isLocallyClosed_Ici [Preorder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Ici a) :=\n  isClosed_Ici.isLocallyClosed\n\ntheorem isLocallyClosed_Iic [Preorder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Iic a) :=\n  isClosed_Iic.isLocallyClosed\n\ntheorem isLocallyClosed_Ioi [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioi a) :=\n  isOpen_Ioi.isLocallyClosed\n\ntheorem isLocallyClosed_Iio [LinearOrder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Iio a) :=\n  isOpen_Iio.isLocallyClosed\n\ntheorem isLocallyClosed_Ioc [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioc a b) := by\n  rw [← Set.Iic_inter_Ioi]\n  exact isLocallyClosed_Iic.inter isLocallyClosed_Ioi\n\n",
+        "original_theorem_content": "theorem isLocallyClosed_Ico [LinearOrder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Ico a b) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Order/IsLocallyClosed.lean",
+        "line": 41,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIicTopology X\n⊢ IsLocallyClosed (Set.Ioc a b)",
+        "proof": "rw [← Set.Iic_inter_Ioi]\n  try repeat assumption",
+        "tactic_state_after": "[X : Type u_1\n inst✝² : TopologicalSpace X\n a b : X\n inst✝¹ : LinearOrder X\n inst✝ : ClosedIicTopology X\n ⊢ IsLocallyClosed (Set.Iic b ∩ Set.Ioi a)]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIicTopology X\nh : IsLocallyClosed (Set.Iic b ∩ Set.Ioi a)\n⊢ IsLocallyClosed (Set.Ioc a b)",
+        "header": "import Mathlib\nimport Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {X : Type u_1} [inst : TopologicalSpace X] {a b : X} [inst_1 : LinearOrder X]\n  [inst_2 : ClosedIicTopology X] (h : IsLocallyClosed (Set.Iic b ∩ Set.Ioi a)) : IsLocallyClosed (Set.Ioc a b) := sorry",
+        "original_theorem_name": "isLocallyClosed_Ioc",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n\n/-!\n# Intervals are locally closed\n\nWe prove that the intervals on a topological ordered space are locally closed.\n-/\n\nvariable {X : Type*} [TopologicalSpace X] {a b : X}\n\ntheorem isLocallyClosed_Icc [Preorder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Icc a b) :=\n  isClosed_Icc.isLocallyClosed\n\ntheorem isLocallyClosed_Ioo [LinearOrder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Ioo a b) :=\n  isOpen_Ioo.isLocallyClosed\n\ntheorem isLocallyClosed_Ici [Preorder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Ici a) :=\n  isClosed_Ici.isLocallyClosed\n\ntheorem isLocallyClosed_Iic [Preorder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Iic a) :=\n  isClosed_Iic.isLocallyClosed\n\ntheorem isLocallyClosed_Ioi [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioi a) :=\n  isOpen_Ioi.isLocallyClosed\n\ntheorem isLocallyClosed_Iio [LinearOrder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Iio a) :=\n  isOpen_Iio.isLocallyClosed\n\n",
+        "original_theorem_content": "theorem isLocallyClosed_Ioc [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioc a b) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Order/IsLocallyClosed.lean",
+        "line": 42,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIicTopology X\n⊢ IsLocallyClosed (Set.Iic b ∩ Set.Ioi a)",
+        "proof": "exact isLocallyClosed_Iic.inter isLocallyClosed_Ioi\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\na b : X\ninst✝¹ : LinearOrder X\ninst✝ : ClosedIicTopology X\n⊢ IsLocallyClosed (Set.Iic b ∩ Set.Ioi a)",
+        "header": "import Mathlib\nimport Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {X : Type u_1} [inst : TopologicalSpace X] {a b : X} [inst_1 : LinearOrder X]\n  [inst_2 : ClosedIicTopology X] : IsLocallyClosed (Set.Iic b ∩ Set.Ioi a) := sorry",
+        "original_theorem_name": "isLocallyClosed_Ioc",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Order.OrderClosed\n\nimport Mathlib.Topology.LocallyClosed\n\n/-!\n# Intervals are locally closed\n\nWe prove that the intervals on a topological ordered space are locally closed.\n-/\n\nvariable {X : Type*} [TopologicalSpace X] {a b : X}\n\ntheorem isLocallyClosed_Icc [Preorder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Icc a b) :=\n  isClosed_Icc.isLocallyClosed\n\ntheorem isLocallyClosed_Ioo [LinearOrder X] [OrderClosedTopology X] :\n    IsLocallyClosed (Set.Ioo a b) :=\n  isOpen_Ioo.isLocallyClosed\n\ntheorem isLocallyClosed_Ici [Preorder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Ici a) :=\n  isClosed_Ici.isLocallyClosed\n\ntheorem isLocallyClosed_Iic [Preorder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Iic a) :=\n  isClosed_Iic.isLocallyClosed\n\ntheorem isLocallyClosed_Ioi [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioi a) :=\n  isOpen_Ioi.isLocallyClosed\n\ntheorem isLocallyClosed_Iio [LinearOrder X] [ClosedIciTopology X] :\n    IsLocallyClosed (Set.Iio a) :=\n  isOpen_Iio.isLocallyClosed\n\n",
+        "original_theorem_content": "theorem isLocallyClosed_Ioc [LinearOrder X] [ClosedIicTopology X] :\n    IsLocallyClosed (Set.Ioc a b) := by"
+    }
+]

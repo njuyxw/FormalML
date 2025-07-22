@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "scilean/SciLean/Topology/Continuous.lean",
+        "line": 16,
+        "tactic_state_before": "case neg\nX : Type u_1\nY : Type u_2\ninst✝² : TopologicalSpace X\ninst✝¹ : TopologicalSpace Y\nc : Prop\ninst✝ : Decidable c\nt : c → X → Y\nht : ∀ (h : c), Continuous (t h)\ne : ¬c → X → Y\nhe : ∀ (h : ¬c), Continuous (e h)\nh✝ : ¬c\n⊢ Continuous fun x => e h✝ x",
+        "proof": "fun_prop\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X : Type u_1\nY : Type u_2\ninst✝² : TopologicalSpace X\ninst✝¹ : TopologicalSpace Y\nc : Prop\ninst✝ : Decidable c\nt : c → X → Y\nht : ∀ (h : c), Continuous (t h)\ne : ¬c → X → Y\nhe : ∀ (h : ¬c), Continuous (e h)\nh✝ : ¬c\n⊢ Continuous fun x => e h✝ x",
+        "header": "import SciLean\nimport Mathlib.Topology.Basic\n\nimport SciLean.Util.SorryProof\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {X : Type u_1} {Y : Type u_2} [inst : TopologicalSpace X]\n  [inst_1 : TopologicalSpace Y] (c : Prop) (t : c → X → Y) (ht : ∀ (h : c), Continuous (t h)) (e : ¬c → X → Y)\n  (he : ∀ (h : ¬c), Continuous (e h)) (h : ¬c) : Continuous fun x => e h x := sorry",
+        "original_theorem_name": "dite.arg_te.Continuous_rule",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Basic\n\nimport SciLean.Util.SorryProof\n\n",
+        "original_theorem_content": "@[fun_prop]\ntheorem _root_.dite.arg_te.Continuous_rule {X Y} [TopologicalSpace X] [TopologicalSpace Y]\n    (c : Prop) [Decidable c]\n    (t : c → X → Y) (ht : ∀ h, Continuous (t h))\n    (e : ¬c → X → Y) (he : ∀ h, Continuous (e h)) :\n    Continuous (fun x => dite c (t · x) (e · x)) := by"
+    }
+]

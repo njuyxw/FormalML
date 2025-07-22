@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Center.lean",
+        "line": 52,
+        "tactic_state_before": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\ns : Set G₀\na b : G₀\nha : a ∈ s.centralizer\nhb : b ∈ s.centralizer\n⊢ a / b ∈ s.centralizer",
+        "proof": "simpa only [div_eq_mul_inv] using mul_mem_centralizer ha (inv_mem_centralizer₀ hb)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\ns : Set G₀\na b : G₀\nha : a ∈ s.centralizer\nhb : b ∈ s.centralizer\n⊢ a / b ∈ s.centralizer",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {G₀ : Type u_2} [inst : GroupWithZero G₀] {s : Set G₀} {a b : G₀}\n  (ha : a ∈ s.centralizer) (hb : b ∈ s.centralizer) : a / b ∈ s.centralizer := sorry",
+        "original_theorem_name": "Set.div_mem_centralizer₀",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Center of a group with zero\n-/\n\nassert_not_exists RelIso Finset Ring Subsemigroup\n\nvariable {M₀ G₀ : Type*}\n\nnamespace Set\nsection MulZeroClass\nvariable [MulZeroClass M₀] {s : Set M₀}\n\n@[simp] lemma zero_mem_center : (0 : M₀) ∈ center M₀ where\n  comm _ := by rw [zero_mul, mul_zero]\n  left_assoc _ _ := by rw [zero_mul, zero_mul, zero_mul]\n  mid_assoc _ _ := by rw [mul_zero, zero_mul, mul_zero]\n  right_assoc _ _ := by rw [mul_zero, mul_zero, mul_zero]\n\n@[simp] lemma zero_mem_centralizer : (0 : M₀) ∈ centralizer s := by simp [mem_centralizer_iff]\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero G₀] {s : Set G₀} {a b : G₀}\n\nlemma center_units_subset : center G₀ˣ ⊆ ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ := by\n  simp_rw [subset_def, mem_preimage, _root_.Semigroup.mem_center_iff]\n  intro u hu a\n  obtain rfl | ha := eq_or_ne a 0\n  · rw [zero_mul, mul_zero]\n  · exact congr_arg Units.val <| hu <| Units.mk0 a ha\n\n/-- In a group with zero, the center of the units is the preimage of the center. -/\nlemma center_units_eq : center G₀ˣ = ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ :=\n  center_units_subset.antisymm subset_center_units\n\n@[simp] lemma inv_mem_centralizer₀ (ha : a ∈ centralizer s) : a⁻¹ ∈ centralizer s := by\n  obtain rfl | ha₀ := eq_or_ne a 0\n  · rw [inv_zero]\n    exact zero_mem_centralizer\n  · rintro c hc\n    rw [mul_inv_eq_iff_eq_mul₀ ha₀, mul_assoc, eq_inv_mul_iff_mul_eq₀ ha₀, ha c hc]\n\n",
+        "original_theorem_content": "@[simp] lemma div_mem_centralizer₀ (ha : a ∈ centralizer s) (hb : b ∈ centralizer s) :\n    a / b ∈ centralizer s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Center.lean",
+        "line": 44,
+        "tactic_state_before": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\ns : Set G₀\na : G₀\nha : a ∈ s.centralizer\n⊢ a⁻¹ ∈ s.centralizer",
+        "proof": "obtain rfl | ha₀ := eq_or_ne a 0\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n G₀ : Type u_2\n inst✝ : GroupWithZero G₀\n s : Set G₀\n ha : 0 ∈ s.centralizer\n ⊢ 0⁻¹ ∈ s.centralizer,\n case inr\n G₀ : Type u_2\n inst✝ : GroupWithZero G₀\n s : Set G₀\n a : G₀\n ha : a ∈ s.centralizer\n ha₀ : a ≠ 0\n ⊢ a⁻¹ ∈ s.centralizer]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\ns : Set G₀\na : G₀\nha : a ∈ s.centralizer\nh✝ : 0⁻¹ ∈ s.centralizer\nh : a⁻¹ ∈ s.centralizer\n⊢ a⁻¹ ∈ s.centralizer",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {G₀ : Type u_2} [inst : GroupWithZero G₀] {s : Set G₀} {a : G₀}\n  (ha : a ∈ s.centralizer) (h_1 : 0⁻¹ ∈ s.centralizer) (h : a⁻¹ ∈ s.centralizer) : a⁻¹ ∈ s.centralizer := sorry",
+        "original_theorem_name": "Set.inv_mem_centralizer₀",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Center of a group with zero\n-/\n\nassert_not_exists RelIso Finset Ring Subsemigroup\n\nvariable {M₀ G₀ : Type*}\n\nnamespace Set\nsection MulZeroClass\nvariable [MulZeroClass M₀] {s : Set M₀}\n\n@[simp] lemma zero_mem_center : (0 : M₀) ∈ center M₀ where\n  comm _ := by rw [zero_mul, mul_zero]\n  left_assoc _ _ := by rw [zero_mul, zero_mul, zero_mul]\n  mid_assoc _ _ := by rw [mul_zero, zero_mul, mul_zero]\n  right_assoc _ _ := by rw [mul_zero, mul_zero, mul_zero]\n\n@[simp] lemma zero_mem_centralizer : (0 : M₀) ∈ centralizer s := by simp [mem_centralizer_iff]\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero G₀] {s : Set G₀} {a b : G₀}\n\nlemma center_units_subset : center G₀ˣ ⊆ ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ := by\n  simp_rw [subset_def, mem_preimage, _root_.Semigroup.mem_center_iff]\n  intro u hu a\n  obtain rfl | ha := eq_or_ne a 0\n  · rw [zero_mul, mul_zero]\n  · exact congr_arg Units.val <| hu <| Units.mk0 a ha\n\n/-- In a group with zero, the center of the units is the preimage of the center. -/\nlemma center_units_eq : center G₀ˣ = ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ :=\n  center_units_subset.antisymm subset_center_units\n\n",
+        "original_theorem_content": "@[simp] lemma inv_mem_centralizer₀ (ha : a ∈ centralizer s) : a⁻¹ ∈ centralizer s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Center.lean",
+        "line": 48,
+        "tactic_state_before": "case inr\nG₀ : Type u_2\ninst✝ : GroupWithZero G₀\ns : Set G₀\na : G₀\nha : a ∈ s.centralizer\nha₀ : a ≠ 0\nc : G₀\nhc : c ∈ s\n⊢ c * a⁻¹ = a⁻¹ * c",
+        "proof": "rw [mul_inv_eq_iff_eq_mul₀ ha₀, mul_assoc, eq_inv_mul_iff_mul_eq₀ ha₀, ha c hc]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\ns : Set G₀\na : G₀\nha : a ∈ s.centralizer\nha₀ : a ≠ 0\nc : G₀\nhc : c ∈ s\n⊢ c * a⁻¹ = a⁻¹ * c",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {G₀ : Type u_2} [inst : GroupWithZero G₀] {s : Set G₀} {a : G₀}\n  (ha : a ∈ s.centralizer) (ha₀ : a ≠ 0) (c : G₀) (hc : c ∈ s) : c * a⁻¹ = a⁻¹ * c := sorry",
+        "original_theorem_name": "Set.inv_mem_centralizer₀",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Center of a group with zero\n-/\n\nassert_not_exists RelIso Finset Ring Subsemigroup\n\nvariable {M₀ G₀ : Type*}\n\nnamespace Set\nsection MulZeroClass\nvariable [MulZeroClass M₀] {s : Set M₀}\n\n@[simp] lemma zero_mem_center : (0 : M₀) ∈ center M₀ where\n  comm _ := by rw [zero_mul, mul_zero]\n  left_assoc _ _ := by rw [zero_mul, zero_mul, zero_mul]\n  mid_assoc _ _ := by rw [mul_zero, zero_mul, mul_zero]\n  right_assoc _ _ := by rw [mul_zero, mul_zero, mul_zero]\n\n@[simp] lemma zero_mem_centralizer : (0 : M₀) ∈ centralizer s := by simp [mem_centralizer_iff]\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero G₀] {s : Set G₀} {a b : G₀}\n\nlemma center_units_subset : center G₀ˣ ⊆ ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ := by\n  simp_rw [subset_def, mem_preimage, _root_.Semigroup.mem_center_iff]\n  intro u hu a\n  obtain rfl | ha := eq_or_ne a 0\n  · rw [zero_mul, mul_zero]\n  · exact congr_arg Units.val <| hu <| Units.mk0 a ha\n\n/-- In a group with zero, the center of the units is the preimage of the center. -/\nlemma center_units_eq : center G₀ˣ = ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ :=\n  center_units_subset.antisymm subset_center_units\n\n",
+        "original_theorem_content": "@[simp] lemma inv_mem_centralizer₀ (ha : a ∈ centralizer s) : a⁻¹ ∈ centralizer s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Center.lean",
+        "line": 33,
+        "tactic_state_before": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\n⊢ center G₀ˣ ⊆ Units.val ⁻¹' center G₀",
+        "proof": "simp_rw [subset_def, mem_preimage, _root_.Semigroup.mem_center_iff]\n  try repeat assumption",
+        "tactic_state_after": "[G₀ : Type u_2\n inst✝ : GroupWithZero G₀\n ⊢ ∀ (x : G₀ˣ), (∀ (g : G₀ˣ), g * x = x * g) → ∀ (g : G₀), g * ↑x = ↑x * g]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\nh : ∀ (x : G₀ˣ), (∀ (g : G₀ˣ), g * x = x * g) → ∀ (g : G₀), g * ↑x = ↑x * g\n⊢ center G₀ˣ ⊆ Units.val ⁻¹' center G₀",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {G₀ : Type u_2} [inst : GroupWithZero G₀]\n  (h : ∀ (x : G₀ˣ), (∀ (g : G₀ˣ), g * x = x * g) → ∀ (g : G₀), g * ↑x = ↑x * g) :\n  center G₀ˣ ⊆ Units.val ⁻¹' center G₀ := sorry",
+        "original_theorem_name": "Set.center_units_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Center of a group with zero\n-/\n\nassert_not_exists RelIso Finset Ring Subsemigroup\n\nvariable {M₀ G₀ : Type*}\n\nnamespace Set\nsection MulZeroClass\nvariable [MulZeroClass M₀] {s : Set M₀}\n\n@[simp] lemma zero_mem_center : (0 : M₀) ∈ center M₀ where\n  comm _ := by rw [zero_mul, mul_zero]\n  left_assoc _ _ := by rw [zero_mul, zero_mul, zero_mul]\n  mid_assoc _ _ := by rw [mul_zero, zero_mul, mul_zero]\n  right_assoc _ _ := by rw [mul_zero, mul_zero, mul_zero]\n\n@[simp] lemma zero_mem_centralizer : (0 : M₀) ∈ centralizer s := by simp [mem_centralizer_iff]\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero G₀] {s : Set G₀} {a b : G₀}\n\n",
+        "original_theorem_content": "lemma center_units_subset : center G₀ˣ ⊆ ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Center.lean",
+        "line": 37,
+        "tactic_state_before": "case inr\nG₀ : Type u_2\ninst✝ : GroupWithZero G₀\nu : G₀ˣ\nhu : ∀ (g : G₀ˣ), g * u = u * g\na : G₀\nha : a ≠ 0\n⊢ a * ↑u = ↑u * a",
+        "proof": "exact congr_arg Units.val <| hu <| Units.mk0 a ha\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\nu : G₀ˣ\nhu : ∀ (g : G₀ˣ), g * u = u * g\na : G₀\nha : a ≠ 0\n⊢ a * ↑u = ↑u * a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {G₀ : Type u_2} [inst : GroupWithZero G₀] (u : G₀ˣ)\n  (hu : ∀ (g : G₀ˣ), g * u = u * g) (a : G₀) (ha : a ≠ 0) : a * ↑u = ↑u * a := sorry",
+        "original_theorem_name": "Set.center_units_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Center of a group with zero\n-/\n\nassert_not_exists RelIso Finset Ring Subsemigroup\n\nvariable {M₀ G₀ : Type*}\n\nnamespace Set\nsection MulZeroClass\nvariable [MulZeroClass M₀] {s : Set M₀}\n\n@[simp] lemma zero_mem_center : (0 : M₀) ∈ center M₀ where\n  comm _ := by rw [zero_mul, mul_zero]\n  left_assoc _ _ := by rw [zero_mul, zero_mul, zero_mul]\n  mid_assoc _ _ := by rw [mul_zero, zero_mul, mul_zero]\n  right_assoc _ _ := by rw [mul_zero, mul_zero, mul_zero]\n\n@[simp] lemma zero_mem_centralizer : (0 : M₀) ∈ centralizer s := by simp [mem_centralizer_iff]\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero G₀] {s : Set G₀} {a b : G₀}\n\n",
+        "original_theorem_content": "lemma center_units_subset : center G₀ˣ ⊆ ((↑) : G₀ˣ → G₀) ⁻¹' center G₀ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Center.lean",
+        "line": 26,
+        "tactic_state_before": "M₀ : Type u_1\ninst✝ : MulZeroClass M₀\ns : Set M₀\n⊢ 0 ∈ s.centralizer",
+        "proof": "simp [mem_centralizer_iff]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M₀ : Type u_1\ninst✝ : MulZeroClass M₀\ns : Set M₀\n⊢ 0 ∈ s.centralizer",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {M₀ : Type u_1} [inst : MulZeroClass M₀] {s : Set M₀} :\n  0 ∈ s.centralizer := sorry",
+        "original_theorem_name": "Set.zero_mem_centralizer",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Center of a group with zero\n-/\n\nassert_not_exists RelIso Finset Ring Subsemigroup\n\nvariable {M₀ G₀ : Type*}\n\nnamespace Set\nsection MulZeroClass\nvariable [MulZeroClass M₀] {s : Set M₀}\n\n@[simp] lemma zero_mem_center : (0 : M₀) ∈ center M₀ where\n  comm _ := by rw [zero_mul, mul_zero]\n  left_assoc _ _ := by rw [zero_mul, zero_mul, zero_mul]\n  mid_assoc _ _ := by rw [mul_zero, zero_mul, mul_zero]\n  right_assoc _ _ := by rw [mul_zero, mul_zero, mul_zero]\n\n",
+        "original_theorem_content": "@[simp] lemma zero_mem_centralizer : (0 : M₀) ∈ centralizer s := by"
+    }
+]

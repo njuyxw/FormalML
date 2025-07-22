@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Eval/Subring.lean",
+        "line": 29,
+        "tactic_state_before": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\n⊢ p ∈ (mapRingHom f).rangeS ↔ ∀ (n : ℕ), p.coeff n ∈ f.rangeS",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n R : Type u\n S : Type v\n inst✝¹ : Semiring R\n inst✝ : Semiring S\n f : R →+* S\n p : S[X]\n ⊢ p ∈ (mapRingHom f).rangeS → ∀ (n : ℕ), p.coeff n ∈ f.rangeS,\n case mpr\n R : Type u\n S : Type v\n inst✝¹ : Semiring R\n inst✝ : Semiring S\n f : R →+* S\n p : S[X]\n ⊢ (∀ (n : ℕ), p.coeff n ∈ f.rangeS) → p ∈ (mapRingHom f).rangeS]",
+        "goal": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh✝ : p ∈ (mapRingHom f).rangeS → ∀ (n : ℕ), p.coeff n ∈ f.rangeS\nh : (∀ (n : ℕ), p.coeff n ∈ f.rangeS) → p ∈ (mapRingHom f).rangeS\n⊢ p ∈ (mapRingHom f).rangeS ↔ ∀ (n : ℕ), p.coeff n ∈ f.rangeS",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u} {S : Type v} [inst : Semiring R] [inst_1 : Semiring S]\n  (f : R →+* S) {p : S[X]} (h_1 : p ∈ (mapRingHom f).rangeS → ∀ (n : ℕ), p.coeff n ∈ f.rangeS)\n  (h : (∀ (n : ℕ), p.coeff n ∈ f.rangeS) → p ∈ (mapRingHom f).rangeS) :\n  p ∈ (mapRingHom f).rangeS ↔ ∀ (n : ℕ), p.coeff n ∈ f.rangeS := sorry",
+        "original_theorem_name": "Polynomial.mem_map_rangeS",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\n/-!\n# Evaluation of polynomials in subrings\n\n## Main results\n\n* `mem_map_rangeS`, `mem_map_range`: the range of `mapRingHom f` consists of\n  polynomials with coefficients in the range of `f`\n\n-/\n\nnamespace Polynomial\n\nuniverse u v w y\n\nvariable {R : Type u} {S : Type v} {T : Type w} {ι : Type y} {a b : R} {m n : ℕ}\n\nvariable [Semiring R] {p q r : R[X]} [Semiring S]\nvariable (f : R →+* S)\n\n",
+        "original_theorem_content": "theorem mem_map_rangeS {p : S[X]} : p ∈ (mapRingHom f).rangeS ↔ ∀ n, p.coeff n ∈ f.rangeS := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Eval/Subring.lean",
+        "line": 33,
+        "tactic_state_before": "case mpr\nR : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\n⊢ (∀ (n : ℕ), p.coeff n ∈ f.rangeS) → p ∈ (mapRingHom f).rangeS",
+        "proof": "intro h\n  try repeat assumption",
+        "tactic_state_after": "[case mpr\n R : Type u\n S : Type v\n inst✝¹ : Semiring R\n inst✝ : Semiring S\n f : R →+* S\n p : S[X]\n h : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\n ⊢ p ∈ (mapRingHom f).rangeS]",
+        "goal": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh : p ∈ (mapRingHom f).rangeS\n⊢ (∀ (n : ℕ), p.coeff n ∈ f.rangeS) → p ∈ (mapRingHom f).rangeS",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R : Type u} {S : Type v} [inst : Semiring R] [inst_1 : Semiring S]\n  (f : R →+* S) {p : S[X]} (h : p ∈ (mapRingHom f).rangeS) :\n  (∀ (n : ℕ), p.coeff n ∈ f.rangeS) → p ∈ (mapRingHom f).rangeS := sorry",
+        "original_theorem_name": "Polynomial.mem_map_rangeS",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\n/-!\n# Evaluation of polynomials in subrings\n\n## Main results\n\n* `mem_map_rangeS`, `mem_map_range`: the range of `mapRingHom f` consists of\n  polynomials with coefficients in the range of `f`\n\n-/\n\nnamespace Polynomial\n\nuniverse u v w y\n\nvariable {R : Type u} {S : Type v} {T : Type w} {ι : Type y} {a b : R} {m n : ℕ}\n\nvariable [Semiring R] {p q r : R[X]} [Semiring S]\nvariable (f : R →+* S)\n\n",
+        "original_theorem_content": "theorem mem_map_rangeS {p : S[X]} : p ∈ (mapRingHom f).rangeS ↔ ∀ n, p.coeff n ∈ f.rangeS := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Eval/Subring.lean",
+        "line": 34,
+        "tactic_state_before": "case mpr\nR : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\n⊢ p ∈ (mapRingHom f).rangeS",
+        "proof": "rw [p.as_sum_range_C_mul_X_pow]\n  try repeat assumption",
+        "tactic_state_after": "[case mpr\n R : Type u\n S : Type v\n inst✝¹ : Semiring R\n inst✝ : Semiring S\n f : R →+* S\n p : S[X]\n h : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\n ⊢ ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS]",
+        "goal": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh✝ : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\nh : ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS\n⊢ p ∈ (mapRingHom f).rangeS",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R : Type u} {S : Type v} [inst : Semiring R] [inst_1 : Semiring S]\n  (f : R →+* S) {p : S[X]} (h_1 : ∀ (n : ℕ), p.coeff n ∈ f.rangeS)\n  (h : ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS) :\n  p ∈ (mapRingHom f).rangeS := sorry",
+        "original_theorem_name": "Polynomial.mem_map_rangeS",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\n/-!\n# Evaluation of polynomials in subrings\n\n## Main results\n\n* `mem_map_rangeS`, `mem_map_range`: the range of `mapRingHom f` consists of\n  polynomials with coefficients in the range of `f`\n\n-/\n\nnamespace Polynomial\n\nuniverse u v w y\n\nvariable {R : Type u} {S : Type v} {T : Type w} {ι : Type y} {a b : R} {m n : ℕ}\n\nvariable [Semiring R] {p q r : R[X]} [Semiring S]\nvariable (f : R →+* S)\n\n",
+        "original_theorem_content": "theorem mem_map_rangeS {p : S[X]} : p ∈ (mapRingHom f).rangeS ↔ ∀ n, p.coeff n ∈ f.rangeS := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Eval/Subring.lean",
+        "line": 35,
+        "tactic_state_before": "case mpr\nR : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\n⊢ ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS",
+        "proof": "refine (mapRingHom f).rangeS.sum_mem ?_\n  try repeat assumption",
+        "tactic_state_after": "[case mpr\n R : Type u\n S : Type v\n inst✝¹ : Semiring R\n inst✝ : Semiring S\n f : R →+* S\n p : S[X]\n h : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\n ⊢ ∀ c ∈ Finset.range (p.natDegree + 1), C (p.coeff c) * X ^ c ∈ (mapRingHom f).rangeS]",
+        "goal": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh✝ : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\nh : ∀ c ∈ Finset.range (p.natDegree + 1), C (p.coeff c) * X ^ c ∈ (mapRingHom f).rangeS\n⊢ ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {R : Type u} {S : Type v} [inst : Semiring R] [inst_1 : Semiring S]\n  (f : R →+* S) {p : S[X]} (h_1 : ∀ (n : ℕ), p.coeff n ∈ f.rangeS)\n  (h : ∀ c ∈ Finset.range (p.natDegree + 1), C (p.coeff c) * X ^ c ∈ (mapRingHom f).rangeS) :\n  ∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS := sorry",
+        "original_theorem_name": "Polynomial.mem_map_rangeS",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\n/-!\n# Evaluation of polynomials in subrings\n\n## Main results\n\n* `mem_map_rangeS`, `mem_map_range`: the range of `mapRingHom f` consists of\n  polynomials with coefficients in the range of `f`\n\n-/\n\nnamespace Polynomial\n\nuniverse u v w y\n\nvariable {R : Type u} {S : Type v} {T : Type w} {ι : Type y} {a b : R} {m n : ℕ}\n\nvariable [Semiring R] {p q r : R[X]} [Semiring S]\nvariable (f : R →+* S)\n\n",
+        "original_theorem_content": "theorem mem_map_rangeS {p : S[X]} : p ∈ (mapRingHom f).rangeS ↔ ∀ n, p.coeff n ∈ f.rangeS := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Eval/Subring.lean",
+        "line": 38,
+        "tactic_state_before": "case mpr.intro\nR : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\ni : ℕ\n_hi : i ∈ Finset.range (p.natDegree + 1)\nc : R\nhc : f c = p.coeff i\n⊢ C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS",
+        "proof": "use C c * X ^ i\n  try repeat assumption",
+        "tactic_state_after": "[case h\n R : Type u\n S : Type v\n inst✝¹ : Semiring R\n inst✝ : Semiring S\n f : R →+* S\n p : S[X]\n h : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\n i : ℕ\n _hi : i ∈ Finset.range (p.natDegree + 1)\n c : R\n hc : f c = p.coeff i\n ⊢ (mapRingHom f) (C c * X ^ i) = C (p.coeff i) * X ^ i]",
+        "goal": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh✝ : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\ni : ℕ\n_hi : i ∈ Finset.range (p.natDegree + 1)\nc : R\nhc : f c = p.coeff i\nh : (mapRingHom f) (C c * X ^ i) = C (p.coeff i) * X ^ i\n⊢ C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {R : Type u} {S : Type v} [inst : Semiring R] [inst_1 : Semiring S]\n  (f : R →+* S) {p : S[X]} (h_1 : ∀ (n : ℕ), p.coeff n ∈ f.rangeS) (i : ℕ) (_hi : i ∈ Finset.range (p.natDegree + 1))\n  (c : R) (hc : f c = p.coeff i) (h : (mapRingHom f) (C c * X ^ i) = C (p.coeff i) * X ^ i) :\n  C (p.coeff i) * X ^ i ∈ (mapRingHom f).rangeS := sorry",
+        "original_theorem_name": "Polynomial.mem_map_rangeS",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\n/-!\n# Evaluation of polynomials in subrings\n\n## Main results\n\n* `mem_map_rangeS`, `mem_map_range`: the range of `mapRingHom f` consists of\n  polynomials with coefficients in the range of `f`\n\n-/\n\nnamespace Polynomial\n\nuniverse u v w y\n\nvariable {R : Type u} {S : Type v} {T : Type w} {ι : Type y} {a b : R} {m n : ℕ}\n\nvariable [Semiring R] {p q r : R[X]} [Semiring S]\nvariable (f : R →+* S)\n\n",
+        "original_theorem_content": "theorem mem_map_rangeS {p : S[X]} : p ∈ (mapRingHom f).rangeS ↔ ∀ n, p.coeff n ∈ f.rangeS := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Eval/Subring.lean",
+        "line": 39,
+        "tactic_state_before": "case h\nR : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\ni : ℕ\n_hi : i ∈ Finset.range (p.natDegree + 1)\nc : R\nhc : f c = p.coeff i\n⊢ (mapRingHom f) (C c * X ^ i) = C (p.coeff i) * X ^ i",
+        "proof": "rw [coe_mapRingHom, Polynomial.map_mul, map_C, hc, Polynomial.map_pow, map_X]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u\nS : Type v\ninst✝¹ : Semiring R\ninst✝ : Semiring S\nf : R →+* S\np : S[X]\nh : ∀ (n : ℕ), p.coeff n ∈ f.rangeS\ni : ℕ\n_hi : i ∈ Finset.range (p.natDegree + 1)\nc : R\nhc : f c = p.coeff i\n⊢ (mapRingHom f) (C c * X ^ i) = C (p.coeff i) * X ^ i",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {R : Type u} {S : Type v} [inst : Semiring R] [inst_1 : Semiring S]\n  (f : R →+* S) {p : S[X]} (h : ∀ (n : ℕ), p.coeff n ∈ f.rangeS) (i : ℕ) (_hi : i ∈ Finset.range (p.natDegree + 1))\n  (c : R) (hc : f c = p.coeff i) : (mapRingHom f) (C c * X ^ i) = C (p.coeff i) * X ^ i := sorry",
+        "original_theorem_name": "Polynomial.mem_map_rangeS",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.Degree.Support\n\nimport Mathlib.Algebra.Polynomial.Eval.Coeff\n\nimport Mathlib.Algebra.Ring.Subring.Basic\n\n/-!\n# Evaluation of polynomials in subrings\n\n## Main results\n\n* `mem_map_rangeS`, `mem_map_range`: the range of `mapRingHom f` consists of\n  polynomials with coefficients in the range of `f`\n\n-/\n\nnamespace Polynomial\n\nuniverse u v w y\n\nvariable {R : Type u} {S : Type v} {T : Type w} {ι : Type y} {a b : R} {m n : ℕ}\n\nvariable [Semiring R] {p q r : R[X]} [Semiring S]\nvariable (f : R →+* S)\n\n",
+        "original_theorem_content": "theorem mem_map_rangeS {p : S[X]} : p ∈ (mapRingHom f).rangeS ↔ ∀ n, p.coeff n ∈ f.rangeS := by"
+    }
+]

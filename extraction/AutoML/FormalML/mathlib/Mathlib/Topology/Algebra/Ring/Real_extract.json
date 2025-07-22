@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Algebra/Ring/Real.lean",
+        "line": 60,
+        "tactic_state_before": "α : Type u\nβ : Type v\nγ : Type w\n⊢ IsTopologicalAddGroup ℝ",
+        "proof": "infer_instance\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u\nβ : Type v\nγ : Type w\n⊢ IsTopologicalAddGroup ℝ",
+        "header": "import Mathlib\nimport Mathlib.Data.EReal.Operations\n\nimport Mathlib.Topology.Algebra.Order.Field\n\nimport Mathlib.Topology.Algebra.IsUniformGroup.Defs\n\nimport Mathlib.Topology.Bornology.Real\n\nimport Mathlib.Topology.Instances.Int\n\nimport Mathlib.Topology.Order.MonotoneContinuity\n\nimport Mathlib.Topology.Order.Real\n\nimport Mathlib.Topology.UniformSpace.Real\n\nopen Filter NNReal Set Topology\n\nopen EReal\n\nopen NNReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 : IsTopologicalAddGroup ℝ := sorry",
+        "original_theorem_name": "instIsTopologicalAddGroupReal",
+        "original_theorem_importsAndContext": "import Mathlib.Data.EReal.Operations\n\nimport Mathlib.Topology.Algebra.Order.Field\n\nimport Mathlib.Topology.Algebra.IsUniformGroup.Defs\n\nimport Mathlib.Topology.Bornology.Real\n\nimport Mathlib.Topology.Instances.Int\n\nimport Mathlib.Topology.Order.MonotoneContinuity\n\nimport Mathlib.Topology.Order.Real\n\nimport Mathlib.Topology.UniformSpace.Real\n\n/-!\n# Topological algebra properties of ℝ\n\nThis file defines topological field/(semi)ring structures on the\n(extended) (nonnegative) reals and shows the algebraic operations are\n(uniformly) continuous.\n\nIt also includes a bit of more general topological theory of the reals,\nneeded to define the structures and prove continuity.\n-/\n\nassert_not_exists StarRing UniformContinuousConstSMul UniformOnFun\n\nnoncomputable section\n\nuniverse u v w\n\nvariable {α : Type u} {β : Type v} {γ : Type w}\n\ninstance : NoncompactSpace ℝ := Int.isClosedEmbedding_coe_real.noncompactSpace\n\ntheorem Real.uniformContinuous_add : UniformContinuous fun p : ℝ × ℝ => p.1 + p.2 :=\n  Metric.uniformContinuous_iff.2 fun _ε ε0 =>\n    let ⟨δ, δ0, Hδ⟩ := rat_add_continuous_lemma abs ε0\n    ⟨δ, δ0, fun _ _ h =>\n      let ⟨h₁, h₂⟩ := max_lt_iff.1 h\n      Hδ h₁ h₂⟩\n\ntheorem Real.uniformContinuous_neg : UniformContinuous (@Neg.neg ℝ _) :=\n  Metric.uniformContinuous_iff.2 fun ε ε0 =>\n    ⟨_, ε0, fun _ _ h => by simpa only [abs_sub_comm, Real.dist_eq, neg_sub_neg] using h⟩\n\ninstance : IsUniformAddGroup ℝ :=\n  IsUniformAddGroup.mk' Real.uniformContinuous_add Real.uniformContinuous_neg\n\ntheorem Real.uniformContinuous_const_mul {x : ℝ} : UniformContinuous (x * ·) :=\n  uniformContinuous_of_continuousAt_zero (DistribMulAction.toAddMonoidHom ℝ x)\n    (continuous_const_smul x).continuousAt\n\n-- short-circuit type class inference\n",
+        "original_theorem_content": "instance : IsTopologicalAddGroup ℝ := by"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/NoZeroSMulDivisors/Prod.lean",
+        "line": 21,
+        "tactic_state_before": "R : Type u_1\nM : Type u_2\nN : Type u_3\ninst✝⁶ : Zero R\ninst✝⁵ : Zero M\ninst✝⁴ : Zero N\ninst✝³ : SMulWithZero R M\ninst✝² : SMulWithZero R N\ninst✝¹ : NoZeroSMulDivisors R M\ninst✝ : NoZeroSMulDivisors R N\nc : R\nxy : M × N\nh : c • xy = 0\n⊢ c = 0 ∨ xy = 0",
+        "proof": "simpa [Prod.ext_iff, or_and_left] using h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\nM : Type u_2\nN : Type u_3\ninst✝⁶ : Zero R\ninst✝⁵ : Zero M\ninst✝⁴ : Zero N\ninst✝³ : SMulWithZero R M\ninst✝² : SMulWithZero R N\ninst✝¹ : NoZeroSMulDivisors R M\ninst✝ : NoZeroSMulDivisors R N\nc : R\nxy : M × N\nh : c • xy = 0\n⊢ c = 0 ∨ xy = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nimport Mathlib.Algebra.Notation.Prod\n\nopen Prod\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} {M : Type u_2} {N : Type u_3} [inst : Zero R]\n  [inst_1 : Zero M] [inst_2 : Zero N] [inst_3 : SMulWithZero R M] [inst_4 : SMulWithZero R N]\n  [inst_5 : NoZeroSMulDivisors R M] [inst_6 : NoZeroSMulDivisors R N] {c : R} {xy : M × N} (h : c • xy = 0) :\n  c = 0 ∨ xy = 0 := sorry",
+        "original_theorem_name": "Prod.noZeroSMulDivisors",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nimport Mathlib.Algebra.Notation.Prod\n\n/-!\n# Prod instances for NoZeroSMulDivisors\n\nThis file defines a NoZeroSMulDivisors instance for the binary product of actions.\n-/\n\nvariable {R M N : Type*}\n\nnamespace Prod\n\n",
+        "original_theorem_content": "instance noZeroSMulDivisors [Zero R] [Zero M] [Zero N]\n    [SMulWithZero R M] [SMulWithZero R N] [NoZeroSMulDivisors R M] [NoZeroSMulDivisors R N] :\n    NoZeroSMulDivisors R (M × N) where\n  eq_zero_or_eq_zero_of_smul_eq_zero {c xy} h := by"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Multiset/Range.lean",
+        "line": 56,
+        "tactic_state_before": "case intro.intro\na : ℕ\nm : Multiset ℕ\nc : ℕ\nleft✝ : c ∈ m\nhxa : a + c < a\nhxb : a + c ∈ map (fun x => a + x) m\n⊢ False",
+        "proof": "exact (Nat.le_add_right _ _).not_lt hxa\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "a : ℕ\nm : Multiset ℕ\nc : ℕ\nleft✝ : c ∈ m\nhxa : a + c < a\nhxb : a + c ∈ map (fun x => a + x) m\n⊢ False",
+        "header": "import Mathlib\nimport Mathlib.Data.Multiset.UnionInter\n\nopen List Nat\n\nopen Multiset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (a : ℕ) (m : Multiset ℕ) (c : ℕ) (left : c ∈ m) (hxa : a + c < a)\n  (hxb : a + c ∈ map (fun x => a + x) m) : False := sorry",
+        "original_theorem_name": "Multiset.range_disjoint_map_add",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Multiset.UnionInter\n\n/-! # `Multiset.range n` gives `{0, 1, ..., n-1}` as a multiset. -/\n\nassert_not_exists Monoid\n\nopen List Nat\n\nnamespace Multiset\n\n-- range\n/-- `range n` is the multiset lifted from the list `range n`,\n  that is, the set `{0, 1, ..., n-1}`. -/\ndef range (n : ℕ) : Multiset ℕ :=\n  List.range n\n\ntheorem coe_range (n : ℕ) : ↑(List.range n) = range n :=\n  rfl\n\n@[simp]\ntheorem range_zero : range 0 = 0 :=\n  rfl\n\n@[simp]\ntheorem range_succ (n : ℕ) : range (succ n) = n ::ₘ range n := by\n  rw [range, List.range_succ, ← coe_add, Multiset.add_comm, range, coe_singleton, singleton_add]\n\n@[simp]\ntheorem card_range (n : ℕ) : card (range n) = n :=\n  length_range _\n\ntheorem range_subset {m n : ℕ} : range m ⊆ range n ↔ m ≤ n :=\n  List.range_subset\n\n@[simp]\ntheorem mem_range {m n : ℕ} : m ∈ range n ↔ m < n :=\n  List.mem_range\n\ntheorem not_mem_range_self {n : ℕ} : n ∉ range n :=\n  List.not_mem_range_self\n\ntheorem self_mem_range_succ (n : ℕ) : n ∈ range (n + 1) :=\n  List.self_mem_range_succ n\n\ntheorem range_add (a b : ℕ) : range (a + b) = range a + (range b).map (a + ·) :=\n  congr_arg ((↑) : List ℕ → Multiset ℕ) (List.range_add _ _)\n\n",
+        "original_theorem_content": "theorem range_disjoint_map_add (a : ℕ) (m : Multiset ℕ) :\n    Disjoint (range a) (m.map (a + ·)) := by"
+    }
+]

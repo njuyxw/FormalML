@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Int/Star.lean",
+        "line": 26,
+        "tactic_state_before": "n : ℕ\nhn : Even n\nx : ℤ\nhx : x ∈ nonneg ℤ\n⊢ x ∈ closure (range fun x => x ^ n)",
+        "proof": "have : x = x.natAbs • 1 ^ n := by simpa [eq_comm (a := x)] using hx\n  try repeat assumption",
+        "tactic_state_after": "[n : ℕ\n hn : Even n\n x : ℤ\n hx : x ∈ nonneg ℤ\n this : x = x.natAbs • 1 ^ n\n ⊢ x ∈ closure (range fun x => x ^ n)]",
+        "goal": "n : ℕ\nhn : Even n\nx : ℤ\nhx : x ∈ nonneg ℤ\n⊢ x = x.natAbs • 1 ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Abs\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Basic\n\nimport Mathlib.Algebra.Order.Ring.Int\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nopen AddSubmonoid Set\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {n : ℕ} (hn : Even n) (x : ℤ) (hx : x ∈ nonneg ℤ) : x = x.natAbs • 1 ^ n := sorry",
+        "original_theorem_name": "Int.addSubmonoid_closure_range_pow",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Abs\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Basic\n\nimport Mathlib.Algebra.Order.Ring.Int\n\nimport Mathlib.Algebra.Order.Star.Basic\n\n/-!\n# Star ordered ring structure on `ℤ`\n\nThis file shows that `ℤ` is a `StarOrderedRing`.\n-/\n\nopen AddSubmonoid Set\n\nnamespace Int\n\n",
+        "original_theorem_content": "@[simp] lemma addSubmonoid_closure_range_pow {n : ℕ} (hn : Even n) :\n    closure (range fun x : ℤ ↦ x ^ n) = nonneg _ := by"
+    }
+]

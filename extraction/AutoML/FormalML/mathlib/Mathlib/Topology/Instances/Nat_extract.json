@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Instances/Nat.lean",
+        "line": 51,
+        "tactic_state_before": "x : ℕ\nr : ℝ\n⊢ closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊",
+        "proof": "rcases le_or_lt 0 r with (hr | hr)\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n x : ℕ\n r : ℝ\n hr : 0 ≤ r\n ⊢ closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊,\n case inr\n x : ℕ\n r : ℝ\n hr : r < 0\n ⊢ closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊]",
+        "goal": "x : ℕ\nr : ℝ\nh✝ h : closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊\n⊢ closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊",
+        "header": "import Mathlib\nimport Mathlib.Topology.Instances.Int\n\nimport Mathlib.Data.Nat.Lattice\n\nopen Filter Metric Set Topology\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (x : ℕ) (r : ℝ) (h_1 h : closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊) :\n  closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊ := sorry",
+        "original_theorem_name": "Nat.closedBall_eq_Icc",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Instances.Int\n\nimport Mathlib.Data.Nat.Lattice\n\n/-!\n# Topology on the natural numbers\n\nThe structure of a metric space on `ℕ` is introduced in this file, induced from `ℝ`.\n-/\n\nnoncomputable section\n\nopen Filter Metric Set Topology\n\nnamespace Nat\n\nnoncomputable instance : Dist ℕ :=\n  ⟨fun x y => dist (x : ℝ) y⟩\n\ntheorem dist_eq (x y : ℕ) : dist x y = |(x : ℝ) - y| := rfl\n\ntheorem dist_coe_int (x y : ℕ) : dist (x : ℤ) (y : ℤ) = dist x y := rfl\n\n@[norm_cast, simp]\ntheorem dist_cast_real (x y : ℕ) : dist (x : ℝ) y = dist x y := rfl\n\ntheorem pairwise_one_le_dist : Pairwise fun m n : ℕ => 1 ≤ dist m n := fun _ _ hne =>\n  Int.pairwise_one_le_dist <| mod_cast hne\n\ntheorem isUniformEmbedding_coe_real : IsUniformEmbedding ((↑) : ℕ → ℝ) :=\n  isUniformEmbedding_bot_of_pairwise_le_dist zero_lt_one pairwise_one_le_dist\n\n@[deprecated (since := \"2024-10-01\")]\nalias uniformEmbedding_coe_real := isUniformEmbedding_coe_real\n\ntheorem isClosedEmbedding_coe_real : IsClosedEmbedding ((↑) : ℕ → ℝ) :=\n  isClosedEmbedding_of_pairwise_le_dist zero_lt_one pairwise_one_le_dist\n\n@[deprecated (since := \"2024-10-20\")]\nalias closedEmbedding_coe_real := isClosedEmbedding_coe_real\n\ninstance : MetricSpace ℕ := Nat.isUniformEmbedding_coe_real.comapMetricSpace _\n\ntheorem preimage_ball (x : ℕ) (r : ℝ) : (↑) ⁻¹' ball (x : ℝ) r = ball x r := rfl\n\ntheorem preimage_closedBall (x : ℕ) (r : ℝ) : (↑) ⁻¹' closedBall (x : ℝ) r = closedBall x r := rfl\n\n",
+        "original_theorem_content": "theorem closedBall_eq_Icc (x : ℕ) (r : ℝ) : closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Instances/Nat.lean",
+        "line": 54,
+        "tactic_state_before": "case inr\nx : ℕ\nr : ℝ\nhr : r < 0\n⊢ closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊",
+        "proof": "rw [closedBall_eq_empty.2 hr, Icc_eq_empty_of_lt]\n  try repeat assumption",
+        "tactic_state_after": "[case inr\n x : ℕ\n r : ℝ\n hr : r < 0\n ⊢ ⌊↑x + r⌋₊ < ⌈↑x - r⌉₊]",
+        "goal": "x : ℕ\nr : ℝ\nhr : r < 0\nh : ⌊↑x + r⌋₊ < ⌈↑x - r⌉₊\n⊢ closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊",
+        "header": "import Mathlib\nimport Mathlib.Topology.Instances.Int\n\nimport Mathlib.Data.Nat.Lattice\n\nopen Filter Metric Set Topology\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (x : ℕ) (r : ℝ) (hr : r < 0) (h : ⌊↑x + r⌋₊ < ⌈↑x - r⌉₊) :\n  closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊ := sorry",
+        "original_theorem_name": "Nat.closedBall_eq_Icc",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Instances.Int\n\nimport Mathlib.Data.Nat.Lattice\n\n/-!\n# Topology on the natural numbers\n\nThe structure of a metric space on `ℕ` is introduced in this file, induced from `ℝ`.\n-/\n\nnoncomputable section\n\nopen Filter Metric Set Topology\n\nnamespace Nat\n\nnoncomputable instance : Dist ℕ :=\n  ⟨fun x y => dist (x : ℝ) y⟩\n\ntheorem dist_eq (x y : ℕ) : dist x y = |(x : ℝ) - y| := rfl\n\ntheorem dist_coe_int (x y : ℕ) : dist (x : ℤ) (y : ℤ) = dist x y := rfl\n\n@[norm_cast, simp]\ntheorem dist_cast_real (x y : ℕ) : dist (x : ℝ) y = dist x y := rfl\n\ntheorem pairwise_one_le_dist : Pairwise fun m n : ℕ => 1 ≤ dist m n := fun _ _ hne =>\n  Int.pairwise_one_le_dist <| mod_cast hne\n\ntheorem isUniformEmbedding_coe_real : IsUniformEmbedding ((↑) : ℕ → ℝ) :=\n  isUniformEmbedding_bot_of_pairwise_le_dist zero_lt_one pairwise_one_le_dist\n\n@[deprecated (since := \"2024-10-01\")]\nalias uniformEmbedding_coe_real := isUniformEmbedding_coe_real\n\ntheorem isClosedEmbedding_coe_real : IsClosedEmbedding ((↑) : ℕ → ℝ) :=\n  isClosedEmbedding_of_pairwise_le_dist zero_lt_one pairwise_one_le_dist\n\n@[deprecated (since := \"2024-10-20\")]\nalias closedEmbedding_coe_real := isClosedEmbedding_coe_real\n\ninstance : MetricSpace ℕ := Nat.isUniformEmbedding_coe_real.comapMetricSpace _\n\ntheorem preimage_ball (x : ℕ) (r : ℝ) : (↑) ⁻¹' ball (x : ℝ) r = ball x r := rfl\n\ntheorem preimage_closedBall (x : ℕ) (r : ℝ) : (↑) ⁻¹' closedBall (x : ℝ) r = closedBall x r := rfl\n\n",
+        "original_theorem_content": "theorem closedBall_eq_Icc (x : ℕ) (r : ℝ) : closedBall x r = Icc ⌈↑x - r⌉₊ ⌊↑x + r⌋₊ := by"
+    }
+]

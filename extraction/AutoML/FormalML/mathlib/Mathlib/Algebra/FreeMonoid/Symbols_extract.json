@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/FreeMonoid/Symbols.lean",
+        "line": 29,
+        "tactic_state_before": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\n⊢ (a * b).symbols = a.symbols ∪ b.symbols",
+        "proof": "simp only [symbols, List.mem_toFinset, Finset.mem_union]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : DecidableEq α\n a b : FreeMonoid α\n ⊢ List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b]",
+        "goal": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\nh : List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b\n⊢ (a * b).symbols = a.symbols ∪ b.symbols",
+        "header": "import Mathlib\nimport Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\nopen FreeMonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : DecidableEq α] {a b : FreeMonoid α}\n  (h : List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b) : (a * b).symbols = a.symbols ∪ b.symbols := sorry",
+        "original_theorem_name": "FreeAddMonoid.symbols_add",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\n/-!\n# The finite set of symbols in a FreeMonoid element\n\nThis is separated from the main FreeMonoid file, as it imports the finiteness hierarchy\n-/\n\nvariable {α : Type*} [DecidableEq α]\n\nnamespace FreeMonoid\n\n/-- the set of unique symbols in a free monoid element -/\n@[to_additive \"The set of unique symbols in an additive free monoid element\"]\ndef symbols (a : FreeMonoid α) : Finset α := List.toFinset a\n\n@[to_additive (attr := simp)]\ntheorem symbols_one : symbols (1 : FreeMonoid α) = ∅ := rfl\n\n@[to_additive (attr := simp)]\ntheorem symbols_of {m : α} : symbols (of m) = {m} := rfl\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\ntheorem symbols_mul {a b : FreeMonoid α} : symbols (a * b) = symbols a ∪ symbols b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/FreeMonoid/Symbols.lean",
+        "line": 29,
+        "tactic_state_before": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\n⊢ (a * b).symbols = a.symbols ∪ b.symbols",
+        "proof": "simp only [symbols, List.mem_toFinset, Finset.mem_union]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : DecidableEq α\n a b : FreeMonoid α\n ⊢ List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b]",
+        "goal": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\nh : List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b\n⊢ (a * b).symbols = a.symbols ∪ b.symbols",
+        "header": "import Mathlib\nimport Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\nopen FreeMonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : DecidableEq α] {a b : FreeMonoid α}\n  (h : List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b) : (a * b).symbols = a.symbols ∪ b.symbols := sorry",
+        "original_theorem_name": "FreeAddMonoid.symbols_add",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\n/-!\n# The finite set of symbols in a FreeMonoid element\n\nThis is separated from the main FreeMonoid file, as it imports the finiteness hierarchy\n-/\n\nvariable {α : Type*} [DecidableEq α]\n\nnamespace FreeMonoid\n\n/-- the set of unique symbols in a free monoid element -/\n@[to_additive \"The set of unique symbols in an additive free monoid element\"]\ndef symbols (a : FreeMonoid α) : Finset α := List.toFinset a\n\n@[to_additive (attr := simp)]\ntheorem symbols_one : symbols (1 : FreeMonoid α) = ∅ := rfl\n\n@[to_additive (attr := simp)]\ntheorem symbols_of {m : α} : symbols (of m) = {m} := rfl\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\ntheorem symbols_mul {a b : FreeMonoid α} : symbols (a * b) = symbols a ∪ symbols b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/FreeMonoid/Symbols.lean",
+        "line": 30,
+        "tactic_state_before": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\n⊢ List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b",
+        "proof": "apply List.toFinset_append\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\n⊢ List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\nopen FreeMonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : DecidableEq α] {a b : FreeMonoid α} :\n  List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b := sorry",
+        "original_theorem_name": "FreeAddMonoid.symbols_add",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\n/-!\n# The finite set of symbols in a FreeMonoid element\n\nThis is separated from the main FreeMonoid file, as it imports the finiteness hierarchy\n-/\n\nvariable {α : Type*} [DecidableEq α]\n\nnamespace FreeMonoid\n\n/-- the set of unique symbols in a free monoid element -/\n@[to_additive \"The set of unique symbols in an additive free monoid element\"]\ndef symbols (a : FreeMonoid α) : Finset α := List.toFinset a\n\n@[to_additive (attr := simp)]\ntheorem symbols_one : symbols (1 : FreeMonoid α) = ∅ := rfl\n\n@[to_additive (attr := simp)]\ntheorem symbols_of {m : α} : symbols (of m) = {m} := rfl\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\ntheorem symbols_mul {a b : FreeMonoid α} : symbols (a * b) = symbols a ∪ symbols b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/FreeMonoid/Symbols.lean",
+        "line": 30,
+        "tactic_state_before": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\n⊢ List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b",
+        "proof": "apply List.toFinset_append\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : DecidableEq α\na b : FreeMonoid α\n⊢ List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\nopen FreeMonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} [inst : DecidableEq α] {a b : FreeMonoid α} :\n  List.toFinset (a * b) = List.toFinset a ∪ List.toFinset b := sorry",
+        "original_theorem_name": "FreeAddMonoid.symbols_add",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.FreeMonoid.Basic\n\nimport Mathlib.Data.Finset.Lattice.Lemmas\n\n/-!\n# The finite set of symbols in a FreeMonoid element\n\nThis is separated from the main FreeMonoid file, as it imports the finiteness hierarchy\n-/\n\nvariable {α : Type*} [DecidableEq α]\n\nnamespace FreeMonoid\n\n/-- the set of unique symbols in a free monoid element -/\n@[to_additive \"The set of unique symbols in an additive free monoid element\"]\ndef symbols (a : FreeMonoid α) : Finset α := List.toFinset a\n\n@[to_additive (attr := simp)]\ntheorem symbols_one : symbols (1 : FreeMonoid α) = ∅ := rfl\n\n@[to_additive (attr := simp)]\ntheorem symbols_of {m : α} : symbols (of m) = {m} := rfl\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\ntheorem symbols_mul {a b : FreeMonoid α} : symbols (a * b) = symbols a ∪ symbols b := by"
+    }
+]

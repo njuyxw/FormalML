@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/List/Enum.lean",
+        "line": 32,
+        "tactic_state_before": "α : Type u_1\nl : List α\nn : ℕ\np : α × ℕ → Prop\n⊢ (∃ x, x ∈ l.zipIdx n ∧ p x) ↔ ∃ i x, p (l[i], n + i)",
+        "proof": "simp only [exists_mem_iff_getElem, getElem_zipIdx, length_zipIdx]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nl : List α\nn : ℕ\np : α × ℕ → Prop\n⊢ (∃ x, x ∈ l.zipIdx n ∧ p x) ↔ ∃ i x, p (l[i], n + i)",
+        "header": "import Mathlib\nimport Mathlib.Data.List.Basic\n\nopen List\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {l : List α} {n : ℕ} {p : α × ℕ → Prop} :\n  (∃ x, x ∈ l.zipIdx n ∧ p x) ↔ ∃ i x, p (l[i], n + i) := sorry",
+        "original_theorem_name": "List.exists_mem_zipIdx",
+        "original_theorem_importsAndContext": "import Mathlib.Data.List.Basic\n\n/-!\n# Properties of `List.enum`\n\n## Deprecation note\n\nMany lemmas in this file have been replaced by theorems in Lean4,\nin terms of `xs[i]?` and `xs[i]` rather than `get` and `get?`.\n\nThe deprecated results here are unused in Mathlib.\nAny downstream users who can not easily adapt may remove the deprecations as needed.\n-/\n\nnamespace List\n\nvariable {α : Type*}\n\ntheorem forall_mem_zipIdx {l : List α} {n : ℕ} {p : α × ℕ → Prop} :\n    (∀ x ∈ l.zipIdx n, p x) ↔ ∀ (i : ℕ) (_ : i < length l), p (l[i], n + i) := by\n  simp only [forall_mem_iff_getElem, getElem_zipIdx, length_zipIdx]\n\n/-- Variant of `forall_mem_zipIdx` with the `zipIdx` argument specialized to `0`. -/\ntheorem forall_mem_zipIdx' {l : List α} {p : α × ℕ → Prop} :\n    (∀ x ∈ l.zipIdx, p x) ↔ ∀ (i : ℕ) (_ : i < length l), p (l[i], i) :=\n  forall_mem_zipIdx.trans <| by simp\n\n",
+        "original_theorem_content": "theorem exists_mem_zipIdx {l : List α} {n : ℕ} {p : α × ℕ → Prop} :\n    (∃ x ∈ l.zipIdx n, p x) ↔ ∃ (i : ℕ) (_ : i < length l), p (l[i], n + i) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/List/Enum.lean",
+        "line": 23,
+        "tactic_state_before": "α : Type u_1\nl : List α\nn : ℕ\np : α × ℕ → Prop\n⊢ (∀ (x : α × ℕ), x ∈ l.zipIdx n → p x) ↔ ∀ (i : ℕ) (x : i < l.length), p (l[i], n + i)",
+        "proof": "simp only [forall_mem_iff_getElem, getElem_zipIdx, length_zipIdx]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nl : List α\nn : ℕ\np : α × ℕ → Prop\n⊢ (∀ (x : α × ℕ), x ∈ l.zipIdx n → p x) ↔ ∀ (i : ℕ) (x : i < l.length), p (l[i], n + i)",
+        "header": "import Mathlib\nimport Mathlib.Data.List.Basic\n\nopen List\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {l : List α} {n : ℕ} {p : α × ℕ → Prop} :\n  (∀ (x : α × ℕ), x ∈ l.zipIdx n → p x) ↔ ∀ (i : ℕ) (x : i < l.length), p (l[i], n + i) := sorry",
+        "original_theorem_name": "List.forall_mem_zipIdx",
+        "original_theorem_importsAndContext": "import Mathlib.Data.List.Basic\n\n/-!\n# Properties of `List.enum`\n\n## Deprecation note\n\nMany lemmas in this file have been replaced by theorems in Lean4,\nin terms of `xs[i]?` and `xs[i]` rather than `get` and `get?`.\n\nThe deprecated results here are unused in Mathlib.\nAny downstream users who can not easily adapt may remove the deprecations as needed.\n-/\n\nnamespace List\n\nvariable {α : Type*}\n\n",
+        "original_theorem_content": "theorem forall_mem_zipIdx {l : List α} {n : ℕ} {p : α × ℕ → Prop} :\n    (∀ x ∈ l.zipIdx n, p x) ↔ ∀ (i : ℕ) (_ : i < length l), p (l[i], n + i) := by"
+    }
+]

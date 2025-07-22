@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subsemigroup/Center.lean",
+        "line": 58,
+        "tactic_state_before": "M : Type u_1\ninst✝ : Semigroup M\nz : M\n⊢ z ∈ center M ↔ ∀ (g : M), g * z = z * g",
+        "proof": "rw [← Semigroup.mem_center_iff]\n  try repeat assumption",
+        "tactic_state_after": "[M : Type u_1\n inst✝ : Semigroup M\n z : M\n ⊢ z ∈ center M ↔ z ∈ Set.center M]",
+        "goal": "M : Type u_1\ninst✝ : Semigroup M\nz : M\nh : z ∈ center M ↔ z ∈ Set.center M\n⊢ z ∈ center M ↔ ∀ (g : M), g * z = z * g",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\nopen Subsemigroup\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {M : Type u_1} [inst : Semigroup M] {z : M}\n  (h : z ∈ center M ↔ z ∈ Set.center M) : z ∈ center M ↔ ∀ (g : M), g * z = z * g := sorry",
+        "original_theorem_name": "AddSubsemigroup.mem_center_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\n/-!\n# Centers of semigroups, as subsemigroups.\n\n## Main definitions\n\n* `Subsemigroup.center`: the center of a semigroup\n* `AddSubsemigroup.center`: the center of an additive semigroup\n\nWe provide `Submonoid.center`, `AddSubmonoid.center`, `Subgroup.center`, `AddSubgroup.center`,\n`Subsemiring.center`, and `Subring.center` in other files.\n\n## References\n\n* [Cabrera García and Rodríguez Palacios, Non-associative normed algebras. Volume 1]\n  [cabreragarciarodriguezpalacios2014]\n-/\n\nassert_not_exists RelIso Finset\n\n/-! ### `Set.center` as a `Subsemigroup`. -/\n\nvariable (M)\nnamespace Subsemigroup\n\nsection Mul\nvariable [Mul M]\n\n/-- The center of a semigroup `M` is the set of elements that commute with everything in `M` -/\n@[to_additive\n      \"The center of a semigroup `M` is the set of elements that commute with everything in `M`\"]\ndef center : Subsemigroup M where\n  carrier := Set.center M\n  mul_mem' := Set.mul_mem_center\n\n-- Porting note: `coe_center` is now redundant\n\nvariable {M}\n\n/-- The center of a magma is commutative and associative. -/\n@[to_additive \"The center of an additive magma is commutative and associative.\"]\ninstance center.commSemigroup : CommSemigroup (center M) where\n  mul_assoc _ b _ := Subtype.ext <| b.2.mid_assoc _ _\n  mul_comm a _ := Subtype.ext <| a.2.comm _\n\nend Mul\n\nsection Semigroup\nvariable {M} [Semigroup M]\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem mem_center_iff {z : M} : z ∈ center M ↔ ∀ g, g * z = z * g := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subsemigroup/Center.lean",
+        "line": 58,
+        "tactic_state_before": "M : Type u_1\ninst✝ : Semigroup M\nz : M\n⊢ z ∈ center M ↔ ∀ (g : M), g * z = z * g",
+        "proof": "rw [← Semigroup.mem_center_iff]\n  try repeat assumption",
+        "tactic_state_after": "[M : Type u_1\n inst✝ : Semigroup M\n z : M\n ⊢ z ∈ center M ↔ z ∈ Set.center M]",
+        "goal": "M : Type u_1\ninst✝ : Semigroup M\nz : M\nh : z ∈ center M ↔ z ∈ Set.center M\n⊢ z ∈ center M ↔ ∀ (g : M), g * z = z * g",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\nopen Subsemigroup\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {M : Type u_1} [inst : Semigroup M] {z : M}\n  (h : z ∈ center M ↔ z ∈ Set.center M) : z ∈ center M ↔ ∀ (g : M), g * z = z * g := sorry",
+        "original_theorem_name": "AddSubsemigroup.mem_center_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\n/-!\n# Centers of semigroups, as subsemigroups.\n\n## Main definitions\n\n* `Subsemigroup.center`: the center of a semigroup\n* `AddSubsemigroup.center`: the center of an additive semigroup\n\nWe provide `Submonoid.center`, `AddSubmonoid.center`, `Subgroup.center`, `AddSubgroup.center`,\n`Subsemiring.center`, and `Subring.center` in other files.\n\n## References\n\n* [Cabrera García and Rodríguez Palacios, Non-associative normed algebras. Volume 1]\n  [cabreragarciarodriguezpalacios2014]\n-/\n\nassert_not_exists RelIso Finset\n\n/-! ### `Set.center` as a `Subsemigroup`. -/\n\nvariable (M)\nnamespace Subsemigroup\n\nsection Mul\nvariable [Mul M]\n\n/-- The center of a semigroup `M` is the set of elements that commute with everything in `M` -/\n@[to_additive\n      \"The center of a semigroup `M` is the set of elements that commute with everything in `M`\"]\ndef center : Subsemigroup M where\n  carrier := Set.center M\n  mul_mem' := Set.mul_mem_center\n\n-- Porting note: `coe_center` is now redundant\n\nvariable {M}\n\n/-- The center of a magma is commutative and associative. -/\n@[to_additive \"The center of an additive magma is commutative and associative.\"]\ninstance center.commSemigroup : CommSemigroup (center M) where\n  mul_assoc _ b _ := Subtype.ext <| b.2.mid_assoc _ _\n  mul_comm a _ := Subtype.ext <| a.2.comm _\n\nend Mul\n\nsection Semigroup\nvariable {M} [Semigroup M]\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem mem_center_iff {z : M} : z ∈ center M ↔ ∀ g, g * z = z * g := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subsemigroup/Center.lean",
+        "line": 59,
+        "tactic_state_before": "M : Type u_1\ninst✝ : Semigroup M\nz : M\n⊢ z ∈ center M ↔ z ∈ Set.center M",
+        "proof": "exact Iff.rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\ninst✝ : Semigroup M\nz : M\n⊢ z ∈ center M ↔ z ∈ Set.center M",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\nopen Subsemigroup\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {M : Type u_1} [inst : Semigroup M] {z : M} :\n  z ∈ center M ↔ z ∈ Set.center M := sorry",
+        "original_theorem_name": "AddSubsemigroup.mem_center_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\n/-!\n# Centers of semigroups, as subsemigroups.\n\n## Main definitions\n\n* `Subsemigroup.center`: the center of a semigroup\n* `AddSubsemigroup.center`: the center of an additive semigroup\n\nWe provide `Submonoid.center`, `AddSubmonoid.center`, `Subgroup.center`, `AddSubgroup.center`,\n`Subsemiring.center`, and `Subring.center` in other files.\n\n## References\n\n* [Cabrera García and Rodríguez Palacios, Non-associative normed algebras. Volume 1]\n  [cabreragarciarodriguezpalacios2014]\n-/\n\nassert_not_exists RelIso Finset\n\n/-! ### `Set.center` as a `Subsemigroup`. -/\n\nvariable (M)\nnamespace Subsemigroup\n\nsection Mul\nvariable [Mul M]\n\n/-- The center of a semigroup `M` is the set of elements that commute with everything in `M` -/\n@[to_additive\n      \"The center of a semigroup `M` is the set of elements that commute with everything in `M`\"]\ndef center : Subsemigroup M where\n  carrier := Set.center M\n  mul_mem' := Set.mul_mem_center\n\n-- Porting note: `coe_center` is now redundant\n\nvariable {M}\n\n/-- The center of a magma is commutative and associative. -/\n@[to_additive \"The center of an additive magma is commutative and associative.\"]\ninstance center.commSemigroup : CommSemigroup (center M) where\n  mul_assoc _ b _ := Subtype.ext <| b.2.mid_assoc _ _\n  mul_comm a _ := Subtype.ext <| a.2.comm _\n\nend Mul\n\nsection Semigroup\nvariable {M} [Semigroup M]\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem mem_center_iff {z : M} : z ∈ center M ↔ ∀ g, g * z = z * g := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subsemigroup/Center.lean",
+        "line": 59,
+        "tactic_state_before": "M : Type u_1\ninst✝ : Semigroup M\nz : M\n⊢ z ∈ center M ↔ z ∈ Set.center M",
+        "proof": "exact Iff.rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\ninst✝ : Semigroup M\nz : M\n⊢ z ∈ center M ↔ z ∈ Set.center M",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\nopen Subsemigroup\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {M : Type u_1} [inst : Semigroup M] {z : M} :\n  z ∈ center M ↔ z ∈ Set.center M := sorry",
+        "original_theorem_name": "AddSubsemigroup.mem_center_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Center\n\nimport Mathlib.Algebra.Group.Subsemigroup.Defs\n\n/-!\n# Centers of semigroups, as subsemigroups.\n\n## Main definitions\n\n* `Subsemigroup.center`: the center of a semigroup\n* `AddSubsemigroup.center`: the center of an additive semigroup\n\nWe provide `Submonoid.center`, `AddSubmonoid.center`, `Subgroup.center`, `AddSubgroup.center`,\n`Subsemiring.center`, and `Subring.center` in other files.\n\n## References\n\n* [Cabrera García and Rodríguez Palacios, Non-associative normed algebras. Volume 1]\n  [cabreragarciarodriguezpalacios2014]\n-/\n\nassert_not_exists RelIso Finset\n\n/-! ### `Set.center` as a `Subsemigroup`. -/\n\nvariable (M)\nnamespace Subsemigroup\n\nsection Mul\nvariable [Mul M]\n\n/-- The center of a semigroup `M` is the set of elements that commute with everything in `M` -/\n@[to_additive\n      \"The center of a semigroup `M` is the set of elements that commute with everything in `M`\"]\ndef center : Subsemigroup M where\n  carrier := Set.center M\n  mul_mem' := Set.mul_mem_center\n\n-- Porting note: `coe_center` is now redundant\n\nvariable {M}\n\n/-- The center of a magma is commutative and associative. -/\n@[to_additive \"The center of an additive magma is commutative and associative.\"]\ninstance center.commSemigroup : CommSemigroup (center M) where\n  mul_assoc _ b _ := Subtype.ext <| b.2.mid_assoc _ _\n  mul_comm a _ := Subtype.ext <| a.2.comm _\n\nend Mul\n\nsection Semigroup\nvariable {M} [Semigroup M]\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem mem_center_iff {z : M} : z ∈ center M ↔ ∀ g, g * z = z * g := by"
+    }
+]

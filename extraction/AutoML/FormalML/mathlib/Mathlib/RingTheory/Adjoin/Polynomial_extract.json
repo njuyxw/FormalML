@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Adjoin/Polynomial.lean",
+        "line": 47,
+        "tactic_state_before": "R : Type u\nA : Type z\ninst✝² : CommSemiring R\ninst✝¹ : Semiring A\ninst✝ : Algebra R A\np : R[X]\nx : A\n⊢ (aeval x) p ∈ Algebra.adjoin R {x}",
+        "proof": "simpa only [Algebra.adjoin_singleton_eq_range_aeval] using Set.mem_range_self p\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u\nA : Type z\ninst✝² : CommSemiring R\ninst✝¹ : Semiring A\ninst✝ : Algebra R A\np : R[X]\nx : A\n⊢ (aeval x) p ∈ Algebra.adjoin R {x}",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.AlgebraMap\n\nopen Finset\n\nopen Polynomial\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (R : Type u) {A : Type z} [inst : CommSemiring R] [inst_1 : Semiring A]\n  [inst_2 : Algebra R A] {p : R[X]} (x : A) : (aeval x) p ∈ Algebra.adjoin R {x} := sorry",
+        "original_theorem_name": "Polynomial.aeval_mem_adjoin_singleton",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.AlgebraMap\n\n/-!\n# Polynomials and adjoining roots\n\n## Main results\n\n* `Polynomial.instCommSemiringAdjoinSingleton, instCommRingAdjoinSingleton`:\n  adjoining an element to a commutative (semi)ring gives a commutative (semi)ring\n-/\n\nnoncomputable section\n\nopen Finset\n\nopen Polynomial\n\nnamespace Polynomial\n\nuniverse u v w z\n\nvariable {R : Type u} {S : Type v} {T : Type w} {A : Type z} {A' B : Type*} {a b : R} {n : ℕ}\n\nsection aeval\n\nvariable [CommSemiring R] [Semiring A] [CommSemiring A'] [Semiring B]\nvariable [Algebra R A] [Algebra R B]\nvariable {p q : R[X]} (x : A)\n\n@[simp]\ntheorem adjoin_X : Algebra.adjoin R ({X} : Set R[X]) = ⊤ := by\n  refine top_unique fun p _hp => ?_\n  set S := Algebra.adjoin R ({X} : Set R[X])\n  rw [← sum_monomial_eq p]; simp only [← smul_X_eq_monomial, Sum]\n  exact S.sum_mem fun n _hn => S.smul_mem (S.pow_mem (Algebra.subset_adjoin rfl) _) _\n\nvariable (R)\ntheorem _root_.Algebra.adjoin_singleton_eq_range_aeval (x : A) :\n    Algebra.adjoin R {x} = (Polynomial.aeval x).range := by\n  rw [← Algebra.map_top, ← adjoin_X, AlgHom.map_adjoin, Set.image_singleton, aeval_X]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem aeval_mem_adjoin_singleton :\n    aeval x p ∈ Algebra.adjoin R {x} := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Adjoin/Polynomial.lean",
+        "line": 42,
+        "tactic_state_before": "R : Type u\nA : Type z\ninst✝² : CommSemiring R\ninst✝¹ : Semiring A\ninst✝ : Algebra R A\nx : A\n⊢ Algebra.adjoin R {x} = (aeval x).range",
+        "proof": "rw [← Algebra.map_top, ← adjoin_X, AlgHom.map_adjoin, Set.image_singleton, aeval_X]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u\nA : Type z\ninst✝² : CommSemiring R\ninst✝¹ : Semiring A\ninst✝ : Algebra R A\nx : A\n⊢ Algebra.adjoin R {x} = (aeval x).range",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Polynomial.AlgebraMap\n\nopen Finset\n\nopen Polynomial\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (R : Type u) {A : Type z} [inst : CommSemiring R] [inst_1 : Semiring A]\n  [inst_2 : Algebra R A] (x : A) : Algebra.adjoin R {x} = (aeval x).range := sorry",
+        "original_theorem_name": "Algebra.adjoin_singleton_eq_range_aeval",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Polynomial.AlgebraMap\n\n/-!\n# Polynomials and adjoining roots\n\n## Main results\n\n* `Polynomial.instCommSemiringAdjoinSingleton, instCommRingAdjoinSingleton`:\n  adjoining an element to a commutative (semi)ring gives a commutative (semi)ring\n-/\n\nnoncomputable section\n\nopen Finset\n\nopen Polynomial\n\nnamespace Polynomial\n\nuniverse u v w z\n\nvariable {R : Type u} {S : Type v} {T : Type w} {A : Type z} {A' B : Type*} {a b : R} {n : ℕ}\n\nsection aeval\n\nvariable [CommSemiring R] [Semiring A] [CommSemiring A'] [Semiring B]\nvariable [Algebra R A] [Algebra R B]\nvariable {p q : R[X]} (x : A)\n\n@[simp]\ntheorem adjoin_X : Algebra.adjoin R ({X} : Set R[X]) = ⊤ := by\n  refine top_unique fun p _hp => ?_\n  set S := Algebra.adjoin R ({X} : Set R[X])\n  rw [← sum_monomial_eq p]; simp only [← smul_X_eq_monomial, Sum]\n  exact S.sum_mem fun n _hn => S.smul_mem (S.pow_mem (Algebra.subset_adjoin rfl) _) _\n\nvariable (R)\n",
+        "original_theorem_content": "theorem _root_.Algebra.adjoin_singleton_eq_range_aeval (x : A) :\n    Algebra.adjoin R {x} = (Polynomial.aeval x).range := by"
+    }
+]

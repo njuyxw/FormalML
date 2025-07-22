@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Order/Filter/ListTraverse.lean",
+        "line": 36,
+        "tactic_state_before": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\n⊢ t ∈ traverse f fs ↔ ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n α β : Type u\n f : β → Filter α\n fs : List β\n t : Set (List α)\n ⊢ t ∈ traverse f fs → ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t,\n case mpr\n α β : Type u\n f : β → Filter α\n fs : List β\n t : Set (List α)\n ⊢ (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs]",
+        "goal": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nh✝ : t ∈ traverse f fs → ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t\nh : (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs\n⊢ t ∈ traverse f fs ↔ ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t",
+        "header": "import Mathlib\nimport Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\nopen Set List\n\nopen Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α β : Type u} {f : β → Filter α} (fs : List β) (t : Set (List α))\n  (h_1 : t ∈ traverse f fs → ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t)\n  (h : (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs) :\n  t ∈ traverse f fs ↔ ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t := sorry",
+        "original_theorem_name": "sequence.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\n/-!\n# Properties of `Traversable.traverse` on `List`s and `Filter`s\n\nIn this file we prove basic properties (monotonicity, membership)\nfor `Traversable.traverse f l`, where `f : β → Filter α` and `l : List β`.\n-/\n\nopen Set List\n\nnamespace Filter\n\nuniverse u\n\nvariable {α β γ : Type u} {f : β → Filter α} {s : γ → Set α}\n\ntheorem sequence_mono : ∀ as bs : List (Filter α), Forall₂ (· ≤ ·) as bs → sequence as ≤ sequence bs\n  | [], [], Forall₂.nil => le_rfl\n  | _::as, _::bs, Forall₂.cons h hs => seq_mono (map_mono h) (sequence_mono as bs hs)\n\ntheorem mem_traverse :\n    ∀ (fs : List β) (us : List γ),\n      Forall₂ (fun b c => s c ∈ f b) fs us → traverse s us ∈ traverse f fs\n  | [], [], Forall₂.nil => mem_pure.2 <| mem_singleton _\n  | _::fs, _::us, Forall₂.cons h hs => seq_mem_seq (image_mem_map h) (mem_traverse fs us hs)\n\n-- TODO: add a `Filter.HasBasis` statement\n",
+        "original_theorem_content": "theorem mem_traverse_iff (fs : List β) (t : Set (List α)) :\n    t ∈ traverse f fs ↔\n      ∃ us : List (Set α), Forall₂ (fun b (s : Set α) => s ∈ f b) fs us ∧ sequence us ⊆ t := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Filter/ListTraverse.lean",
+        "line": 36,
+        "tactic_state_before": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\n⊢ t ∈ traverse f fs ↔ ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n α β : Type u\n f : β → Filter α\n fs : List β\n t : Set (List α)\n ⊢ t ∈ traverse f fs → ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t,\n case mpr\n α β : Type u\n f : β → Filter α\n fs : List β\n t : Set (List α)\n ⊢ (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs]",
+        "goal": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nh✝ : t ∈ traverse f fs → ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t\nh : (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs\n⊢ t ∈ traverse f fs ↔ ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t",
+        "header": "import Mathlib\nimport Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\nopen Set List\n\nopen Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α β : Type u} {f : β → Filter α} (fs : List β) (t : Set (List α))\n  (h_1 : t ∈ traverse f fs → ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t)\n  (h : (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs) :\n  t ∈ traverse f fs ↔ ∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t := sorry",
+        "original_theorem_name": "sequence.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\n/-!\n# Properties of `Traversable.traverse` on `List`s and `Filter`s\n\nIn this file we prove basic properties (monotonicity, membership)\nfor `Traversable.traverse f l`, where `f : β → Filter α` and `l : List β`.\n-/\n\nopen Set List\n\nnamespace Filter\n\nuniverse u\n\nvariable {α β γ : Type u} {f : β → Filter α} {s : γ → Set α}\n\ntheorem sequence_mono : ∀ as bs : List (Filter α), Forall₂ (· ≤ ·) as bs → sequence as ≤ sequence bs\n  | [], [], Forall₂.nil => le_rfl\n  | _::as, _::bs, Forall₂.cons h hs => seq_mono (map_mono h) (sequence_mono as bs hs)\n\ntheorem mem_traverse :\n    ∀ (fs : List β) (us : List γ),\n      Forall₂ (fun b c => s c ∈ f b) fs us → traverse s us ∈ traverse f fs\n  | [], [], Forall₂.nil => mem_pure.2 <| mem_singleton _\n  | _::fs, _::us, Forall₂.cons h hs => seq_mem_seq (image_mem_map h) (mem_traverse fs us hs)\n\n-- TODO: add a `Filter.HasBasis` statement\n",
+        "original_theorem_content": "theorem mem_traverse_iff (fs : List β) (t : Set (List α)) :\n    t ∈ traverse f fs ↔\n      ∃ us : List (Set α), Forall₂ (fun b (s : Set α) => s ∈ f b) fs us ∧ sequence us ⊆ t := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Filter/ListTraverse.lean",
+        "line": 47,
+        "tactic_state_before": "case mpr\nα β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\n⊢ (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs",
+        "proof": "rintro ⟨us, hus, hs⟩\n  try repeat assumption",
+        "tactic_state_after": "[case mpr.intro.intro\n α β : Type u\n f : β → Filter α\n fs : List β\n t : Set (List α)\n us : List (Set α)\n hus : Forall₂ (fun b s => s ∈ f b) fs us\n hs : sequence us ⊆ t\n ⊢ t ∈ traverse f fs]",
+        "goal": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nh : t ∈ traverse f fs\n⊢ (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs",
+        "header": "import Mathlib\nimport Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\nopen Set List\n\nopen Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α β : Type u} {f : β → Filter α} (fs : List β) (t : Set (List α))\n  (h : t ∈ traverse f fs) : (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs := sorry",
+        "original_theorem_name": "sequence.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\n/-!\n# Properties of `Traversable.traverse` on `List`s and `Filter`s\n\nIn this file we prove basic properties (monotonicity, membership)\nfor `Traversable.traverse f l`, where `f : β → Filter α` and `l : List β`.\n-/\n\nopen Set List\n\nnamespace Filter\n\nuniverse u\n\nvariable {α β γ : Type u} {f : β → Filter α} {s : γ → Set α}\n\ntheorem sequence_mono : ∀ as bs : List (Filter α), Forall₂ (· ≤ ·) as bs → sequence as ≤ sequence bs\n  | [], [], Forall₂.nil => le_rfl\n  | _::as, _::bs, Forall₂.cons h hs => seq_mono (map_mono h) (sequence_mono as bs hs)\n\ntheorem mem_traverse :\n    ∀ (fs : List β) (us : List γ),\n      Forall₂ (fun b c => s c ∈ f b) fs us → traverse s us ∈ traverse f fs\n  | [], [], Forall₂.nil => mem_pure.2 <| mem_singleton _\n  | _::fs, _::us, Forall₂.cons h hs => seq_mem_seq (image_mem_map h) (mem_traverse fs us hs)\n\n-- TODO: add a `Filter.HasBasis` statement\n",
+        "original_theorem_content": "theorem mem_traverse_iff (fs : List β) (t : Set (List α)) :\n    t ∈ traverse f fs ↔\n      ∃ us : List (Set α), Forall₂ (fun b (s : Set α) => s ∈ f b) fs us ∧ sequence us ⊆ t := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Filter/ListTraverse.lean",
+        "line": 47,
+        "tactic_state_before": "case mpr\nα β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\n⊢ (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs",
+        "proof": "rintro ⟨us, hus, hs⟩\n  try repeat assumption",
+        "tactic_state_after": "[case mpr.intro.intro\n α β : Type u\n f : β → Filter α\n fs : List β\n t : Set (List α)\n us : List (Set α)\n hus : Forall₂ (fun b s => s ∈ f b) fs us\n hs : sequence us ⊆ t\n ⊢ t ∈ traverse f fs]",
+        "goal": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nh : t ∈ traverse f fs\n⊢ (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs",
+        "header": "import Mathlib\nimport Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\nopen Set List\n\nopen Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α β : Type u} {f : β → Filter α} (fs : List β) (t : Set (List α))\n  (h : t ∈ traverse f fs) : (∃ us, Forall₂ (fun b s => s ∈ f b) fs us ∧ sequence us ⊆ t) → t ∈ traverse f fs := sorry",
+        "original_theorem_name": "sequence.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\n/-!\n# Properties of `Traversable.traverse` on `List`s and `Filter`s\n\nIn this file we prove basic properties (monotonicity, membership)\nfor `Traversable.traverse f l`, where `f : β → Filter α` and `l : List β`.\n-/\n\nopen Set List\n\nnamespace Filter\n\nuniverse u\n\nvariable {α β γ : Type u} {f : β → Filter α} {s : γ → Set α}\n\ntheorem sequence_mono : ∀ as bs : List (Filter α), Forall₂ (· ≤ ·) as bs → sequence as ≤ sequence bs\n  | [], [], Forall₂.nil => le_rfl\n  | _::as, _::bs, Forall₂.cons h hs => seq_mono (map_mono h) (sequence_mono as bs hs)\n\ntheorem mem_traverse :\n    ∀ (fs : List β) (us : List γ),\n      Forall₂ (fun b c => s c ∈ f b) fs us → traverse s us ∈ traverse f fs\n  | [], [], Forall₂.nil => mem_pure.2 <| mem_singleton _\n  | _::fs, _::us, Forall₂.cons h hs => seq_mem_seq (image_mem_map h) (mem_traverse fs us hs)\n\n-- TODO: add a `Filter.HasBasis` statement\n",
+        "original_theorem_content": "theorem mem_traverse_iff (fs : List β) (t : Set (List α)) :\n    t ∈ traverse f fs ↔\n      ∃ us : List (Set α), Forall₂ (fun b (s : Set α) => s ∈ f b) fs us ∧ sequence us ⊆ t := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Filter/ListTraverse.lean",
+        "line": 48,
+        "tactic_state_before": "case mpr.intro.intro\nα β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nus : List (Set α)\nhus : Forall₂ (fun b s => s ∈ f b) fs us\nhs : sequence us ⊆ t\n⊢ t ∈ traverse f fs",
+        "proof": "exact mem_of_superset (mem_traverse _ _ hus) hs\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nus : List (Set α)\nhus : Forall₂ (fun b s => s ∈ f b) fs us\nhs : sequence us ⊆ t\n⊢ t ∈ traverse f fs",
+        "header": "import Mathlib\nimport Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\nopen Set List\n\nopen Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {α β : Type u} {f : β → Filter α} (fs : List β) (t : Set (List α))\n  (us : List (Set α)) (hus : Forall₂ (fun b s => s ∈ f b) fs us) (hs : sequence us ⊆ t) : t ∈ traverse f fs := sorry",
+        "original_theorem_name": "sequence.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\n/-!\n# Properties of `Traversable.traverse` on `List`s and `Filter`s\n\nIn this file we prove basic properties (monotonicity, membership)\nfor `Traversable.traverse f l`, where `f : β → Filter α` and `l : List β`.\n-/\n\nopen Set List\n\nnamespace Filter\n\nuniverse u\n\nvariable {α β γ : Type u} {f : β → Filter α} {s : γ → Set α}\n\ntheorem sequence_mono : ∀ as bs : List (Filter α), Forall₂ (· ≤ ·) as bs → sequence as ≤ sequence bs\n  | [], [], Forall₂.nil => le_rfl\n  | _::as, _::bs, Forall₂.cons h hs => seq_mono (map_mono h) (sequence_mono as bs hs)\n\ntheorem mem_traverse :\n    ∀ (fs : List β) (us : List γ),\n      Forall₂ (fun b c => s c ∈ f b) fs us → traverse s us ∈ traverse f fs\n  | [], [], Forall₂.nil => mem_pure.2 <| mem_singleton _\n  | _::fs, _::us, Forall₂.cons h hs => seq_mem_seq (image_mem_map h) (mem_traverse fs us hs)\n\n-- TODO: add a `Filter.HasBasis` statement\n",
+        "original_theorem_content": "theorem mem_traverse_iff (fs : List β) (t : Set (List α)) :\n    t ∈ traverse f fs ↔\n      ∃ us : List (Set α), Forall₂ (fun b (s : Set α) => s ∈ f b) fs us ∧ sequence us ⊆ t := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Filter/ListTraverse.lean",
+        "line": 48,
+        "tactic_state_before": "case mpr.intro.intro\nα β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nus : List (Set α)\nhus : Forall₂ (fun b s => s ∈ f b) fs us\nhs : sequence us ⊆ t\n⊢ t ∈ traverse f fs",
+        "proof": "exact mem_of_superset (mem_traverse _ _ hus) hs\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α β : Type u\nf : β → Filter α\nfs : List β\nt : Set (List α)\nus : List (Set α)\nhus : Forall₂ (fun b s => s ∈ f b) fs us\nhs : sequence us ⊆ t\n⊢ t ∈ traverse f fs",
+        "header": "import Mathlib\nimport Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\nopen Set List\n\nopen Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {α β : Type u} {f : β → Filter α} (fs : List β) (t : Set (List α))\n  (us : List (Set α)) (hus : Forall₂ (fun b s => s ∈ f b) fs us) (hs : sequence us ⊆ t) : t ∈ traverse f fs := sorry",
+        "original_theorem_name": "sequence.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Traversable.Instances\n\nimport Mathlib.Order.Filter.Map\n\n/-!\n# Properties of `Traversable.traverse` on `List`s and `Filter`s\n\nIn this file we prove basic properties (monotonicity, membership)\nfor `Traversable.traverse f l`, where `f : β → Filter α` and `l : List β`.\n-/\n\nopen Set List\n\nnamespace Filter\n\nuniverse u\n\nvariable {α β γ : Type u} {f : β → Filter α} {s : γ → Set α}\n\ntheorem sequence_mono : ∀ as bs : List (Filter α), Forall₂ (· ≤ ·) as bs → sequence as ≤ sequence bs\n  | [], [], Forall₂.nil => le_rfl\n  | _::as, _::bs, Forall₂.cons h hs => seq_mono (map_mono h) (sequence_mono as bs hs)\n\ntheorem mem_traverse :\n    ∀ (fs : List β) (us : List γ),\n      Forall₂ (fun b c => s c ∈ f b) fs us → traverse s us ∈ traverse f fs\n  | [], [], Forall₂.nil => mem_pure.2 <| mem_singleton _\n  | _::fs, _::us, Forall₂.cons h hs => seq_mem_seq (image_mem_map h) (mem_traverse fs us hs)\n\n-- TODO: add a `Filter.HasBasis` statement\n",
+        "original_theorem_content": "theorem mem_traverse_iff (fs : List β) (t : Set (List α)) :\n    t ∈ traverse f fs ↔\n      ∃ us : List (Set α), Forall₂ (fun b (s : Set α) => s ∈ f b) fs us ∧ sequence us ⊆ t := by"
+    }
+]

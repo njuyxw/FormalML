@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Counterexamples/Pseudoelement.lean",
+        "line": 51,
+        "tactic_state_before": "case refine_2\n⊢ 𝟙 (of ℤ ℚ) ≫ biprod.lift (𝟙 (of ℤ ℚ)) (2 • 𝟙 (of ℤ ℚ)) ≫ biprod.fst =\n    𝟙 (of ℤ ℚ) ≫ biprod.lift (𝟙 (of ℤ ℚ)) (𝟙 (of ℤ ℚ)) ≫ biprod.fst",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ 𝟙 (of ℤ ℚ) ≫ biprod.lift (𝟙 (of ℤ ℚ)) (2 • 𝟙 (of ℤ ℚ)) ≫ biprod.fst =\n    𝟙 (of ℤ ℚ) ≫ biprod.lift (𝟙 (of ℤ ℚ)) (𝟙 (of ℤ ℚ)) ≫ biprod.fst",
+        "header": "import Counterexamples\nimport Mathlib.CategoryTheory.Abelian.Pseudoelements\n\nimport Mathlib.Algebra.Category.ModuleCat.Biproducts\n\nopen CategoryTheory.Abelian CategoryTheory CategoryTheory.Limits ModuleCat LinearMap\n\nopen CategoryTheory.Abelian.Pseudoelement\n\nopen scoped Pseudoelement\n\nopen Counterexample\n",
+        "formal_statement": "theorem extracted_formal_statement_0 :\n  𝟙 (of ℤ ℚ) ≫ biprod.lift (𝟙 (of ℤ ℚ)) (2 • 𝟙 (of ℤ ℚ)) ≫ biprod.fst =\n    𝟙 (of ℤ ℚ) ≫ biprod.lift (𝟙 (of ℤ ℚ)) (𝟙 (of ℤ ℚ)) ≫ biprod.fst := sorry",
+        "original_theorem_name": "Counterexample.fst_x_pseudo_eq_fst_y",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Abelian.Pseudoelements\n\nimport Mathlib.Algebra.Category.ModuleCat.Biproducts\n\n/-!\n# Pseudoelements and pullbacks\nBorceux claims in Proposition 1.9.5 that the pseudoelement constructed in\n`CategoryTheory.Abelian.Pseudoelement.pseudo_pullback` is unique. We show here that this claim is\nfalse. This means in particular that we cannot have an extensionality principle for pullbacks in\nterms of pseudoelements.\n\n## Implementation details\nThe construction, suggested in https://mathoverflow.net/a/419951/7845, is the following.\nWe work in the category of `ModuleCat ℤ` and we consider the special case of `ℚ ⊞ ℚ` (that is the\npullback over the terminal object). We consider the pseudoelements associated to `x : ℚ ⟶ ℚ ⊞ ℚ`\ngiven by `t ↦ (t, 2 * t)` and `y : ℚ ⟶ ℚ ⊞ ℚ` given by `t ↦ (t, t)`.\n\n## Main results\n* `Counterexample.exist_ne_and_fst_eq_fst_and_snd_eq_snd` : there are two\n  pseudoelements `x y : ℚ ⊞ ℚ` such that `x ≠ y`, `biprod.fst x = biprod.fst y` and\n  `biprod.snd x = biprod.snd y`.\n\n## References\n* [F. Borceux, *Handbook of Categorical Algebra 2*][borceux-vol2]\n-/\n\n\nopen CategoryTheory.Abelian CategoryTheory CategoryTheory.Limits ModuleCat LinearMap\n\nnamespace Counterexample\n\nnoncomputable section\n\nopen CategoryTheory.Abelian.Pseudoelement\n\n/-- `x` is given by `t ↦ (t, 2 * t)`. -/\ndef x : Over (of ℤ ℚ ⊞ of ℤ ℚ) :=\n  Over.mk (biprod.lift (𝟙 _) (2 • 𝟙 _))\n\n/-- `y` is given by `t ↦ (t, t)`. -/\ndef y : Over (of ℤ ℚ ⊞ of ℤ ℚ) :=\n  Over.mk (biprod.lift (𝟙 _) (𝟙 _))\n\n",
+        "original_theorem_content": "/-- `biprod.fst ≫ x` is pseudoequal to `biprod.fst y`. -/\ntheorem fst_x_pseudo_eq_fst_y : PseudoEqual _ (app biprod.fst x) (app biprod.fst y) := by"
+    }
+]

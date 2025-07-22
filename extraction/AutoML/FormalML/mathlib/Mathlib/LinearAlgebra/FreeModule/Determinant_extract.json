@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/LinearAlgebra/FreeModule/Determinant.lean",
+        "line": 23,
+        "tactic_state_before": "R : Type u_1\nM : Type u_2\ninst✝⁵ : CommRing R\ninst✝⁴ : AddCommGroup M\ninst✝³ : Module R M\ninst✝² : Module.Free R M\ninst✝¹ : Module.Finite R M\ninst✝ : Nontrivial M\n⊢ LinearMap.det 0 = 0",
+        "proof": "letI : Nonempty (Module.Free.ChooseBasisIndex R M) := (Module.Free.chooseBasis R M).index_nonempty\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n M : Type u_2\n inst✝⁵ : CommRing R\n inst✝⁴ : AddCommGroup M\n inst✝³ : Module R M\n inst✝² : Module.Free R M\n inst✝¹ : Module.Finite R M\n inst✝ : Nontrivial M\n this : Nonempty (Module.Free.ChooseBasisIndex R M) := Basis.index_nonempty (Module.Free.chooseBasis R M)\n ⊢ LinearMap.det 0 = 0]",
+        "goal": "R : Type u_1\nM : Type u_2\ninst✝⁵ : CommRing R\ninst✝⁴ : AddCommGroup M\ninst✝³ : Module R M\ninst✝² : Module.Free R M\ninst✝¹ : Module.Finite R M\ninst✝ : Nontrivial M\n⊢ Nonempty (Module.Free.ChooseBasisIndex R M)",
+        "header": "import Mathlib\nimport Mathlib.LinearAlgebra.Determinant\n\nimport Mathlib.LinearAlgebra.FreeModule.Finite.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} {M : Type u_2} [inst : CommRing R]\n  [inst_1 : AddCommGroup M] [inst_2 : Module R M] [inst_3 : Module.Free R M] [inst_4 : Module.Finite R M]\n  [inst_5 : Nontrivial M] : Nonempty (Module.Free.ChooseBasisIndex R M) := sorry",
+        "original_theorem_name": "LinearMap.det_zero''",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.Determinant\n\nimport Mathlib.LinearAlgebra.FreeModule.Finite.Basic\n\n/-!\n# Determinants in free (finite) modules\n\nQuite a lot of our results on determinants (that you might know in vector spaces) will work for all\nfree (finite) modules over any commutative ring.\n\n## Main results\n\n * `LinearMap.det_zero''`: The determinant of the constant zero map is zero, in a finite free\n   nontrivial module.\n-/\n\n\n",
+        "original_theorem_content": "@[simp high]\ntheorem LinearMap.det_zero'' {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]\n    [Module.Free R M] [Module.Finite R M] [Nontrivial M] : LinearMap.det (0 : M →ₗ[R] M) = 0 := by"
+    }
+]

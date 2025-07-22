@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subgroup/Saturated.lean",
+        "line": 59,
+        "tactic_state_before": "A₁ : Type u_1\nA₂ : Type u_2\ninst✝² : AddCommGroup A₁\ninst✝¹ : AddCommGroup A₂\ninst✝ : NoZeroSMulDivisors ℕ A₂\nf : A₁ →+ A₂\nn : ℕ\ng : A₁\nhg : n • g ∈ f.ker\n⊢ n = 0 ∨ g ∈ f.ker",
+        "proof": "simpa only [f.mem_ker, nsmul_eq_smul, f.map_nsmul, smul_eq_zero] using hg\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "A₁ : Type u_1\nA₂ : Type u_2\ninst✝² : AddCommGroup A₁\ninst✝¹ : AddCommGroup A₂\ninst✝ : NoZeroSMulDivisors ℕ A₂\nf : A₁ →+ A₂\nn : ℕ\ng : A₁\nhg : n • g ∈ f.ker\n⊢ n = 0 ∨ g ∈ f.ker",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nopen Subgroup\n\nopen AddSubgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {A₁ : Type u_1} {A₂ : Type u_2} [inst : AddCommGroup A₁]\n  [inst_1 : AddCommGroup A₂] [inst_2 : NoZeroSMulDivisors ℕ A₂] (f : A₁ →+ A₂) ⦃n : ℕ⦄ ⦃g : A₁⦄ (hg : n • g ∈ f.ker) :\n  n = 0 ∨ g ∈ f.ker := sorry",
+        "original_theorem_name": "AddSubgroup.ker_saturated",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\n/-!\n# Saturated subgroups\n\n## Tags\nsubgroup, subgroups\n\n-/\n\n\nnamespace Subgroup\n\nvariable {G : Type*} [Group G]\n\n/-- A subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `g^n ∈ H`\nwe have `n = 0` or `g ∈ H`. -/\n@[to_additive\n      \"An additive subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `n•g ∈ H`\n      we have `n = 0` or `g ∈ H`.\"]\ndef Saturated (H : Subgroup G) : Prop :=\n  ∀ ⦃n g⦄, g ^ n ∈ H → n = 0 ∨ g ∈ H\n\n@[to_additive]\ntheorem saturated_iff_npow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℕ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H :=\n  Iff.rfl\n\n@[to_additive]\ntheorem saturated_iff_zpow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := by\n  constructor\n  · intros hH n g hgn\n    cases n with\n    | ofNat n =>\n      simp only [Int.natCast_eq_zero, Int.ofNat_eq_coe, zpow_natCast] at hgn ⊢\n      exact hH hgn\n    | negSucc n =>\n      suffices g ^ (n + 1) ∈ H by\n        refine (hH this).imp ?_ id\n        simp only [IsEmpty.forall_iff, Nat.succ_ne_zero]\n      simpa only [inv_mem_iff, zpow_negSucc] using hgn\n  · intro h n g hgn\n    specialize h n g\n    simp only [Int.natCast_eq_zero, zpow_natCast] at h\n    apply h hgn\n\nend Subgroup\n\nnamespace AddSubgroup\n\n",
+        "original_theorem_content": "theorem ker_saturated {A₁ A₂ : Type*} [AddCommGroup A₁] [AddCommGroup A₂] [NoZeroSMulDivisors ℕ A₂]\n    (f : A₁ →+ A₂) : f.ker.Saturated := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subgroup/Saturated.lean",
+        "line": 36,
+        "tactic_state_before": "G : Type u_1\ninst✝ : Group G\nH : Subgroup G\n⊢ H.Saturated ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n G : Type u_1\n inst✝ : Group G\n H : Subgroup G\n ⊢ H.Saturated → ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H,\n case mpr\n G : Type u_1\n inst✝ : Group G\n H : Subgroup G\n ⊢ (∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H) → H.Saturated]",
+        "goal": "G : Type u_1\ninst✝ : Group G\nH : Subgroup G\nh✝ : H.Saturated → ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H\nh : (∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H) → H.Saturated\n⊢ H.Saturated ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nopen Subgroup\n\nopen AddSubgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {G : Type u_1} [inst : Group G] {H : Subgroup G}\n  (h_1 : H.Saturated → ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H)\n  (h : (∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H) → H.Saturated) :\n  H.Saturated ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := sorry",
+        "original_theorem_name": "AddSubgroup.saturated_iff_zsmul",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\n/-!\n# Saturated subgroups\n\n## Tags\nsubgroup, subgroups\n\n-/\n\n\nnamespace Subgroup\n\nvariable {G : Type*} [Group G]\n\n/-- A subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `g^n ∈ H`\nwe have `n = 0` or `g ∈ H`. -/\n@[to_additive\n      \"An additive subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `n•g ∈ H`\n      we have `n = 0` or `g ∈ H`.\"]\ndef Saturated (H : Subgroup G) : Prop :=\n  ∀ ⦃n g⦄, g ^ n ∈ H → n = 0 ∨ g ∈ H\n\n@[to_additive]\ntheorem saturated_iff_npow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℕ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H :=\n  Iff.rfl\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem saturated_iff_zpow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subgroup/Saturated.lean",
+        "line": 36,
+        "tactic_state_before": "G : Type u_1\ninst✝ : Group G\nH : Subgroup G\n⊢ H.Saturated ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n G : Type u_1\n inst✝ : Group G\n H : Subgroup G\n ⊢ H.Saturated → ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H,\n case mpr\n G : Type u_1\n inst✝ : Group G\n H : Subgroup G\n ⊢ (∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H) → H.Saturated]",
+        "goal": "G : Type u_1\ninst✝ : Group G\nH : Subgroup G\nh✝ : H.Saturated → ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H\nh : (∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H) → H.Saturated\n⊢ H.Saturated ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nopen Subgroup\n\nopen AddSubgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {G : Type u_1} [inst : Group G] {H : Subgroup G}\n  (h_1 : H.Saturated → ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H)\n  (h : (∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H) → H.Saturated) :\n  H.Saturated ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := sorry",
+        "original_theorem_name": "AddSubgroup.saturated_iff_zsmul",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\n/-!\n# Saturated subgroups\n\n## Tags\nsubgroup, subgroups\n\n-/\n\n\nnamespace Subgroup\n\nvariable {G : Type*} [Group G]\n\n/-- A subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `g^n ∈ H`\nwe have `n = 0` or `g ∈ H`. -/\n@[to_additive\n      \"An additive subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `n•g ∈ H`\n      we have `n = 0` or `g ∈ H`.\"]\ndef Saturated (H : Subgroup G) : Prop :=\n  ∀ ⦃n g⦄, g ^ n ∈ H → n = 0 ∨ g ∈ H\n\n@[to_additive]\ntheorem saturated_iff_npow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℕ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H :=\n  Iff.rfl\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem saturated_iff_zpow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subgroup/Saturated.lean",
+        "line": 51,
+        "tactic_state_before": "case mpr\nG : Type u_1\ninst✝ : Group G\nH : Subgroup G\nn : ℕ\ng : G\nhgn : g ^ n ∈ H\nh : g ^ n ∈ H → n = 0 ∨ g ∈ H\n⊢ n = 0 ∨ g ∈ H",
+        "proof": "apply h hgn\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G : Type u_1\ninst✝ : Group G\nH : Subgroup G\nn : ℕ\ng : G\nhgn : g ^ n ∈ H\nh : g ^ n ∈ H → n = 0 ∨ g ∈ H\n⊢ n = 0 ∨ g ∈ H",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nopen Subgroup\n\nopen AddSubgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {G : Type u_1} [inst : Group G] {H : Subgroup G} ⦃n : ℕ⦄ ⦃g : G⦄\n  (hgn : g ^ n ∈ H) (h : g ^ n ∈ H → n = 0 ∨ g ∈ H) : n = 0 ∨ g ∈ H := sorry",
+        "original_theorem_name": "AddSubgroup.saturated_iff_zsmul",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\n/-!\n# Saturated subgroups\n\n## Tags\nsubgroup, subgroups\n\n-/\n\n\nnamespace Subgroup\n\nvariable {G : Type*} [Group G]\n\n/-- A subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `g^n ∈ H`\nwe have `n = 0` or `g ∈ H`. -/\n@[to_additive\n      \"An additive subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `n•g ∈ H`\n      we have `n = 0` or `g ∈ H`.\"]\ndef Saturated (H : Subgroup G) : Prop :=\n  ∀ ⦃n g⦄, g ^ n ∈ H → n = 0 ∨ g ∈ H\n\n@[to_additive]\ntheorem saturated_iff_npow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℕ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H :=\n  Iff.rfl\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem saturated_iff_zpow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/GroupTheory/Subgroup/Saturated.lean",
+        "line": 51,
+        "tactic_state_before": "case mpr\nG : Type u_1\ninst✝ : Group G\nH : Subgroup G\nn : ℕ\ng : G\nhgn : g ^ n ∈ H\nh : g ^ n ∈ H → n = 0 ∨ g ∈ H\n⊢ n = 0 ∨ g ∈ H",
+        "proof": "apply h hgn\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G : Type u_1\ninst✝ : Group G\nH : Subgroup G\nn : ℕ\ng : G\nhgn : g ^ n ∈ H\nh : g ^ n ∈ H → n = 0 ∨ g ∈ H\n⊢ n = 0 ∨ g ∈ H",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\nopen Subgroup\n\nopen AddSubgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {G : Type u_1} [inst : Group G] {H : Subgroup G} ⦃n : ℕ⦄ ⦃g : G⦄\n  (hgn : g ^ n ∈ H) (h : g ^ n ∈ H → n = 0 ∨ g ∈ H) : n = 0 ∨ g ∈ H := sorry",
+        "original_theorem_name": "AddSubgroup.saturated_iff_zsmul",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Subgroup.Ker\n\nimport Mathlib.Algebra.NoZeroSMulDivisors.Defs\n\n/-!\n# Saturated subgroups\n\n## Tags\nsubgroup, subgroups\n\n-/\n\n\nnamespace Subgroup\n\nvariable {G : Type*} [Group G]\n\n/-- A subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `g^n ∈ H`\nwe have `n = 0` or `g ∈ H`. -/\n@[to_additive\n      \"An additive subgroup `H` of `G` is *saturated* if for all `n : ℕ` and `g : G` with `n•g ∈ H`\n      we have `n = 0` or `g ∈ H`.\"]\ndef Saturated (H : Subgroup G) : Prop :=\n  ∀ ⦃n g⦄, g ^ n ∈ H → n = 0 ∨ g ∈ H\n\n@[to_additive]\ntheorem saturated_iff_npow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℕ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H :=\n  Iff.rfl\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem saturated_iff_zpow {H : Subgroup G} :\n    Saturated H ↔ ∀ (n : ℤ) (g : G), g ^ n ∈ H → n = 0 ∨ g ∈ H := by"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Category/ModuleCat/Injective.lean",
+        "line": 29,
+        "tactic_state_before": "R : Type u\nM : Type v\ninst✝² : Ring R\ninst✝¹ : AddCommGroup M\ninst✝ : Module R M\ninj : CategoryTheory.Injective (ModuleCat.of R M)\nX Y : Type v\nx✝³ : AddCommGroup X\nx✝² : AddCommGroup Y\nx✝¹ : Module R X\nx✝ : Module R Y\nf : X →ₗ[R] Y\nhf : Function.Injective ⇑f\ng : X →ₗ[R] M\n⊢ ∃ h, ∀ (x : X), h (f x) = g x",
+        "proof": "have : CategoryTheory.Mono (ModuleCat.ofHom f) := (ModuleCat.mono_iff_injective _).mpr hf\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u\n M : Type v\n inst✝² : Ring R\n inst✝¹ : AddCommGroup M\n inst✝ : Module R M\n inj : CategoryTheory.Injective (ModuleCat.of R M)\n X Y : Type v\n x✝³ : AddCommGroup X\n x✝² : AddCommGroup Y\n x✝¹ : Module R X\n x✝ : Module R Y\n f : X →ₗ[R] Y\n hf : Function.Injective ⇑f\n g : X →ₗ[R] M\n this : Mono (ModuleCat.ofHom f)\n ⊢ ∃ h, ∀ (x : X), h (f x) = g x]",
+        "goal": "R : Type u\nM : Type v\ninst✝² : Ring R\ninst✝¹ : AddCommGroup M\ninst✝ : Module R M\ninj : CategoryTheory.Injective (ModuleCat.of R M)\nX Y : Type v\nx✝³ : AddCommGroup X\nx✝² : AddCommGroup Y\nx✝¹ : Module R X\nx✝ : Module R Y\nf : X →ₗ[R] Y\nhf : Function.Injective ⇑f\ng : X →ₗ[R] M\n⊢ Mono (ModuleCat.ofHom f)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Module.Injective\n\nimport Mathlib.CategoryTheory.Preadditive.Injective.Basic\n\nimport Mathlib.Algebra.Category.ModuleCat.EpiMono\n\nopen CategoryTheory\n\nopen Module\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (R : Type u) (M : Type v) [inst : Ring R] [inst_1 : AddCommGroup M]\n  [inst_2 : Module R M] [inj : CategoryTheory.Injective (ModuleCat.of R M)] (X Y : Type v) (x : AddCommGroup X)\n  (x_1 : AddCommGroup Y) (x_2 : Module R X) (x_3 : Module R Y) (f : X →ₗ[R] Y) (hf : Function.Injective ⇑f) :\n  Mono (ModuleCat.ofHom f) := sorry",
+        "original_theorem_name": "Module.injective_module_of_injective_object",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Module.Injective\n\nimport Mathlib.CategoryTheory.Preadditive.Injective.Basic\n\nimport Mathlib.Algebra.Category.ModuleCat.EpiMono\n\n/-!\n# Injective objects in the category of $R$-modules\n-/\n\nopen CategoryTheory\n\nuniverse u v\nvariable (R : Type u) (M : Type v) [Ring R] [AddCommGroup M] [Module R M]\nnamespace Module\n\ntheorem injective_object_of_injective_module [inj : Injective R M] :\n    CategoryTheory.Injective (ModuleCat.of R M) where\n  factors g f m :=\n    have ⟨l, h⟩ := inj.out f.hom ((ModuleCat.mono_iff_injective f).mp m) g.hom\n    ⟨ModuleCat.ofHom l, by ext x; simpa using h x⟩\n\n",
+        "original_theorem_content": "theorem injective_module_of_injective_object\n    [inj : CategoryTheory.Injective <| ModuleCat.of R M] :\n    Module.Injective R M where\n  out X Y _ _ _ _ f hf g := by"
+    }
+]

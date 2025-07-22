@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Set/Opposite.lean",
+        "line": 40,
+        "tactic_state_before": "α : Type u_1\ns : Set αᵒᵖ\na : αᵒᵖ\n⊢ unop a ∈ s.unop ↔ a ∈ s",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ns : Set αᵒᵖ\na : αᵒᵖ\n⊢ unop a ∈ s.unop ↔ a ∈ s",
+        "header": "import Mathlib\nimport Mathlib.Data.Opposite\n\nimport Mathlib.Data.Set.Operations\n\nopen Opposite\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {s : Set αᵒᵖ} {a : αᵒᵖ} : unop a ∈ s.unop ↔ a ∈ s := sorry",
+        "original_theorem_name": "Set.unop_mem_unop",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Opposite\n\nimport Mathlib.Data.Set.Operations\n\n/-!\n# The opposite of a set\n\nThe opposite of a set `s` is simply the set obtained by taking the opposite of each member of `s`.\n-/\n\nvariable {α : Type*}\n\nopen Opposite\n\nnamespace Set\n\n/-- The opposite of a set `s` is the set obtained by taking the opposite of each member of `s`. -/\nprotected def op (s : Set α) : Set αᵒᵖ :=\n  unop ⁻¹' s\n\n/-- The unop of a set `s` is the set obtained by taking the unop of each member of `s`. -/\nprotected def unop (s : Set αᵒᵖ) : Set α :=\n  op ⁻¹' s\n\n@[simp]\ntheorem mem_op {s : Set α} {a : αᵒᵖ} : a ∈ s.op ↔ unop a ∈ s :=\n  Iff.rfl\n\n@[simp 1100]\ntheorem op_mem_op {s : Set α} {a : α} : op a ∈ s.op ↔ a ∈ s := by rfl\n\n@[simp]\ntheorem mem_unop {s : Set αᵒᵖ} {a : α} : a ∈ s.unop ↔ op a ∈ s :=\n  Iff.rfl\n\n",
+        "original_theorem_content": "@[simp 1100]\ntheorem unop_mem_unop {s : Set αᵒᵖ} {a : αᵒᵖ} : unop a ∈ s.unop ↔ a ∈ s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Set/Opposite.lean",
+        "line": 33,
+        "tactic_state_before": "α : Type u_1\ns : Set α\na : α\n⊢ op a ∈ s.op ↔ a ∈ s",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ns : Set α\na : α\n⊢ op a ∈ s.op ↔ a ∈ s",
+        "header": "import Mathlib\nimport Mathlib.Data.Opposite\n\nimport Mathlib.Data.Set.Operations\n\nopen Opposite\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {s : Set α} {a : α} : op a ∈ s.op ↔ a ∈ s := sorry",
+        "original_theorem_name": "Set.op_mem_op",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Opposite\n\nimport Mathlib.Data.Set.Operations\n\n/-!\n# The opposite of a set\n\nThe opposite of a set `s` is simply the set obtained by taking the opposite of each member of `s`.\n-/\n\nvariable {α : Type*}\n\nopen Opposite\n\nnamespace Set\n\n/-- The opposite of a set `s` is the set obtained by taking the opposite of each member of `s`. -/\nprotected def op (s : Set α) : Set αᵒᵖ :=\n  unop ⁻¹' s\n\n/-- The unop of a set `s` is the set obtained by taking the unop of each member of `s`. -/\nprotected def unop (s : Set αᵒᵖ) : Set α :=\n  op ⁻¹' s\n\n@[simp]\ntheorem mem_op {s : Set α} {a : αᵒᵖ} : a ∈ s.op ↔ unop a ∈ s :=\n  Iff.rfl\n\n",
+        "original_theorem_content": "@[simp 1100]\ntheorem op_mem_op {s : Set α} {a : α} : op a ∈ s.op ↔ a ∈ s := by"
+    }
+]

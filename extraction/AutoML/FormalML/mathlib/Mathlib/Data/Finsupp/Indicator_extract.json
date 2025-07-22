@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Indicator.lean",
+        "line": 63,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ni : ι\nb : α\n⊢ single i b = indicator {i} fun x x => b",
+        "proof": "classical\next j\nsimp [single_apply, indicator_apply, @eq_comm _ j]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ni : ι\nb : α\n⊢ single i b = indicator {i} fun x x => b",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.Single\n\nopen Finset Function\n\nopen Finsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {α : Type u_2} [inst : Zero α] (i : ι) (b : α) :\n  single i b = indicator {i} fun x x => b := sorry",
+        "original_theorem_name": "Finsupp.single_eq_indicator",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.Single\n\n/-!\n# Building finitely supported functions off finsets\n\nThis file defines `Finsupp.indicator` to help create finsupps from finsets.\n\n## Main declarations\n\n* `Finsupp.indicator`: Turns a map from a `Finset` into a `Finsupp` from the entire type.\n-/\n\n\nnoncomputable section\n\nopen Finset Function\n\nvariable {ι α : Type*}\n\nnamespace Finsupp\n\nvariable [Zero α] {s : Finset ι} (f : ∀ i ∈ s, α) {i : ι}\n\n/-- Create an element of `ι →₀ α` from a finset `s` and a function `f` defined on this finset. -/\ndef indicator (s : Finset ι) (f : ∀ i ∈ s, α) : ι →₀ α where\n  toFun i :=\n    haveI := Classical.decEq ι\n    if H : i ∈ s then f i H else 0\n  support :=\n    haveI := Classical.decEq α\n    ({i | f i.1 i.2 ≠ 0} : Finset s).map (Embedding.subtype _)\n  mem_support_toFun i := by\n    classical simp\n\ntheorem indicator_of_mem (hi : i ∈ s) (f : ∀ i ∈ s, α) : indicator s f i = f i hi :=\n  @dif_pos _ (id _) hi _ _ _\n\ntheorem indicator_of_not_mem (hi : i ∉ s) (f : ∀ i ∈ s, α) : indicator s f i = 0 :=\n  @dif_neg _ (id _) hi _ _ _\n\nvariable (s i)\n\n@[simp]\ntheorem indicator_apply [DecidableEq ι] : indicator s f i = if hi : i ∈ s then f i hi else 0 := by\n  simp only [indicator, ne_eq, coe_mk]\n  congr\n\ntheorem indicator_injective : Injective fun f : ∀ i ∈ s, α => indicator s f := by\n  intro a b h\n  ext i hi\n  rw [← indicator_of_mem hi a, ← indicator_of_mem hi b]\n  exact DFunLike.congr_fun h i\n\ntheorem support_indicator_subset : ((indicator s f).support : Set ι) ⊆ s := by\n  intro i hi\n  rw [mem_coe, mem_support_iff] at hi\n  by_contra h\n  exact hi (indicator_of_not_mem h _)\n\n",
+        "original_theorem_content": "lemma single_eq_indicator (b : α) : single i b = indicator {i} (fun _ _ => b) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Indicator.lean",
+        "line": 60,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ns : Finset ι\nf : (i : ι) → i ∈ s → α\ni : ι\nhi : (indicator s f) i ≠ 0\nh : i ∉ ↑s\n⊢ False",
+        "proof": "exact hi (indicator_of_not_mem h _)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ns : Finset ι\nf : (i : ι) → i ∈ s → α\ni : ι\nhi : (indicator s f) i ≠ 0\nh : i ∉ ↑s\n⊢ False",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.Single\n\nopen Finset Function\n\nopen Finsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {α : Type u_2} [inst : Zero α] (s : Finset ι)\n  (f : (i : ι) → i ∈ s → α) ⦃i : ι⦄ (hi : (indicator s f) i ≠ 0) (h : i ∉ ↑s) : False := sorry",
+        "original_theorem_name": "Finsupp.support_indicator_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.Single\n\n/-!\n# Building finitely supported functions off finsets\n\nThis file defines `Finsupp.indicator` to help create finsupps from finsets.\n\n## Main declarations\n\n* `Finsupp.indicator`: Turns a map from a `Finset` into a `Finsupp` from the entire type.\n-/\n\n\nnoncomputable section\n\nopen Finset Function\n\nvariable {ι α : Type*}\n\nnamespace Finsupp\n\nvariable [Zero α] {s : Finset ι} (f : ∀ i ∈ s, α) {i : ι}\n\n/-- Create an element of `ι →₀ α` from a finset `s` and a function `f` defined on this finset. -/\ndef indicator (s : Finset ι) (f : ∀ i ∈ s, α) : ι →₀ α where\n  toFun i :=\n    haveI := Classical.decEq ι\n    if H : i ∈ s then f i H else 0\n  support :=\n    haveI := Classical.decEq α\n    ({i | f i.1 i.2 ≠ 0} : Finset s).map (Embedding.subtype _)\n  mem_support_toFun i := by\n    classical simp\n\ntheorem indicator_of_mem (hi : i ∈ s) (f : ∀ i ∈ s, α) : indicator s f i = f i hi :=\n  @dif_pos _ (id _) hi _ _ _\n\ntheorem indicator_of_not_mem (hi : i ∉ s) (f : ∀ i ∈ s, α) : indicator s f i = 0 :=\n  @dif_neg _ (id _) hi _ _ _\n\nvariable (s i)\n\n@[simp]\ntheorem indicator_apply [DecidableEq ι] : indicator s f i = if hi : i ∈ s then f i hi else 0 := by\n  simp only [indicator, ne_eq, coe_mk]\n  congr\n\ntheorem indicator_injective : Injective fun f : ∀ i ∈ s, α => indicator s f := by\n  intro a b h\n  ext i hi\n  rw [← indicator_of_mem hi a, ← indicator_of_mem hi b]\n  exact DFunLike.congr_fun h i\n\n",
+        "original_theorem_content": "theorem support_indicator_subset : ((indicator s f).support : Set ι) ⊆ s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Indicator.lean",
+        "line": 53,
+        "tactic_state_before": "case h.h\nι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ns : Finset ι\na b : (i : ι) → i ∈ s → α\nh : (fun f => indicator s f) a = (fun f => indicator s f) b\ni : ι\nhi : i ∈ s\n⊢ a i hi = b i hi",
+        "proof": "rw [← indicator_of_mem hi a, ← indicator_of_mem hi b]\n  try repeat assumption",
+        "tactic_state_after": "[case h.h\n ι : Type u_1\n α : Type u_2\n inst✝ : Zero α\n s : Finset ι\n a b : (i : ι) → i ∈ s → α\n h : (fun f => indicator s f) a = (fun f => indicator s f) b\n i : ι\n hi : i ∈ s\n ⊢ (indicator s a) i = (indicator s b) i]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ns : Finset ι\na b : (i : ι) → i ∈ s → α\nh✝ : (fun f => indicator s f) a = (fun f => indicator s f) b\ni : ι\nhi : i ∈ s\nh : (indicator s a) i = (indicator s b) i\n⊢ a i hi = b i hi",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.Single\n\nopen Finset Function\n\nopen Finsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {ι : Type u_1} {α : Type u_2} [inst : Zero α] (s : Finset ι)\n  ⦃a b : (i : ι) → i ∈ s → α⦄ (h_1 : (fun f => indicator s f) a = (fun f => indicator s f) b) (i : ι) (hi : i ∈ s)\n  (h : (indicator s a) i = (indicator s b) i) : a i hi = b i hi := sorry",
+        "original_theorem_name": "Finsupp.indicator_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.Single\n\n/-!\n# Building finitely supported functions off finsets\n\nThis file defines `Finsupp.indicator` to help create finsupps from finsets.\n\n## Main declarations\n\n* `Finsupp.indicator`: Turns a map from a `Finset` into a `Finsupp` from the entire type.\n-/\n\n\nnoncomputable section\n\nopen Finset Function\n\nvariable {ι α : Type*}\n\nnamespace Finsupp\n\nvariable [Zero α] {s : Finset ι} (f : ∀ i ∈ s, α) {i : ι}\n\n/-- Create an element of `ι →₀ α` from a finset `s` and a function `f` defined on this finset. -/\ndef indicator (s : Finset ι) (f : ∀ i ∈ s, α) : ι →₀ α where\n  toFun i :=\n    haveI := Classical.decEq ι\n    if H : i ∈ s then f i H else 0\n  support :=\n    haveI := Classical.decEq α\n    ({i | f i.1 i.2 ≠ 0} : Finset s).map (Embedding.subtype _)\n  mem_support_toFun i := by\n    classical simp\n\ntheorem indicator_of_mem (hi : i ∈ s) (f : ∀ i ∈ s, α) : indicator s f i = f i hi :=\n  @dif_pos _ (id _) hi _ _ _\n\ntheorem indicator_of_not_mem (hi : i ∉ s) (f : ∀ i ∈ s, α) : indicator s f i = 0 :=\n  @dif_neg _ (id _) hi _ _ _\n\nvariable (s i)\n\n@[simp]\ntheorem indicator_apply [DecidableEq ι] : indicator s f i = if hi : i ∈ s then f i hi else 0 := by\n  simp only [indicator, ne_eq, coe_mk]\n  congr\n\n",
+        "original_theorem_content": "theorem indicator_injective : Injective fun f : ∀ i ∈ s, α => indicator s f := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Indicator.lean",
+        "line": 54,
+        "tactic_state_before": "case h.h\nι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ns : Finset ι\na b : (i : ι) → i ∈ s → α\nh : (fun f => indicator s f) a = (fun f => indicator s f) b\ni : ι\nhi : i ∈ s\n⊢ (indicator s a) i = (indicator s b) i",
+        "proof": "exact DFunLike.congr_fun h i\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : Zero α\ns : Finset ι\na b : (i : ι) → i ∈ s → α\nh : (fun f => indicator s f) a = (fun f => indicator s f) b\ni : ι\nhi : i ∈ s\n⊢ (indicator s a) i = (indicator s b) i",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.Single\n\nopen Finset Function\n\nopen Finsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {ι : Type u_1} {α : Type u_2} [inst : Zero α] (s : Finset ι)\n  ⦃a b : (i : ι) → i ∈ s → α⦄ (h : (fun f => indicator s f) a = (fun f => indicator s f) b) (i : ι) (hi : i ∈ s) :\n  (indicator s a) i = (indicator s b) i := sorry",
+        "original_theorem_name": "Finsupp.indicator_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.Single\n\n/-!\n# Building finitely supported functions off finsets\n\nThis file defines `Finsupp.indicator` to help create finsupps from finsets.\n\n## Main declarations\n\n* `Finsupp.indicator`: Turns a map from a `Finset` into a `Finsupp` from the entire type.\n-/\n\n\nnoncomputable section\n\nopen Finset Function\n\nvariable {ι α : Type*}\n\nnamespace Finsupp\n\nvariable [Zero α] {s : Finset ι} (f : ∀ i ∈ s, α) {i : ι}\n\n/-- Create an element of `ι →₀ α` from a finset `s` and a function `f` defined on this finset. -/\ndef indicator (s : Finset ι) (f : ∀ i ∈ s, α) : ι →₀ α where\n  toFun i :=\n    haveI := Classical.decEq ι\n    if H : i ∈ s then f i H else 0\n  support :=\n    haveI := Classical.decEq α\n    ({i | f i.1 i.2 ≠ 0} : Finset s).map (Embedding.subtype _)\n  mem_support_toFun i := by\n    classical simp\n\ntheorem indicator_of_mem (hi : i ∈ s) (f : ∀ i ∈ s, α) : indicator s f i = f i hi :=\n  @dif_pos _ (id _) hi _ _ _\n\ntheorem indicator_of_not_mem (hi : i ∉ s) (f : ∀ i ∈ s, α) : indicator s f i = 0 :=\n  @dif_neg _ (id _) hi _ _ _\n\nvariable (s i)\n\n@[simp]\ntheorem indicator_apply [DecidableEq ι] : indicator s f i = if hi : i ∈ s then f i hi else 0 := by\n  simp only [indicator, ne_eq, coe_mk]\n  congr\n\n",
+        "original_theorem_content": "theorem indicator_injective : Injective fun f : ∀ i ∈ s, α => indicator s f := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Indicator.lean",
+        "line": 48,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝¹ : Zero α\ns : Finset ι\nf : (i : ι) → i ∈ s → α\ni : ι\ninst✝ : DecidableEq ι\n⊢ (if H : i ∈ s then f i H else 0) = if hi : i ∈ s then f i hi else 0",
+        "proof": "congr\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝¹ : Zero α\ns : Finset ι\nf : (i : ι) → i ∈ s → α\ni : ι\ninst✝ : DecidableEq ι\n⊢ (if H : i ∈ s then f i H else 0) = if hi : i ∈ s then f i hi else 0",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.Single\n\nopen Finset Function\n\nopen Finsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {ι : Type u_1} {α : Type u_2} [inst : Zero α] (s : Finset ι)\n  (f : (i : ι) → i ∈ s → α) (i : ι) [inst_1 : DecidableEq ι] :\n  (if H : i ∈ s then f i H else 0) = if hi : i ∈ s then f i hi else 0 := sorry",
+        "original_theorem_name": "Finsupp.indicator_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.Single\n\n/-!\n# Building finitely supported functions off finsets\n\nThis file defines `Finsupp.indicator` to help create finsupps from finsets.\n\n## Main declarations\n\n* `Finsupp.indicator`: Turns a map from a `Finset` into a `Finsupp` from the entire type.\n-/\n\n\nnoncomputable section\n\nopen Finset Function\n\nvariable {ι α : Type*}\n\nnamespace Finsupp\n\nvariable [Zero α] {s : Finset ι} (f : ∀ i ∈ s, α) {i : ι}\n\n/-- Create an element of `ι →₀ α` from a finset `s` and a function `f` defined on this finset. -/\ndef indicator (s : Finset ι) (f : ∀ i ∈ s, α) : ι →₀ α where\n  toFun i :=\n    haveI := Classical.decEq ι\n    if H : i ∈ s then f i H else 0\n  support :=\n    haveI := Classical.decEq α\n    ({i | f i.1 i.2 ≠ 0} : Finset s).map (Embedding.subtype _)\n  mem_support_toFun i := by\n    classical simp\n\ntheorem indicator_of_mem (hi : i ∈ s) (f : ∀ i ∈ s, α) : indicator s f i = f i hi :=\n  @dif_pos _ (id _) hi _ _ _\n\ntheorem indicator_of_not_mem (hi : i ∉ s) (f : ∀ i ∈ s, α) : indicator s f i = 0 :=\n  @dif_neg _ (id _) hi _ _ _\n\nvariable (s i)\n\n",
+        "original_theorem_content": "@[simp]\ntheorem indicator_apply [DecidableEq ι] : indicator s f i = if hi : i ∈ s then f i hi else 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Indicator.lean",
+        "line": 48,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝¹ : Zero α\ns : Finset ι\nf : (i : ι) → i ∈ s → α\ni : ι\ninst✝ : DecidableEq ι\n⊢ (if H : i ∈ s then f i H else 0) = if hi : i ∈ s then f i hi else 0",
+        "proof": "congr\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝¹ : Zero α\ns : Finset ι\nf : (i : ι) → i ∈ s → α\ni : ι\ninst✝ : DecidableEq ι\n⊢ (if H : i ∈ s then f i H else 0) = if hi : i ∈ s then f i hi else 0",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.Single\n\nopen Finset Function\n\nopen Finsupp\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {ι : Type u_1} {α : Type u_2} [inst : Zero α] (s : Finset ι)\n  (f : (i : ι) → i ∈ s → α) (i : ι) [inst_1 : DecidableEq ι] :\n  (if H : i ∈ s then f i H else 0) = if hi : i ∈ s then f i hi else 0 := sorry",
+        "original_theorem_name": "Finsupp.indicator_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.Single\n\n/-!\n# Building finitely supported functions off finsets\n\nThis file defines `Finsupp.indicator` to help create finsupps from finsets.\n\n## Main declarations\n\n* `Finsupp.indicator`: Turns a map from a `Finset` into a `Finsupp` from the entire type.\n-/\n\n\nnoncomputable section\n\nopen Finset Function\n\nvariable {ι α : Type*}\n\nnamespace Finsupp\n\nvariable [Zero α] {s : Finset ι} (f : ∀ i ∈ s, α) {i : ι}\n\n/-- Create an element of `ι →₀ α` from a finset `s` and a function `f` defined on this finset. -/\ndef indicator (s : Finset ι) (f : ∀ i ∈ s, α) : ι →₀ α where\n  toFun i :=\n    haveI := Classical.decEq ι\n    if H : i ∈ s then f i H else 0\n  support :=\n    haveI := Classical.decEq α\n    ({i | f i.1 i.2 ≠ 0} : Finset s).map (Embedding.subtype _)\n  mem_support_toFun i := by\n    classical simp\n\ntheorem indicator_of_mem (hi : i ∈ s) (f : ∀ i ∈ s, α) : indicator s f i = f i hi :=\n  @dif_pos _ (id _) hi _ _ _\n\ntheorem indicator_of_not_mem (hi : i ∉ s) (f : ∀ i ∈ s, α) : indicator s f i = 0 :=\n  @dif_neg _ (id _) hi _ _ _\n\nvariable (s i)\n\n",
+        "original_theorem_content": "@[simp]\ntheorem indicator_apply [DecidableEq ι] : indicator s f i = if hi : i ∈ s then f i hi else 0 := by"
+    }
+]

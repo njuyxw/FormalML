@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Logic/Equiv/Nat.lean",
+        "line": 42,
+        "tactic_state_before": "case h.inr\nx : ℕ\n⊢ natSumNatEquivNat (Sum.inr x) = Sum.elim (fun x => 2 * x) (fun x => 2 * x + 1) (Sum.inr x)",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x : ℕ\n⊢ natSumNatEquivNat (Sum.inr x) = Sum.elim (fun x => 2 * x) (fun x => 2 * x + 1) (Sum.inr x)",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\nopen Nat Function\n\nopen Equiv\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (x : ℕ) :\n  natSumNatEquivNat (Sum.inr x) = Sum.elim (fun x => 2 * x) (fun x => 2 * x + 1) (Sum.inr x) := sorry",
+        "original_theorem_name": "Equiv.natSumNatEquivNat_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\n/-!\n# Equivalences involving `ℕ`\n\nThis file defines some additional constructive equivalences using `Encodable` and the pairing\nfunction on `ℕ`.\n-/\n\nassert_not_exists Monoid\n\nopen Nat Function\n\nnamespace Equiv\n\nvariable {α : Type*}\n\n/-- An equivalence between `Bool × ℕ` and `ℕ`, by mapping `(true, x)` to `2 * x + 1` and\n`(false, x)` to `2 * x`. -/\n@[simps]\ndef boolProdNatEquivNat : Bool × ℕ ≃ ℕ where\n  toFun := uncurry bit\n  invFun := boddDiv2\n  left_inv := fun ⟨b, n⟩ => by simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  right_inv n := by simp only [bit_decomp, boddDiv2_eq, uncurry_apply_pair]\n\n/-- An equivalence between `ℕ ⊕ ℕ` and `ℕ`, by mapping `(Sum.inl x)` to `2 * x` and `(Sum.inr x)` to\n`2 * x + 1`.\n-/\n@[simps! symm_apply]\ndef natSumNatEquivNat : ℕ ⊕ ℕ ≃ ℕ :=\n  (boolProdEquivSum ℕ).symm.trans boolProdNatEquivNat\n\n",
+        "original_theorem_content": "@[simp]\ntheorem natSumNatEquivNat_apply : ⇑natSumNatEquivNat = Sum.elim (2 * ·) (2 * · + 1) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Logic/Equiv/Nat.lean",
+        "line": 30,
+        "tactic_state_before": "α : Type u_1\nn : ℕ\n⊢ uncurry bit n.boddDiv2 = n",
+        "proof": "simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n n : ℕ\n ⊢ bit n.bodd n.div2 = n]",
+        "goal": "α : Type u_1\nn : ℕ\nh : bit n.bodd n.div2 = n\n⊢ uncurry bit n.boddDiv2 = n",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\nopen Nat Function\n\nopen Equiv\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (n : ℕ) (h : bit n.bodd n.div2 = n) : uncurry bit n.boddDiv2 = n := sorry",
+        "original_theorem_name": "Equiv.boolProdNatEquivNat_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\n/-!\n# Equivalences involving `ℕ`\n\nThis file defines some additional constructive equivalences using `Encodable` and the pairing\nfunction on `ℕ`.\n-/\n\nassert_not_exists Monoid\n\nopen Nat Function\n\nnamespace Equiv\n\nvariable {α : Type*}\n\n",
+        "original_theorem_content": "/-- An equivalence between `Bool × ℕ` and `ℕ`, by mapping `(true, x)` to `2 * x + 1` and\n`(false, x)` to `2 * x`. -/\n@[simps]\ndef boolProdNatEquivNat : Bool × ℕ ≃ ℕ where\n  toFun := uncurry bit\n  invFun := boddDiv2\n  left_inv := fun ⟨b, n⟩ => by simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  right_inv n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Logic/Equiv/Nat.lean",
+        "line": 30,
+        "tactic_state_before": "α : Type u_1\nn : ℕ\n⊢ uncurry bit n.boddDiv2 = n",
+        "proof": "simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n n : ℕ\n ⊢ bit n.bodd n.div2 = n]",
+        "goal": "α : Type u_1\nn : ℕ\nh : bit n.bodd n.div2 = n\n⊢ uncurry bit n.boddDiv2 = n",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\nopen Nat Function\n\nopen Equiv\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (n : ℕ) (h : bit n.bodd n.div2 = n) : uncurry bit n.boddDiv2 = n := sorry",
+        "original_theorem_name": "Equiv.boolProdNatEquivNat_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\n/-!\n# Equivalences involving `ℕ`\n\nThis file defines some additional constructive equivalences using `Encodable` and the pairing\nfunction on `ℕ`.\n-/\n\nassert_not_exists Monoid\n\nopen Nat Function\n\nnamespace Equiv\n\nvariable {α : Type*}\n\n",
+        "original_theorem_content": "/-- An equivalence between `Bool × ℕ` and `ℕ`, by mapping `(true, x)` to `2 * x + 1` and\n`(false, x)` to `2 * x`. -/\n@[simps]\ndef boolProdNatEquivNat : Bool × ℕ ≃ ℕ where\n  toFun := uncurry bit\n  invFun := boddDiv2\n  left_inv := fun ⟨b, n⟩ => by simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  right_inv n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Logic/Equiv/Nat.lean",
+        "line": 31,
+        "tactic_state_before": "α : Type u_1\nn : ℕ\n⊢ bit n.bodd n.div2 = n",
+        "proof": "simp only [bit_decomp, boddDiv2_eq, uncurry_apply_pair]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nn : ℕ\n⊢ bit n.bodd n.div2 = n",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\nopen Nat Function\n\nopen Equiv\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (n : ℕ) : bit n.bodd n.div2 = n := sorry",
+        "original_theorem_name": "Equiv.boolProdNatEquivNat_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\n/-!\n# Equivalences involving `ℕ`\n\nThis file defines some additional constructive equivalences using `Encodable` and the pairing\nfunction on `ℕ`.\n-/\n\nassert_not_exists Monoid\n\nopen Nat Function\n\nnamespace Equiv\n\nvariable {α : Type*}\n\n",
+        "original_theorem_content": "/-- An equivalence between `Bool × ℕ` and `ℕ`, by mapping `(true, x)` to `2 * x + 1` and\n`(false, x)` to `2 * x`. -/\n@[simps]\ndef boolProdNatEquivNat : Bool × ℕ ≃ ℕ where\n  toFun := uncurry bit\n  invFun := boddDiv2\n  left_inv := fun ⟨b, n⟩ => by simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  right_inv n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Logic/Equiv/Nat.lean",
+        "line": 31,
+        "tactic_state_before": "α : Type u_1\nn : ℕ\n⊢ bit n.bodd n.div2 = n",
+        "proof": "simp only [bit_decomp, boddDiv2_eq, uncurry_apply_pair]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nn : ℕ\n⊢ bit n.bodd n.div2 = n",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\nopen Nat Function\n\nopen Equiv\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (n : ℕ) : bit n.bodd n.div2 = n := sorry",
+        "original_theorem_name": "Equiv.boolProdNatEquivNat_apply",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Bits\n\nimport Mathlib.Data.Nat.Pairing\n\n/-!\n# Equivalences involving `ℕ`\n\nThis file defines some additional constructive equivalences using `Encodable` and the pairing\nfunction on `ℕ`.\n-/\n\nassert_not_exists Monoid\n\nopen Nat Function\n\nnamespace Equiv\n\nvariable {α : Type*}\n\n",
+        "original_theorem_content": "/-- An equivalence between `Bool × ℕ` and `ℕ`, by mapping `(true, x)` to `2 * x + 1` and\n`(false, x)` to `2 * x`. -/\n@[simps]\ndef boolProdNatEquivNat : Bool × ℕ ≃ ℕ where\n  toFun := uncurry bit\n  invFun := boddDiv2\n  left_inv := fun ⟨b, n⟩ => by simp only [bodd_bit, div2_bit, uncurry_apply_pair, boddDiv2_eq]\n  right_inv n := by"
+    }
+]

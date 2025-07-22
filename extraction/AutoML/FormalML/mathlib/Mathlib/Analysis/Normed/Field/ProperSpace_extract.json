@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Field/ProperSpace.lean",
+        "line": 44,
+        "tactic_state_before": "case intro.intro.intro\n𝕜 : Type u_1\ninst✝¹ : NontriviallyNormedField 𝕜\ninst✝ : WeaklyLocallyCompactSpace 𝕜\nr : ℝ\nrpos : 0 < r\nhr : IsCompact (closedBall 0 r)\nc : 𝕜\nhc : 1 < ‖c‖\nhC : ∀ (n : ℕ), IsCompact (closedBall 0 (‖c‖ ^ n * r))\n⊢ ProperSpace 𝕜",
+        "proof": "have hTop : Tendsto (fun n ↦ ‖c‖ ^ n * r) atTop atTop :=\n  Tendsto.atTop_mul_const rpos (tendsto_pow_atTop_atTop_of_one_lt hc)\n  try repeat assumption",
+        "tactic_state_after": "[case intro.intro.intro\n 𝕜 : Type u_1\n inst✝¹ : NontriviallyNormedField 𝕜\n inst✝ : WeaklyLocallyCompactSpace 𝕜\n r : ℝ\n rpos : 0 < r\n hr : IsCompact (closedBall 0 r)\n c : 𝕜\n hc : 1 < ‖c‖\n hC : ∀ (n : ℕ), IsCompact (closedBall 0 (‖c‖ ^ n * r))\n hTop : Tendsto (fun n => ‖c‖ ^ n * r) atTop atTop\n ⊢ ProperSpace 𝕜]",
+        "goal": "𝕜 : Type u_1\ninst✝¹ : NontriviallyNormedField 𝕜\ninst✝ : WeaklyLocallyCompactSpace 𝕜\nr : ℝ\nrpos : 0 < r\nhr : IsCompact (closedBall 0 r)\nc : 𝕜\nhc : 1 < ‖c‖\nhC : ∀ (n : ℕ), IsCompact (closedBall 0 (‖c‖ ^ n * r))\n⊢ Tendsto (fun n => ‖c‖ ^ n * r) atTop atTop",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Field.Lemmas\n\nimport Mathlib.Analysis.SpecificLimits.Basic\n\nimport Mathlib.Topology.MetricSpace.ProperSpace\n\nopen Metric Filter\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (𝕜 : Type u_1) [inst : NontriviallyNormedField 𝕜]\n  [inst_1 : WeaklyLocallyCompactSpace 𝕜] (r : ℝ) (rpos : 0 < r) (hr : IsCompact (closedBall 0 r)) (c : 𝕜) (hc : 1 < ‖c‖)\n  (hC : ∀ (n : ℕ), IsCompact (closedBall 0 (‖c‖ ^ n * r))) : Tendsto (fun n => ‖c‖ ^ n * r) atTop atTop := sorry",
+        "original_theorem_name": "ProperSpace.of_nontriviallyNormedField_of_weaklyLocallyCompactSpace",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Field.Lemmas\n\nimport Mathlib.Analysis.SpecificLimits.Basic\n\nimport Mathlib.Topology.MetricSpace.ProperSpace\n\n/-!\n# Proper nontrivally normed fields\n\nNontrivially normed fields are `ProperSpaces` when they are `WeaklyLocallyCompact`.\n\n## Main results\n\n* `ProperSpace.of_nontriviallyNormedField_of_weaklyLocallyCompactSpace`\n\n## Implementation details\n\nThis is a special case of `ProperSpace.of_locallyCompactSpace` from\n`Mathlib.Analysis.Normed.Module.FiniteDimension`, specialized to be on the field itself\nwith a proof that requires fewer imports.\n-/\n\nassert_not_exists FiniteDimensional\n\nopen Metric Filter\n\n",
+        "original_theorem_content": "/-- A weakly locally compact normed field is proper.\nThis is a specialization of `ProperSpace.of_locallyCompactSpace`\nwhich holds for `NormedSpace`s but requires more imports. -/\nlemma ProperSpace.of_nontriviallyNormedField_of_weaklyLocallyCompactSpace\n    (𝕜 : Type*) [NontriviallyNormedField 𝕜] [WeaklyLocallyCompactSpace 𝕜] :\n    ProperSpace 𝕜 := by"
+    }
+]

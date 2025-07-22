@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Finsupp/Encodable.lean",
+        "line": 19,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\ninst✝² : Countable α\ninst✝¹ : Countable β\ninst✝ : Zero β\n⊢ Countable (α →₀ β)",
+        "proof": "classical exact .of_equiv _ finsuppEquivDFinsupp.symm\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\ninst✝² : Countable α\ninst✝¹ : Countable β\ninst✝ : Zero β\n⊢ Countable (α →₀ β)",
+        "header": "import Mathlib\nimport Mathlib.Data.Finsupp.ToDFinsupp\n\nimport Mathlib.Data.DFinsupp.Encodable\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {β : Type u_2} [inst : Countable α] [inst_1 : Countable β]\n  [inst_2 : Zero β] : Countable (α →₀ β) := sorry",
+        "original_theorem_name": "instCountableFinsupp",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finsupp.ToDFinsupp\n\nimport Mathlib.Data.DFinsupp.Encodable\n\n/-!\n# `Encodable` and `Countable` instances for `α →₀ β`\n\nIn this file we provide instances for `Encodable (α →₀ β)` and `Countable (α →₀ β)`.\n-/\n\ninstance {α β : Type*} [Encodable α] [Encodable β] [Zero β] [∀ x : β, Decidable (x ≠ 0)] :\n    Encodable (α →₀ β) :=\n  letI : DecidableEq α := Encodable.decidableEqOfEncodable _\n  .ofEquiv _ finsuppEquivDFinsupp\n\n",
+        "original_theorem_content": "instance {α β : Type*} [Countable α] [Countable β] [Zero β] : Countable (α →₀ β) := by"
+    }
+]

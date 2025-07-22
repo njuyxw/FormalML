@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/NNRat/Lemmas.lean",
+        "line": 55,
+        "tactic_state_before": "p q : ℚ\nhq : 0 ≤ q\n⊢ (p / q).toNNRat = p.toNNRat / q.toNNRat",
+        "proof": "rw [div_eq_inv_mul, div_eq_inv_mul, toNNRat_mul (inv_nonneg.2 hq), toNNRat_inv]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "p q : ℚ\nhq : 0 ≤ q\n⊢ (p / q).toNNRat = p.toNNRat / q.toNNRat",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Field.Rat\n\nimport Mathlib.Algebra.Group.Indicator\n\nimport Mathlib.Algebra.GroupWithZero.Action.End\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nopen Function\n\nopen scoped NNRat\n\nopen NNRat\n\nopen NNRat\n\nopen Rat\n\nopen NNRat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {p q : ℚ} (hq : 0 ≤ q) : (p / q).toNNRat = p.toNNRat / q.toNNRat := sorry",
+        "original_theorem_name": "Rat.toNNRat_div'",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Field.Rat\n\nimport Mathlib.Algebra.Group.Indicator\n\nimport Mathlib.Algebra.GroupWithZero.Action.End\n\nimport Mathlib.Algebra.Order.Field.Rat\n\n/-!\n# Field and action structures on the nonnegative rationals\n\nThis file provides additional results about `NNRat` that cannot live in earlier files due to import\ncycles.\n-/\n\nopen Function\nopen scoped NNRat\n\nnamespace NNRat\nvariable {α : Type*} {q : ℚ≥0}\n\n/-- A `MulAction` over `ℚ` restricts to a `MulAction` over `ℚ≥0`. -/\ninstance [MulAction ℚ α] : MulAction ℚ≥0 α :=\n  MulAction.compHom α coeHom.toMonoidHom\n\n/-- A `DistribMulAction` over `ℚ` restricts to a `DistribMulAction` over `ℚ≥0`. -/\ninstance [AddCommMonoid α] [DistribMulAction ℚ α] : DistribMulAction ℚ≥0 α :=\n  DistribMulAction.compHom α coeHom.toMonoidHom\n\n@[simp, norm_cast]\nlemma coe_indicator (s : Set α) (f : α → ℚ≥0) (a : α) :\n    ((s.indicator f a : ℚ≥0) : ℚ) = s.indicator (fun x ↦ ↑(f x)) a :=\n  (coeHom : ℚ≥0 →+ ℚ).map_indicator _ _ _\n\nend NNRat\n\nopen NNRat\n\nnamespace Rat\n\nvariable {p q : ℚ}\n\nlemma toNNRat_inv (q : ℚ) : toNNRat q⁻¹ = (toNNRat q)⁻¹ := by\n  obtain hq | hq := le_total q 0\n  · rw [toNNRat_eq_zero.mpr hq, inv_zero, toNNRat_eq_zero.mpr (inv_nonpos.mpr hq)]\n  · nth_rw 1 [← Rat.coe_toNNRat q hq]\n    rw [← coe_inv, toNNRat_coe]\n\nlemma toNNRat_div (hp : 0 ≤ p) : toNNRat (p / q) = toNNRat p / toNNRat q := by\n  rw [div_eq_mul_inv, div_eq_mul_inv, ← toNNRat_inv, ← toNNRat_mul hp]\n\n",
+        "original_theorem_content": "lemma toNNRat_div' (hq : 0 ≤ q) : toNNRat (p / q) = toNNRat p / toNNRat q := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/NNRat/Lemmas.lean",
+        "line": 52,
+        "tactic_state_before": "p q : ℚ\nhp : 0 ≤ p\n⊢ (p / q).toNNRat = p.toNNRat / q.toNNRat",
+        "proof": "rw [div_eq_mul_inv, div_eq_mul_inv, ← toNNRat_inv, ← toNNRat_mul hp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "p q : ℚ\nhp : 0 ≤ p\n⊢ (p / q).toNNRat = p.toNNRat / q.toNNRat",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Field.Rat\n\nimport Mathlib.Algebra.Group.Indicator\n\nimport Mathlib.Algebra.GroupWithZero.Action.End\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nopen Function\n\nopen scoped NNRat\n\nopen NNRat\n\nopen NNRat\n\nopen Rat\n\nopen NNRat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {p q : ℚ} (hp : 0 ≤ p) : (p / q).toNNRat = p.toNNRat / q.toNNRat := sorry",
+        "original_theorem_name": "Rat.toNNRat_div",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Field.Rat\n\nimport Mathlib.Algebra.Group.Indicator\n\nimport Mathlib.Algebra.GroupWithZero.Action.End\n\nimport Mathlib.Algebra.Order.Field.Rat\n\n/-!\n# Field and action structures on the nonnegative rationals\n\nThis file provides additional results about `NNRat` that cannot live in earlier files due to import\ncycles.\n-/\n\nopen Function\nopen scoped NNRat\n\nnamespace NNRat\nvariable {α : Type*} {q : ℚ≥0}\n\n/-- A `MulAction` over `ℚ` restricts to a `MulAction` over `ℚ≥0`. -/\ninstance [MulAction ℚ α] : MulAction ℚ≥0 α :=\n  MulAction.compHom α coeHom.toMonoidHom\n\n/-- A `DistribMulAction` over `ℚ` restricts to a `DistribMulAction` over `ℚ≥0`. -/\ninstance [AddCommMonoid α] [DistribMulAction ℚ α] : DistribMulAction ℚ≥0 α :=\n  DistribMulAction.compHom α coeHom.toMonoidHom\n\n@[simp, norm_cast]\nlemma coe_indicator (s : Set α) (f : α → ℚ≥0) (a : α) :\n    ((s.indicator f a : ℚ≥0) : ℚ) = s.indicator (fun x ↦ ↑(f x)) a :=\n  (coeHom : ℚ≥0 →+ ℚ).map_indicator _ _ _\n\nend NNRat\n\nopen NNRat\n\nnamespace Rat\n\nvariable {p q : ℚ}\n\nlemma toNNRat_inv (q : ℚ) : toNNRat q⁻¹ = (toNNRat q)⁻¹ := by\n  obtain hq | hq := le_total q 0\n  · rw [toNNRat_eq_zero.mpr hq, inv_zero, toNNRat_eq_zero.mpr (inv_nonpos.mpr hq)]\n  · nth_rw 1 [← Rat.coe_toNNRat q hq]\n    rw [← coe_inv, toNNRat_coe]\n\n",
+        "original_theorem_content": "lemma toNNRat_div (hp : 0 ≤ p) : toNNRat (p / q) = toNNRat p / toNNRat q := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/NNRat/Lemmas.lean",
+        "line": 46,
+        "tactic_state_before": "q : ℚ\n⊢ q⁻¹.toNNRat = q.toNNRat⁻¹",
+        "proof": "obtain hq | hq := le_total q 0\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n q : ℚ\n hq : q ≤ 0\n ⊢ q⁻¹.toNNRat = q.toNNRat⁻¹,\n case inr\n q : ℚ\n hq : 0 ≤ q\n ⊢ q⁻¹.toNNRat = q.toNNRat⁻¹]",
+        "goal": "q : ℚ\nh✝ h : q⁻¹.toNNRat = q.toNNRat⁻¹\n⊢ q⁻¹.toNNRat = q.toNNRat⁻¹",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Field.Rat\n\nimport Mathlib.Algebra.Group.Indicator\n\nimport Mathlib.Algebra.GroupWithZero.Action.End\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nopen Function\n\nopen scoped NNRat\n\nopen NNRat\n\nopen NNRat\n\nopen Rat\n\nopen NNRat\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (q : ℚ) (h_1 h : q⁻¹.toNNRat = q.toNNRat⁻¹) : q⁻¹.toNNRat = q.toNNRat⁻¹ := sorry",
+        "original_theorem_name": "Rat.toNNRat_inv",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Field.Rat\n\nimport Mathlib.Algebra.Group.Indicator\n\nimport Mathlib.Algebra.GroupWithZero.Action.End\n\nimport Mathlib.Algebra.Order.Field.Rat\n\n/-!\n# Field and action structures on the nonnegative rationals\n\nThis file provides additional results about `NNRat` that cannot live in earlier files due to import\ncycles.\n-/\n\nopen Function\nopen scoped NNRat\n\nnamespace NNRat\nvariable {α : Type*} {q : ℚ≥0}\n\n/-- A `MulAction` over `ℚ` restricts to a `MulAction` over `ℚ≥0`. -/\ninstance [MulAction ℚ α] : MulAction ℚ≥0 α :=\n  MulAction.compHom α coeHom.toMonoidHom\n\n/-- A `DistribMulAction` over `ℚ` restricts to a `DistribMulAction` over `ℚ≥0`. -/\ninstance [AddCommMonoid α] [DistribMulAction ℚ α] : DistribMulAction ℚ≥0 α :=\n  DistribMulAction.compHom α coeHom.toMonoidHom\n\n@[simp, norm_cast]\nlemma coe_indicator (s : Set α) (f : α → ℚ≥0) (a : α) :\n    ((s.indicator f a : ℚ≥0) : ℚ) = s.indicator (fun x ↦ ↑(f x)) a :=\n  (coeHom : ℚ≥0 →+ ℚ).map_indicator _ _ _\n\nend NNRat\n\nopen NNRat\n\nnamespace Rat\n\nvariable {p q : ℚ}\n\n",
+        "original_theorem_content": "lemma toNNRat_inv (q : ℚ) : toNNRat q⁻¹ = (toNNRat q)⁻¹ := by"
+    }
+]

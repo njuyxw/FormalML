@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Field.lean",
+        "line": 47,
+        "tactic_state_before": "α : Type u_3\nβ : Type u_4\ninst✝¹ : Fintype β\ns : Finset α\ninst✝ : DecidableEq α\nf : β → α\nt : Finset β\nh : Set.MapsTo f ↑t ↑s\n⊢ t.dens = ∑ a ∈ s, {b ∈ t | f b = a}.dens",
+        "proof": "simp [dens, ← sum_div, card_eq_sum_card_fiberwise h]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_3\nβ : Type u_4\ninst✝¹ : Fintype β\ns : Finset α\ninst✝ : DecidableEq α\nf : β → α\nt : Finset β\nh : Set.MapsTo f ↑t ↑s\n⊢ t.dens = ∑ a ∈ s, {b ∈ t | f b = a}.dens",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\nopen Fintype\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_3} {β : Type u_4} [inst : Fintype β] {s : Finset α}\n  [inst_1 : DecidableEq α] {f : β → α} {t : Finset β} (h : Set.MapsTo f ↑t ↑s) :\n  t.dens = ∑ a ∈ s, {b ∈ t | f b = a}.dens := sorry",
+        "original_theorem_name": "Finset.dens_eq_sum_dens_fiberwise",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\n/-!\n# Results about big operators with values in a field\n-/\n\nopen Fintype\n\nvariable {ι K : Type*} [DivisionSemiring K]\n\nlemma Multiset.sum_map_div (s : Multiset ι) (f : ι → K) (a : K) :\n    (s.map (fun x ↦ f x / a)).sum = (s.map f).sum / a := by\n  simp only [div_eq_mul_inv, Multiset.sum_map_mul_right]\n\nlemma Finset.sum_div (s : Finset ι) (f : ι → K) (a : K) :\n    (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a := by simp only [div_eq_mul_inv, sum_mul]\n\n-- TODO: Move these to `Algebra.BigOperators.Group.Finset.Basic`, next to the corresponding `card`\n-- lemmas, once `Finset.dens` doesn't depend on `Field` anymore.\nnamespace Finset\nvariable {α β : Type*} [Fintype β]\n\n@[simp]\nlemma dens_disjiUnion (s : Finset α) (t : α → Finset β) (h) :\n    (s.disjiUnion t h).dens = ∑ a ∈ s, (t a).dens := by simp [dens, sum_div]\n\nvariable {s : Finset α} {t : α → Finset β}\n\nlemma dens_biUnion [DecidableEq β] (h : s.toSet.PairwiseDisjoint t) :\n    (s.biUnion t).dens = ∑ u ∈ s, (t u).dens := by\n  simp [dens, card_biUnion h, sum_div]\n\nlemma dens_biUnion_le [DecidableEq β] : (s.biUnion t).dens ≤ ∑ a ∈ s, (t a).dens := by\n  simp only [dens, ← sum_div]\n  gcongr\n  · positivity\n  · exact mod_cast card_biUnion_le\n\n",
+        "original_theorem_content": "lemma dens_eq_sum_dens_fiberwise [DecidableEq α] {f : β → α} {t : Finset β}\n    (h : t.toSet.MapsTo f s) : t.dens = ∑ a ∈ s, {b ∈ t | f b = a}.dens := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Field.lean",
+        "line": 41,
+        "tactic_state_before": "α : Type u_3\nβ : Type u_4\ninst✝¹ : Fintype β\ns : Finset α\nt : α → Finset β\ninst✝ : DecidableEq β\n⊢ ↑(#(s.biUnion t)) / ↑(Fintype.card β) ≤ (∑ i ∈ s, ↑(#(t i))) / ↑(Fintype.card β)",
+        "proof": "gcongr\n  try repeat assumption",
+        "tactic_state_after": "[case hc\n α : Type u_3\n β : Type u_4\n inst✝¹ : Fintype β\n s : Finset α\n t : α → Finset β\n inst✝ : DecidableEq β\n ⊢ 0 ≤ ↑(Fintype.card β),\n case hab\n α : Type u_3\n β : Type u_4\n inst✝¹ : Fintype β\n s : Finset α\n t : α → Finset β\n inst✝ : DecidableEq β\n ⊢ ↑(#(s.biUnion t)) ≤ ∑ i ∈ s, ↑(#(t i))]",
+        "goal": "α : Type u_3\nβ : Type u_4\ninst✝¹ : Fintype β\ns : Finset α\nt : α → Finset β\ninst✝ : DecidableEq β\nh✝ : 0 ≤ ↑(Fintype.card β)\nh : ↑(#(s.biUnion t)) ≤ ∑ i ∈ s, ↑(#(t i))\n⊢ ↑(#(s.biUnion t)) / ↑(Fintype.card β) ≤ (∑ i ∈ s, ↑(#(t i))) / ↑(Fintype.card β)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\nopen Fintype\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_3} {β : Type u_4} [inst : Fintype β] {s : Finset α}\n  {t : α → Finset β} [inst_1 : DecidableEq β] (h_1 : 0 ≤ ↑(Fintype.card β))\n  (h : ↑(#(s.biUnion t)) ≤ ∑ i ∈ s, ↑(#(t i))) :\n  ↑(#(s.biUnion t)) / ↑(Fintype.card β) ≤ (∑ i ∈ s, ↑(#(t i))) / ↑(Fintype.card β) := sorry",
+        "original_theorem_name": "Finset.dens_biUnion_le",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\n/-!\n# Results about big operators with values in a field\n-/\n\nopen Fintype\n\nvariable {ι K : Type*} [DivisionSemiring K]\n\nlemma Multiset.sum_map_div (s : Multiset ι) (f : ι → K) (a : K) :\n    (s.map (fun x ↦ f x / a)).sum = (s.map f).sum / a := by\n  simp only [div_eq_mul_inv, Multiset.sum_map_mul_right]\n\nlemma Finset.sum_div (s : Finset ι) (f : ι → K) (a : K) :\n    (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a := by simp only [div_eq_mul_inv, sum_mul]\n\n-- TODO: Move these to `Algebra.BigOperators.Group.Finset.Basic`, next to the corresponding `card`\n-- lemmas, once `Finset.dens` doesn't depend on `Field` anymore.\nnamespace Finset\nvariable {α β : Type*} [Fintype β]\n\n@[simp]\nlemma dens_disjiUnion (s : Finset α) (t : α → Finset β) (h) :\n    (s.disjiUnion t h).dens = ∑ a ∈ s, (t a).dens := by simp [dens, sum_div]\n\nvariable {s : Finset α} {t : α → Finset β}\n\nlemma dens_biUnion [DecidableEq β] (h : s.toSet.PairwiseDisjoint t) :\n    (s.biUnion t).dens = ∑ u ∈ s, (t u).dens := by\n  simp [dens, card_biUnion h, sum_div]\n\n",
+        "original_theorem_content": "lemma dens_biUnion_le [DecidableEq β] : (s.biUnion t).dens ≤ ∑ a ∈ s, (t a).dens := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Field.lean",
+        "line": 43,
+        "tactic_state_before": "case hab\nα : Type u_3\nβ : Type u_4\ninst✝¹ : Fintype β\ns : Finset α\nt : α → Finset β\ninst✝ : DecidableEq β\n⊢ ↑(#(s.biUnion t)) ≤ ∑ i ∈ s, ↑(#(t i))",
+        "proof": "exact mod_cast card_biUnion_le\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_3\nβ : Type u_4\ninst✝¹ : Fintype β\ns : Finset α\nt : α → Finset β\ninst✝ : DecidableEq β\n⊢ ↑(#(s.biUnion t)) ≤ ∑ i ∈ s, ↑(#(t i))",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\nopen Fintype\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_3} {β : Type u_4} [inst : Fintype β] {s : Finset α}\n  {t : α → Finset β} [inst_1 : DecidableEq β] : ↑(#(s.biUnion t)) ≤ ∑ i ∈ s, ↑(#(t i)) := sorry",
+        "original_theorem_name": "Finset.dens_biUnion_le",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\n/-!\n# Results about big operators with values in a field\n-/\n\nopen Fintype\n\nvariable {ι K : Type*} [DivisionSemiring K]\n\nlemma Multiset.sum_map_div (s : Multiset ι) (f : ι → K) (a : K) :\n    (s.map (fun x ↦ f x / a)).sum = (s.map f).sum / a := by\n  simp only [div_eq_mul_inv, Multiset.sum_map_mul_right]\n\nlemma Finset.sum_div (s : Finset ι) (f : ι → K) (a : K) :\n    (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a := by simp only [div_eq_mul_inv, sum_mul]\n\n-- TODO: Move these to `Algebra.BigOperators.Group.Finset.Basic`, next to the corresponding `card`\n-- lemmas, once `Finset.dens` doesn't depend on `Field` anymore.\nnamespace Finset\nvariable {α β : Type*} [Fintype β]\n\n@[simp]\nlemma dens_disjiUnion (s : Finset α) (t : α → Finset β) (h) :\n    (s.disjiUnion t h).dens = ∑ a ∈ s, (t a).dens := by simp [dens, sum_div]\n\nvariable {s : Finset α} {t : α → Finset β}\n\nlemma dens_biUnion [DecidableEq β] (h : s.toSet.PairwiseDisjoint t) :\n    (s.biUnion t).dens = ∑ u ∈ s, (t u).dens := by\n  simp [dens, card_biUnion h, sum_div]\n\n",
+        "original_theorem_content": "lemma dens_biUnion_le [DecidableEq β] : (s.biUnion t).dens ≤ ∑ a ∈ s, (t a).dens := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Field.lean",
+        "line": 23,
+        "tactic_state_before": "ι : Type u_1\nK : Type u_2\ninst✝ : DivisionSemiring K\ns : Finset ι\nf : ι → K\na : K\n⊢ (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a",
+        "proof": "simp only [div_eq_mul_inv, sum_mul]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nK : Type u_2\ninst✝ : DivisionSemiring K\ns : Finset ι\nf : ι → K\na : K\n⊢ (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\nopen Fintype\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {ι : Type u_1} {K : Type u_2} [inst : DivisionSemiring K] (s : Finset ι)\n  (f : ι → K) (a : K) : (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a := sorry",
+        "original_theorem_name": "Finset.sum_div",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Ring.Finset\n\nimport Mathlib.Algebra.Field.Defs\n\nimport Mathlib.Data.Finset.Density\n\n/-!\n# Results about big operators with values in a field\n-/\n\nopen Fintype\n\nvariable {ι K : Type*} [DivisionSemiring K]\n\nlemma Multiset.sum_map_div (s : Multiset ι) (f : ι → K) (a : K) :\n    (s.map (fun x ↦ f x / a)).sum = (s.map f).sum / a := by\n  simp only [div_eq_mul_inv, Multiset.sum_map_mul_right]\n\n",
+        "original_theorem_content": "lemma Finset.sum_div (s : Finset ι) (f : ι → K) (a : K) :\n    (∑ i ∈ s, f i) / a = ∑ i ∈ s, f i / a := by"
+    }
+]

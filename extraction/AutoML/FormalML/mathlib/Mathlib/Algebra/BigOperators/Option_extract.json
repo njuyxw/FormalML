@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Option.lean",
+        "line": 23,
+        "tactic_state_before": "α : Type u_1\nM : Type u_2\ninst✝ : CommMonoid M\nf : Option α → M\ns : Finset α\n⊢ ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x)",
+        "proof": "simp [insertNone]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nM : Type u_2\ninst✝ : CommMonoid M\nf : Option α → M\ns : Finset α\n⊢ ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x)",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Option\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Function\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {M : Type u_2} [inst : CommMonoid M] (f : Option α → M)\n  (s : Finset α) : ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x) := sorry",
+        "original_theorem_name": "Finset.sum_insertNone",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Option\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Lemmas about products and sums over finite sets in `Option α`\n\nIn this file we prove formulas for products and sums over `Finset.insertNone s` and\n`Finset.eraseNone s`.\n-/\n\nopen Function\n\nnamespace Finset\n\nvariable {α M : Type*} [CommMonoid M]\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\ntheorem prod_insertNone (f : Option α → M) (s : Finset α) :\n    ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Option.lean",
+        "line": 23,
+        "tactic_state_before": "α : Type u_1\nM : Type u_2\ninst✝ : CommMonoid M\nf : Option α → M\ns : Finset α\n⊢ ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x)",
+        "proof": "simp [insertNone]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nM : Type u_2\ninst✝ : CommMonoid M\nf : Option α → M\ns : Finset α\n⊢ ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x)",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Option\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Function\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {M : Type u_2} [inst : CommMonoid M] (f : Option α → M)\n  (s : Finset α) : ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x) := sorry",
+        "original_theorem_name": "Finset.sum_insertNone",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Option\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Lemmas about products and sums over finite sets in `Option α`\n\nIn this file we prove formulas for products and sums over `Finset.insertNone s` and\n`Finset.eraseNone s`.\n-/\n\nopen Function\n\nnamespace Finset\n\nvariable {α M : Type*} [CommMonoid M]\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\ntheorem prod_insertNone (f : Option α → M) (s : Finset α) :\n    ∏ x ∈ insertNone s, f x = f none * ∏ x ∈ s, f (some x) := by"
+    }
+]

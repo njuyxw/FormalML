@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/AlgebraicTopology/FundamentalGroupoid/PUnit.lean",
+        "line": 31,
+        "tactic_state_before": "x y : FundamentalGroupoid PUnit.{u_1 + 1}\n⊢ Subsingleton (Path.Homotopic.Quotient PUnit.unit PUnit.unit)",
+        "proof": "apply Quotient.instSubsingletonQuotient\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x y : FundamentalGroupoid PUnit.{u_1 + 1}\n⊢ Subsingleton (Path.Homotopic.Quotient PUnit.unit PUnit.unit)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.PUnit\n\nimport Mathlib.AlgebraicTopology.FundamentalGroupoid.Basic\n\nopen CategoryTheory\n\nopen Path\n\nopen FundamentalGroupoid\n",
+        "formal_statement": "theorem extracted_formal_statement_0 : Subsingleton (Path.Homotopic.Quotient PUnit.unit PUnit.unit) := sorry",
+        "original_theorem_name": "FundamentalGroupoid.instSubsingletonHomPUnit",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.PUnit\n\nimport Mathlib.AlgebraicTopology.FundamentalGroupoid.Basic\n\n/-!\n# Fundamental groupoid of punit\n\nThe fundamental groupoid of punit is naturally isomorphic to `CategoryTheory.Discrete PUnit`\n-/\n\n\nnoncomputable section\n\nopen CategoryTheory\n\nuniverse u v\n\nnamespace Path\n\ninstance : Subsingleton (Path PUnit.unit PUnit.unit) :=\n  ⟨fun x y => by ext⟩\n\nend Path\n\nnamespace FundamentalGroupoid\n\n",
+        "original_theorem_content": "instance {x y : FundamentalGroupoid PUnit} : Subsingleton (x ⟶ y) := by"
+    }
+]

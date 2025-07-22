@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "PFR/PFR/ForMathlib/MeasureReal/UniformOn.lean",
+        "line": 16,
+        "tactic_state_before": "Ω : Type u_1\ninst✝¹ : MeasurableSpace Ω\ninst✝ : MeasurableSingletonClass Ω\ns : Set Ω\nhs : s.Finite\nt : Set Ω\n⊢ (uniformOn s).real t = ↑(Nat.card ↑(s ∩ t)) / ↑(Nat.card ↑s)",
+        "proof": "simp [measureReal_def, uniformOn_apply hs]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "Ω : Type u_1\ninst✝¹ : MeasurableSpace Ω\ninst✝ : MeasurableSingletonClass Ω\ns : Set Ω\nhs : s.Finite\nt : Set Ω\n⊢ (uniformOn s).real t = ↑(Nat.card ↑(s ∩ t)) / ↑(Nat.card ↑s)",
+        "header": "import PFR\nimport PFR.Mathlib.Probability.UniformOn\n\nimport PFR.ForMathlib.Entropy.Measure\n\nimport PFR.ForMathlib.MeasureReal.Defs\n\nopen MeasureTheory Measure Real\n\nopen ProbabilityTheory\n\nopen ProbabilityTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {Ω : Type u_1} [inst : MeasurableSpace Ω] [inst_1 : MeasurableSingletonClass Ω]\n  {s : Set Ω} (hs : s.Finite) (t : Set Ω) : (uniformOn s).real t = ↑(Nat.card ↑(s ∩ t)) / ↑(Nat.card ↑s) := sorry",
+        "original_theorem_name": "ProbabilityTheory.uniformOn_apply'",
+        "original_theorem_importsAndContext": "import PFR.Mathlib.Probability.UniformOn\n\nimport PFR.ForMathlib.Entropy.Measure\n\nimport PFR.ForMathlib.MeasureReal.Defs\n\nopen MeasureTheory Measure Real\n\nnamespace ProbabilityTheory\nvariable {Ω : Type*} [MeasurableSpace Ω] [MeasurableSingletonClass Ω] {s t : Set Ω} {x : Ω}\n\n",
+        "original_theorem_content": "lemma uniformOn_apply' (hs : s.Finite) (t : Set Ω) :\n    (uniformOn s).real t = (Nat.card ↑(s ∩ t)) / Nat.card s := by"
+    }
+]

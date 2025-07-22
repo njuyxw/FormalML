@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Tactic/Order/Preprocessing.lean",
+        "line": 25,
+        "tactic_state_before": "α : Type u\ninst✝ : Preorder α\nx y : α\nh1 : ¬x < y\nh2 : x ≤ y\n⊢ y ≤ x",
+        "proof": "rw [not_lt_iff_not_le_or_ge] at h1\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u\n inst✝ : Preorder α\n x y : α\n h1 : ¬x ≤ y ∨ y ≤ x\n h2 : x ≤ y\n ⊢ y ≤ x]",
+        "goal": "α : Type u\ninst✝ : Preorder α\nx y : α\nh1 : ¬x < y\nh2 : x ≤ y\n⊢ ¬x ≤ y ∨ y ≤ x",
+        "header": "import Mathlib\nimport Mathlib.Tactic.Order.CollectFacts\n\nopen Lean Expr Meta\n\nopen Mathlib.Tactic.Order\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u} [inst : Preorder α] {x y : α} (h1 : ¬x < y) (h2 : x ≤ y) :\n  ¬x ≤ y ∨ y ≤ x := sorry",
+        "original_theorem_name": "Mathlib.Tactic.Order.le_of_not_lt_le",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.Order.CollectFacts\n\n/-!\n# Facts preprocessing for the `order` tactic\n\nIn this file we implement the preprocessing procedure for the `order` tactic.\nSee `Mathlib.Tactic.Order` for details of preprocessing.\n-/\n\nnamespace Mathlib.Tactic.Order\n\nuniverse u\n\nopen Lean Expr Meta\n\nsection Lemmas\n\nlemma not_lt_of_not_le {α : Type u} [Preorder α] {x y : α} (h : ¬(x ≤ y)) : ¬(x < y) :=\n  (h ·.le)\n\n",
+        "original_theorem_content": "lemma le_of_not_lt_le {α : Type u} [Preorder α] {x y : α} (h1 : ¬(x < y)) (h2 : x ≤ y) :\n    y ≤ x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/Order/Preprocessing.lean",
+        "line": 26,
+        "tactic_state_before": "α : Type u\ninst✝ : Preorder α\nx y : α\nh1 : ¬x ≤ y ∨ y ≤ x\nh2 : x ≤ y\n⊢ y ≤ x",
+        "proof": "rcases h1 with (h1 | h1)\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n α : Type u\n inst✝ : Preorder α\n x y : α\n h2 : x ≤ y\n h1 : ¬x ≤ y\n ⊢ y ≤ x,\n case inr\n α : Type u\n inst✝ : Preorder α\n x y : α\n h2 : x ≤ y\n h1 : y ≤ x\n ⊢ y ≤ x]",
+        "goal": "α : Type u\ninst✝ : Preorder α\nx y : α\nh1 : ¬x ≤ y ∨ y ≤ x\nh2 : x ≤ y\nh✝ h : y ≤ x\n⊢ y ≤ x",
+        "header": "import Mathlib\nimport Mathlib.Tactic.Order.CollectFacts\n\nopen Lean Expr Meta\n\nopen Mathlib.Tactic.Order\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u} [inst : Preorder α] {x y : α} (h1 : ¬x ≤ y ∨ y ≤ x) (h2 : x ≤ y)\n  (h_1 h : y ≤ x) : y ≤ x := sorry",
+        "original_theorem_name": "Mathlib.Tactic.Order.le_of_not_lt_le",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.Order.CollectFacts\n\n/-!\n# Facts preprocessing for the `order` tactic\n\nIn this file we implement the preprocessing procedure for the `order` tactic.\nSee `Mathlib.Tactic.Order` for details of preprocessing.\n-/\n\nnamespace Mathlib.Tactic.Order\n\nuniverse u\n\nopen Lean Expr Meta\n\nsection Lemmas\n\nlemma not_lt_of_not_le {α : Type u} [Preorder α] {x y : α} (h : ¬(x ≤ y)) : ¬(x < y) :=\n  (h ·.le)\n\n",
+        "original_theorem_content": "lemma le_of_not_lt_le {α : Type u} [Preorder α] {x y : α} (h1 : ¬(x < y)) (h2 : x ≤ y) :\n    y ≤ x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/Order/Preprocessing.lean",
+        "line": 28,
+        "tactic_state_before": "case inr\nα : Type u\ninst✝ : Preorder α\nx y : α\nh2 : x ≤ y\nh1 : y ≤ x\n⊢ y ≤ x",
+        "proof": "assumption\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u\ninst✝ : Preorder α\nx y : α\nh2 : x ≤ y\nh1 : y ≤ x\n⊢ y ≤ x",
+        "header": "import Mathlib\nimport Mathlib.Tactic.Order.CollectFacts\n\nopen Lean Expr Meta\n\nopen Mathlib.Tactic.Order\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u} [inst : Preorder α] {x y : α} (h2 : x ≤ y) (h1 : y ≤ x) :\n  y ≤ x := sorry",
+        "original_theorem_name": "Mathlib.Tactic.Order.le_of_not_lt_le",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.Order.CollectFacts\n\n/-!\n# Facts preprocessing for the `order` tactic\n\nIn this file we implement the preprocessing procedure for the `order` tactic.\nSee `Mathlib.Tactic.Order` for details of preprocessing.\n-/\n\nnamespace Mathlib.Tactic.Order\n\nuniverse u\n\nopen Lean Expr Meta\n\nsection Lemmas\n\nlemma not_lt_of_not_le {α : Type u} [Preorder α] {x y : α} (h : ¬(x ≤ y)) : ¬(x < y) :=\n  (h ·.le)\n\n",
+        "original_theorem_content": "lemma le_of_not_lt_le {α : Type u} [Preorder α] {x y : α} (h1 : ¬(x < y)) (h2 : x ≤ y) :\n    y ≤ x := by"
+    }
+]

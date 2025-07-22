@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/AlgebraicTopology/SimplicialSet/KanComplex.lean",
+        "line": 42,
+        "tactic_state_before": "S : SSet\ninst✝ : S.KanComplex\nn : ℕ\ni : Fin (n + 2)\nσ₀ : Λ[n + 1, i].toSSet ⟶ S\n⊢ ∃ σ, σ₀ = Λ[n + 1, i].ι ≫ σ",
+        "proof": "have sq' : CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from _) := ⟨by simp⟩\n  try repeat assumption",
+        "tactic_state_after": "[S : SSet\n inst✝ : S.KanComplex\n n : ℕ\n i : Fin (n + 2)\n σ₀ : Λ[n + 1, i].toSSet ⟶ S\n sq' : CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from Δ[n + 1])\n ⊢ ∃ σ, σ₀ = Λ[n + 1, i].ι ≫ σ]",
+        "goal": "S : SSet\ninst✝ : S.KanComplex\nn : ℕ\ni : Fin (n + 2)\nσ₀ : Λ[n + 1, i].toSSet ⟶ S\n⊢ CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from Δ[n + 1])",
+        "header": "import Mathlib\nimport Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.CategoryWithFibrations\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.Subcomplex\n\nopen CategoryTheory Simplicial Limits\n\nopen SSet\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {S : SSet} [inst : S.KanComplex] {n : ℕ} {i : Fin (n + 2)}\n  (σ₀ : Λ[n + 1, i].toSSet ⟶ S) : CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from Δ[n + 1]) := sorry",
+        "original_theorem_name": "SSet.KanComplex.hornFilling",
+        "original_theorem_importsAndContext": "import Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.CategoryWithFibrations\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.Subcomplex\n\n/-!\n# Kan complexes\n\nIn this file, the abbreviation `KanComplex` is introduced for\nfibrant objects in the category `SSet` which is equipped with\nKan fibrations.\n\nIn `Mathlib/AlgebraicTopology/Quasicategory/Basic.lean`\nwe show that every Kan complex is a quasicategory.\n\n## TODO\n\n- Show that the singular simplicial set of a topological space is a Kan complex.\n\n-/\n\nuniverse u\n\nnamespace SSet\n\nopen CategoryTheory Simplicial Limits\n\nopen modelCategoryQuillen in\n/-- A simplicial set `S` is a Kan complex if it is fibrant, which means that\nthe projection `S ⟶ ⊤_ _` has the right lifting property with respect to horn inclusions. -/\nabbrev KanComplex (S : SSet.{u}) : Prop := HomotopicalAlgebra.IsFibrant S\n\n",
+        "original_theorem_content": "/-- A Kan complex `S` satisfies the following horn-filling condition:\nfor every nonzero `n : ℕ` and `0 ≤ i ≤ n`,\nevery map of simplicial sets `σ₀ : Λ[n, i] → S` can be extended to a map `σ : Δ[n] → S`. -/\nlemma KanComplex.hornFilling {S : SSet.{u}} [KanComplex S]\n    {n : ℕ} {i : Fin (n + 2)} (σ₀ : (Λ[n + 1, i] : SSet) ⟶ S) :\n    ∃ σ : Δ[n + 1] ⟶ S, σ₀ = Λ[n + 1, i].ι ≫ σ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/AlgebraicTopology/SimplicialSet/KanComplex.lean",
+        "line": 43,
+        "tactic_state_before": "S : SSet\ninst✝ : S.KanComplex\nn : ℕ\ni : Fin (n + 2)\nσ₀ : Λ[n + 1, i].toSSet ⟶ S\nsq' : CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from Δ[n + 1])\n⊢ ∃ σ, σ₀ = Λ[n + 1, i].ι ≫ σ",
+        "proof": "exact ⟨sq'.lift, by simp⟩\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "S : SSet\ninst✝ : S.KanComplex\nn : ℕ\ni : Fin (n + 2)\nσ₀ : Λ[n + 1, i].toSSet ⟶ S\nsq' : CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from Δ[n + 1])\n⊢ ∃ σ, σ₀ = Λ[n + 1, i].ι ≫ σ",
+        "header": "import Mathlib\nimport Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.CategoryWithFibrations\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.Subcomplex\n\nopen CategoryTheory Simplicial Limits\n\nopen SSet\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {S : SSet} [inst : S.KanComplex] {n : ℕ} {i : Fin (n + 2)}\n  (σ₀ : Λ[n + 1, i].toSSet ⟶ S) (sq' : CommSq σ₀ Λ[n + 1, i].ι (terminal.from S) (terminal.from Δ[n + 1])) :\n  ∃ σ, σ₀ = Λ[n + 1, i].ι ≫ σ := sorry",
+        "original_theorem_name": "SSet.KanComplex.hornFilling",
+        "original_theorem_importsAndContext": "import Mathlib.AlgebraicTopology.ModelCategory.IsCofibrant\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.CategoryWithFibrations\n\nimport Mathlib.AlgebraicTopology.SimplicialSet.Subcomplex\n\n/-!\n# Kan complexes\n\nIn this file, the abbreviation `KanComplex` is introduced for\nfibrant objects in the category `SSet` which is equipped with\nKan fibrations.\n\nIn `Mathlib/AlgebraicTopology/Quasicategory/Basic.lean`\nwe show that every Kan complex is a quasicategory.\n\n## TODO\n\n- Show that the singular simplicial set of a topological space is a Kan complex.\n\n-/\n\nuniverse u\n\nnamespace SSet\n\nopen CategoryTheory Simplicial Limits\n\nopen modelCategoryQuillen in\n/-- A simplicial set `S` is a Kan complex if it is fibrant, which means that\nthe projection `S ⟶ ⊤_ _` has the right lifting property with respect to horn inclusions. -/\nabbrev KanComplex (S : SSet.{u}) : Prop := HomotopicalAlgebra.IsFibrant S\n\n",
+        "original_theorem_content": "/-- A Kan complex `S` satisfies the following horn-filling condition:\nfor every nonzero `n : ℕ` and `0 ≤ i ≤ n`,\nevery map of simplicial sets `σ₀ : Λ[n, i] → S` can be extended to a map `σ : Δ[n] → S`. -/\nlemma KanComplex.hornFilling {S : SSet.{u}} [KanComplex S]\n    {n : ℕ} {i : Fin (n + 2)} (σ₀ : (Λ[n + 1, i] : SSet) ⟶ S) :\n    ∃ σ : Δ[n + 1] ⟶ S, σ₀ = Λ[n + 1, i].ι ≫ σ := by"
+    }
+]

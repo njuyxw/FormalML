@@ -1,4 +1,5 @@
 import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 def count_lean_files(directory):
     """
@@ -15,7 +16,9 @@ def count_lean_files(directory):
 
 if __name__ == '__main__':
     # 使用示例
-    target_dir = input("请输入要搜索的目录路径: ").strip()
+    rel_path = "AutoML/FormalML"
+    abs_path = os.path.join(current_dir,rel_path)
+    target_dir = abs_path
     
     if not os.path.isdir(target_dir):
         print(f"错误：'{target_dir}' 不是有效目录")

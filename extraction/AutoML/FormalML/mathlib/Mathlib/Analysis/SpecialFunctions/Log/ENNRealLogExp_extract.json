@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ENNRealLogExp.lean",
+        "line": 59,
+        "tactic_state_before": "x : EReal\ny : ℝ\n⊢ (x * ↑y).exp = x.exp ^ y",
+        "proof": "rw [← log_eq_iff, log_rpow, log_exp, log_exp, mul_comm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x : EReal\ny : ℝ\n⊢ (x * ↑y).exp = x.exp ^ y",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\nopen EReal ENNReal Topology\n\nopen EReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (x : EReal) (y : ℝ) : (x * ↑y).exp = x.exp ^ y := sorry",
+        "original_theorem_name": "EReal.exp_mul",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\n/-!\n# Properties of the extended logarithm and exponential\n\nWe prove that `log` and `exp` define order isomorphisms between `ℝ≥0∞` and `EReal`.\n## Main DefinitionsP\n- `ENNReal.logOrderIso`: The order isomorphism between `ℝ≥0∞` and `EReal` defined by `log`\nand `exp`.\n- `EReal.expOrderIso`: The order isomorphism between `EReal` and `ℝ≥0∞` defined by `exp`\nand `log`.\n- `ENNReal.logHomeomorph`: `log` as a homeomorphism.\n- `EReal.expHomeomorph`: `exp` as a homeomorphism.\n\n## Main Results\n- `EReal.log_exp`, `ENNReal.exp_log`: `log` and `exp` are inverses of each other.\n- `EReal.exp_nmul`, `EReal.exp_mul`: `exp` satisfies the identities `exp (n * x) = (exp x) ^ n`\nand `exp (x * y) = (exp x) ^ y`.\n- `EReal` is a Polish space.\n\n## Tags\nENNReal, EReal, logarithm, exponential\n-/\n\nopen EReal ENNReal Topology\nsection LogExp\n\n@[simp] lemma EReal.log_exp (x : EReal) : log (exp x) = x := by\n  induction x\n  · simp\n  · rw [exp_coe, log_ofReal, if_neg (not_le.mpr (Real.exp_pos _)), Real.log_exp]\n  · simp\n\n@[simp] lemma ENNReal.exp_log (x : ℝ≥0∞) : exp (log x) = x := by\n  by_cases hx_top : x = ∞\n  · simp [hx_top]\n  by_cases hx_zero : x = 0\n  · simp [hx_zero]\n  have hx_pos : 0 < x.toReal := ENNReal.toReal_pos hx_zero hx_top\n  rw [← ENNReal.ofReal_toReal hx_top, log_ofReal_of_pos hx_pos, exp_coe, Real.exp_log hx_pos]\n\nend LogExp\n\nsection Exp\nnamespace EReal\n\nlemma exp_nmul (x : EReal) (n : ℕ) : exp (n * x) = (exp x) ^ n := by\n  simp_rw [← log_eq_iff, log_pow, log_exp]\n\n",
+        "original_theorem_content": "lemma exp_mul (x : EReal) (y : ℝ) : exp (x * y) = (exp x) ^ y := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ENNRealLogExp.lean",
+        "line": 56,
+        "tactic_state_before": "x : EReal\nn : ℕ\n⊢ (↑n * x).exp = x.exp ^ n",
+        "proof": "simp_rw [← log_eq_iff, log_pow, log_exp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x : EReal\nn : ℕ\n⊢ (↑n * x).exp = x.exp ^ n",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\nopen EReal ENNReal Topology\n\nopen EReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (x : EReal) (n : ℕ) : (↑n * x).exp = x.exp ^ n := sorry",
+        "original_theorem_name": "EReal.exp_nmul",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\n/-!\n# Properties of the extended logarithm and exponential\n\nWe prove that `log` and `exp` define order isomorphisms between `ℝ≥0∞` and `EReal`.\n## Main DefinitionsP\n- `ENNReal.logOrderIso`: The order isomorphism between `ℝ≥0∞` and `EReal` defined by `log`\nand `exp`.\n- `EReal.expOrderIso`: The order isomorphism between `EReal` and `ℝ≥0∞` defined by `exp`\nand `log`.\n- `ENNReal.logHomeomorph`: `log` as a homeomorphism.\n- `EReal.expHomeomorph`: `exp` as a homeomorphism.\n\n## Main Results\n- `EReal.log_exp`, `ENNReal.exp_log`: `log` and `exp` are inverses of each other.\n- `EReal.exp_nmul`, `EReal.exp_mul`: `exp` satisfies the identities `exp (n * x) = (exp x) ^ n`\nand `exp (x * y) = (exp x) ^ y`.\n- `EReal` is a Polish space.\n\n## Tags\nENNReal, EReal, logarithm, exponential\n-/\n\nopen EReal ENNReal Topology\nsection LogExp\n\n@[simp] lemma EReal.log_exp (x : EReal) : log (exp x) = x := by\n  induction x\n  · simp\n  · rw [exp_coe, log_ofReal, if_neg (not_le.mpr (Real.exp_pos _)), Real.log_exp]\n  · simp\n\n@[simp] lemma ENNReal.exp_log (x : ℝ≥0∞) : exp (log x) = x := by\n  by_cases hx_top : x = ∞\n  · simp [hx_top]\n  by_cases hx_zero : x = 0\n  · simp [hx_zero]\n  have hx_pos : 0 < x.toReal := ENNReal.toReal_pos hx_zero hx_top\n  rw [← ENNReal.ofReal_toReal hx_top, log_ofReal_of_pos hx_pos, exp_coe, Real.exp_log hx_pos]\n\nend LogExp\n\nsection Exp\nnamespace EReal\n\n",
+        "original_theorem_content": "lemma exp_nmul (x : EReal) (n : ℕ) : exp (n * x) = (exp x) ^ n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ENNRealLogExp.lean",
+        "line": 43,
+        "tactic_state_before": "x : ℝ≥0∞\n⊢ x.log.exp = x",
+        "proof": "by_cases hx_top : x = ∞\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n x : ℝ≥0∞\n hx_top : x = ⊤\n ⊢ x.log.exp = x,\n case neg\n x : ℝ≥0∞\n hx_top : ¬x = ⊤\n ⊢ x.log.exp = x]",
+        "goal": "x : ℝ≥0∞\nh✝ h : x.log.exp = x\n⊢ x.log.exp = x",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\nopen EReal ENNReal Topology\n\nopen EReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (x : ℝ≥0∞) (h_1 h : x.log.exp = x) : x.log.exp = x := sorry",
+        "original_theorem_name": "ENNReal.exp_log",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\n/-!\n# Properties of the extended logarithm and exponential\n\nWe prove that `log` and `exp` define order isomorphisms between `ℝ≥0∞` and `EReal`.\n## Main DefinitionsP\n- `ENNReal.logOrderIso`: The order isomorphism between `ℝ≥0∞` and `EReal` defined by `log`\nand `exp`.\n- `EReal.expOrderIso`: The order isomorphism between `EReal` and `ℝ≥0∞` defined by `exp`\nand `log`.\n- `ENNReal.logHomeomorph`: `log` as a homeomorphism.\n- `EReal.expHomeomorph`: `exp` as a homeomorphism.\n\n## Main Results\n- `EReal.log_exp`, `ENNReal.exp_log`: `log` and `exp` are inverses of each other.\n- `EReal.exp_nmul`, `EReal.exp_mul`: `exp` satisfies the identities `exp (n * x) = (exp x) ^ n`\nand `exp (x * y) = (exp x) ^ y`.\n- `EReal` is a Polish space.\n\n## Tags\nENNReal, EReal, logarithm, exponential\n-/\n\nopen EReal ENNReal Topology\nsection LogExp\n\n@[simp] lemma EReal.log_exp (x : EReal) : log (exp x) = x := by\n  induction x\n  · simp\n  · rw [exp_coe, log_ofReal, if_neg (not_le.mpr (Real.exp_pos _)), Real.log_exp]\n  · simp\n\n",
+        "original_theorem_content": "@[simp] lemma ENNReal.exp_log (x : ℝ≥0∞) : exp (log x) = x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ENNRealLogExp.lean",
+        "line": 45,
+        "tactic_state_before": "case neg\nx : ℝ≥0∞\nhx_top : ¬x = ⊤\n⊢ x.log.exp = x",
+        "proof": "by_cases hx_zero : x = 0\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n x : ℝ≥0∞\n hx_top : ¬x = ⊤\n hx_zero : x = 0\n ⊢ x.log.exp = x,\n case neg\n x : ℝ≥0∞\n hx_top : ¬x = ⊤\n hx_zero : ¬x = 0\n ⊢ x.log.exp = x]",
+        "goal": "x : ℝ≥0∞\nhx_top : ¬x = ⊤\nh✝ h : x.log.exp = x\n⊢ x.log.exp = x",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\nopen EReal ENNReal Topology\n\nopen EReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (x : ℝ≥0∞) (hx_top : ¬x = ⊤) (h_1 h : x.log.exp = x) : x.log.exp = x := sorry",
+        "original_theorem_name": "ENNReal.exp_log",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\n/-!\n# Properties of the extended logarithm and exponential\n\nWe prove that `log` and `exp` define order isomorphisms between `ℝ≥0∞` and `EReal`.\n## Main DefinitionsP\n- `ENNReal.logOrderIso`: The order isomorphism between `ℝ≥0∞` and `EReal` defined by `log`\nand `exp`.\n- `EReal.expOrderIso`: The order isomorphism between `EReal` and `ℝ≥0∞` defined by `exp`\nand `log`.\n- `ENNReal.logHomeomorph`: `log` as a homeomorphism.\n- `EReal.expHomeomorph`: `exp` as a homeomorphism.\n\n## Main Results\n- `EReal.log_exp`, `ENNReal.exp_log`: `log` and `exp` are inverses of each other.\n- `EReal.exp_nmul`, `EReal.exp_mul`: `exp` satisfies the identities `exp (n * x) = (exp x) ^ n`\nand `exp (x * y) = (exp x) ^ y`.\n- `EReal` is a Polish space.\n\n## Tags\nENNReal, EReal, logarithm, exponential\n-/\n\nopen EReal ENNReal Topology\nsection LogExp\n\n@[simp] lemma EReal.log_exp (x : EReal) : log (exp x) = x := by\n  induction x\n  · simp\n  · rw [exp_coe, log_ofReal, if_neg (not_le.mpr (Real.exp_pos _)), Real.log_exp]\n  · simp\n\n",
+        "original_theorem_content": "@[simp] lemma ENNReal.exp_log (x : ℝ≥0∞) : exp (log x) = x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ENNRealLogExp.lean",
+        "line": 47,
+        "tactic_state_before": "case neg\nx : ℝ≥0∞\nhx_top : ¬x = ⊤\nhx_zero : ¬x = 0\n⊢ x.log.exp = x",
+        "proof": "have hx_pos : 0 < x.toReal := ENNReal.toReal_pos hx_zero hx_top\n  try repeat assumption",
+        "tactic_state_after": "[case neg\n x : ℝ≥0∞\n hx_top : ¬x = ⊤\n hx_zero : ¬x = 0\n hx_pos : 0 < x.toReal\n ⊢ x.log.exp = x]",
+        "goal": "x : ℝ≥0∞\nhx_top : ¬x = ⊤\nhx_zero : ¬x = 0\n⊢ 0 < x.toReal",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\nopen EReal ENNReal Topology\n\nopen EReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (x : ℝ≥0∞) (hx_top : ¬x = ⊤) (hx_zero : ¬x = 0) : 0 < x.toReal := sorry",
+        "original_theorem_name": "ENNReal.exp_log",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\n/-!\n# Properties of the extended logarithm and exponential\n\nWe prove that `log` and `exp` define order isomorphisms between `ℝ≥0∞` and `EReal`.\n## Main DefinitionsP\n- `ENNReal.logOrderIso`: The order isomorphism between `ℝ≥0∞` and `EReal` defined by `log`\nand `exp`.\n- `EReal.expOrderIso`: The order isomorphism between `EReal` and `ℝ≥0∞` defined by `exp`\nand `log`.\n- `ENNReal.logHomeomorph`: `log` as a homeomorphism.\n- `EReal.expHomeomorph`: `exp` as a homeomorphism.\n\n## Main Results\n- `EReal.log_exp`, `ENNReal.exp_log`: `log` and `exp` are inverses of each other.\n- `EReal.exp_nmul`, `EReal.exp_mul`: `exp` satisfies the identities `exp (n * x) = (exp x) ^ n`\nand `exp (x * y) = (exp x) ^ y`.\n- `EReal` is a Polish space.\n\n## Tags\nENNReal, EReal, logarithm, exponential\n-/\n\nopen EReal ENNReal Topology\nsection LogExp\n\n@[simp] lemma EReal.log_exp (x : EReal) : log (exp x) = x := by\n  induction x\n  · simp\n  · rw [exp_coe, log_ofReal, if_neg (not_le.mpr (Real.exp_pos _)), Real.log_exp]\n  · simp\n\n",
+        "original_theorem_content": "@[simp] lemma ENNReal.exp_log (x : ℝ≥0∞) : exp (log x) = x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/Log/ENNRealLogExp.lean",
+        "line": 48,
+        "tactic_state_before": "case neg\nx : ℝ≥0∞\nhx_top : ¬x = ⊤\nhx_zero : ¬x = 0\nhx_pos : 0 < x.toReal\n⊢ x.log.exp = x",
+        "proof": "rw [← ENNReal.ofReal_toReal hx_top, log_ofReal_of_pos hx_pos, exp_coe, Real.exp_log hx_pos]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x : ℝ≥0∞\nhx_top : ¬x = ⊤\nhx_zero : ¬x = 0\nhx_pos : 0 < x.toReal\n⊢ x.log.exp = x",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\nopen EReal ENNReal Topology\n\nopen EReal\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_5 (x : ℝ≥0∞) (hx_top : ¬x = ⊤) (hx_zero : ¬x = 0) (hx_pos : 0 < x.toReal) :\n  x.log.exp = x := sorry",
+        "original_theorem_name": "ENNReal.exp_log",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Log.ERealExp\n\nimport Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog\n\nimport Mathlib.MeasureTheory.Constructions.BorelSpace.Basic\n\nimport Mathlib.Topology.MetricSpace.Polish\n\n/-!\n# Properties of the extended logarithm and exponential\n\nWe prove that `log` and `exp` define order isomorphisms between `ℝ≥0∞` and `EReal`.\n## Main DefinitionsP\n- `ENNReal.logOrderIso`: The order isomorphism between `ℝ≥0∞` and `EReal` defined by `log`\nand `exp`.\n- `EReal.expOrderIso`: The order isomorphism between `EReal` and `ℝ≥0∞` defined by `exp`\nand `log`.\n- `ENNReal.logHomeomorph`: `log` as a homeomorphism.\n- `EReal.expHomeomorph`: `exp` as a homeomorphism.\n\n## Main Results\n- `EReal.log_exp`, `ENNReal.exp_log`: `log` and `exp` are inverses of each other.\n- `EReal.exp_nmul`, `EReal.exp_mul`: `exp` satisfies the identities `exp (n * x) = (exp x) ^ n`\nand `exp (x * y) = (exp x) ^ y`.\n- `EReal` is a Polish space.\n\n## Tags\nENNReal, EReal, logarithm, exponential\n-/\n\nopen EReal ENNReal Topology\nsection LogExp\n\n@[simp] lemma EReal.log_exp (x : EReal) : log (exp x) = x := by\n  induction x\n  · simp\n  · rw [exp_coe, log_ofReal, if_neg (not_le.mpr (Real.exp_pos _)), Real.log_exp]\n  · simp\n\n",
+        "original_theorem_content": "@[simp] lemma ENNReal.exp_log (x : ℝ≥0∞) : exp (log x) = x := by"
+    }
+]

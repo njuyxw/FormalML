@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Star.lean",
+        "line": 57,
+        "tactic_state_before": "case h.e'_3.h\nn : ℕ\nhn₀ : n ≠ 0\nhn : Even n\nx✝ : ℚ\n⊢ x✝ ∈ nonneg ℚ ↔ x✝ ∈ map NNRat.coeHom (closure (range fun x => x ^ n))",
+        "proof": "simp [NNRat.addSubmonoid_closure_range_pow hn₀, NNRat.exists]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\nhn₀ : n ≠ 0\nhn : Even n\nx✝ : ℚ\n⊢ x✝ ∈ nonneg ℚ ↔ x✝ ∈ map NNRat.coeHom (closure (range fun x => x ^ n))",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nimport Mathlib.Data.NNRat.Order\n\nimport Mathlib.Tactic.FieldSimp\n\nopen AddSubmonoid Set\n\nopen scoped NNRat\n\nopen NNRat\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {n : ℕ} (hn₀ : n ≠ 0) (hn : Even n) (x : ℚ) :\n  x ∈ nonneg ℚ ↔ x ∈ map NNRat.coeHom (closure (range fun x => x ^ n)) := sorry",
+        "original_theorem_name": "Rat.addSubmonoid_closure_range_pow",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nimport Mathlib.Data.NNRat.Order\n\nimport Mathlib.Tactic.FieldSimp\n\n/-!\n# Star ordered ring structures on `ℚ` and `ℚ≥0`\n\nThis file shows that `ℚ` and `ℚ≥0` are `StarOrderedRing`s. In particular, this means that every\nnonnegative rational number is a sum of squares.\n-/\n\nopen AddSubmonoid Set\nopen scoped NNRat\n\nnamespace NNRat\n\n@[simp] lemma addSubmonoid_closure_range_pow {n : ℕ} (hn₀ : n ≠ 0) :\n    closure (range fun x : ℚ≥0 ↦ x ^ n) = ⊤ := by\n  refine (eq_top_iff' _).2 fun x ↦ ?_\n  suffices x = (x.num * x.den ^ (n - 1)) • (x.den : ℚ≥0)⁻¹ ^ n by\n    rw [this]\n    exact nsmul_mem (subset_closure <| mem_range_self _) _\n  rw [nsmul_eq_mul]\n  push_cast\n  rw [mul_assoc, pow_sub₀, pow_one, mul_right_comm, ← mul_pow, mul_inv_cancel₀, one_pow, one_mul,\n    ← div_eq_mul_inv, num_div_den]\n  all_goals simp [x.den_pos.ne', Nat.one_le_iff_ne_zero, *]\n\n@[simp] lemma addSubmonoid_closure_range_mul_self : closure (range fun x : ℚ≥0 ↦ x * x) = ⊤ := by\n  simpa only [sq] using addSubmonoid_closure_range_pow two_ne_zero\n\ninstance instStarOrderedRing : StarOrderedRing ℚ≥0 where\n  le_iff a b := by simp [eq_comm, le_iff_exists_nonneg_add (a := a)]\n\nend NNRat\n\nnamespace Rat\n\n",
+        "original_theorem_content": "@[simp] lemma addSubmonoid_closure_range_pow {n : ℕ} (hn₀ : n ≠ 0) (hn : Even n) :\n    closure (range fun x : ℚ ↦ x ^ n) = nonneg _ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Star.lean",
+        "line": 36,
+        "tactic_state_before": "n : ℕ\nhn₀ : n ≠ 0\nx : ℚ≥0\n⊢ x = (x.num * x.den ^ (n - 1)) • (↑x.den)⁻¹ ^ n",
+        "proof": "rw [nsmul_eq_mul]\n  try repeat assumption",
+        "tactic_state_after": "[n : ℕ\n hn₀ : n ≠ 0\n x : ℚ≥0\n ⊢ x = ↑(x.num * x.den ^ (n - 1)) * (↑x.den)⁻¹ ^ n]",
+        "goal": "n : ℕ\nhn₀ : n ≠ 0\nx : ℚ≥0\nh : x = ↑(x.num * x.den ^ (n - 1)) * (↑x.den)⁻¹ ^ n\n⊢ x = (x.num * x.den ^ (n - 1)) • (↑x.den)⁻¹ ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nimport Mathlib.Data.NNRat.Order\n\nimport Mathlib.Tactic.FieldSimp\n\nopen AddSubmonoid Set\n\nopen scoped NNRat\n\nopen NNRat\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {n : ℕ} (hn₀ : n ≠ 0) (x : ℚ≥0)\n  (h : x = ↑(x.num * x.den ^ (n - 1)) * (↑x.den)⁻¹ ^ n) : x = (x.num * x.den ^ (n - 1)) • (↑x.den)⁻¹ ^ n := sorry",
+        "original_theorem_name": "NNRat.addSubmonoid_closure_range_pow",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nimport Mathlib.Data.NNRat.Order\n\nimport Mathlib.Tactic.FieldSimp\n\n/-!\n# Star ordered ring structures on `ℚ` and `ℚ≥0`\n\nThis file shows that `ℚ` and `ℚ≥0` are `StarOrderedRing`s. In particular, this means that every\nnonnegative rational number is a sum of squares.\n-/\n\nopen AddSubmonoid Set\nopen scoped NNRat\n\nnamespace NNRat\n\n",
+        "original_theorem_content": "@[simp] lemma addSubmonoid_closure_range_pow {n : ℕ} (hn₀ : n ≠ 0) :\n    closure (range fun x : ℚ≥0 ↦ x ^ n) = ⊤ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Star.lean",
+        "line": 37,
+        "tactic_state_before": "n : ℕ\nhn₀ : n ≠ 0\nx : ℚ≥0\n⊢ x = ↑(x.num * x.den ^ (n - 1)) * (↑x.den)⁻¹ ^ n",
+        "proof": "push_cast\n  try repeat assumption",
+        "tactic_state_after": "[n : ℕ\n hn₀ : n ≠ 0\n x : ℚ≥0\n ⊢ x = ↑x.num * ↑x.den ^ (n - 1) * (↑x.den)⁻¹ ^ n]",
+        "goal": "n : ℕ\nhn₀ : n ≠ 0\nx : ℚ≥0\nh : x = ↑x.num * ↑x.den ^ (n - 1) * (↑x.den)⁻¹ ^ n\n⊢ x = ↑(x.num * x.den ^ (n - 1)) * (↑x.den)⁻¹ ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nimport Mathlib.Data.NNRat.Order\n\nimport Mathlib.Tactic.FieldSimp\n\nopen AddSubmonoid Set\n\nopen scoped NNRat\n\nopen NNRat\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {n : ℕ} (hn₀ : n ≠ 0) (x : ℚ≥0)\n  (h : x = ↑x.num * ↑x.den ^ (n - 1) * (↑x.den)⁻¹ ^ n) : x = ↑(x.num * x.den ^ (n - 1)) * (↑x.den)⁻¹ ^ n := sorry",
+        "original_theorem_name": "NNRat.addSubmonoid_closure_range_pow",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Order.Field.Rat\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Star.Basic\n\nimport Mathlib.Data.NNRat.Order\n\nimport Mathlib.Tactic.FieldSimp\n\n/-!\n# Star ordered ring structures on `ℚ` and `ℚ≥0`\n\nThis file shows that `ℚ` and `ℚ≥0` are `StarOrderedRing`s. In particular, this means that every\nnonnegative rational number is a sum of squares.\n-/\n\nopen AddSubmonoid Set\nopen scoped NNRat\n\nnamespace NNRat\n\n",
+        "original_theorem_content": "@[simp] lemma addSubmonoid_closure_range_pow {n : ℕ} (hn₀ : n ≠ 0) :\n    closure (range fun x : ℚ≥0 ↦ x ^ n) = ⊤ := by"
+    }
+]

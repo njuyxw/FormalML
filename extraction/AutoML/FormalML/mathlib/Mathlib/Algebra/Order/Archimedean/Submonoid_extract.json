@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Archimedean/Submonoid.lean",
+        "line": 27,
+        "tactic_state_before": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\n⊢ MulArchimedean ↥H",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case arch\n M : Type u_1\n S : Type u_2\n inst✝³ : SetLike S M\n inst✝² : OrderedCommMonoid M\n inst✝¹ : SubmonoidClass S M\n inst✝ : MulArchimedean M\n H : S\n ⊢ ∀ (x : ↥H) {y : ↥H}, 1 < y → ∃ n, x ≤ y ^ n]",
+        "goal": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nh : ∀ (x : ↥H) {y : ↥H}, 1 < y → ∃ n, x ≤ y ^ n\n⊢ MulArchimedean ↥H",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {M : Type u_1} {S : Type u_2} [inst : SetLike S M]\n  [inst_1 : OrderedCommMonoid M] [inst_2 : SubmonoidClass S M] [inst_3 : MulArchimedean M] (H : S)\n  (h : ∀ (x : ↥H) {y : ↥H}, 1 < y → ∃ n, x ≤ y ^ n) : MulArchimedean ↥H := sorry",
+        "original_theorem_name": "SubmonoidClass.instMulArchimedean",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\n/-!\n# Submonoids of archimedean monoids\n\nThis file defines the instances that show that the (mul)archimedean property is retained in a\nsubmonoid of the ambient group.\n\n## Main statements\n\n* `SubmonoidClass.instMulArchimedean`: the submonoid (and similar subobjects) of a mul-archimedean\n  group retains the mul-archimedean property when restricted to the submonoid.\n* `AddSubmonoidClass.instArchimedean`: the additive submonoid (and similar subobjects) of an\n  archimedean additive group retains the archimedean property when restricted to the additive\n  submonoid.\n-/\n\nassert_not_exists Finset\n\n",
+        "original_theorem_content": "@[to_additive]\ninstance SubmonoidClass.instMulArchimedean {M S : Type*} [SetLike S M] [OrderedCommMonoid M]\n    [SubmonoidClass S M] [MulArchimedean M] (H : S) : MulArchimedean H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Archimedean/Submonoid.lean",
+        "line": 27,
+        "tactic_state_before": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\n⊢ MulArchimedean ↥H",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case arch\n M : Type u_1\n S : Type u_2\n inst✝³ : SetLike S M\n inst✝² : OrderedCommMonoid M\n inst✝¹ : SubmonoidClass S M\n inst✝ : MulArchimedean M\n H : S\n ⊢ ∀ (x : ↥H) {y : ↥H}, 1 < y → ∃ n, x ≤ y ^ n]",
+        "goal": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nh : ∀ (x : ↥H) {y : ↥H}, 1 < y → ∃ n, x ≤ y ^ n\n⊢ MulArchimedean ↥H",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {M : Type u_1} {S : Type u_2} [inst : SetLike S M]\n  [inst_1 : OrderedCommMonoid M] [inst_2 : SubmonoidClass S M] [inst_3 : MulArchimedean M] (H : S)\n  (h : ∀ (x : ↥H) {y : ↥H}, 1 < y → ∃ n, x ≤ y ^ n) : MulArchimedean ↥H := sorry",
+        "original_theorem_name": "SubmonoidClass.instMulArchimedean",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\n/-!\n# Submonoids of archimedean monoids\n\nThis file defines the instances that show that the (mul)archimedean property is retained in a\nsubmonoid of the ambient group.\n\n## Main statements\n\n* `SubmonoidClass.instMulArchimedean`: the submonoid (and similar subobjects) of a mul-archimedean\n  group retains the mul-archimedean property when restricted to the submonoid.\n* `AddSubmonoidClass.instArchimedean`: the additive submonoid (and similar subobjects) of an\n  archimedean additive group retains the archimedean property when restricted to the additive\n  submonoid.\n-/\n\nassert_not_exists Finset\n\n",
+        "original_theorem_content": "@[to_additive]\ninstance SubmonoidClass.instMulArchimedean {M S : Type*} [SetLike S M] [OrderedCommMonoid M]\n    [SubmonoidClass S M] [MulArchimedean M] (H : S) : MulArchimedean H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Archimedean/Submonoid.lean",
+        "line": 29,
+        "tactic_state_before": "case arch\nM : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\n⊢ 1 < y✝ → ∃ n, x ≤ y✝ ^ n",
+        "proof": "simp only [← Subtype.coe_lt_coe, OneMemClass.coe_one, SubmonoidClass.mk_pow, Subtype.mk_le_mk]\n  try repeat assumption",
+        "tactic_state_after": "[case arch\n M : Type u_1\n S : Type u_2\n inst✝³ : SetLike S M\n inst✝² : OrderedCommMonoid M\n inst✝¹ : SubmonoidClass S M\n inst✝ : MulArchimedean M\n H : S\n x y✝ : ↥H\n ⊢ 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n]",
+        "goal": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\nh : 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n\n⊢ 1 < y✝ → ∃ n, x ≤ y✝ ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {M : Type u_1} {S : Type u_2} [inst : SetLike S M]\n  [inst_1 : OrderedCommMonoid M] [inst_2 : SubmonoidClass S M] [inst_3 : MulArchimedean M] (H : S) (x : ↥H) {y : ↥H}\n  (h : 1 < ↑y → ∃ n, x ≤ y ^ n) : 1 < y → ∃ n, x ≤ y ^ n := sorry",
+        "original_theorem_name": "SubmonoidClass.instMulArchimedean",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\n/-!\n# Submonoids of archimedean monoids\n\nThis file defines the instances that show that the (mul)archimedean property is retained in a\nsubmonoid of the ambient group.\n\n## Main statements\n\n* `SubmonoidClass.instMulArchimedean`: the submonoid (and similar subobjects) of a mul-archimedean\n  group retains the mul-archimedean property when restricted to the submonoid.\n* `AddSubmonoidClass.instArchimedean`: the additive submonoid (and similar subobjects) of an\n  archimedean additive group retains the archimedean property when restricted to the additive\n  submonoid.\n-/\n\nassert_not_exists Finset\n\n",
+        "original_theorem_content": "@[to_additive]\ninstance SubmonoidClass.instMulArchimedean {M S : Type*} [SetLike S M] [OrderedCommMonoid M]\n    [SubmonoidClass S M] [MulArchimedean M] (H : S) : MulArchimedean H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Archimedean/Submonoid.lean",
+        "line": 29,
+        "tactic_state_before": "case arch\nM : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\n⊢ 1 < y✝ → ∃ n, x ≤ y✝ ^ n",
+        "proof": "simp only [← Subtype.coe_lt_coe, OneMemClass.coe_one, SubmonoidClass.mk_pow, Subtype.mk_le_mk]\n  try repeat assumption",
+        "tactic_state_after": "[case arch\n M : Type u_1\n S : Type u_2\n inst✝³ : SetLike S M\n inst✝² : OrderedCommMonoid M\n inst✝¹ : SubmonoidClass S M\n inst✝ : MulArchimedean M\n H : S\n x y✝ : ↥H\n ⊢ 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n]",
+        "goal": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\nh : 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n\n⊢ 1 < y✝ → ∃ n, x ≤ y✝ ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {M : Type u_1} {S : Type u_2} [inst : SetLike S M]\n  [inst_1 : OrderedCommMonoid M] [inst_2 : SubmonoidClass S M] [inst_3 : MulArchimedean M] (H : S) (x : ↥H) {y : ↥H}\n  (h : 1 < ↑y → ∃ n, x ≤ y ^ n) : 1 < y → ∃ n, x ≤ y ^ n := sorry",
+        "original_theorem_name": "SubmonoidClass.instMulArchimedean",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\n/-!\n# Submonoids of archimedean monoids\n\nThis file defines the instances that show that the (mul)archimedean property is retained in a\nsubmonoid of the ambient group.\n\n## Main statements\n\n* `SubmonoidClass.instMulArchimedean`: the submonoid (and similar subobjects) of a mul-archimedean\n  group retains the mul-archimedean property when restricted to the submonoid.\n* `AddSubmonoidClass.instArchimedean`: the additive submonoid (and similar subobjects) of an\n  archimedean additive group retains the archimedean property when restricted to the additive\n  submonoid.\n-/\n\nassert_not_exists Finset\n\n",
+        "original_theorem_content": "@[to_additive]\ninstance SubmonoidClass.instMulArchimedean {M S : Type*} [SetLike S M] [OrderedCommMonoid M]\n    [SubmonoidClass S M] [MulArchimedean M] (H : S) : MulArchimedean H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Archimedean/Submonoid.lean",
+        "line": 30,
+        "tactic_state_before": "case arch\nM : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\n⊢ 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n",
+        "proof": "exact MulArchimedean.arch x.val\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\n⊢ 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {M : Type u_1} {S : Type u_2} [inst : SetLike S M]\n  [inst_1 : OrderedCommMonoid M] [inst_2 : SubmonoidClass S M] [inst_3 : MulArchimedean M] (H : S) (x : ↥H) {y : ↥H} :\n  1 < ↑y → ∃ n, x ≤ y ^ n := sorry",
+        "original_theorem_name": "SubmonoidClass.instMulArchimedean",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\n/-!\n# Submonoids of archimedean monoids\n\nThis file defines the instances that show that the (mul)archimedean property is retained in a\nsubmonoid of the ambient group.\n\n## Main statements\n\n* `SubmonoidClass.instMulArchimedean`: the submonoid (and similar subobjects) of a mul-archimedean\n  group retains the mul-archimedean property when restricted to the submonoid.\n* `AddSubmonoidClass.instArchimedean`: the additive submonoid (and similar subobjects) of an\n  archimedean additive group retains the archimedean property when restricted to the additive\n  submonoid.\n-/\n\nassert_not_exists Finset\n\n",
+        "original_theorem_content": "@[to_additive]\ninstance SubmonoidClass.instMulArchimedean {M S : Type*} [SetLike S M] [OrderedCommMonoid M]\n    [SubmonoidClass S M] [MulArchimedean M] (H : S) : MulArchimedean H := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Archimedean/Submonoid.lean",
+        "line": 30,
+        "tactic_state_before": "case arch\nM : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\n⊢ 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n",
+        "proof": "exact MulArchimedean.arch x.val\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\nS : Type u_2\ninst✝³ : SetLike S M\ninst✝² : OrderedCommMonoid M\ninst✝¹ : SubmonoidClass S M\ninst✝ : MulArchimedean M\nH : S\nx y✝ : ↥H\n⊢ 1 < ↑y✝ → ∃ n, x ≤ y✝ ^ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {M : Type u_1} {S : Type u_2} [inst : SetLike S M]\n  [inst_1 : OrderedCommMonoid M] [inst_2 : SubmonoidClass S M] [inst_3 : MulArchimedean M] (H : S) (x : ↥H) {y : ↥H} :\n  1 < ↑y → ∃ n, x ≤ y ^ n := sorry",
+        "original_theorem_name": "SubmonoidClass.instMulArchimedean",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Archimedean.Basic\n\nimport Mathlib.Algebra.Order.Monoid.Submonoid\n\n/-!\n# Submonoids of archimedean monoids\n\nThis file defines the instances that show that the (mul)archimedean property is retained in a\nsubmonoid of the ambient group.\n\n## Main statements\n\n* `SubmonoidClass.instMulArchimedean`: the submonoid (and similar subobjects) of a mul-archimedean\n  group retains the mul-archimedean property when restricted to the submonoid.\n* `AddSubmonoidClass.instArchimedean`: the additive submonoid (and similar subobjects) of an\n  archimedean additive group retains the archimedean property when restricted to the additive\n  submonoid.\n-/\n\nassert_not_exists Finset\n\n",
+        "original_theorem_content": "@[to_additive]\ninstance SubmonoidClass.instMulArchimedean {M S : Type*} [SetLike S M] [OrderedCommMonoid M]\n    [SubmonoidClass S M] [MulArchimedean M] (H : S) : MulArchimedean H := by"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Geometry/Euclidean/Angle/Unoriented/Conformal.lean",
+        "line": 24,
+        "tactic_state_before": "case intro.intro.intro\nE : Type u_1\nF : Type u_2\ninst✝³ : NormedAddCommGroup E\ninst✝² : NormedAddCommGroup F\ninst✝¹ : InnerProductSpace ℝ E\ninst✝ : InnerProductSpace ℝ F\nu v : E\nc : ℝ\nhc : c ≠ 0\nli : E →ₗᵢ[ℝ] F\n⊢ angle ((c • li.toContinuousLinearMap) u) ((c • li.toContinuousLinearMap) v) = angle u v",
+        "proof": "exact (angle_smul_smul hc _ _).trans (li.angle_map _ _)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "E : Type u_1\nF : Type u_2\ninst✝³ : NormedAddCommGroup E\ninst✝² : NormedAddCommGroup F\ninst✝¹ : InnerProductSpace ℝ E\ninst✝ : InnerProductSpace ℝ F\nu v : E\nc : ℝ\nhc : c ≠ 0\nli : E →ₗᵢ[ℝ] F\n⊢ angle ((c • li.toContinuousLinearMap) u) ((c • li.toContinuousLinearMap) v) = angle u v",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Calculus.Conformal.NormedSpace\n\nimport Mathlib.Geometry.Euclidean.Angle.Unoriented.Basic\n\nopen InnerProductGeometry\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {E : Type u_1} {F : Type u_2} [inst : NormedAddCommGroup E]\n  [inst_1 : NormedAddCommGroup F] [inst_2 : InnerProductSpace ℝ E] [inst_3 : InnerProductSpace ℝ F] (u v : E) (c : ℝ)\n  (hc : c ≠ 0) (li : E →ₗᵢ[ℝ] F) :\n  angle ((c • li.toContinuousLinearMap) u) ((c • li.toContinuousLinearMap) v) = angle u v := sorry",
+        "original_theorem_name": "InnerProductGeometry.IsConformalMap.preserves_angle",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Calculus.Conformal.NormedSpace\n\nimport Mathlib.Geometry.Euclidean.Angle.Unoriented.Basic\n\n/-!\n# Angles and conformal maps\n\nThis file proves that conformal maps preserve angles.\n\n-/\n\n\nnamespace InnerProductGeometry\n\nvariable {E F : Type*}\nvariable [NormedAddCommGroup E] [NormedAddCommGroup F]\nvariable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]\n\n",
+        "original_theorem_content": "theorem IsConformalMap.preserves_angle {f' : E →L[ℝ] F} (h : IsConformalMap f') (u v : E) :\n    angle (f' u) (f' v) = angle u v := by"
+    }
+]

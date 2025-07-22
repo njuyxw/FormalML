@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "PhysLean/PhysLean/Relativity/Lorentz/Group/Rotations.lean",
+        "line": 25,
+        "tactic_state_before": "A : SO(3)\n⊢ SO3ToMatrix A ∈ 𝓛 3",
+        "proof": "rw [LorentzGroup.mem_iff_dual_mul_self]\n  try repeat assumption",
+        "tactic_state_after": "[A : SO(3)\n ⊢ minkowskiMatrix.dual (SO3ToMatrix A) * SO3ToMatrix A = 1]",
+        "goal": "A : SO(3)\nh : minkowskiMatrix.dual (SO3ToMatrix A) * SO3ToMatrix A = 1\n⊢ SO3ToMatrix A ∈ 𝓛 3",
+        "header": "import PhysLean\nimport PhysLean.Relativity.Lorentz.Group.Basic\n\nimport PhysLean.Mathematics.SO3.Basic\n\nopen GroupTheory\n\nopen LorentzGroup\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (A : SO(3)) (h : minkowskiMatrix.dual (SO3ToMatrix A) * SO3ToMatrix A = 1) :\n  SO3ToMatrix A ∈ 𝓛 3 := sorry",
+        "original_theorem_name": "LorentzGroup.SO3ToMatrix_in_LorentzGroup",
+        "original_theorem_importsAndContext": "import PhysLean.Relativity.Lorentz.Group.Basic\n\nimport PhysLean.Mathematics.SO3.Basic\n\n/-!\n# Rotations\n\nThis file describes the embedding of `SO(3)` into `LorentzGroup 3`.\n\n-/\nTODO \"6VZIS\" \"Generalize the inclusion of rotations into LorentzGroup to arbitrary dimension.\"\nnoncomputable section\n\nnamespace LorentzGroup\nopen GroupTheory\n\n/-- Given a element of `SO(3)` the matrix corresponding to a space-time rotation. -/\n@[simp]\ndef SO3ToMatrix (A : SO(3)) : Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℝ :=\n  (Matrix.fromBlocks 1 0 0 A.1)\n\n",
+        "original_theorem_content": "lemma SO3ToMatrix_in_LorentzGroup (A : SO(3)) : SO3ToMatrix A ∈ LorentzGroup 3 := by"
+    },
+    {
+        "filename": "PhysLean/PhysLean/Relativity/Lorentz/Group/Rotations.lean",
+        "line": 26,
+        "tactic_state_before": "A : SO(3)\n⊢ minkowskiMatrix.dual (SO3ToMatrix A) * SO3ToMatrix A = 1",
+        "proof": "simp only [minkowskiMatrix.dual, minkowskiMatrix.as_block, SO3ToMatrix, Matrix.fromBlocks_transpose,\n  Matrix.transpose_one, Matrix.transpose_zero, Matrix.fromBlocks_multiply, mul_one, Matrix.mul_zero, add_zero,\n  Matrix.zero_mul, Matrix.mul_one, neg_mul, one_mul, zero_add, Matrix.mul_neg, neg_zero, mul_neg, neg_neg,\n  Matrix.mul_eq_one_comm.mpr A.2.2, Matrix.fromBlocks_one]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "A : SO(3)\n⊢ minkowskiMatrix.dual (SO3ToMatrix A) * SO3ToMatrix A = 1",
+        "header": "import PhysLean\nimport PhysLean.Relativity.Lorentz.Group.Basic\n\nimport PhysLean.Mathematics.SO3.Basic\n\nopen GroupTheory\n\nopen LorentzGroup\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (A : SO(3)) : minkowskiMatrix.dual (SO3ToMatrix A) * SO3ToMatrix A = 1 := sorry",
+        "original_theorem_name": "LorentzGroup.SO3ToMatrix_in_LorentzGroup",
+        "original_theorem_importsAndContext": "import PhysLean.Relativity.Lorentz.Group.Basic\n\nimport PhysLean.Mathematics.SO3.Basic\n\n/-!\n# Rotations\n\nThis file describes the embedding of `SO(3)` into `LorentzGroup 3`.\n\n-/\nTODO \"6VZIS\" \"Generalize the inclusion of rotations into LorentzGroup to arbitrary dimension.\"\nnoncomputable section\n\nnamespace LorentzGroup\nopen GroupTheory\n\n/-- Given a element of `SO(3)` the matrix corresponding to a space-time rotation. -/\n@[simp]\ndef SO3ToMatrix (A : SO(3)) : Matrix (Fin 1 ⊕ Fin 3) (Fin 1 ⊕ Fin 3) ℝ :=\n  (Matrix.fromBlocks 1 0 0 A.1)\n\n",
+        "original_theorem_content": "lemma SO3ToMatrix_in_LorentzGroup (A : SO(3)) : SO3ToMatrix A ∈ LorentzGroup 3 := by"
+    }
+]

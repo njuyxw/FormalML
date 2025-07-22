@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "scilean/SciLean/Probability/IsAffineRandMap.lean",
+        "line": 27,
+        "tactic_state_before": "X : Type u_1\ninst✝¹¹ : AddCommGroup X\ninst✝¹⁰ : Module ℝ X\ninst✝⁹ : MeasurableSpace X\ninst✝⁸ : TopologicalSpace X\nY : Type\ninst✝⁷ : AddCommGroup Y\ninst✝⁶ : Module ℝ Y\ninst✝⁵ : MeasurableSpace Y\ninst✝⁴ : TopologicalSpace Y\nZ : Type ?u.21810\ninst✝³ : AddCommGroup Z\ninst✝² : Module ℝ Z\ninst✝¹ : MeasurableSpace Z\ninst✝ : TopologicalSpace Z\nf : X → Y\nhf : IsAffineMap ℝ f\n⊢ SciLean.IsAffineRandMap fun x => pure (f x)",
+        "proof": "sorry_proof\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X : Type u_1\ninst✝¹¹ : AddCommGroup X\ninst✝¹⁰ : Module ℝ X\ninst✝⁹ : MeasurableSpace X\ninst✝⁸ : TopologicalSpace X\nY : Type\ninst✝⁷ : AddCommGroup Y\ninst✝⁶ : Module ℝ Y\ninst✝⁵ : MeasurableSpace Y\ninst✝⁴ : TopologicalSpace Y\nZ : Type ?u.21810\ninst✝³ : AddCommGroup Z\ninst✝² : Module ℝ Z\ninst✝¹ : MeasurableSpace Z\ninst✝ : TopologicalSpace Z\nf : X → Y\nhf : IsAffineMap ℝ f\n⊢ SciLean.IsAffineRandMap fun x => pure (f x)",
+        "header": "import SciLean\nimport SciLean.Probability.Rand\n\nopen MeasureTheory\n\nopen SciLean\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {X : Type u_1} [inst : AddCommGroup X] [inst_1 : Module ℝ X] {Y : Type}\n  [inst_2 : AddCommGroup Y] [inst_3 : Module ℝ Y] [inst_4 : MeasurableSpace Y] (f : X → Y) (hf : IsAffineMap ℝ f) :\n  SciLean.IsAffineRandMap fun x => pure (f x) := sorry",
+        "original_theorem_name": "Pure.pure.arg_a0.IsAffineRandMap",
+        "original_theorem_importsAndContext": "import SciLean.Probability.Rand\n\nnamespace SciLean\n\nset_option deprecated.oldSectionVars true\nvariable {X} [AddCommGroup X] [Module ℝ X] [MeasurableSpace X] [TopologicalSpace X]\nvariable {Y} [AddCommGroup Y] [Module ℝ Y] [MeasurableSpace Y] [TopologicalSpace Y]\nvariable {Z} [AddCommGroup Z] [Module ℝ Z] [MeasurableSpace Z] [TopologicalSpace Z]\n\nopen MeasureTheory\n@[fun_prop]\ndef IsAffineRandMap (f : X → Rand Y) : Prop :=\n  -- maybe this should be stated in terms of weak integral\n  -- also maybe we should require that: `∀ x, LawfulRand (f x)`\n  ∀ (φ : Y → ℝ), (∀ x, Integrable φ (f x).ℙ) → IsAffineMap ℝ (fun x => ∫ x, φ x ∂(f x).ℙ)\n\n@[fun_prop]\ntheorem IsAffineRandMap.const_rule (y : Rand Y) :\n    IsAffineRandMap (fun _ : X => y) := by sorry_proof\n\nset_option linter.unusedVariables false\n",
+        "original_theorem_content": "@[fun_prop]\ntheorem _root_.Pure.pure.arg_a0.IsAffineRandMap (f : X → Y) (hf : IsAffineMap ℝ f) :\n    IsAffineRandMap (fun x => pure (f x)) := by"
+    }
+]

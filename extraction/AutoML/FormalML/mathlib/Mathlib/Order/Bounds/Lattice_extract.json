@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Order/Bounds/Lattice.lean",
+        "line": 43,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsGLB (s i) (u i)\nc : α\n⊢ IsGLB (range u) c ↔ IsGLB (⋃ i, s i) c",
+        "proof": "refine isGLB_congr ?_\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : Preorder α\n ι : Sort u_2\n s : ι → Set α\n u : ι → α\n hs : ∀ (i : ι), IsGLB (s i) (u i)\n c : α\n ⊢ lowerBounds (range u) = lowerBounds (⋃ i, s i)]",
+        "goal": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsGLB (s i) (u i)\nc : α\nh : lowerBounds (range u) = lowerBounds (⋃ i, s i)\n⊢ IsGLB (range u) c ↔ IsGLB (⋃ i, s i) c",
+        "header": "import Mathlib\nimport Mathlib.Data.Set.Lattice.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : Preorder α] {ι : Sort u_2} {s : ι → Set α}\n  {u : ι → α} (hs : ∀ (i : ι), IsGLB (s i) (u i)) (c : α) (h : lowerBounds (range u) = lowerBounds (⋃ i, s i)) :\n  IsGLB (range u) c ↔ IsGLB (⋃ i, s i) c := sorry",
+        "original_theorem_name": "isGLB_iUnion_iff_of_isLUB",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Set.Lattice.Image\n\n/-!\n# Unions and intersections of bounds\n\nSome results about upper and lower bounds over collections of sets.\n\n## Implementation notes\n\nIn a separate file as we need to import `Mathlib.Data.Set.Lattice`.\n\n-/\n\nvariable {α : Type*} [Preorder α] {ι : Sort*} {s : ι → Set α}\n\nopen Set\n\ntheorem gc_upperBounds_lowerBounds : GaloisConnection\n    (OrderDual.toDual ∘ upperBounds : Set α → (Set α)ᵒᵈ)\n    (lowerBounds ∘ OrderDual.ofDual : (Set α)ᵒᵈ → Set α) := by\n  simpa [GaloisConnection, subset_def, mem_upperBounds, mem_lowerBounds]\n    using fun S T ↦ forall₂_swap\n\n@[simp]\ntheorem upperBounds_iUnion :\n    upperBounds (⋃ i, s i) = ⋂ i, upperBounds (s i) :=\n  gc_upperBounds_lowerBounds.l_iSup\n\n@[simp]\ntheorem lowerBounds_iUnion :\n    lowerBounds (⋃ i, s i) = ⋂ i, lowerBounds (s i) :=\n  gc_upperBounds_lowerBounds.u_iInf\n\ntheorem isLUB_iUnion_iff_of_isLUB {u : ι → α} (hs : ∀ i, IsLUB (s i) (u i)) (c : α) :\n    IsLUB (Set.range u) c ↔ IsLUB (⋃ i, s i) c := by\n  refine isLUB_congr ?_\n  simp_rw [range_eq_iUnion, upperBounds_iUnion, upperBounds_singleton, (hs _).upperBounds_eq]\n\n",
+        "original_theorem_content": "theorem isGLB_iUnion_iff_of_isLUB {u : ι → α} (hs : ∀ i, IsGLB (s i) (u i)) (c : α) :\n    IsGLB (Set.range u) c ↔ IsGLB (⋃ i, s i) c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Bounds/Lattice.lean",
+        "line": 44,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsGLB (s i) (u i)\nc : α\n⊢ lowerBounds (range u) = lowerBounds (⋃ i, s i)",
+        "proof": "simp_rw [range_eq_iUnion, lowerBounds_iUnion, lowerBounds_singleton, (hs _).lowerBounds_eq]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsGLB (s i) (u i)\nc : α\n⊢ lowerBounds (range u) = lowerBounds (⋃ i, s i)",
+        "header": "import Mathlib\nimport Mathlib.Data.Set.Lattice.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : Preorder α] {ι : Sort u_2} {s : ι → Set α}\n  {u : ι → α} (hs : ∀ (i : ι), IsGLB (s i) (u i)) : lowerBounds (range u) = lowerBounds (⋃ i, s i) := sorry",
+        "original_theorem_name": "isGLB_iUnion_iff_of_isLUB",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Set.Lattice.Image\n\n/-!\n# Unions and intersections of bounds\n\nSome results about upper and lower bounds over collections of sets.\n\n## Implementation notes\n\nIn a separate file as we need to import `Mathlib.Data.Set.Lattice`.\n\n-/\n\nvariable {α : Type*} [Preorder α] {ι : Sort*} {s : ι → Set α}\n\nopen Set\n\ntheorem gc_upperBounds_lowerBounds : GaloisConnection\n    (OrderDual.toDual ∘ upperBounds : Set α → (Set α)ᵒᵈ)\n    (lowerBounds ∘ OrderDual.ofDual : (Set α)ᵒᵈ → Set α) := by\n  simpa [GaloisConnection, subset_def, mem_upperBounds, mem_lowerBounds]\n    using fun S T ↦ forall₂_swap\n\n@[simp]\ntheorem upperBounds_iUnion :\n    upperBounds (⋃ i, s i) = ⋂ i, upperBounds (s i) :=\n  gc_upperBounds_lowerBounds.l_iSup\n\n@[simp]\ntheorem lowerBounds_iUnion :\n    lowerBounds (⋃ i, s i) = ⋂ i, lowerBounds (s i) :=\n  gc_upperBounds_lowerBounds.u_iInf\n\ntheorem isLUB_iUnion_iff_of_isLUB {u : ι → α} (hs : ∀ i, IsLUB (s i) (u i)) (c : α) :\n    IsLUB (Set.range u) c ↔ IsLUB (⋃ i, s i) c := by\n  refine isLUB_congr ?_\n  simp_rw [range_eq_iUnion, upperBounds_iUnion, upperBounds_singleton, (hs _).upperBounds_eq]\n\n",
+        "original_theorem_content": "theorem isGLB_iUnion_iff_of_isLUB {u : ι → α} (hs : ∀ i, IsGLB (s i) (u i)) (c : α) :\n    IsGLB (Set.range u) c ↔ IsGLB (⋃ i, s i) c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Bounds/Lattice.lean",
+        "line": 38,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsLUB (s i) (u i)\nc : α\n⊢ IsLUB (range u) c ↔ IsLUB (⋃ i, s i) c",
+        "proof": "refine isLUB_congr ?_\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : Preorder α\n ι : Sort u_2\n s : ι → Set α\n u : ι → α\n hs : ∀ (i : ι), IsLUB (s i) (u i)\n c : α\n ⊢ upperBounds (range u) = upperBounds (⋃ i, s i)]",
+        "goal": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsLUB (s i) (u i)\nc : α\nh : upperBounds (range u) = upperBounds (⋃ i, s i)\n⊢ IsLUB (range u) c ↔ IsLUB (⋃ i, s i) c",
+        "header": "import Mathlib\nimport Mathlib.Data.Set.Lattice.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : Preorder α] {ι : Sort u_2} {s : ι → Set α}\n  {u : ι → α} (hs : ∀ (i : ι), IsLUB (s i) (u i)) (c : α) (h : upperBounds (range u) = upperBounds (⋃ i, s i)) :\n  IsLUB (range u) c ↔ IsLUB (⋃ i, s i) c := sorry",
+        "original_theorem_name": "isLUB_iUnion_iff_of_isLUB",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Set.Lattice.Image\n\n/-!\n# Unions and intersections of bounds\n\nSome results about upper and lower bounds over collections of sets.\n\n## Implementation notes\n\nIn a separate file as we need to import `Mathlib.Data.Set.Lattice`.\n\n-/\n\nvariable {α : Type*} [Preorder α] {ι : Sort*} {s : ι → Set α}\n\nopen Set\n\ntheorem gc_upperBounds_lowerBounds : GaloisConnection\n    (OrderDual.toDual ∘ upperBounds : Set α → (Set α)ᵒᵈ)\n    (lowerBounds ∘ OrderDual.ofDual : (Set α)ᵒᵈ → Set α) := by\n  simpa [GaloisConnection, subset_def, mem_upperBounds, mem_lowerBounds]\n    using fun S T ↦ forall₂_swap\n\n@[simp]\ntheorem upperBounds_iUnion :\n    upperBounds (⋃ i, s i) = ⋂ i, upperBounds (s i) :=\n  gc_upperBounds_lowerBounds.l_iSup\n\n@[simp]\ntheorem lowerBounds_iUnion :\n    lowerBounds (⋃ i, s i) = ⋂ i, lowerBounds (s i) :=\n  gc_upperBounds_lowerBounds.u_iInf\n\n",
+        "original_theorem_content": "theorem isLUB_iUnion_iff_of_isLUB {u : ι → α} (hs : ∀ i, IsLUB (s i) (u i)) (c : α) :\n    IsLUB (Set.range u) c ↔ IsLUB (⋃ i, s i) c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Order/Bounds/Lattice.lean",
+        "line": 39,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsLUB (s i) (u i)\nc : α\n⊢ upperBounds (range u) = upperBounds (⋃ i, s i)",
+        "proof": "simp_rw [range_eq_iUnion, upperBounds_iUnion, upperBounds_singleton, (hs _).upperBounds_eq]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : Preorder α\nι : Sort u_2\ns : ι → Set α\nu : ι → α\nhs : ∀ (i : ι), IsLUB (s i) (u i)\nc : α\n⊢ upperBounds (range u) = upperBounds (⋃ i, s i)",
+        "header": "import Mathlib\nimport Mathlib.Data.Set.Lattice.Image\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} [inst : Preorder α] {ι : Sort u_2} {s : ι → Set α}\n  {u : ι → α} (hs : ∀ (i : ι), IsLUB (s i) (u i)) : upperBounds (range u) = upperBounds (⋃ i, s i) := sorry",
+        "original_theorem_name": "isLUB_iUnion_iff_of_isLUB",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Set.Lattice.Image\n\n/-!\n# Unions and intersections of bounds\n\nSome results about upper and lower bounds over collections of sets.\n\n## Implementation notes\n\nIn a separate file as we need to import `Mathlib.Data.Set.Lattice`.\n\n-/\n\nvariable {α : Type*} [Preorder α] {ι : Sort*} {s : ι → Set α}\n\nopen Set\n\ntheorem gc_upperBounds_lowerBounds : GaloisConnection\n    (OrderDual.toDual ∘ upperBounds : Set α → (Set α)ᵒᵈ)\n    (lowerBounds ∘ OrderDual.ofDual : (Set α)ᵒᵈ → Set α) := by\n  simpa [GaloisConnection, subset_def, mem_upperBounds, mem_lowerBounds]\n    using fun S T ↦ forall₂_swap\n\n@[simp]\ntheorem upperBounds_iUnion :\n    upperBounds (⋃ i, s i) = ⋂ i, upperBounds (s i) :=\n  gc_upperBounds_lowerBounds.l_iSup\n\n@[simp]\ntheorem lowerBounds_iUnion :\n    lowerBounds (⋃ i, s i) = ⋂ i, lowerBounds (s i) :=\n  gc_upperBounds_lowerBounds.u_iInf\n\n",
+        "original_theorem_content": "theorem isLUB_iUnion_iff_of_isLUB {u : ι → α} (hs : ∀ i, IsLUB (s i) (u i)) (c : α) :\n    IsLUB (Set.range u) c ↔ IsLUB (⋃ i, s i) c := by"
+    }
+]

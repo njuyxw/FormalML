@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Archive/Imo/Imo2001Q2.lean",
+        "line": 34,
+        "tactic_state_before": "a b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\n⊢ a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)",
+        "proof": "rw [div_le_div_iff₀ (by positivity) (by positivity)]\n  try repeat assumption",
+        "tactic_state_after": "[a b c : ℝ\n ha : 0 < a\n hb : 0 < b\n hc : 0 < c\n ⊢ a ^ 4 * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 3 * (a ^ 4 + b ^ 4 + c ^ 4)]",
+        "goal": "a b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\nh : a ^ 4 * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 3 * (a ^ 4 + b ^ 4 + c ^ 4)\n⊢ a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)",
+        "header": "import Archive\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen Real\n\nopen Imo2001Q2\n\nopen Imo2001Q2\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)\n  (h : a ^ 4 * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 3 * (a ^ 4 + b ^ 4 + c ^ 4)) :\n  a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) := sorry",
+        "original_theorem_name": "Imo2001Q2.bound",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# IMO 2001 Q2\n\nLet $a$, $b$, $c$ be positive reals. Prove that\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} +\n\\frac{b}{\\sqrt{b^2 + 8ca}} +\n\\frac{c}{\\sqrt{c^2 + 8ab}} ≥ 1.\n$$\n\n## Solution\n\nThis proof is based on the bound\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} ≥\n\\frac{a^{\\frac43}}{a^{\\frac43} + b^{\\frac43} + c^{\\frac43}}.\n$$\n\n-/\n\n\nopen Real\n\nvariable {a b c : ℝ}\n\nnamespace Imo2001Q2\n\n",
+        "original_theorem_content": "theorem bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :\n    a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / sqrt ((a ^ 3) ^ 2 + ↑8 * b ^ 3 * c ^ 3) := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2001Q2.lean",
+        "line": 39,
+        "tactic_state_before": "a b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\n⊢ a ^ 3 * (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ≤ a ^ 3 * (a ^ 4 + b ^ 4 + c ^ 4)",
+        "proof": "gcongr\n  try repeat assumption",
+        "tactic_state_after": "[case h\n a b c : ℝ\n ha : 0 < a\n hb : 0 < b\n hc : 0 < c\n ⊢ a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 4 + b ^ 4 + c ^ 4]",
+        "goal": "a b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\nh : a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 4 + b ^ 4 + c ^ 4\n⊢ a ^ 3 * (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ≤ a ^ 3 * (a ^ 4 + b ^ 4 + c ^ 4)",
+        "header": "import Archive\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen Real\n\nopen Imo2001Q2\n\nopen Imo2001Q2\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)\n  (h : a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 4 + b ^ 4 + c ^ 4) :\n  a ^ 3 * (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ≤ a ^ 3 * (a ^ 4 + b ^ 4 + c ^ 4) := sorry",
+        "original_theorem_name": "Imo2001Q2.bound",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# IMO 2001 Q2\n\nLet $a$, $b$, $c$ be positive reals. Prove that\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} +\n\\frac{b}{\\sqrt{b^2 + 8ca}} +\n\\frac{c}{\\sqrt{c^2 + 8ab}} ≥ 1.\n$$\n\n## Solution\n\nThis proof is based on the bound\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} ≥\n\\frac{a^{\\frac43}}{a^{\\frac43} + b^{\\frac43} + c^{\\frac43}}.\n$$\n\n-/\n\n\nopen Real\n\nvariable {a b c : ℝ}\n\nnamespace Imo2001Q2\n\n",
+        "original_theorem_content": "theorem bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :\n    a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / sqrt ((a ^ 3) ^ 2 + ↑8 * b ^ 3 * c ^ 3) := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2001Q2.lean",
+        "line": 40,
+        "tactic_state_before": "case h\na b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\n⊢ a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 4 + b ^ 4 + c ^ 4",
+        "proof": "apply le_of_pow_le_pow_left₀ two_ne_zero (by positivity)\n  try repeat assumption",
+        "tactic_state_after": "[case h\n a b c : ℝ\n ha : 0 < a\n hb : 0 < b\n hc : 0 < c\n ⊢ (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ^ 2 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2]",
+        "goal": "a b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\nh : (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ^ 2 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2\n⊢ a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 4 + b ^ 4 + c ^ 4",
+        "header": "import Archive\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen Real\n\nopen Imo2001Q2\n\nopen Imo2001Q2\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)\n  (h : (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ^ 2 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2) :\n  a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3) ≤ a ^ 4 + b ^ 4 + c ^ 4 := sorry",
+        "original_theorem_name": "Imo2001Q2.bound",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# IMO 2001 Q2\n\nLet $a$, $b$, $c$ be positive reals. Prove that\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} +\n\\frac{b}{\\sqrt{b^2 + 8ca}} +\n\\frac{c}{\\sqrt{c^2 + 8ab}} ≥ 1.\n$$\n\n## Solution\n\nThis proof is based on the bound\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} ≥\n\\frac{a^{\\frac43}}{a^{\\frac43} + b^{\\frac43} + c^{\\frac43}}.\n$$\n\n-/\n\n\nopen Real\n\nvariable {a b c : ℝ}\n\nnamespace Imo2001Q2\n\n",
+        "original_theorem_content": "theorem bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :\n    a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / sqrt ((a ^ 3) ^ 2 + ↑8 * b ^ 3 * c ^ 3) := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2001Q2.lean",
+        "line": 41,
+        "tactic_state_before": "case h\na b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\n⊢ (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ^ 2 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2",
+        "proof": "rw [mul_pow, sq_sqrt (by positivity), ← sub_nonneg]\n  try repeat assumption",
+        "tactic_state_after": "[case h\n a b c : ℝ\n ha : 0 < a\n hb : 0 < b\n hc : 0 < c\n ⊢ 0 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2 - a ^ 2 * ((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)]",
+        "goal": "a b c : ℝ\nha : 0 < a\nhb : 0 < b\nhc : 0 < c\nh : 0 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2 - a ^ 2 * ((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)\n⊢ (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ^ 2 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2",
+        "header": "import Archive\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen Real\n\nopen Imo2001Q2\n\nopen Imo2001Q2\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {a b c : ℝ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)\n  (h : 0 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2 - a ^ 2 * ((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) :\n  (a * √((a ^ 3) ^ 2 + 8 * b ^ 3 * c ^ 3)) ^ 2 ≤ (a ^ 4 + b ^ 4 + c ^ 4) ^ 2 := sorry",
+        "original_theorem_name": "Imo2001Q2.bound",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# IMO 2001 Q2\n\nLet $a$, $b$, $c$ be positive reals. Prove that\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} +\n\\frac{b}{\\sqrt{b^2 + 8ca}} +\n\\frac{c}{\\sqrt{c^2 + 8ab}} ≥ 1.\n$$\n\n## Solution\n\nThis proof is based on the bound\n$$\n\\frac{a}{\\sqrt{a^2 + 8bc}} ≥\n\\frac{a^{\\frac43}}{a^{\\frac43} + b^{\\frac43} + c^{\\frac43}}.\n$$\n\n-/\n\n\nopen Real\n\nvariable {a b c : ℝ}\n\nnamespace Imo2001Q2\n\n",
+        "original_theorem_content": "theorem bound (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :\n    a ^ 4 / (a ^ 4 + b ^ 4 + c ^ 4) ≤ a ^ 3 / sqrt ((a ^ 3) ^ 2 + ↑8 * b ^ 3 * c ^ 3) := by"
+    }
+]

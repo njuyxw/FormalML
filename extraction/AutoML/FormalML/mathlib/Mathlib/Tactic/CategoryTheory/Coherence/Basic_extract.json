@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Tactic/CategoryTheory/Coherence/Basic.lean",
+        "line": 60,
+        "tactic_state_before": "C : Type u\ninst✝ : CategoryStruct.{v, u} C\nf₁ f₂ f₃ f₄ : C\nα α' : f₁ ⟶ f₂\nη η' : f₂ ⟶ f₃\nηs ηs' : f₃ ⟶ f₄\ne_α : α = α'\ne_η : η = η'\ne_ηs : ηs = ηs'\n⊢ α ≫ η ≫ ηs = α' ≫ η' ≫ ηs'",
+        "proof": "simp [e_α, e_η, e_ηs]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u\ninst✝ : CategoryStruct.{v, u} C\nf₁ f₂ f₃ f₄ : C\nα α' : f₁ ⟶ f₂\nη η' : f₂ ⟶ f₃\nηs ηs' : f₃ ⟶ f₄\ne_α : α = α'\ne_η : η = η'\ne_ηs : ηs = ηs'\n⊢ α ≫ η ≫ ηs = α' ≫ η' ≫ ηs'",
+        "header": "import Mathlib\nimport Mathlib.Tactic.CategoryTheory.Coherence.Normalize\n\nimport Mathlib.Tactic.CategoryTheory.Coherence.PureCoherence\n\nimport Mathlib.CategoryTheory.Category.Basic\n\nopen Lean Meta Elab\n\nopen CategoryTheory Mathlib.Tactic.BicategoryLike\n\nopen Mathlib.Tactic.BicategoryLike\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u} [inst : CategoryStruct.{v, u} C] {f₁ f₂ f₃ f₄ : C}\n  (α α' : f₁ ⟶ f₂) (η η' : f₂ ⟶ f₃) (ηs ηs' : f₃ ⟶ f₄) (e_α : α = α') (e_η : η = η') (e_ηs : ηs = ηs') :\n  α ≫ η ≫ ηs = α' ≫ η' ≫ ηs' := sorry",
+        "original_theorem_name": "Mathlib.Tactic.BicategoryLike.mk_eq_of_cons",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.CategoryTheory.Coherence.Normalize\n\nimport Mathlib.Tactic.CategoryTheory.Coherence.PureCoherence\n\nimport Mathlib.CategoryTheory.Category.Basic\n\n/-!\n# The Core function for `monoidal` and `bicategory` tactics\n\nThis file provides the function `BicategoryLike.main` for proving equalities in monoidal categories\nand bicategories. Using `main`, we will define the following tactics:\n- `monoidal` at `Mathlib.Tactic.CategoryTheory.Monoidal.Basic`\n- `bicategory` at `Mathlib.Tactic.CategoryTheory.Bicategory.Basic`\n\nThe `main` first normalizes the both sides using `eval`, then compares the corresponding components.\nIt closes the goal at non-structural parts with `rfl` and the goal at structural parts by\n`pureCoherence`.\n\n-/\n\nopen Lean Meta Elab\nopen CategoryTheory Mathlib.Tactic.BicategoryLike\n\nnamespace Mathlib.Tactic.BicategoryLike\n\ntheorem mk_eq {α : Type _} (a b a' b' : α) (ha : a = a') (hb : b = b') (h : a' = b') : a = b := by\n  simp [h, ha, hb]\n\n/-- Transform an equality between 2-morphisms into the equality between their normalizations. -/\ndef normalForm (ρ : Type) [Context ρ]\n    [MonadMor₁ (CoherenceM ρ)]\n    [MonadMor₂Iso (CoherenceM ρ)]\n    [MonadNormalExpr (CoherenceM ρ)] [MkEval (CoherenceM ρ)]\n    [MkMor₂ (CoherenceM ρ)]\n    [MonadMor₂ (CoherenceM ρ)]\n    (nm : Name) (mvarId : MVarId) : MetaM (List MVarId) := do\n  mvarId.withContext do\n    let e ← instantiateMVars <| ← mvarId.getType\n    withTraceNode nm (fun _ => return m!\"normalize: {e}\") do\n      let some (_, e₁, e₂) := (← whnfR <| ← instantiateMVars <| e).eq?\n        | throwError \"{nm}_nf requires an equality goal\"\n      let ctx : ρ ← mkContext e₁\n      CoherenceM.run (ctx := ctx) do\n        let e₁' ← MkMor₂.ofExpr e₁\n        let e₂' ← MkMor₂.ofExpr e₂\n        let e₁'' ← eval nm e₁'\n        let e₂'' ← eval nm e₂'\n        let H ← mkAppM ``mk_eq #[e₁, e₂, e₁''.expr.e.e, e₂''.expr.e.e, e₁''.proof, e₂''.proof]\n        mvarId.apply H\n\nuniverse v u\n\n",
+        "original_theorem_content": "theorem mk_eq_of_cons {C : Type u} [CategoryStruct.{v} C]\n    {f₁ f₂ f₃ f₄ : C}\n    (α α' : f₁ ⟶ f₂) (η η' : f₂ ⟶ f₃) (ηs ηs' : f₃ ⟶ f₄)\n    (e_α : α = α') (e_η : η = η') (e_ηs : ηs = ηs') :\n    α ≫ η ≫ ηs = α' ≫ η' ≫ ηs' := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/CategoryTheory/Coherence/Basic.lean",
+        "line": 29,
+        "tactic_state_before": "α : Type u_1\na b a' b' : α\nha : a = a'\nhb : b = b'\nh : a' = b'\n⊢ a = b",
+        "proof": "simp [h, ha, hb]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\na b a' b' : α\nha : a = a'\nhb : b = b'\nh : a' = b'\n⊢ a = b",
+        "header": "import Mathlib\nimport Mathlib.Tactic.CategoryTheory.Coherence.Normalize\n\nimport Mathlib.Tactic.CategoryTheory.Coherence.PureCoherence\n\nimport Mathlib.CategoryTheory.Category.Basic\n\nopen Lean Meta Elab\n\nopen CategoryTheory Mathlib.Tactic.BicategoryLike\n\nopen Mathlib.Tactic.BicategoryLike\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} (a b a' b' : α) (ha : a = a') (hb : b = b') (h : a' = b') :\n  a = b := sorry",
+        "original_theorem_name": "Mathlib.Tactic.BicategoryLike.mk_eq",
+        "original_theorem_importsAndContext": "import Mathlib.Tactic.CategoryTheory.Coherence.Normalize\n\nimport Mathlib.Tactic.CategoryTheory.Coherence.PureCoherence\n\nimport Mathlib.CategoryTheory.Category.Basic\n\n/-!\n# The Core function for `monoidal` and `bicategory` tactics\n\nThis file provides the function `BicategoryLike.main` for proving equalities in monoidal categories\nand bicategories. Using `main`, we will define the following tactics:\n- `monoidal` at `Mathlib.Tactic.CategoryTheory.Monoidal.Basic`\n- `bicategory` at `Mathlib.Tactic.CategoryTheory.Bicategory.Basic`\n\nThe `main` first normalizes the both sides using `eval`, then compares the corresponding components.\nIt closes the goal at non-structural parts with `rfl` and the goal at structural parts by\n`pureCoherence`.\n\n-/\n\nopen Lean Meta Elab\nopen CategoryTheory Mathlib.Tactic.BicategoryLike\n\nnamespace Mathlib.Tactic.BicategoryLike\n\n",
+        "original_theorem_content": "theorem mk_eq {α : Type _} (a b a' b' : α) (ha : a = a') (hb : b = b') (h : a' = b') : a = b := by"
+    }
+]

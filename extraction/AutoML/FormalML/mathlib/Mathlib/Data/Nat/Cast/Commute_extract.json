@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Cast/Commute.lean",
+        "line": 21,
+        "tactic_state_before": "α : Type u_1\ninst✝ : NonAssocSemiring α\nn : ℕ\nx : α\n⊢ Commute (↑n) x",
+        "proof": "induction n with\n| zero => rw [Nat.cast_zero]; exact Commute.zero_left x\n| succ n ihn => rw [Nat.cast_succ]; exact ihn.add_left (Commute.one_left x)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : NonAssocSemiring α\nn : ℕ\nx : α\n⊢ Commute (↑n) x",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Ring.Commute\n\nopen Nat\n\nopen SemiconjBy\n\nopen Commute\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : NonAssocSemiring α] (n : ℕ) (x : α) :\n  Commute (↑n) x := sorry",
+        "original_theorem_name": "Nat.cast_commute",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Commute\n\nimport Mathlib.Algebra.Ring.Commute\n\n/-!\n# Cast of natural numbers: lemmas about `Commute`\n\n-/\n\nvariable {α : Type*}\n\nnamespace Nat\n\nsection Commute\n\nvariable [NonAssocSemiring α]\n\n",
+        "original_theorem_content": "theorem cast_commute (n : ℕ) (x : α) : Commute (n : α) x := by"
+    }
+]

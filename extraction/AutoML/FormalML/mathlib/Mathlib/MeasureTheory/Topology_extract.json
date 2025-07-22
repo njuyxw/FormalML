@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Topology.lean",
+        "line": 22,
+        "tactic_state_before": "α : Type u_1\ninst✝³ : MeasurableSpace α\ninst✝² : TopologicalSpace α\ninst✝¹ : SecondCountableTopology α\nμ : Measure α\ninst✝ : NoAtoms μ\nU : Set α\nhU : MeasurableSet U\ns : Set α\nhs : s ∈ codiscreteWithin U\n⊢ s ∈ ae (μ.restrict U)",
+        "proof": "have := discreteTopology_of_codiscreteWithin hs\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝³ : MeasurableSpace α\n inst✝² : TopologicalSpace α\n inst✝¹ : SecondCountableTopology α\n μ : Measure α\n inst✝ : NoAtoms μ\n U : Set α\n hU : MeasurableSet U\n s : Set α\n hs : s ∈ codiscreteWithin U\n this : DiscreteTopology ↑(sᶜ ∩ U)\n ⊢ s ∈ ae (μ.restrict U)]",
+        "goal": "α : Type u_1\ninst✝³ : MeasurableSpace α\ninst✝² : TopologicalSpace α\ninst✝¹ : SecondCountableTopology α\nμ : Measure α\ninst✝ : NoAtoms μ\nU : Set α\nhU : MeasurableSet U\ns : Set α\nhs : s ∈ codiscreteWithin U\n⊢ DiscreteTopology ↑(sᶜ ∩ U)",
+        "header": "import Mathlib\nimport Mathlib.Topology.DiscreteSubset\n\nimport Mathlib.MeasureTheory.Measure.Typeclasses\n\nopen Filter MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : MeasurableSpace α] [inst_1 : TopologicalSpace α]\n  [inst_2 : SecondCountableTopology α] {μ : Measure α} [inst_3 : NoAtoms μ] {U : Set α} (hU : MeasurableSet U)\n  ⦃s : Set α⦄ (hs : s ∈ codiscreteWithin U) : DiscreteTopology ↑(sᶜ ∩ U) := sorry",
+        "original_theorem_name": "ae_restrict_le_codiscreteWithin",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.DiscreteSubset\n\nimport Mathlib.MeasureTheory.Measure.Typeclasses\n\n/-!\n# Theorems combining measure theory and topology\n\nThis file gathers theorems that combine measure theory and topology, and cannot easily be added to\nthe existing files without introducing massive dependencies between the subjects.\n-/\nopen Filter MeasureTheory\n\n",
+        "original_theorem_content": "/-- Under reasonable assumptions, sets that are codiscrete within `U` are contained in the “almost\neverywhere” filter of co-null sets. -/\ntheorem ae_restrict_le_codiscreteWithin\n    {α : Type*} [MeasurableSpace α] [TopologicalSpace α] [SecondCountableTopology α]\n    {μ : Measure α} [NoAtoms μ] {U : Set α} (hU : MeasurableSet U) :\n    ae (μ.restrict U) ≤ codiscreteWithin U := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Topology.lean",
+        "line": 23,
+        "tactic_state_before": "α : Type u_1\ninst✝³ : MeasurableSpace α\ninst✝² : TopologicalSpace α\ninst✝¹ : SecondCountableTopology α\nμ : Measure α\ninst✝ : NoAtoms μ\nU : Set α\nhU : MeasurableSet U\ns : Set α\nhs : s ∈ codiscreteWithin U\nthis : DiscreteTopology ↑(sᶜ ∩ U)\n⊢ s ∈ ae (μ.restrict U)",
+        "proof": "rw [mem_ae_iff, Measure.restrict_apply' hU]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝³ : MeasurableSpace α\n inst✝² : TopologicalSpace α\n inst✝¹ : SecondCountableTopology α\n μ : Measure α\n inst✝ : NoAtoms μ\n U : Set α\n hU : MeasurableSet U\n s : Set α\n hs : s ∈ codiscreteWithin U\n this : DiscreteTopology ↑(sᶜ ∩ U)\n ⊢ μ (sᶜ ∩ U) = 0]",
+        "goal": "α : Type u_1\ninst✝³ : MeasurableSpace α\ninst✝² : TopologicalSpace α\ninst✝¹ : SecondCountableTopology α\nμ : Measure α\ninst✝ : NoAtoms μ\nU : Set α\nhU : MeasurableSet U\ns : Set α\nhs : s ∈ codiscreteWithin U\nthis : DiscreteTopology ↑(sᶜ ∩ U)\nh : μ (sᶜ ∩ U) = 0\n⊢ s ∈ ae (μ.restrict U)",
+        "header": "import Mathlib\nimport Mathlib.Topology.DiscreteSubset\n\nimport Mathlib.MeasureTheory.Measure.Typeclasses\n\nopen Filter MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : MeasurableSpace α] [inst_1 : TopologicalSpace α]\n  [inst_2 : SecondCountableTopology α] {μ : Measure α} [inst_3 : NoAtoms μ] {U : Set α} (hU : MeasurableSet U)\n  ⦃s : Set α⦄ (hs : s ∈ codiscreteWithin U) (this : DiscreteTopology ↑(sᶜ ∩ U)) (h : μ (sᶜ ∩ U) = 0) :\n  s ∈ ae (μ.restrict U) := sorry",
+        "original_theorem_name": "ae_restrict_le_codiscreteWithin",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.DiscreteSubset\n\nimport Mathlib.MeasureTheory.Measure.Typeclasses\n\n/-!\n# Theorems combining measure theory and topology\n\nThis file gathers theorems that combine measure theory and topology, and cannot easily be added to\nthe existing files without introducing massive dependencies between the subjects.\n-/\nopen Filter MeasureTheory\n\n",
+        "original_theorem_content": "/-- Under reasonable assumptions, sets that are codiscrete within `U` are contained in the “almost\neverywhere” filter of co-null sets. -/\ntheorem ae_restrict_le_codiscreteWithin\n    {α : Type*} [MeasurableSpace α] [TopologicalSpace α] [SecondCountableTopology α]\n    {μ : Measure α} [NoAtoms μ] {U : Set α} (hU : MeasurableSet U) :\n    ae (μ.restrict U) ≤ codiscreteWithin U := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Topology.lean",
+        "line": 24,
+        "tactic_state_before": "α : Type u_1\ninst✝³ : MeasurableSpace α\ninst✝² : TopologicalSpace α\ninst✝¹ : SecondCountableTopology α\nμ : Measure α\ninst✝ : NoAtoms μ\nU : Set α\nhU : MeasurableSet U\ns : Set α\nhs : s ∈ codiscreteWithin U\nthis : DiscreteTopology ↑(sᶜ ∩ U)\n⊢ μ (sᶜ ∩ U) = 0",
+        "proof": "apply\n  Set.Countable.measure_zero\n    (TopologicalSpace.separableSpace_iff_countable.1 TopologicalSpace.SecondCountableTopology.to_separableSpace)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝³ : MeasurableSpace α\ninst✝² : TopologicalSpace α\ninst✝¹ : SecondCountableTopology α\nμ : Measure α\ninst✝ : NoAtoms μ\nU : Set α\nhU : MeasurableSet U\ns : Set α\nhs : s ∈ codiscreteWithin U\nthis : DiscreteTopology ↑(sᶜ ∩ U)\n⊢ μ (sᶜ ∩ U) = 0",
+        "header": "import Mathlib\nimport Mathlib.Topology.DiscreteSubset\n\nimport Mathlib.MeasureTheory.Measure.Typeclasses\n\nopen Filter MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : MeasurableSpace α] [inst_1 : TopologicalSpace α]\n  [inst_2 : SecondCountableTopology α] {μ : Measure α} [inst_3 : NoAtoms μ] {U : Set α} (hU : MeasurableSet U)\n  ⦃s : Set α⦄ (hs : s ∈ codiscreteWithin U) (this : DiscreteTopology ↑(sᶜ ∩ U)) : μ (sᶜ ∩ U) = 0 := sorry",
+        "original_theorem_name": "ae_restrict_le_codiscreteWithin",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.DiscreteSubset\n\nimport Mathlib.MeasureTheory.Measure.Typeclasses\n\n/-!\n# Theorems combining measure theory and topology\n\nThis file gathers theorems that combine measure theory and topology, and cannot easily be added to\nthe existing files without introducing massive dependencies between the subjects.\n-/\nopen Filter MeasureTheory\n\n",
+        "original_theorem_content": "/-- Under reasonable assumptions, sets that are codiscrete within `U` are contained in the “almost\neverywhere” filter of co-null sets. -/\ntheorem ae_restrict_le_codiscreteWithin\n    {α : Type*} [MeasurableSpace α] [TopologicalSpace α] [SecondCountableTopology α]\n    {μ : Measure α} [NoAtoms μ] {U : Set α} (hU : MeasurableSet U) :\n    ae (μ.restrict U) ≤ codiscreteWithin U := by"
+    }
+]

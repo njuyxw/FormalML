@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Module/LinearMap/Rat.lean",
+        "line": 24,
+        "tactic_state_before": "case h\nM : Type u_1\nM₂ : Type u_2\ninst✝³ : AddCommGroup M\ninst✝² : Module ℚ M\ninst✝¹ : AddCommGroup M₂\ninst✝ : Module ℚ M₂\nf g : M →+ M₂\nh : f.toRatLinearMap = g.toRatLinearMap\nx : M\n⊢ f x = g x",
+        "proof": "exact LinearMap.congr_fun h x\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\nM₂ : Type u_2\ninst✝³ : AddCommGroup M\ninst✝² : Module ℚ M\ninst✝¹ : AddCommGroup M₂\ninst✝ : Module ℚ M₂\nf g : M →+ M₂\nh : f.toRatLinearMap = g.toRatLinearMap\nx : M\n⊢ f x = g x",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Module.Rat\n\nimport Mathlib.Algebra.Module.LinearMap.Defs\n\nopen Function\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {M : Type u_1} {M₂ : Type u_2} [inst : AddCommGroup M]\n  [inst_1 : Module ℚ M] [inst_2 : AddCommGroup M₂] [inst_3 : Module ℚ M₂] ⦃f g : M →+ M₂⦄\n  (h : f.toRatLinearMap = g.toRatLinearMap) (x : M) : f x = g x := sorry",
+        "original_theorem_name": "AddMonoidHom.toRatLinearMap_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Module.Rat\n\nimport Mathlib.Algebra.Module.LinearMap.Defs\n\n/-!\n# Reinterpret an additive homomorphism as a `ℚ`-linear map.\n-/\n\nopen Function\n\nvariable {M M₂ : Type*}\n\n/-- Reinterpret an additive homomorphism as a `ℚ`-linear map. -/\ndef AddMonoidHom.toRatLinearMap [AddCommGroup M] [Module ℚ M] [AddCommGroup M₂] [Module ℚ M₂]\n    (f : M →+ M₂) : M →ₗ[ℚ] M₂ :=\n  { f with map_smul' := map_rat_smul f }\n\n",
+        "original_theorem_content": "theorem AddMonoidHom.toRatLinearMap_injective [AddCommGroup M] [Module ℚ M] [AddCommGroup M₂]\n    [Module ℚ M₂] : Function.Injective (@AddMonoidHom.toRatLinearMap M M₂ _ _ _ _) := by"
+    }
+]

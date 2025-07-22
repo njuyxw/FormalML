@@ -1,21 +1,7 @@
-import os
-import json
+import re
 
-# 获取当前脚本的绝对路径
-current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, "results/leanbench_-1_deepseek_v2_non_cot_8_results_all2.json")
+text = "theorem extracted_formal_statement_0 {n : Type u_4} {α : Type u_5} {ι : Type u_7} [inst : Fintype n]\n  [inst_1 : Unique ι] [inst_2 : SeminormedAddCommGroup α] (v : n → α) :\n  (∑ x, ‖replicateCol ι v x default‖ ^ 2) ^ (1 / 2) = (∑ i, ‖(WithLp.equiv 2 (n → α)).symm v i‖ ^ 2) ^ (1 / 2) := by\n  have h : ∀ x, replicateCol ι v x default = (WithLp.equiv 2 (n → α)).symm v x := by\n    intro x\n    simp [replicateCol_apply, Equiv.symm_apply_apply]\n  simp_all [h]\n  <;> congr 1\n  <;> ext x\n  <;> simp [h]\n  <;> congr 1\n  <;> ext x\n  <;> simp [h]\n```"
 
-# 加载 JSON 文件
-with open(file_path, "r") as f:
-    data = json.load(f)
+match = re.search(r'(theorem extracted_formal_statement_.*?)```', text, re.DOTALL)
 
-print(f"对象总数: {len(data)}")
-
-# # 打印前 5 个对象
-# for i, item in enumerate(data[:5]):
-#     print(f"\n对象 {i + 1}:")
-#     print(json.dumps(item, indent=2, ensure_ascii=False))
-# 打印前 5 个对象的键
-for i, item in enumerate(data[:5]):
-    print(f"\n对象 {i + 1} 的键:")
-    print(list(item.keys()))
+print(repr(match.group(1)))

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Field/Canonical.lean",
+        "line": 38,
+        "tactic_state_before": "α : Type u_1\ninst✝³ : LinearOrderedSemifield α\ninst✝² : CanonicallyOrderedAdd α\ninst✝¹ : Sub α\ninst✝ : OrderedSub α\na b c : α\n⊢ (a - b) / c = a / c - b / c",
+        "proof": "simp_rw [div_eq_mul_inv, tsub_mul]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝³ : LinearOrderedSemifield α\ninst✝² : CanonicallyOrderedAdd α\ninst✝¹ : Sub α\ninst✝ : OrderedSub α\na b c : α\n⊢ (a - b) / c = a / c - b / c",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Field.Defs\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Algebra.Order.Ring.Canonical\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : LinearOrderedSemifield α]\n  [inst_1 : CanonicallyOrderedAdd α] [inst_2 : Sub α] [inst_3 : OrderedSub α] (a b c : α) :\n  (a - b) / c = a / c - b / c := sorry",
+        "original_theorem_name": "tsub_div",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Field.Defs\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Algebra.Order.Ring.Canonical\n\n/-!\n# Canonically ordered semifields\n-/\n\nset_option linter.deprecated false in\n/-- A canonically linear ordered field is a linear ordered field in which `a ≤ b` iff there exists\n`c` with `b = a + c`. -/\n@[deprecated \"Use `[LinearOrderedSemifield α] [CanonicallyOrderedAdd α]` instead.\"\n  (since := \"2025-01-13\")]\nstructure CanonicallyLinearOrderedSemifield (α : Type*) extends CanonicallyOrderedCommSemiring α,\n  LinearOrderedSemifield α\n\nattribute [nolint docBlame] CanonicallyLinearOrderedSemifield.toLinearOrderedSemifield\n\nvariable {α : Type*} [LinearOrderedSemifield α] [CanonicallyOrderedAdd α]\n\n-- See note [reducible non-instances]\n/-- Construct a `LinearOrderedCommGroupWithZero` from a canonically ordered\n`LinearOrderedSemifield`. -/\nabbrev LinearOrderedSemifield.toLinearOrderedCommGroupWithZero :\n    LinearOrderedCommGroupWithZero α where\n  __ := ‹LinearOrderedSemifield α›\n  bot := 0\n  bot_le := zero_le\n  mul_le_mul_left _ _ h _:= mul_le_mul_of_nonneg_left h <| zero_le _\n\nvariable [Sub α] [OrderedSub α]\n\n",
+        "original_theorem_content": "theorem tsub_div (a b c : α) : (a - b) / c = a / c - b / c := by"
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Sites/Coherent/CoherentTopology.lean",
+        "line": 31,
+        "tactic_state_before": "C : Type u_1\ninst✝¹ : Category.{u_2, u_1} C\ninst✝ : Precoherent C\nX : C\nS : Sieve X\n⊢ (∃ α, ∃ (_ : Finite α), ∃ Y π, EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)) → S ∈ (coherentTopology C) X",
+        "proof": "intro ⟨α, _, Y, π, hπ⟩\n  try repeat assumption",
+        "tactic_state_after": "[C : Type u_1\n inst✝¹ : Category.{u_2, u_1} C\n inst✝ : Precoherent C\n X : C\n S : Sieve X\n α : Type\n w✝ : Finite α\n Y : α → C\n π : (a : α) → Y a ⟶ X\n hπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\n ⊢ S ∈ (coherentTopology C) X]",
+        "goal": "C : Type u_1\ninst✝¹ : Category.{u_2, u_1} C\ninst✝ : Precoherent C\nX : C\nS : Sieve X\nh : S ∈ (coherentTopology C) X\n⊢ (∃ α, ∃ (_ : Finite α), ∃ Y π, EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)) → S ∈ (coherentTopology C) X",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Sites.Coherent.CoherentSheaves\n\nopen CategoryTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u_1} [inst : Category.{u_2, u_1} C] [inst_1 : Precoherent C]\n  {X : C} (S : Sieve X) (h : S ∈ (coherentTopology C) X) :\n  (∃ α, ∃ (_ : Finite α), ∃ Y π, EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)) →\n    S ∈ (coherentTopology C) X := sorry",
+        "original_theorem_name": "CategoryTheory.coherentTopology.mem_sieves_of_hasEffectiveEpiFamily",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Sites.Coherent.CoherentSheaves\n\n/-!\n\n# Description of the covering sieves of the coherent topology\n\nThis file characterises the covering sieves of the coherent topology.\n\n## Main result\n\n* `coherentTopology.mem_sieves_iff_hasEffectiveEpiFamily`: a sieve is a covering sieve for the\n  coherent topology if and only if it contains a finite effective epimorphic family.\n\n-/\n\nnamespace CategoryTheory\n\nvariable {C : Type*} [Category C] [Precoherent C] {X : C}\n\n",
+        "original_theorem_content": "/--\nFor a precoherent category, any sieve that contains an `EffectiveEpiFamily` is a sieve of the\ncoherent topology.\nNote: This is one direction of `mem_sieves_iff_hasEffectiveEpiFamily`, but is needed for the proof.\n-/\ntheorem coherentTopology.mem_sieves_of_hasEffectiveEpiFamily (S : Sieve X) :\n    (∃ (α : Type) (_ : Finite α) (Y : α → C) (π : (a : α) → (Y a ⟶ X)),\n      EffectiveEpiFamily Y π ∧ (∀ a : α, (S.arrows) (π a)) ) →\n        (S ∈ (coherentTopology C) X) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Sites/Coherent/CoherentTopology.lean",
+        "line": 32,
+        "tactic_state_before": "C : Type u_1\ninst✝¹ : Category.{u_2, u_1} C\ninst✝ : Precoherent C\nX : C\nS : Sieve X\nα : Type\nw✝ : Finite α\nY : α → C\nπ : (a : α) → Y a ⟶ X\nhπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\n⊢ S ∈ (coherentTopology C) X",
+        "proof": "apply (coherentCoverage C).mem_toGrothendieck_sieves_of_superset (R := Presieve.ofArrows Y π)\n  try repeat assumption",
+        "tactic_state_after": "[case h\n C : Type u_1\n inst✝¹ : Category.{u_2, u_1} C\n inst✝ : Precoherent C\n X : C\n S : Sieve X\n α : Type\n w✝ : Finite α\n Y : α → C\n π : (a : α) → Y a ⟶ X\n hπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\n ⊢ Presieve.ofArrows Y π ≤ S.arrows,\n case hR\n C : Type u_1\n inst✝¹ : Category.{u_2, u_1} C\n inst✝ : Precoherent C\n X : C\n S : Sieve X\n α : Type\n w✝ : Finite α\n Y : α → C\n π : (a : α) → Y a ⟶ X\n hπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\n ⊢ Presieve.ofArrows Y π ∈ (coherentCoverage C).covering X]",
+        "goal": "C : Type u_1\ninst✝¹ : Category.{u_2, u_1} C\ninst✝ : Precoherent C\nX : C\nS : Sieve X\nα : Type\nw✝ : Finite α\nY : α → C\nπ : (a : α) → Y a ⟶ X\nhπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\nh✝ : Presieve.ofArrows Y π ≤ S.arrows\nh : Presieve.ofArrows Y π ∈ (coherentCoverage C).covering X\n⊢ S ∈ (coherentTopology C) X",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Sites.Coherent.CoherentSheaves\n\nopen CategoryTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {C : Type u_1} [inst : Category.{u_2, u_1} C] [inst_1 : Precoherent C]\n  {X : C} (S : Sieve X) (α : Type) (w : Finite α) (Y : α → C) (π : (a : α) → Y a ⟶ X)\n  (hπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)) (h_1 : Presieve.ofArrows Y π ≤ S.arrows)\n  (h : Presieve.ofArrows Y π ∈ (coherentCoverage C).covering X) : S ∈ (coherentTopology C) X := sorry",
+        "original_theorem_name": "CategoryTheory.coherentTopology.mem_sieves_of_hasEffectiveEpiFamily",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Sites.Coherent.CoherentSheaves\n\n/-!\n\n# Description of the covering sieves of the coherent topology\n\nThis file characterises the covering sieves of the coherent topology.\n\n## Main result\n\n* `coherentTopology.mem_sieves_iff_hasEffectiveEpiFamily`: a sieve is a covering sieve for the\n  coherent topology if and only if it contains a finite effective epimorphic family.\n\n-/\n\nnamespace CategoryTheory\n\nvariable {C : Type*} [Category C] [Precoherent C] {X : C}\n\n",
+        "original_theorem_content": "/--\nFor a precoherent category, any sieve that contains an `EffectiveEpiFamily` is a sieve of the\ncoherent topology.\nNote: This is one direction of `mem_sieves_iff_hasEffectiveEpiFamily`, but is needed for the proof.\n-/\ntheorem coherentTopology.mem_sieves_of_hasEffectiveEpiFamily (S : Sieve X) :\n    (∃ (α : Type) (_ : Finite α) (Y : α → C) (π : (a : α) → (Y a ⟶ X)),\n      EffectiveEpiFamily Y π ∧ (∀ a : α, (S.arrows) (π a)) ) →\n        (S ∈ (coherentTopology C) X) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Sites/Coherent/CoherentTopology.lean",
+        "line": 34,
+        "tactic_state_before": "case hR\nC : Type u_1\ninst✝¹ : Category.{u_2, u_1} C\ninst✝ : Precoherent C\nX : C\nS : Sieve X\nα : Type\nw✝ : Finite α\nY : α → C\nπ : (a : α) → Y a ⟶ X\nhπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\n⊢ Presieve.ofArrows Y π ∈ (coherentCoverage C).covering X",
+        "proof": "exact ⟨_, inferInstance, Y, π, rfl, hπ.1⟩\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u_1\ninst✝¹ : Category.{u_2, u_1} C\ninst✝ : Precoherent C\nX : C\nS : Sieve X\nα : Type\nw✝ : Finite α\nY : α → C\nπ : (a : α) → Y a ⟶ X\nhπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)\n⊢ Presieve.ofArrows Y π ∈ (coherentCoverage C).covering X",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Sites.Coherent.CoherentSheaves\n\nopen CategoryTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {C : Type u_1} [inst : Category.{u_2, u_1} C] [inst_1 : Precoherent C]\n  {X : C} (S : Sieve X) (α : Type) (w : Finite α) (Y : α → C) (π : (a : α) → Y a ⟶ X)\n  (hπ : EffectiveEpiFamily Y π ∧ ∀ (a : α), S.arrows (π a)) :\n  Presieve.ofArrows Y π ∈ (coherentCoverage C).covering X := sorry",
+        "original_theorem_name": "CategoryTheory.coherentTopology.mem_sieves_of_hasEffectiveEpiFamily",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Sites.Coherent.CoherentSheaves\n\n/-!\n\n# Description of the covering sieves of the coherent topology\n\nThis file characterises the covering sieves of the coherent topology.\n\n## Main result\n\n* `coherentTopology.mem_sieves_iff_hasEffectiveEpiFamily`: a sieve is a covering sieve for the\n  coherent topology if and only if it contains a finite effective epimorphic family.\n\n-/\n\nnamespace CategoryTheory\n\nvariable {C : Type*} [Category C] [Precoherent C] {X : C}\n\n",
+        "original_theorem_content": "/--\nFor a precoherent category, any sieve that contains an `EffectiveEpiFamily` is a sieve of the\ncoherent topology.\nNote: This is one direction of `mem_sieves_iff_hasEffectiveEpiFamily`, but is needed for the proof.\n-/\ntheorem coherentTopology.mem_sieves_of_hasEffectiveEpiFamily (S : Sieve X) :\n    (∃ (α : Type) (_ : Finite α) (Y : α → C) (π : (a : α) → (Y a ⟶ X)),\n      EffectiveEpiFamily Y π ∧ (∀ a : α, (S.arrows) (π a)) ) →\n        (S ∈ (coherentTopology C) X) := by"
+    }
+]

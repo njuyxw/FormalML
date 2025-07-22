@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "scilean/SciLean/Logic/Function/Basic.lean",
+        "line": 10,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nδ : Type u_4\nε : Type u_5\nζ : Type u_6\nf : α → β → γ → δ → ε → ζ\nx : α\ny : β\nz : γ\nw : δ\nv : ε\n⊢ (↿f) (x, y, z, w, v) = f x y z w v",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nδ : Type u_4\nε : Type u_5\nζ : Type u_6\nf : α → β → γ → δ → ε → ζ\nx : α\ny : β\nz : γ\nw : δ\nv : ε\n⊢ (↿f) (x, y, z, w, v) = f x y z w v",
+        "header": "import SciLean\nimport SciLean.Meta.SimpCore\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {β : Type u_2} {γ : Type u_3}\n  {δ : Type u_4} {ε : Type u_5} {ζ : Type u_6} (f : α → β → γ → δ → ε → ζ) (x : α) (y : β) (z : γ) (w : δ) (v : ε) :\n  (↿f) (x, y, z, w, v) = f x y z w v := sorry",
+        "original_theorem_name": "Function.HasUncurry.uncurry_apply_5",
+        "original_theorem_importsAndContext": "import SciLean.Meta.SimpCore\n\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_1 (f : α → β) (x : α) : (↿f) x = f x := by rfl\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_2 (f : α → β → γ) (x : α) (y : β) : (↿f) (x,y) = f x y := by rfl\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_3 (f : α → β → γ → δ) (x : α) (y : β) (z : γ) : (↿f) (x,y,z) = f x y z := by rfl\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_4 (f : α → β → γ → δ → ε) (x : α) (y : β) (z : γ) (w : δ) : (↿f) (x,y,z,w) = f x y z w := by rfl\n",
+        "original_theorem_content": "@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_5 (f : α → β → γ → δ → ε → ζ) (x : α) (y : β) (z : γ) (w : δ) (v : ε) : (↿f) (x,y,z,w,v) = f x y z w v := by"
+    },
+    {
+        "filename": "scilean/SciLean/Logic/Function/Basic.lean",
+        "line": 9,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nδ : Type u_4\nε : Type u_5\nf : α → β → γ → δ → ε\nx : α\ny : β\nz : γ\nw : δ\n⊢ (↿f) (x, y, z, w) = f x y z w",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nδ : Type u_4\nε : Type u_5\nf : α → β → γ → δ → ε\nx : α\ny : β\nz : γ\nw : δ\n⊢ (↿f) (x, y, z, w) = f x y z w",
+        "header": "import SciLean\nimport SciLean.Meta.SimpCore\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {β : Type u_2} {γ : Type u_3} {δ : Type u_4}\n  {ε : Type u_5} (f : α → β → γ → δ → ε) (x : α) (y : β) (z : γ) (w : δ) : (↿f) (x, y, z, w) = f x y z w := sorry",
+        "original_theorem_name": "Function.HasUncurry.uncurry_apply_4",
+        "original_theorem_importsAndContext": "import SciLean.Meta.SimpCore\n\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_1 (f : α → β) (x : α) : (↿f) x = f x := by rfl\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_2 (f : α → β → γ) (x : α) (y : β) : (↿f) (x,y) = f x y := by rfl\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_3 (f : α → β → γ → δ) (x : α) (y : β) (z : γ) : (↿f) (x,y,z) = f x y z := by rfl\n",
+        "original_theorem_content": "@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_4 (f : α → β → γ → δ → ε) (x : α) (y : β) (z : γ) (w : δ) : (↿f) (x,y,z,w) = f x y z w := by"
+    },
+    {
+        "filename": "scilean/SciLean/Logic/Function/Basic.lean",
+        "line": 8,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nδ : Type u_4\nf : α → β → γ → δ\nx : α\ny : β\nz : γ\n⊢ (↿f) (x, y, z) = f x y z",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nδ : Type u_4\nf : α → β → γ → δ\nx : α\ny : β\nz : γ\n⊢ (↿f) (x, y, z) = f x y z",
+        "header": "import SciLean\nimport SciLean.Meta.SimpCore\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} {β : Type u_2} {γ : Type u_3} {δ : Type u_4}\n  (f : α → β → γ → δ) (x : α) (y : β) (z : γ) : (↿f) (x, y, z) = f x y z := sorry",
+        "original_theorem_name": "Function.HasUncurry.uncurry_apply_3",
+        "original_theorem_importsAndContext": "import SciLean.Meta.SimpCore\n\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_1 (f : α → β) (x : α) : (↿f) x = f x := by rfl\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_2 (f : α → β → γ) (x : α) (y : β) : (↿f) (x,y) = f x y := by rfl\n",
+        "original_theorem_content": "@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_3 (f : α → β → γ → δ) (x : α) (y : β) (z : γ) : (↿f) (x,y,z) = f x y z := by"
+    },
+    {
+        "filename": "scilean/SciLean/Logic/Function/Basic.lean",
+        "line": 7,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nf : α → β → γ\nx : α\ny : β\n⊢ (↿f) (x, y) = f x y",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\nγ : Type u_3\nf : α → β → γ\nx : α\ny : β\n⊢ (↿f) (x, y) = f x y",
+        "header": "import SciLean\nimport SciLean.Meta.SimpCore\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} {β : Type u_2} {γ : Type u_3} (f : α → β → γ) (x : α)\n  (y : β) : (↿f) (x, y) = f x y := sorry",
+        "original_theorem_name": "Function.HasUncurry.uncurry_apply_2",
+        "original_theorem_importsAndContext": "import SciLean.Meta.SimpCore\n\n@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_1 (f : α → β) (x : α) : (↿f) x = f x := by rfl\n",
+        "original_theorem_content": "@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_2 (f : α → β → γ) (x : α) (y : β) : (↿f) (x,y) = f x y := by"
+    },
+    {
+        "filename": "scilean/SciLean/Logic/Function/Basic.lean",
+        "line": 6,
+        "tactic_state_before": "α : Type u_1\nβ : Type u_2\nf : α → β\nx : α\n⊢ (↿f) x = f x",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\nf : α → β\nx : α\n⊢ (↿f) x = f x",
+        "header": "import SciLean\nimport SciLean.Meta.SimpCore\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {α : Type u_1} {β : Type u_2} (f : α → β) (x : α) : (↿f) x = f x := sorry",
+        "original_theorem_name": "Function.HasUncurry.uncurry_apply_1",
+        "original_theorem_importsAndContext": "import SciLean.Meta.SimpCore\n\n",
+        "original_theorem_content": "@[simp,simp_core] theorem Function.HasUncurry.uncurry_apply_1 (f : α → β) (x : α) : (↿f) x = f x := by"
+    }
+]

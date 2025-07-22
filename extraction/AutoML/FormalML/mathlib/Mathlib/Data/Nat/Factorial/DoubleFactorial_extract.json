@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Factorial/DoubleFactorial.lean",
+        "line": 47,
+        "tactic_state_before": "case succ\nn✝ : ℕ\n⊢ (n✝ + 1 + 1)‼ = (n✝ + 1 + 1) * (n✝ + 1 - 1)‼",
+        "proof": "rfl\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n✝ : ℕ\n⊢ (n✝ + 1 + 1)‼ = (n✝ + 1 + 1) * (n✝ + 1 - 1)‼",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Factorial.Basic\n\nimport Mathlib.Tactic.Ring\n\nimport Mathlib.Tactic.Positivity.Core\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Nat\n\nopen Lean Meta Qq\n\nopen Nat\n\nopen Mathlib.Meta.Positivity\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (n : ℕ) : (n + 1 + 1)‼ = (n + 1 + 1) * (n + 1 - 1)‼ := sorry",
+        "original_theorem_name": "Nat.doubleFactorial_add_one",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Factorial.Basic\n\nimport Mathlib.Tactic.Ring\n\nimport Mathlib.Tactic.Positivity.Core\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Double factorials\n\nThis file defines the double factorial,\n  `n‼ := n * (n - 2) * (n - 4) * ...`.\n\n## Main declarations\n\n* `Nat.doubleFactorial`: The double factorial.\n-/\n\n\nopen Nat\n\nnamespace Nat\n\n/-- `Nat.doubleFactorial n` is the double factorial of `n`. -/\n@[simp]\ndef doubleFactorial : ℕ → ℕ\n  | 0 => 1\n  | 1 => 1\n  | k + 2 => (k + 2) * doubleFactorial k\n\n-- This notation is `\\!!` not two !'s\n@[inherit_doc] scoped notation:10000 n \"‼\" => Nat.doubleFactorial n\n\nlemma doubleFactorial_pos : ∀ n, 0 < n‼\n  | 0 | 1 => zero_lt_one\n  | _n + 2 => mul_pos (succ_pos _) (doubleFactorial_pos _)\n\ntheorem doubleFactorial_add_two (n : ℕ) : (n + 2)‼ = (n + 2) * n‼ :=\n  rfl\n\n",
+        "original_theorem_content": "theorem doubleFactorial_add_one (n : ℕ) : (n + 1)‼ = (n + 1) * (n - 1)‼ := by"
+    }
+]

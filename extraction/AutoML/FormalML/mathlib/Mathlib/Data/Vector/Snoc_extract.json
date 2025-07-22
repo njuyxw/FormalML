@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Vector/Snoc.lean",
+        "line": 44,
+        "tactic_state_before": "case mk\nα : Type u_1\nn : ℕ\nx : α\nval✝ : List α\nproperty✝ : val✝.length = n\n⊢ ⟨val✝.reverse ++ [x], ⋯⟩ = append ⟨val✝.reverse, ⋯⟩ ⟨[x], ⋯⟩",
+        "proof": "congr\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nn : ℕ\nx : α\nval✝ : List α\nproperty✝ : val✝.length = n\n⊢ ⟨val✝.reverse ++ [x], ⋯⟩ = append ⟨val✝.reverse, ⋯⟩ ⟨[x], ⋯⟩",
+        "header": "import Mathlib\nimport Mathlib.Data.Vector.Basic\n\nopen List\n\nopen Vector\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {n : ℕ} {x : α} (val : List α) (property : val.length = n) :\n  ⟨val.reverse ++ [x], List.reverse_cons x val ▸ reverse.proof_1 (x ::ᵥ ⟨val, property⟩)⟩ =\n    append ⟨val.reverse, id (Eq.refl val.reverse) ▸ reverse.proof_1 ⟨val, property⟩⟩\n      ⟨[x], cons.proof_1 [] nil.proof_1⟩ := sorry",
+        "original_theorem_name": "List.Vector.snoc.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Vector.Basic\n\n/-!\n  This file establishes a `snoc : Vector α n → α → Vector α (n+1)` operation, that appends a single\n  element to the back of a vector.\n\n  It provides a collection of lemmas that show how different `Vector` operations reduce when their\n  argument is `snoc xs x`.\n\n  Also, an alternative, reverse, induction principle is added, that breaks down a vector into\n  `snoc xs x` for its inductive case. Effectively doing induction from right-to-left\n-/\n\nnamespace List\n\nnamespace Vector\n\nvariable {α β σ φ : Type*} {n : ℕ} {x : α} {s : σ} (xs : Vector α n)\n\n/-- Append a single element to the end of a vector -/\ndef snoc : Vector α n → α → Vector α (n+1) :=\n  fun xs x => append xs (x ::ᵥ Vector.nil)\n\n/-! ## Simplification lemmas -/\n\nsection Simp\n\nvariable {y : α}\n\n@[simp]\ntheorem snoc_cons : (x ::ᵥ xs).snoc y = x ::ᵥ (xs.snoc y) :=\n  rfl\n\n@[simp]\ntheorem snoc_nil : (nil.snoc x) = x ::ᵥ nil :=\n  rfl\n\n",
+        "original_theorem_content": "@[simp]\ntheorem reverse_cons : reverse (x ::ᵥ xs) = (reverse xs).snoc x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Vector/Snoc.lean",
+        "line": 44,
+        "tactic_state_before": "case mk\nα : Type u_1\nn : ℕ\nx : α\nval✝ : List α\nproperty✝ : val✝.length = n\n⊢ ⟨val✝.reverse ++ [x], ⋯⟩ = append ⟨val✝.reverse, ⋯⟩ ⟨[x], ⋯⟩",
+        "proof": "congr\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nn : ℕ\nx : α\nval✝ : List α\nproperty✝ : val✝.length = n\n⊢ ⟨val✝.reverse ++ [x], ⋯⟩ = append ⟨val✝.reverse, ⋯⟩ ⟨[x], ⋯⟩",
+        "header": "import Mathlib\nimport Mathlib.Data.Vector.Basic\n\nopen List\n\nopen Vector\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {n : ℕ} {x : α} (val : List α) (property : val.length = n) :\n  ⟨val.reverse ++ [x], List.reverse_cons x val ▸ reverse.proof_1 (x ::ᵥ ⟨val, property⟩)⟩ =\n    append ⟨val.reverse, id (Eq.refl val.reverse) ▸ reverse.proof_1 ⟨val, property⟩⟩\n      ⟨[x], cons.proof_1 [] nil.proof_1⟩ := sorry",
+        "original_theorem_name": "List.Vector.snoc.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Vector.Basic\n\n/-!\n  This file establishes a `snoc : Vector α n → α → Vector α (n+1)` operation, that appends a single\n  element to the back of a vector.\n\n  It provides a collection of lemmas that show how different `Vector` operations reduce when their\n  argument is `snoc xs x`.\n\n  Also, an alternative, reverse, induction principle is added, that breaks down a vector into\n  `snoc xs x` for its inductive case. Effectively doing induction from right-to-left\n-/\n\nnamespace List\n\nnamespace Vector\n\nvariable {α β σ φ : Type*} {n : ℕ} {x : α} {s : σ} (xs : Vector α n)\n\n/-- Append a single element to the end of a vector -/\ndef snoc : Vector α n → α → Vector α (n+1) :=\n  fun xs x => append xs (x ::ᵥ Vector.nil)\n\n/-! ## Simplification lemmas -/\n\nsection Simp\n\nvariable {y : α}\n\n@[simp]\ntheorem snoc_cons : (x ::ᵥ xs).snoc y = x ::ᵥ (xs.snoc y) :=\n  rfl\n\n@[simp]\ntheorem snoc_nil : (nil.snoc x) = x ::ᵥ nil :=\n  rfl\n\n",
+        "original_theorem_content": "@[simp]\ntheorem reverse_cons : reverse (x ::ᵥ xs) = (reverse xs).snoc x := by"
+    }
+]

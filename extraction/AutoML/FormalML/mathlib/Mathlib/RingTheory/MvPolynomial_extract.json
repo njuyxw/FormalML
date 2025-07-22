@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial.lean",
+        "line": 47,
+        "tactic_state_before": "K : Type v\ninst✝¹ : CommRing K\ninst✝ : Nontrivial K\nσ : Type v\n⊢ Module.rank K (MvPolynomial σ K) = #(σ →₀ ℕ)",
+        "proof": "rw [← Cardinal.lift_inj, ← (basisMonomials σ K).mk_eq_rank]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "K : Type v\ninst✝¹ : CommRing K\ninst✝ : Nontrivial K\nσ : Type v\n⊢ Module.rank K (MvPolynomial σ K) = #(σ →₀ ℕ)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\nopen Set LinearMap Submodule\n\nopen Cardinal\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {K : Type v} [inst : CommRing K] [inst_1 : Nontrivial K] {σ : Type v} :\n  Module.rank K (MvPolynomial σ K) = #(σ →₀ ℕ) := sorry",
+        "original_theorem_name": "MvPolynomial.rank_eq",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\n/-!\n# Multivariate polynomials over fields\n\nThis file contains basic facts about multivariate polynomials over fields, for example that the\ndimension of the space of multivariate polynomials over a field is equal to the cardinality of\nfinitely supported functions from the indexing set to `ℕ`.\n-/\n\n\nnoncomputable section\n\nopen Set LinearMap Submodule\n\nuniverse u v\n\nnamespace MvPolynomial\n\nvariable (σ : Type u) (K : Type v)\n\ntheorem quotient_mk_comp_C_injective [Field K] (I : Ideal (MvPolynomial σ K)) (hI : I ≠ ⊤) :\n    Function.Injective ((Ideal.Quotient.mk I).comp MvPolynomial.C) := by\n  refine (injective_iff_map_eq_zero _).2 fun x hx => ?_\n  rw [RingHom.comp_apply, Ideal.Quotient.eq_zero_iff_mem] at hx\n  refine _root_.by_contradiction fun hx0 => absurd (I.eq_top_iff_one.2 ?_) hI\n  have := I.mul_mem_left (MvPolynomial.C x⁻¹) hx\n  rwa [← MvPolynomial.C.map_mul, inv_mul_cancel₀ hx0, MvPolynomial.C_1] at this\n\nvariable {σ K} [CommRing K] [Nontrivial K]\nopen Cardinal\n\ntheorem rank_eq_lift : Module.rank K (MvPolynomial σ K) = lift.{v} #(σ →₀ ℕ) := by\n  rw [← Cardinal.lift_inj, ← (basisMonomials σ K).mk_eq_rank, lift_lift, lift_umax.{u,v}]\n\n",
+        "original_theorem_content": "theorem rank_eq {σ : Type v} : Module.rank K (MvPolynomial σ K) = #(σ →₀ ℕ) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial.lean",
+        "line": 44,
+        "tactic_state_before": "σ : Type u\nK : Type v\ninst✝¹ : CommRing K\ninst✝ : Nontrivial K\n⊢ Module.rank K (MvPolynomial σ K) = lift.{v, u} #(σ →₀ ℕ)",
+        "proof": "rw [← Cardinal.lift_inj, ← (basisMonomials σ K).mk_eq_rank, lift_lift, lift_umax.{u, v}]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "σ : Type u\nK : Type v\ninst✝¹ : CommRing K\ninst✝ : Nontrivial K\n⊢ Module.rank K (MvPolynomial σ K) = lift.{v, u} #(σ →₀ ℕ)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\nopen Set LinearMap Submodule\n\nopen Cardinal\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {σ : Type u} {K : Type v} [inst : CommRing K] [inst_1 : Nontrivial K] :\n  Module.rank K (MvPolynomial σ K) = lift.{v, u} #(σ →₀ ℕ) := sorry",
+        "original_theorem_name": "MvPolynomial.rank_eq_lift",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\n/-!\n# Multivariate polynomials over fields\n\nThis file contains basic facts about multivariate polynomials over fields, for example that the\ndimension of the space of multivariate polynomials over a field is equal to the cardinality of\nfinitely supported functions from the indexing set to `ℕ`.\n-/\n\n\nnoncomputable section\n\nopen Set LinearMap Submodule\n\nuniverse u v\n\nnamespace MvPolynomial\n\nvariable (σ : Type u) (K : Type v)\n\ntheorem quotient_mk_comp_C_injective [Field K] (I : Ideal (MvPolynomial σ K)) (hI : I ≠ ⊤) :\n    Function.Injective ((Ideal.Quotient.mk I).comp MvPolynomial.C) := by\n  refine (injective_iff_map_eq_zero _).2 fun x hx => ?_\n  rw [RingHom.comp_apply, Ideal.Quotient.eq_zero_iff_mem] at hx\n  refine _root_.by_contradiction fun hx0 => absurd (I.eq_top_iff_one.2 ?_) hI\n  have := I.mul_mem_left (MvPolynomial.C x⁻¹) hx\n  rwa [← MvPolynomial.C.map_mul, inv_mul_cancel₀ hx0, MvPolynomial.C_1] at this\n\nvariable {σ K} [CommRing K] [Nontrivial K]\nopen Cardinal\n\n",
+        "original_theorem_content": "theorem rank_eq_lift : Module.rank K (MvPolynomial σ K) = lift.{v} #(σ →₀ ℕ) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial.lean",
+        "line": 35,
+        "tactic_state_before": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : ((Ideal.Quotient.mk I).comp C) x = 0\n⊢ x = 0",
+        "proof": "rw [RingHom.comp_apply, Ideal.Quotient.eq_zero_iff_mem] at hx\n  try repeat assumption",
+        "tactic_state_after": "[σ : Type u\n K : Type v\n inst✝ : Field K\n I : Ideal (MvPolynomial σ K)\n hI : I ≠ ⊤\n x : K\n hx : C x ∈ I\n ⊢ x = 0]",
+        "goal": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : ((Ideal.Quotient.mk I).comp C) x = 0\n⊢ C x ∈ I",
+        "header": "import Mathlib\nimport Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\nopen Set LinearMap Submodule\n\nopen Cardinal\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (σ : Type u) (K : Type v) [inst : Field K] (I : Ideal (MvPolynomial σ K))\n  (hI : I ≠ ⊤) (x : K) (hx : ((Ideal.Quotient.mk I).comp C) x = 0) : C x ∈ I := sorry",
+        "original_theorem_name": "MvPolynomial.quotient_mk_comp_C_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\n/-!\n# Multivariate polynomials over fields\n\nThis file contains basic facts about multivariate polynomials over fields, for example that the\ndimension of the space of multivariate polynomials over a field is equal to the cardinality of\nfinitely supported functions from the indexing set to `ℕ`.\n-/\n\n\nnoncomputable section\n\nopen Set LinearMap Submodule\n\nuniverse u v\n\nnamespace MvPolynomial\n\nvariable (σ : Type u) (K : Type v)\n\n",
+        "original_theorem_content": "theorem quotient_mk_comp_C_injective [Field K] (I : Ideal (MvPolynomial σ K)) (hI : I ≠ ⊤) :\n    Function.Injective ((Ideal.Quotient.mk I).comp MvPolynomial.C) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial.lean",
+        "line": 36,
+        "tactic_state_before": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : C x ∈ I\n⊢ x = 0",
+        "proof": "refine _root_.by_contradiction fun hx0 => absurd (I.eq_top_iff_one.2 ?_) hI\n  try repeat assumption",
+        "tactic_state_after": "[σ : Type u\n K : Type v\n inst✝ : Field K\n I : Ideal (MvPolynomial σ K)\n hI : I ≠ ⊤\n x : K\n hx : C x ∈ I\n hx0 : ¬x = 0\n ⊢ 1 ∈ I]",
+        "goal": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : C x ∈ I\nh : 1 ∈ I\n⊢ x = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\nopen Set LinearMap Submodule\n\nopen Cardinal\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (σ : Type u) (K : Type v) [inst : Field K] (I : Ideal (MvPolynomial σ K))\n  (hI : I ≠ ⊤) (x : K) (hx : C x ∈ I) (h : 1 ∈ I) : x = 0 := sorry",
+        "original_theorem_name": "MvPolynomial.quotient_mk_comp_C_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\n/-!\n# Multivariate polynomials over fields\n\nThis file contains basic facts about multivariate polynomials over fields, for example that the\ndimension of the space of multivariate polynomials over a field is equal to the cardinality of\nfinitely supported functions from the indexing set to `ℕ`.\n-/\n\n\nnoncomputable section\n\nopen Set LinearMap Submodule\n\nuniverse u v\n\nnamespace MvPolynomial\n\nvariable (σ : Type u) (K : Type v)\n\n",
+        "original_theorem_content": "theorem quotient_mk_comp_C_injective [Field K] (I : Ideal (MvPolynomial σ K)) (hI : I ≠ ⊤) :\n    Function.Injective ((Ideal.Quotient.mk I).comp MvPolynomial.C) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial.lean",
+        "line": 37,
+        "tactic_state_before": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : C x ∈ I\nhx0 : ¬x = 0\n⊢ 1 ∈ I",
+        "proof": "have := I.mul_mem_left (MvPolynomial.C x⁻¹) hx\n  try repeat assumption",
+        "tactic_state_after": "[σ : Type u\n K : Type v\n inst✝ : Field K\n I : Ideal (MvPolynomial σ K)\n hI : I ≠ ⊤\n x : K\n hx : C x ∈ I\n hx0 : ¬x = 0\n this : C x⁻¹ * C x ∈ I\n ⊢ 1 ∈ I]",
+        "goal": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : C x ∈ I\nhx0 : ¬x = 0\n⊢ C x⁻¹ * C x ∈ I",
+        "header": "import Mathlib\nimport Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\nopen Set LinearMap Submodule\n\nopen Cardinal\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (σ : Type u) (K : Type v) [inst : Field K] (I : Ideal (MvPolynomial σ K))\n  (hI : I ≠ ⊤) (x : K) (hx : C x ∈ I) (hx0 : ¬x = 0) : C x⁻¹ * C x ∈ I := sorry",
+        "original_theorem_name": "MvPolynomial.quotient_mk_comp_C_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\n/-!\n# Multivariate polynomials over fields\n\nThis file contains basic facts about multivariate polynomials over fields, for example that the\ndimension of the space of multivariate polynomials over a field is equal to the cardinality of\nfinitely supported functions from the indexing set to `ℕ`.\n-/\n\n\nnoncomputable section\n\nopen Set LinearMap Submodule\n\nuniverse u v\n\nnamespace MvPolynomial\n\nvariable (σ : Type u) (K : Type v)\n\n",
+        "original_theorem_content": "theorem quotient_mk_comp_C_injective [Field K] (I : Ideal (MvPolynomial σ K)) (hI : I ≠ ⊤) :\n    Function.Injective ((Ideal.Quotient.mk I).comp MvPolynomial.C) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial.lean",
+        "line": 38,
+        "tactic_state_before": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : C x ∈ I\nhx0 : ¬x = 0\nthis : C x⁻¹ * C x ∈ I\n⊢ 1 ∈ I",
+        "proof": "rwa [← MvPolynomial.C.map_mul, inv_mul_cancel₀ hx0, MvPolynomial.C_1] at this\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "σ : Type u\nK : Type v\ninst✝ : Field K\nI : Ideal (MvPolynomial σ K)\nhI : I ≠ ⊤\nx : K\nhx : C x ∈ I\nhx0 : ¬x = 0\nthis : C x⁻¹ * C x ∈ I\n⊢ 1 ∈ I",
+        "header": "import Mathlib\nimport Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\nopen Set LinearMap Submodule\n\nopen Cardinal\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_5 (σ : Type u) (K : Type v) [inst : Field K] (I : Ideal (MvPolynomial σ K))\n  (hI : I ≠ ⊤) (x : K) (hx : C x ∈ I) (hx0 : ¬x = 0) (this : C x⁻¹ * C x ∈ I) : 1 ∈ I := sorry",
+        "original_theorem_name": "MvPolynomial.quotient_mk_comp_C_injective",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.MvPolynomial.CommRing\n\nimport Mathlib.LinearAlgebra.Dimension.Finite\n\nimport Mathlib.LinearAlgebra.Dimension.StrongRankCondition\n\nimport Mathlib.LinearAlgebra.FreeModule.StrongRankCondition\n\nimport Mathlib.RingTheory.MvPolynomial.Basic\n\n/-!\n# Multivariate polynomials over fields\n\nThis file contains basic facts about multivariate polynomials over fields, for example that the\ndimension of the space of multivariate polynomials over a field is equal to the cardinality of\nfinitely supported functions from the indexing set to `ℕ`.\n-/\n\n\nnoncomputable section\n\nopen Set LinearMap Submodule\n\nuniverse u v\n\nnamespace MvPolynomial\n\nvariable (σ : Type u) (K : Type v)\n\n",
+        "original_theorem_content": "theorem quotient_mk_comp_C_injective [Field K] (I : Ideal (MvPolynomial σ K)) (hI : I ≠ ⊤) :\n    Function.Injective ((Ideal.Quotient.mk I).comp MvPolynomial.C) := by"
+    }
+]

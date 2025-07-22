@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Group/Finset/Preimage.lean",
+        "line": 34,
+        "tactic_state_before": "ι : Type u_1\nκ : Type u_2\nβ : Type u_3\ninst✝ : CommMonoid β\nf : ι → κ\ns : Finset κ\nhf : Set.InjOn f (f ⁻¹' ↑s)\ng : κ → β\nhg : ∀ x ∈ s, x ∉ Set.range f → g x = 1\n⊢ ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x",
+        "proof": "classical rw [prod_preimage', prod_filter_of_ne]; exact fun x hx ↦ Not.imp_symm (hg x hx)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nκ : Type u_2\nβ : Type u_3\ninst✝ : CommMonoid β\nf : ι → κ\ns : Finset κ\nhf : Set.InjOn f (f ⁻¹' ↑s)\ng : κ → β\nhg : ∀ x ∈ s, x ∉ Set.range f → g x = 1\n⊢ ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Preimage\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Fin Function\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {κ : Type u_2} {β : Type u_3} [inst : CommMonoid β]\n  (f : ι → κ) (s : Finset κ) (hf : Set.InjOn f (f ⁻¹' ↑s)) (g : κ → β) (hg : ∀ x ∈ s, x ∉ Set.range f → g x = 1) :\n  ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x := sorry",
+        "original_theorem_name": "Finset.sum_preimage",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Preimage\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums and products over preimages of finite sets.\n-/\n\nassert_not_exists MonoidWithZero MulAction OrderedCommMonoid\n\nvariable {ι κ β : Type*}\n\nopen Fin Function\n\nnamespace Finset\n\nvariable [CommMonoid β]\n\n@[to_additive]\nlemma prod_preimage' (f : ι → κ) [DecidablePred (· ∈ Set.range f)] (s : Finset κ) (hf) (g : κ → β) :\n    ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s with x ∈ Set.range f, g x := by\n  classical\n  calc\n    ∏ x ∈ preimage s f hf, g (f x) = ∏ x ∈ image f (preimage s f hf), g x :=\n      Eq.symm <| prod_image <| by simpa only [mem_preimage, Set.InjOn] using hf\n    _ = ∏ x ∈ s with x ∈ Set.range f, g x := by rw [image_preimage]\n\n",
+        "original_theorem_content": "@[to_additive]\nlemma prod_preimage (f : ι → κ) (s : Finset κ) (hf) (g : κ → β)\n    (hg : ∀ x ∈ s, x ∉ Set.range f → g x = 1) :\n    ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/Group/Finset/Preimage.lean",
+        "line": 34,
+        "tactic_state_before": "ι : Type u_1\nκ : Type u_2\nβ : Type u_3\ninst✝ : CommMonoid β\nf : ι → κ\ns : Finset κ\nhf : Set.InjOn f (f ⁻¹' ↑s)\ng : κ → β\nhg : ∀ x ∈ s, x ∉ Set.range f → g x = 1\n⊢ ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x",
+        "proof": "classical rw [prod_preimage', prod_filter_of_ne]; exact fun x hx ↦ Not.imp_symm (hg x hx)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nκ : Type u_2\nβ : Type u_3\ninst✝ : CommMonoid β\nf : ι → κ\ns : Finset κ\nhf : Set.InjOn f (f ⁻¹' ↑s)\ng : κ → β\nhg : ∀ x ∈ s, x ∉ Set.range f → g x = 1\n⊢ ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Preimage\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Fin Function\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {κ : Type u_2} {β : Type u_3} [inst : CommMonoid β]\n  (f : ι → κ) (s : Finset κ) (hf : Set.InjOn f (f ⁻¹' ↑s)) (g : κ → β) (hg : ∀ x ∈ s, x ∉ Set.range f → g x = 1) :\n  ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x := sorry",
+        "original_theorem_name": "Finset.sum_preimage",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Preimage\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums and products over preimages of finite sets.\n-/\n\nassert_not_exists MonoidWithZero MulAction OrderedCommMonoid\n\nvariable {ι κ β : Type*}\n\nopen Fin Function\n\nnamespace Finset\n\nvariable [CommMonoid β]\n\n@[to_additive]\nlemma prod_preimage' (f : ι → κ) [DecidablePred (· ∈ Set.range f)] (s : Finset κ) (hf) (g : κ → β) :\n    ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s with x ∈ Set.range f, g x := by\n  classical\n  calc\n    ∏ x ∈ preimage s f hf, g (f x) = ∏ x ∈ image f (preimage s f hf), g x :=\n      Eq.symm <| prod_image <| by simpa only [mem_preimage, Set.InjOn] using hf\n    _ = ∏ x ∈ s with x ∈ Set.range f, g x := by rw [image_preimage]\n\n",
+        "original_theorem_content": "@[to_additive]\nlemma prod_preimage (f : ι → κ) (s : Finset κ) (hf) (g : κ → β)\n    (hg : ∀ x ∈ s, x ∉ Set.range f → g x = 1) :\n    ∏ x ∈ s.preimage f hf, g (f x) = ∏ x ∈ s, g x := by"
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Archive/Imo/Imo1994Q1.lean",
+        "line": 39,
+        "tactic_state_before": "case mk.intro\nk c : ℕ\nhk : k < k + c + 1\n⊢ k + c - (k + c + 1 - ↑⟨k, hk⟩ + (k + c)) % (k + c + 1) = ↑⟨k, hk⟩",
+        "proof": "have : (k + c + 1 - k) + (k + c) = c + (k + c + 1) := by omega\n  try repeat assumption",
+        "tactic_state_after": "[case mk.intro\n k c : ℕ\n hk : k < k + c + 1\n this : k + c + 1 - k + (k + c) = c + (k + c + 1)\n ⊢ k + c - (k + c + 1 - ↑⟨k, hk⟩ + (k + c)) % (k + c + 1) = ↑⟨k, hk⟩]",
+        "goal": "k c : ℕ\nhk : k < k + c + 1\n⊢ k + c + 1 - k + (k + c) = c + (k + c + 1)",
+        "header": "import Archive\nimport Mathlib.Algebra.Group.Fin.Basic\n\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\n\nimport Mathlib.Data.Finset.Sort\n\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Tactic.Linarith\n\nopen Finset\n\nopen Imo1994Q1\n\nopen Imo1994Q1\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (k c : ℕ) (hk : k < k + c + 1) : k + c + 1 - k + (k + c) = c + (k + c + 1) := sorry",
+        "original_theorem_name": "Imo1994Q1.tedious",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Fin.Basic\n\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\n\nimport Mathlib.Data.Finset.Sort\n\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 1994 Q1\n\nLet `m` and `n` be two positive integers.\nLet `a₁, a₂, ..., aₘ` be `m` different numbers from the set `{1, 2, ..., n}`\nsuch that for any two indices `i` and `j` with `1 ≤ i ≤ j ≤ m` and `aᵢ + aⱼ ≤ n`,\nthere exists an index `k` such that `aᵢ + aⱼ = aₖ`.\nShow that `(a₁+a₂+...+aₘ)/m ≥ (n+1)/2`\n\n# Sketch of solution\n\nWe can order the numbers so that `a₁ ≤ a₂ ≤ ... ≤ aₘ`.\nThe key idea is to pair the numbers in the sum and show that `aᵢ + aₘ₊₁₋ᵢ ≥ n+1`.\nIndeed, if we had `aᵢ + aₘ₊₁₋ᵢ ≤ n`, then `a₁ + aₘ₊₁₋ᵢ, a₂ + aₘ₊₁₋ᵢ, ..., aᵢ + aₘ₊₁₋ᵢ`\nwould be `m` elements of the set of `aᵢ`'s all larger than `aₘ₊₁₋ᵢ`, which is impossible.\n-/\n\n\nopen Finset\n\nnamespace Imo1994Q1\n\n",
+        "original_theorem_content": "theorem tedious (m : ℕ) (k : Fin (m + 1)) : m - ((m + 1 - ↑k) + m) % (m + 1) = ↑k := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo1994Q1.lean",
+        "line": 41,
+        "tactic_state_before": "case mk.intro\nk c : ℕ\nhk : k < k + c + 1\nthis : k + c + 1 - k + (k + c) = c + (k + c + 1)\n⊢ c < k + c + 1",
+        "proof": "omega\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "k c : ℕ\nhk : k < k + c + 1\nthis : k + c + 1 - k + (k + c) = c + (k + c + 1)\n⊢ c < k + c + 1",
+        "header": "import Archive\nimport Mathlib.Algebra.Group.Fin.Basic\n\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\n\nimport Mathlib.Data.Finset.Sort\n\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Tactic.Linarith\n\nopen Finset\n\nopen Imo1994Q1\n\nopen Imo1994Q1\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (k c : ℕ) (hk : k < k + c + 1) (this : k + c + 1 - k + (k + c) = c + (k + c + 1)) :\n  c < k + c + 1 := sorry",
+        "original_theorem_name": "Imo1994Q1.tedious",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Fin.Basic\n\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\n\nimport Mathlib.Data.Finset.Sort\n\nimport Mathlib.Order.Interval.Finset.Fin\n\nimport Mathlib.Tactic.Linarith\n\n/-!\n# IMO 1994 Q1\n\nLet `m` and `n` be two positive integers.\nLet `a₁, a₂, ..., aₘ` be `m` different numbers from the set `{1, 2, ..., n}`\nsuch that for any two indices `i` and `j` with `1 ≤ i ≤ j ≤ m` and `aᵢ + aⱼ ≤ n`,\nthere exists an index `k` such that `aᵢ + aⱼ = aₖ`.\nShow that `(a₁+a₂+...+aₘ)/m ≥ (n+1)/2`\n\n# Sketch of solution\n\nWe can order the numbers so that `a₁ ≤ a₂ ≤ ... ≤ aₘ`.\nThe key idea is to pair the numbers in the sum and show that `aᵢ + aₘ₊₁₋ᵢ ≥ n+1`.\nIndeed, if we had `aᵢ + aₘ₊₁₋ᵢ ≤ n`, then `a₁ + aₘ₊₁₋ᵢ, a₂ + aₘ₊₁₋ᵢ, ..., aᵢ + aₘ₊₁₋ᵢ`\nwould be `m` elements of the set of `aᵢ`'s all larger than `aₘ₊₁₋ᵢ`, which is impossible.\n-/\n\n\nopen Finset\n\nnamespace Imo1994Q1\n\n",
+        "original_theorem_content": "theorem tedious (m : ℕ) (k : Fin (m + 1)) : m - ((m + 1 - ↑k) + m) % (m + 1) = ↑k := by"
+    }
+]

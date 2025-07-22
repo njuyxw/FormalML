@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Function/StronglyMeasurable/Lp.lean",
+        "line": 49,
+        "tactic_state_before": "case refine_2.hx.a\nα : Type u_1\nG : Type u_2\np : ℝ≥0∞\nm0 : MeasurableSpace α\nμ : Measure α\ninst✝ : NormedAddCommGroup G\nf : α → G\nhf : MemLp f p μ\nhf_meas : StronglyMeasurable f\nhp_ne_zero : p ≠ 0\nhp_ne_top : p ≠ ⊤\nthis✝¹ : MeasurableSpace G := borel G\nthis✝ : BorelSpace G\nthis : SeparableSpace ↑(Set.range f ∪ {0})\nfs : ℕ → α →ₛ G := SimpleFunc.approxOn f ⋯ (Set.range f ∪ {0}) 0 ⋯\nx : α\n⊢ f x ∈ Set.range f ∪ {0}",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nG : Type u_2\np : ℝ≥0∞\nm0 : MeasurableSpace α\nμ : Measure α\ninst✝ : NormedAddCommGroup G\nf : α → G\nhf : MemLp f p μ\nhf_meas : StronglyMeasurable f\nhp_ne_zero : p ≠ 0\nhp_ne_top : p ≠ ⊤\nthis✝¹ : MeasurableSpace G := borel G\nthis✝ : BorelSpace G\nthis : SeparableSpace ↑(Set.range f ∪ {0})\nfs : ℕ → α →ₛ G := SimpleFunc.approxOn f ⋯ (Set.range f ∪ {0}) 0 ⋯\nx : α\n⊢ f x ∈ Set.range f ∪ {0}",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Function.SimpleFuncDenseLp\n\nimport Mathlib.MeasureTheory.Function.StronglyMeasurable.Lemmas\n\nopen MeasureTheory Filter TopologicalSpace Function\n\nopen scoped ENNReal Topology MeasureTheory\n\nopen MeasureTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {G : Type u_2} {p : ℝ≥0∞} {m0 : MeasurableSpace α}\n  {μ : Measure α} [inst : NormedAddCommGroup G] {f : α → G} (hf : MemLp f p μ) (hf_meas : StronglyMeasurable f)\n  (hp_ne_zero : p ≠ 0) (hp_ne_top : p ≠ ⊤) :\n  let this_1 := borel G;\n  BorelSpace G → SeparableSpace ↑(Set.range f ∪ {0}) → ∀ (x : α), f x ∈ Set.range f ∪ {0} := sorry",
+        "original_theorem_name": "MeasureTheory.MemLp.finStronglyMeasurable_of_stronglyMeasurable",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Function.SimpleFuncDenseLp\n\nimport Mathlib.MeasureTheory.Function.StronglyMeasurable.Lemmas\n\n/-!\n# Finitely strongly measurable functions in `Lp`\n\nFunctions in `Lp` for `0 < p < ∞` are finitely strongly measurable.\n\n## Main statements\n\n* `MemLp.aefinStronglyMeasurable`: if `MemLp f p μ` with `0 < p < ∞`, then\n  `AEFinStronglyMeasurable f μ`.\n* `Lp.finStronglyMeasurable`: for `0 < p < ∞`, `Lp` functions are finitely strongly measurable.\n\n## References\n\n* [Hytönen, Tuomas, Jan Van Neerven, Mark Veraar, and Lutz Weis. Analysis in Banach spaces.\n  Springer, 2016.][Hytonen_VanNeerven_Veraar_Wies_2016]\n\n-/\n\n\nopen MeasureTheory Filter TopologicalSpace Function\n\nopen scoped ENNReal Topology MeasureTheory\n\nnamespace MeasureTheory\n\nlocal infixr:25 \" →ₛ \" => SimpleFunc\n\nvariable {α G : Type*} {p : ℝ≥0∞} {m m0 : MeasurableSpace α} {μ : Measure α} [NormedAddCommGroup G]\n  {f : α → G}\n\n",
+        "original_theorem_content": "theorem MemLp.finStronglyMeasurable_of_stronglyMeasurable (hf : MemLp f p μ)\n    (hf_meas : StronglyMeasurable f) (hp_ne_zero : p ≠ 0) (hp_ne_top : p ≠ ∞) :\n    FinStronglyMeasurable f μ := by"
+    }
+]

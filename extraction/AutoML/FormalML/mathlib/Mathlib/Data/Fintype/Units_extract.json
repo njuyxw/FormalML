@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Units.lean",
+        "line": 45,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : GroupWithZero α\ninst✝ : Finite α\n⊢ Nat.card α = Nat.card αˣ + 1",
+        "proof": "rw [Nat.card_units, tsub_add_cancel_of_le Nat.card_pos]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : GroupWithZero α\ninst✝ : Finite α\n⊢ Nat.card α = Nat.card αˣ + 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Ring.Int.Units\n\nimport Mathlib.Data.Fintype.Prod\n\nimport Mathlib.Data.Fintype.Sum\n\nimport Mathlib.SetTheory.Cardinal.Finite\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (α : Type u_1) [inst : GroupWithZero α] [inst_1 : Finite α] :\n  Nat.card α = Nat.card αˣ + 1 := sorry",
+        "original_theorem_name": "Nat.card_eq_card_units_add_one",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Ring.Int.Units\n\nimport Mathlib.Data.Fintype.Prod\n\nimport Mathlib.Data.Fintype.Sum\n\nimport Mathlib.SetTheory.Cardinal.Finite\n\n/-!\n# fintype instances relating to units\n-/\n\nassert_not_exists Field\n\nvariable {α : Type*}\n\ninstance UnitsInt.fintype : Fintype ℤˣ :=\n  ⟨{1, -1}, fun x ↦ by cases Int.units_eq_one_or x <;> simp [*]⟩\n\n@[simp]\ntheorem UnitsInt.univ : (Finset.univ : Finset ℤˣ) = {1, -1} := rfl\n\n@[simp]\ntheorem Fintype.card_units_int : Fintype.card ℤˣ = 2 := rfl\n\ninstance [Monoid α] [Fintype α] [DecidableEq α] : Fintype αˣ :=\n  Fintype.ofEquiv _ (unitsEquivProdSubtype α).symm\n\ninstance [Monoid α] [Finite α] : Finite αˣ := Finite.of_injective _ Units.ext\n\nvariable (α)\n\ntheorem Nat.card_units [GroupWithZero α] :\n    Nat.card αˣ = Nat.card α - 1 := by\n  classical\n  rw [Nat.card_congr unitsEquivNeZero, eq_comm, ← Nat.card_congr (Equiv.sumCompl (· = (0 : α)))]\n  rcases finite_or_infinite {a : α // a ≠ 0}\n  · rw [Nat.card_sum, Nat.card_unique, add_tsub_cancel_left]\n  · rw [Nat.card_eq_zero_of_infinite, Nat.card_eq_zero_of_infinite, zero_tsub]\n\n",
+        "original_theorem_content": "theorem Nat.card_eq_card_units_add_one [GroupWithZero α] [Finite α] :\n    Nat.card α = Nat.card αˣ + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Units.lean",
+        "line": 37,
+        "tactic_state_before": "α : Type u_1\ninst✝ : GroupWithZero α\n⊢ Nat.card αˣ = Nat.card α - 1",
+        "proof": "classical\nrw [Nat.card_congr unitsEquivNeZero, eq_comm, ← Nat.card_congr (Equiv.sumCompl (· = (0 : α)))]\nrcases finite_or_infinite { a : α // a ≠ 0 }\n· rw [Nat.card_sum, Nat.card_unique, add_tsub_cancel_left]\n· rw [Nat.card_eq_zero_of_infinite, Nat.card_eq_zero_of_infinite, zero_tsub]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : GroupWithZero α\n⊢ Nat.card αˣ = Nat.card α - 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Ring.Int.Units\n\nimport Mathlib.Data.Fintype.Prod\n\nimport Mathlib.Data.Fintype.Sum\n\nimport Mathlib.SetTheory.Cardinal.Finite\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (α : Type u_1) [inst : GroupWithZero α] : Nat.card αˣ = Nat.card α - 1 := sorry",
+        "original_theorem_name": "Nat.card_units",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Ring.Int.Units\n\nimport Mathlib.Data.Fintype.Prod\n\nimport Mathlib.Data.Fintype.Sum\n\nimport Mathlib.SetTheory.Cardinal.Finite\n\n/-!\n# fintype instances relating to units\n-/\n\nassert_not_exists Field\n\nvariable {α : Type*}\n\ninstance UnitsInt.fintype : Fintype ℤˣ :=\n  ⟨{1, -1}, fun x ↦ by cases Int.units_eq_one_or x <;> simp [*]⟩\n\n@[simp]\ntheorem UnitsInt.univ : (Finset.univ : Finset ℤˣ) = {1, -1} := rfl\n\n@[simp]\ntheorem Fintype.card_units_int : Fintype.card ℤˣ = 2 := rfl\n\ninstance [Monoid α] [Fintype α] [DecidableEq α] : Fintype αˣ :=\n  Fintype.ofEquiv _ (unitsEquivProdSubtype α).symm\n\ninstance [Monoid α] [Finite α] : Finite αˣ := Finite.of_injective _ Units.ext\n\nvariable (α)\n\n",
+        "original_theorem_content": "theorem Nat.card_units [GroupWithZero α] :\n    Nat.card αˣ = Nat.card α - 1 := by"
+    }
+]

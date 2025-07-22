@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Logic/Small/Set.lean",
+        "line": 39,
+        "tactic_state_before": "α : Type u1\nβ : Type u2\nγ : Type u3\nι : Type u4\nf : α → β → γ\ns : Set α\nt : Set β\ninst✝¹ : Small.{u, u1} ↑s\ninst✝ : Small.{u, u2} ↑t\n⊢ Small.{u, u3} ↑(Set.image2 f s t)",
+        "proof": "rw [← Set.image_uncurry_prod]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u1\n β : Type u2\n γ : Type u3\n ι : Type u4\n f : α → β → γ\n s : Set α\n t : Set β\n inst✝¹ : Small.{u, u1} ↑s\n inst✝ : Small.{u, u2} ↑t\n ⊢ Small.{u, u3} ↑(Function.uncurry f '' s ×ˢ t)]",
+        "goal": "α : Type u1\nβ : Type u2\nγ : Type u3\nι : Type u4\nf : α → β → γ\ns : Set α\nt : Set β\ninst✝¹ : Small.{u, u1} ↑s\ninst✝ : Small.{u, u2} ↑t\nh : Small.{u, u3} ↑(Function.uncurry f '' s ×ˢ t)\n⊢ Small.{u, u3} ↑(Set.image2 f s t)",
+        "header": "import Mathlib\nimport Mathlib.Data.Set.Lattice\n\nimport Mathlib.Logic.Small.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u1} {β : Type u2} {γ : Type u3} (f : α → β → γ) (s : Set α)\n  (t : Set β) [inst : Small.{u, u1} ↑s] [inst_1 : Small.{u, u2} ↑t]\n  (h : Small.{u, u3} ↑(Function.uncurry f '' s ×ˢ t)) : Small.{u, u3} ↑(Set.image2 f s t) := sorry",
+        "original_theorem_name": "small_image2",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Set.Lattice\n\nimport Mathlib.Logic.Small.Basic\n\n/-!\n# Results about `Small` on coerced sets\n-/\n\nuniverse u u1 u2 u3 u4\n\nvariable {α : Type u1} {β : Type u2} {γ : Type u3} {ι : Type u4}\n\ntheorem small_subset {s t : Set α} (hts : t ⊆ s) [Small.{u} s] : Small.{u} t :=\n  small_of_injective (Set.inclusion_injective hts)\n\ninstance small_powerset (s : Set α) [Small.{u} s] : Small.{u} (𝒫 s) :=\n  small_map (Equiv.Set.powerset s)\n\ninstance small_setProd (s : Set α) (t : Set β) [Small.{u} s] [Small.{u} t] :\n    Small.{u} (s ×ˢ t : Set (α × β)) :=\n  small_of_injective (Equiv.Set.prod s t).injective\n\ninstance small_setPi {β : α → Type u2} (s : (a : α) → Set (β a))\n    [Small.{u} α] [∀ a, Small.{u} (s a)] : Small.{u} (Set.pi Set.univ s) :=\n  small_of_injective (Equiv.Set.univPi s).injective\n\ninstance small_range (f : α → β) [Small.{u} α] :\n    Small.{u} (Set.range f) :=\n  small_of_surjective Set.surjective_onto_range\n\ninstance small_image (f : α → β) (s : Set α) [Small.{u} s] :\n    Small.{u} (f '' s) :=\n  small_of_surjective Set.surjective_onto_image\n\n",
+        "original_theorem_content": "instance small_image2 (f : α → β → γ) (s : Set α) (t : Set β) [Small.{u} s] [Small.{u} t] :\n    Small.{u} (Set.image2 f s t) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Logic/Small/Set.lean",
+        "line": 40,
+        "tactic_state_before": "α : Type u1\nβ : Type u2\nγ : Type u3\nι : Type u4\nf : α → β → γ\ns : Set α\nt : Set β\ninst✝¹ : Small.{u, u1} ↑s\ninst✝ : Small.{u, u2} ↑t\n⊢ Small.{u, u3} ↑(Function.uncurry f '' s ×ˢ t)",
+        "proof": "infer_instance\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u1\nβ : Type u2\nγ : Type u3\nι : Type u4\nf : α → β → γ\ns : Set α\nt : Set β\ninst✝¹ : Small.{u, u1} ↑s\ninst✝ : Small.{u, u2} ↑t\n⊢ Small.{u, u3} ↑(Function.uncurry f '' s ×ˢ t)",
+        "header": "import Mathlib\nimport Mathlib.Data.Set.Lattice\n\nimport Mathlib.Logic.Small.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u1} {β : Type u2} {γ : Type u3} (f : α → β → γ) (s : Set α)\n  (t : Set β) [inst : Small.{u, u1} ↑s] [inst_1 : Small.{u, u2} ↑t] :\n  Small.{u, u3} ↑(Function.uncurry f '' s ×ˢ t) := sorry",
+        "original_theorem_name": "small_image2",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Set.Lattice\n\nimport Mathlib.Logic.Small.Basic\n\n/-!\n# Results about `Small` on coerced sets\n-/\n\nuniverse u u1 u2 u3 u4\n\nvariable {α : Type u1} {β : Type u2} {γ : Type u3} {ι : Type u4}\n\ntheorem small_subset {s t : Set α} (hts : t ⊆ s) [Small.{u} s] : Small.{u} t :=\n  small_of_injective (Set.inclusion_injective hts)\n\ninstance small_powerset (s : Set α) [Small.{u} s] : Small.{u} (𝒫 s) :=\n  small_map (Equiv.Set.powerset s)\n\ninstance small_setProd (s : Set α) (t : Set β) [Small.{u} s] [Small.{u} t] :\n    Small.{u} (s ×ˢ t : Set (α × β)) :=\n  small_of_injective (Equiv.Set.prod s t).injective\n\ninstance small_setPi {β : α → Type u2} (s : (a : α) → Set (β a))\n    [Small.{u} α] [∀ a, Small.{u} (s a)] : Small.{u} (Set.pi Set.univ s) :=\n  small_of_injective (Equiv.Set.univPi s).injective\n\ninstance small_range (f : α → β) [Small.{u} α] :\n    Small.{u} (Set.range f) :=\n  small_of_surjective Set.surjective_onto_range\n\ninstance small_image (f : α → β) (s : Set α) [Small.{u} s] :\n    Small.{u} (f '' s) :=\n  small_of_surjective Set.surjective_onto_image\n\n",
+        "original_theorem_content": "instance small_image2 (f : α → β → γ) (s : Set α) (t : Set β) [Small.{u} s] [Small.{u} t] :\n    Small.{u} (Set.image2 f s t) := by"
+    }
+]

@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Baire/LocallyCompactRegular.lean",
+        "line": 16,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\ninst✝¹ : R1Space X\ninst✝ : LocallyCompactSpace X\n⊢ BaireSpace X",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case baire_property\n X : Type u_1\n inst✝² : TopologicalSpace X\n inst✝¹ : R1Space X\n inst✝ : LocallyCompactSpace X\n ⊢ ∀ (f : ℕ → Set X), (∀ (n : ℕ), IsOpen (f n)) → (∀ (n : ℕ), Dense (f n)) → Dense (⋂ n, f n)]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\ninst✝¹ : R1Space X\ninst✝ : LocallyCompactSpace X\nh : ∀ (f : ℕ → Set X), (∀ (n : ℕ), IsOpen (f n)) → (∀ (n : ℕ), Dense (f n)) → Dense (⋂ n, f n)\n⊢ BaireSpace X",
+        "header": "import Mathlib\nimport Mathlib.Topology.Sets.Compacts\n\nopen TopologicalSpace Set\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {X : Type u_1} [inst : TopologicalSpace X] [inst_1 : R1Space X]\n  [inst_2 : LocallyCompactSpace X]\n  (h : ∀ (f : ℕ → Set X), (∀ (n : ℕ), IsOpen (f n)) → (∀ (n : ℕ), Dense (f n)) → Dense (⋂ n, f n)) :\n  BaireSpace X := sorry",
+        "original_theorem_name": "BaireSpace.of_t2Space_locallyCompactSpace",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Sets.Compacts\n\n/-!\n# Second Baire theorem\n\nIn this file we prove that a locally compact regular topological space has Baire property.\n-/\n\nopen TopologicalSpace Set\n\n",
+        "original_theorem_content": "/-- **Second Baire theorem**: locally compact R₁ spaces are Baire. -/\ninstance (priority := 100) BaireSpace.of_t2Space_locallyCompactSpace {X : Type*}\n    [TopologicalSpace X] [R1Space X] [LocallyCompactSpace X] : BaireSpace X := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Baire/LocallyCompactRegular.lean",
+        "line": 18,
+        "tactic_state_before": "case baire_property\nX : Type u_1\ninst✝² : TopologicalSpace X\ninst✝¹ : R1Space X\ninst✝ : LocallyCompactSpace X\nf : ℕ → Set X\nho : ∀ (n : ℕ), IsOpen (f n)\nhd : ∀ (n : ℕ), Dense (f n)\n⊢ Dense (⋂ n, f n)",
+        "proof": "rw [dense_iff_inter_open]\n  try repeat assumption",
+        "tactic_state_after": "[case baire_property\n X : Type u_1\n inst✝² : TopologicalSpace X\n inst✝¹ : R1Space X\n inst✝ : LocallyCompactSpace X\n f : ℕ → Set X\n ho : ∀ (n : ℕ), IsOpen (f n)\n hd : ∀ (n : ℕ), Dense (f n)\n ⊢ ∀ (U : Set X), IsOpen U → U.Nonempty → (U ∩ ⋂ n, f n).Nonempty]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\ninst✝¹ : R1Space X\ninst✝ : LocallyCompactSpace X\nf : ℕ → Set X\nho : ∀ (n : ℕ), IsOpen (f n)\nhd : ∀ (n : ℕ), Dense (f n)\nh : ∀ (U : Set X), IsOpen U → U.Nonempty → (U ∩ ⋂ n, f n).Nonempty\n⊢ Dense (⋂ n, f n)",
+        "header": "import Mathlib\nimport Mathlib.Topology.Sets.Compacts\n\nopen TopologicalSpace Set\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {X : Type u_1} [inst : TopologicalSpace X] [inst_1 : R1Space X]\n  [inst_2 : LocallyCompactSpace X] (f : ℕ → Set X) (ho : ∀ (n : ℕ), IsOpen (f n)) (hd : ∀ (n : ℕ), Dense (f n))\n  (h : ∀ (U : Set X), IsOpen U → U.Nonempty → (U ∩ ⋂ n, f n).Nonempty) : Dense (⋂ n, f n) := sorry",
+        "original_theorem_name": "BaireSpace.of_t2Space_locallyCompactSpace",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Sets.Compacts\n\n/-!\n# Second Baire theorem\n\nIn this file we prove that a locally compact regular topological space has Baire property.\n-/\n\nopen TopologicalSpace Set\n\n",
+        "original_theorem_content": "/-- **Second Baire theorem**: locally compact R₁ spaces are Baire. -/\ninstance (priority := 100) BaireSpace.of_t2Space_locallyCompactSpace {X : Type*}\n    [TopologicalSpace X] [R1Space X] [LocallyCompactSpace X] : BaireSpace X := by"
+    }
+]

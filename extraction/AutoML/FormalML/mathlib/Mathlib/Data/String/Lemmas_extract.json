@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/String/Lemmas.lean",
+        "line": 21,
+        "tactic_state_before": "n : ℕ\nc : Char\n⊢ (replicate n c).length = n",
+        "proof": "simp only [String.length, String.replicate, List.length_replicate]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\nc : Char\n⊢ (replicate n c).length = n",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Notation\n\nimport Mathlib.Data.String.Defs\n\nimport Mathlib.Tactic.Basic\n\nimport Batteries.Tactic.Alias\n\nopen String\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (n : ℕ) (c : Char) : (replicate n c).length = n := sorry",
+        "original_theorem_name": "String.length_replicate",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Notation\n\nimport Mathlib.Data.String.Defs\n\nimport Mathlib.Tactic.Basic\n\nimport Batteries.Tactic.Alias\n\n/-!\n# Miscellaneous lemmas about strings\n-/\n\nnamespace String\n\nlemma congr_append : ∀ (a b : String), a ++ b = String.mk (a.data ++ b.data)\n  | ⟨_⟩, ⟨_⟩ => rfl\n\n",
+        "original_theorem_content": "@[simp] lemma length_replicate (n : ℕ) (c : Char) : (replicate n c).length = n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/String/Lemmas.lean",
+        "line": 21,
+        "tactic_state_before": "n : ℕ\nc : Char\n⊢ (replicate n c).length = n",
+        "proof": "simp only [String.length, String.replicate, List.length_replicate]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\nc : Char\n⊢ (replicate n c).length = n",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Notation\n\nimport Mathlib.Data.String.Defs\n\nimport Mathlib.Tactic.Basic\n\nimport Batteries.Tactic.Alias\n\nopen String\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (n : ℕ) (c : Char) : (replicate n c).length = n := sorry",
+        "original_theorem_name": "String.length_replicate",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Notation\n\nimport Mathlib.Data.String.Defs\n\nimport Mathlib.Tactic.Basic\n\nimport Batteries.Tactic.Alias\n\n/-!\n# Miscellaneous lemmas about strings\n-/\n\nnamespace String\n\nlemma congr_append : ∀ (a b : String), a ++ b = String.mk (a.data ++ b.data)\n  | ⟨_⟩, ⟨_⟩ => rfl\n\n",
+        "original_theorem_content": "@[simp] lemma length_replicate (n : ℕ) (c : Char) : (replicate n c).length = n := by"
+    }
+]

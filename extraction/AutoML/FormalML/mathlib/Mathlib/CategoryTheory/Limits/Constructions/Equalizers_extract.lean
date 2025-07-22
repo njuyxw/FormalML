@@ -1,0 +1,21 @@
+import Mathlib
+import Mathlib.CategoryTheory.Limits.Shapes.Equalizers
+
+import Mathlib.CategoryTheory.Limits.Shapes.BinaryProducts
+
+import Mathlib.CategoryTheory.Limits.Preserves.Shapes.Pullbacks
+
+import Mathlib.CategoryTheory.Limits.Preserves.Shapes.BinaryProducts
+
+open CategoryTheory CategoryTheory.Category
+
+open HasEqualizersOfHasPullbacksAndBinaryProducts
+
+open HasCoequalizersOfHasPushoutsAndBinaryCoproducts
+
+open CategoryTheory.Limits
+
+open HasEqualizersOfHasPullbacksAndBinaryProducts
+
+open HasCoequalizersOfHasPushoutsAndBinaryCoproducts
+

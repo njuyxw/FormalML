@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/WithTop/Untop0.lean",
+        "line": 91,
+        "tactic_state_before": "α : Type u_1\ninst✝ : LinearOrderedAddCommGroup α\na : WithTop α\n⊢ (-a).untop₀ = -a.untop₀",
+        "proof": "by_cases ha : a = ⊤\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n α : Type u_1\n inst✝ : LinearOrderedAddCommGroup α\n a : WithTop α\n ha : a = ⊤\n ⊢ (-a).untop₀ = -a.untop₀,\n case neg\n α : Type u_1\n inst✝ : LinearOrderedAddCommGroup α\n a : WithTop α\n ha : ¬a = ⊤\n ⊢ (-a).untop₀ = -a.untop₀]",
+        "goal": "α : Type u_1\ninst✝ : LinearOrderedAddCommGroup α\na : WithTop α\nh✝ h : (-a).untop₀ = -a.untop₀\n⊢ (-a).untop₀ = -a.untop₀",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nopen WithTop\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : LinearOrderedAddCommGroup α] (a : WithTop α)\n  (h_1 h : (-a).untop₀ = -a.untop₀) : (-a).untop₀ = -a.untop₀ := sorry",
+        "original_theorem_name": "WithTop.untop₀_neg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\n/-!\n# Conversion from WithTop to Base Type\n\nFor types α that are instances of `Zero`, we provide a convenient conversion,\n`WithTop.untop₀`, that maps elements `a : WithTop α` to `α`, by mapping `⊤` to\nzero.\n\nFor settings where `α` has additional structure, we provide a large number of\nsimplifier lemmas, akin to those that already exists for `ENat.toNat`.\n-/\n\nnamespace WithTop\nvariable {α : Type*}\n\nsection Zero\nvariable [Zero α]\n\n/-- Conversion from `WithTop α` to `α`, mapping `⊤` to zero. -/\ndef untop₀ [Zero α] (a : WithTop α) : α := a.untopD 0\n\n/-!\n## Simplifying Lemmas in cases where α is an Instance of Zero\n-/\n\n@[simp]\nlemma untop₀_eq_zero {a : WithTop α} :\n    a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := by simp [untop₀]\n\n@[simp]\nlemma untop₀_top : untop₀ ⊤ = (0 : α) := by simp [untop₀]\n\n@[simp]\nlemma untop₀_zero : untop₀ 0 = (0 : α) := by simp [untop₀]\n\n@[simp]\nlemma untop₀_coe (a : α) : (a : WithTop α).untop₀ = a := rfl\n\nend Zero\n\n/-!\n## Simplifying Lemmas in cases where α is an AddMonoid\n-/\n@[simp]\nlemma untopD_add [AddMonoid α] {a b : WithTop α} {c : α} (ha : a ≠ ⊤) (hb : b ≠ ⊤) :\n    (a + b).untopD c = a.untopD c + b.untopD c := by\n  lift a to α using ha\n  lift b to α using hb\n  simp [← coe_add]\n\n@[simp]\nlemma untop₀_add [AddMonoid α] {a b : WithTop α} (ha : a ≠ ⊤) (hb : b ≠ ⊤) :\n    (a + b).untop₀ = a.untop₀ + b.untop₀ := untopD_add ha hb\n\n/-!\n## Simplifying Lemmas in cases where α is a MulZeroClass\n-/\n\n@[simp]\nlemma untop₀_mul [DecidableEq α] [MulZeroClass α] (a b : WithTop α) :\n    (a * b).untop₀ = a.untop₀ * b.untop₀ := untopD_zero_mul a b\n\n/-!\n## Simplifying Lemmas in cases where α is a OrderedAddCommGroup\n-/\n\n/--\nElements of ordered additive commutative groups are nonnegative iff their untop₀ is nonnegative.\n-/\n@[simp]\nlemma untop₀_nonneg [OrderedAddCommGroup α] {a : WithTop α} :\n    0 ≤ a.untop₀ ↔ 0 ≤ a := by\n  by_cases ha : a = ⊤\n  · rw [ha]\n    tauto\n  lift a to α using ha\n  simp\n\n/-!\n## Simplifying Lemmas in cases where α is a LinearOrderedAddCommGroup\n-/\n\n",
+        "original_theorem_content": "@[simp]\nlemma untop₀_neg [LinearOrderedAddCommGroup α] (a : WithTop α) :\n    (-a).untop₀ = -a.untop₀ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/WithTop/Untop0.lean",
+        "line": 78,
+        "tactic_state_before": "α : Type u_1\ninst✝ : OrderedAddCommGroup α\na : WithTop α\n⊢ 0 ≤ a.untop₀ ↔ 0 ≤ a",
+        "proof": "by_cases ha : a = ⊤\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n α : Type u_1\n inst✝ : OrderedAddCommGroup α\n a : WithTop α\n ha : a = ⊤\n ⊢ 0 ≤ a.untop₀ ↔ 0 ≤ a,\n case neg\n α : Type u_1\n inst✝ : OrderedAddCommGroup α\n a : WithTop α\n ha : ¬a = ⊤\n ⊢ 0 ≤ a.untop₀ ↔ 0 ≤ a]",
+        "goal": "α : Type u_1\ninst✝ : OrderedAddCommGroup α\na : WithTop α\nh✝ h : 0 ≤ a.untop₀ ↔ 0 ≤ a\n⊢ 0 ≤ a.untop₀ ↔ 0 ≤ a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nopen WithTop\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : OrderedAddCommGroup α] {a : WithTop α}\n  (h_1 h : 0 ≤ a.untop₀ ↔ 0 ≤ a) : 0 ≤ a.untop₀ ↔ 0 ≤ a := sorry",
+        "original_theorem_name": "WithTop.untop₀_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\n/-!\n# Conversion from WithTop to Base Type\n\nFor types α that are instances of `Zero`, we provide a convenient conversion,\n`WithTop.untop₀`, that maps elements `a : WithTop α` to `α`, by mapping `⊤` to\nzero.\n\nFor settings where `α` has additional structure, we provide a large number of\nsimplifier lemmas, akin to those that already exists for `ENat.toNat`.\n-/\n\nnamespace WithTop\nvariable {α : Type*}\n\nsection Zero\nvariable [Zero α]\n\n/-- Conversion from `WithTop α` to `α`, mapping `⊤` to zero. -/\ndef untop₀ [Zero α] (a : WithTop α) : α := a.untopD 0\n\n/-!\n## Simplifying Lemmas in cases where α is an Instance of Zero\n-/\n\n@[simp]\nlemma untop₀_eq_zero {a : WithTop α} :\n    a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := by simp [untop₀]\n\n@[simp]\nlemma untop₀_top : untop₀ ⊤ = (0 : α) := by simp [untop₀]\n\n@[simp]\nlemma untop₀_zero : untop₀ 0 = (0 : α) := by simp [untop₀]\n\n@[simp]\nlemma untop₀_coe (a : α) : (a : WithTop α).untop₀ = a := rfl\n\nend Zero\n\n/-!\n## Simplifying Lemmas in cases where α is an AddMonoid\n-/\n@[simp]\nlemma untopD_add [AddMonoid α] {a b : WithTop α} {c : α} (ha : a ≠ ⊤) (hb : b ≠ ⊤) :\n    (a + b).untopD c = a.untopD c + b.untopD c := by\n  lift a to α using ha\n  lift b to α using hb\n  simp [← coe_add]\n\n@[simp]\nlemma untop₀_add [AddMonoid α] {a b : WithTop α} (ha : a ≠ ⊤) (hb : b ≠ ⊤) :\n    (a + b).untop₀ = a.untop₀ + b.untop₀ := untopD_add ha hb\n\n/-!\n## Simplifying Lemmas in cases where α is a MulZeroClass\n-/\n\n@[simp]\nlemma untop₀_mul [DecidableEq α] [MulZeroClass α] (a b : WithTop α) :\n    (a * b).untop₀ = a.untop₀ * b.untop₀ := untopD_zero_mul a b\n\n/-!\n## Simplifying Lemmas in cases where α is a OrderedAddCommGroup\n-/\n\n",
+        "original_theorem_content": "/--\nElements of ordered additive commutative groups are nonnegative iff their untop₀ is nonnegative.\n-/\n@[simp]\nlemma untop₀_nonneg [OrderedAddCommGroup α] {a : WithTop α} :\n    0 ≤ a.untop₀ ↔ 0 ≤ a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/WithTop/Untop0.lean",
+        "line": 54,
+        "tactic_state_before": "case intro.intro\nα : Type u_1\ninst✝ : AddMonoid α\nc a b : α\n⊢ untopD c (↑a + ↑b) = untopD c ↑a + untopD c ↑b",
+        "proof": "simp [← coe_add]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : AddMonoid α\nc a b : α\n⊢ untopD c (↑a + ↑b) = untopD c ↑a + untopD c ↑b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nopen WithTop\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : AddMonoid α] {c : α} (a b : α) :\n  untopD c (↑a + ↑b) = untopD c ↑a + untopD c ↑b := sorry",
+        "original_theorem_name": "WithTop.untopD_add",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\n/-!\n# Conversion from WithTop to Base Type\n\nFor types α that are instances of `Zero`, we provide a convenient conversion,\n`WithTop.untop₀`, that maps elements `a : WithTop α` to `α`, by mapping `⊤` to\nzero.\n\nFor settings where `α` has additional structure, we provide a large number of\nsimplifier lemmas, akin to those that already exists for `ENat.toNat`.\n-/\n\nnamespace WithTop\nvariable {α : Type*}\n\nsection Zero\nvariable [Zero α]\n\n/-- Conversion from `WithTop α` to `α`, mapping `⊤` to zero. -/\ndef untop₀ [Zero α] (a : WithTop α) : α := a.untopD 0\n\n/-!\n## Simplifying Lemmas in cases where α is an Instance of Zero\n-/\n\n@[simp]\nlemma untop₀_eq_zero {a : WithTop α} :\n    a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := by simp [untop₀]\n\n@[simp]\nlemma untop₀_top : untop₀ ⊤ = (0 : α) := by simp [untop₀]\n\n@[simp]\nlemma untop₀_zero : untop₀ 0 = (0 : α) := by simp [untop₀]\n\n@[simp]\nlemma untop₀_coe (a : α) : (a : WithTop α).untop₀ = a := rfl\n\nend Zero\n\n/-!\n## Simplifying Lemmas in cases where α is an AddMonoid\n-/\n",
+        "original_theorem_content": "@[simp]\nlemma untopD_add [AddMonoid α] {a b : WithTop α} {c : α} (ha : a ≠ ⊤) (hb : b ≠ ⊤) :\n    (a + b).untopD c = a.untopD c + b.untopD c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/WithTop/Untop0.lean",
+        "line": 40,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Zero α\n⊢ untop₀ 0 = 0",
+        "proof": "simp [untop₀]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : Zero α\n⊢ untop₀ 0 = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nopen WithTop\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} [inst : Zero α] : untop₀ 0 = 0 := sorry",
+        "original_theorem_name": "WithTop.untop₀_zero",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\n/-!\n# Conversion from WithTop to Base Type\n\nFor types α that are instances of `Zero`, we provide a convenient conversion,\n`WithTop.untop₀`, that maps elements `a : WithTop α` to `α`, by mapping `⊤` to\nzero.\n\nFor settings where `α` has additional structure, we provide a large number of\nsimplifier lemmas, akin to those that already exists for `ENat.toNat`.\n-/\n\nnamespace WithTop\nvariable {α : Type*}\n\nsection Zero\nvariable [Zero α]\n\n/-- Conversion from `WithTop α` to `α`, mapping `⊤` to zero. -/\ndef untop₀ [Zero α] (a : WithTop α) : α := a.untopD 0\n\n/-!\n## Simplifying Lemmas in cases where α is an Instance of Zero\n-/\n\n@[simp]\nlemma untop₀_eq_zero {a : WithTop α} :\n    a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := by simp [untop₀]\n\n@[simp]\nlemma untop₀_top : untop₀ ⊤ = (0 : α) := by simp [untop₀]\n\n",
+        "original_theorem_content": "@[simp]\nlemma untop₀_zero : untop₀ 0 = (0 : α) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/WithTop/Untop0.lean",
+        "line": 34,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Zero α\na : WithTop α\n⊢ a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤",
+        "proof": "simp [untop₀]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : Zero α\na : WithTop α\n⊢ a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nopen WithTop\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {α : Type u_1} [inst : Zero α] {a : WithTop α} :\n  a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := sorry",
+        "original_theorem_name": "WithTop.untop₀.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\n/-!\n# Conversion from WithTop to Base Type\n\nFor types α that are instances of `Zero`, we provide a convenient conversion,\n`WithTop.untop₀`, that maps elements `a : WithTop α` to `α`, by mapping `⊤` to\nzero.\n\nFor settings where `α` has additional structure, we provide a large number of\nsimplifier lemmas, akin to those that already exists for `ENat.toNat`.\n-/\n\nnamespace WithTop\nvariable {α : Type*}\n\nsection Zero\nvariable [Zero α]\n\n/-- Conversion from `WithTop α` to `α`, mapping `⊤` to zero. -/\ndef untop₀ [Zero α] (a : WithTop α) : α := a.untopD 0\n\n/-!\n## Simplifying Lemmas in cases where α is an Instance of Zero\n-/\n\n",
+        "original_theorem_content": "@[simp]\nlemma untop₀_eq_zero {a : WithTop α} :\n    a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/WithTop/Untop0.lean",
+        "line": 34,
+        "tactic_state_before": "α : Type u_1\ninst✝ : Zero α\na : WithTop α\n⊢ a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤",
+        "proof": "simp [untop₀]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : Zero α\na : WithTop α\n⊢ a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nopen WithTop\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {α : Type u_1} [inst : Zero α] {a : WithTop α} :\n  a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := sorry",
+        "original_theorem_name": "WithTop.untop₀.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.AddGroupWithTop\n\nimport Mathlib.Algebra.Order.Ring.WithTop\n\n/-!\n# Conversion from WithTop to Base Type\n\nFor types α that are instances of `Zero`, we provide a convenient conversion,\n`WithTop.untop₀`, that maps elements `a : WithTop α` to `α`, by mapping `⊤` to\nzero.\n\nFor settings where `α` has additional structure, we provide a large number of\nsimplifier lemmas, akin to those that already exists for `ENat.toNat`.\n-/\n\nnamespace WithTop\nvariable {α : Type*}\n\nsection Zero\nvariable [Zero α]\n\n/-- Conversion from `WithTop α` to `α`, mapping `⊤` to zero. -/\ndef untop₀ [Zero α] (a : WithTop α) : α := a.untopD 0\n\n/-!\n## Simplifying Lemmas in cases where α is an Instance of Zero\n-/\n\n",
+        "original_theorem_content": "@[simp]\nlemma untop₀_eq_zero {a : WithTop α} :\n    a.untop₀ = 0 ↔ a = 0 ∨ a = ⊤ := by"
+    }
+]

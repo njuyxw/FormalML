@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Tactic/CategoryTheory/Reassoc.lean",
+        "line": 37,
+        "tactic_state_before": "C : Type u_1\ninst✝ : Category.{u_2, u_1} C\nX Y : C\nf g : X ⟶ Y\nw : f = g\nZ : C\nh : Y ⟶ Z\n⊢ f ≫ h = g ≫ h",
+        "proof": "rw [w]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u_1\ninst✝ : Category.{u_2, u_1} C\nX Y : C\nf g : X ⟶ Y\nw : f = g\nZ : C\nh : Y ⟶ Z\n⊢ f ≫ h = g ≫ h",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Functor.Basic\n\nimport Mathlib.Lean.Meta.Simp\n\nimport Mathlib.Tactic.Simps.Basic\n\nimport Mathlib.Util.AddRelatedDecl\n\nopen Lean Meta Elab Tactic\n\nopen Mathlib.Tactic\n\nopen CategoryTheory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u_1} [inst : Category.{u_2, u_1} C] {X Y : C} {f g : X ⟶ Y}\n  (w : f = g) {Z : C} (h : Y ⟶ Z) : f ≫ h = g ≫ h := sorry",
+        "original_theorem_name": "CategoryTheory.eq_whisker'",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Functor.Basic\n\nimport Mathlib.Lean.Meta.Simp\n\nimport Mathlib.Tactic.Simps.Basic\n\nimport Mathlib.Util.AddRelatedDecl\n\n/-!\n# The `reassoc` attribute\n\nAdding `@[reassoc]` to a lemma named `F` of shape `∀ .., f = g`,\nwhere `f g : X ⟶ Y` in some category\nwill create a new lemma named `F_assoc` of shape\n`∀ .. {Z : C} (h : Y ⟶ Z), f ≫ h = g ≫ h`\nbut with the conclusions simplified using the axioms for a category\n(`Category.comp_id`, `Category.id_comp`, and `Category.assoc`).\n\nThis is useful for generating lemmas which the simplifier can use even on expressions\nthat are already right associated.\n\nThere is also a term elaborator `reassoc_of% t` for use within proofs.\n-/\n\nopen Lean Meta Elab Tactic\nopen Mathlib.Tactic\n\nnamespace CategoryTheory\n\nvariable {C : Type*} [Category C]\n\n",
+        "original_theorem_content": "/-- A variant of `eq_whisker` with a more convenient argument order for use in tactics. -/\ntheorem eq_whisker' {X Y : C} {f g : X ⟶ Y} (w : f = g) {Z : C} (h : Y ⟶ Z) :\n    f ≫ h = g ≫ h := by"
+    }
+]

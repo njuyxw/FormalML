@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RingHom/Integral.lean",
+        "line": 37,
+        "tactic_state_before": "case refine_3\nR S T : Type u_1\ninst✝⁴ : CommRing R\ninst✝³ : CommRing S\ninst✝² : CommRing T\ninst✝¹ : Algebra R S\ninst✝ : Algebra R T\nh : (algebraMap R T).IsIntegral\nx✝ x y : S ⊗[R] T\nhx : includeLeftRingHom.IsIntegralElem x\nhy : includeLeftRingHom.IsIntegralElem y\n⊢ includeLeftRingHom.IsIntegralElem (x + y)",
+        "proof": "exact IsIntegral.add hx hy\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R S T : Type u_1\ninst✝⁴ : CommRing R\ninst✝³ : CommRing S\ninst✝² : CommRing T\ninst✝¹ : Algebra R S\ninst✝ : Algebra R T\nh : (algebraMap R T).IsIntegral\nx✝ x y : S ⊗[R] T\nhx : includeLeftRingHom.IsIntegralElem x\nhy : includeLeftRingHom.IsIntegralElem y\n⊢ includeLeftRingHom.IsIntegralElem (x + y)",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\nopen RingHom\n",
+        "formal_statement": "theorem extracted_formal_statement_0 ⦃R S T : Type u_1⦄ [inst : CommRing R] [inst_1 : CommRing S]\n  [inst_2 : CommRing T] [inst_3 : Algebra R S] [inst_4 : Algebra R T] (h : (algebraMap R T).IsIntegral) (x y : S ⊗[R] T)\n  (hx : includeLeftRingHom.IsIntegralElem x) (hy : includeLeftRingHom.IsIntegralElem y) :\n  includeLeftRingHom.IsIntegralElem (x + y) := sorry",
+        "original_theorem_name": "RingHom.isIntegral_isStableUnderBaseChange",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\n/-!\n\n# The meta properties of integral ring homomorphisms.\n\n-/\n\n\nnamespace RingHom\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\ntheorem isIntegral_stableUnderComposition : StableUnderComposition fun f => f.IsIntegral := by\n  introv R hf hg; exact hf.trans _ _ hg\n\ntheorem isIntegral_respectsIso : RespectsIso fun f => f.IsIntegral := by\n  apply isIntegral_stableUnderComposition.respectsIso\n  introv x\n  rw [← e.apply_symm_apply x]\n  apply RingHom.isIntegralElem_map\n\n",
+        "original_theorem_content": "theorem isIntegral_isStableUnderBaseChange : IsStableUnderBaseChange fun f => f.IsIntegral := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RingHom/Integral.lean",
+        "line": 26,
+        "tactic_state_before": "R S : Type u_1\ninst✝¹ : CommRing R\ninst✝ : CommRing S\ne : R ≃+* S\nx : S\n⊢ e.toRingHom.IsIntegralElem x",
+        "proof": "rw [← e.apply_symm_apply x]\n  try repeat assumption",
+        "tactic_state_after": "[R S : Type u_1\n inst✝¹ : CommRing R\n inst✝ : CommRing S\n e : R ≃+* S\n x : S\n ⊢ e.toRingHom.IsIntegralElem (e (e.symm x))]",
+        "goal": "R S : Type u_1\ninst✝¹ : CommRing R\ninst✝ : CommRing S\ne : R ≃+* S\nx : S\nh : e.toRingHom.IsIntegralElem (e (e.symm x))\n⊢ e.toRingHom.IsIntegralElem x",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\nopen RingHom\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R S : Type u_1} [inst : CommRing R] [inst_1 : CommRing S] (e : R ≃+* S)\n  (x : S) (h : e.toRingHom.IsIntegralElem (e (e.symm x))) : e.toRingHom.IsIntegralElem x := sorry",
+        "original_theorem_name": "RingHom.isIntegral_respectsIso",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\n/-!\n\n# The meta properties of integral ring homomorphisms.\n\n-/\n\n\nnamespace RingHom\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\ntheorem isIntegral_stableUnderComposition : StableUnderComposition fun f => f.IsIntegral := by\n  introv R hf hg; exact hf.trans _ _ hg\n\n",
+        "original_theorem_content": "theorem isIntegral_respectsIso : RespectsIso fun f => f.IsIntegral := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RingHom/Integral.lean",
+        "line": 27,
+        "tactic_state_before": "R S : Type u_1\ninst✝¹ : CommRing R\ninst✝ : CommRing S\ne : R ≃+* S\nx : S\n⊢ e.toRingHom.IsIntegralElem (e (e.symm x))",
+        "proof": "apply RingHom.isIntegralElem_map\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R S : Type u_1\ninst✝¹ : CommRing R\ninst✝ : CommRing S\ne : R ≃+* S\nx : S\n⊢ e.toRingHom.IsIntegralElem (e (e.symm x))",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\nopen RingHom\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R S : Type u_1} [inst : CommRing R] [inst_1 : CommRing S] (e : R ≃+* S)\n  (x : S) : e.toRingHom.IsIntegralElem (e (e.symm x)) := sorry",
+        "original_theorem_name": "RingHom.isIntegral_respectsIso",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\n/-!\n\n# The meta properties of integral ring homomorphisms.\n\n-/\n\n\nnamespace RingHom\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\ntheorem isIntegral_stableUnderComposition : StableUnderComposition fun f => f.IsIntegral := by\n  introv R hf hg; exact hf.trans _ _ hg\n\n",
+        "original_theorem_content": "theorem isIntegral_respectsIso : RespectsIso fun f => f.IsIntegral := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RingHom/Integral.lean",
+        "line": 22,
+        "tactic_state_before": "R S T : Type u_1\ninst✝² : CommRing R\ninst✝¹ : CommRing S\ninst✝ : CommRing T\nf : R →+* S\ng : S →+* T\nhf : f.IsIntegral\nhg : g.IsIntegral\n⊢ (g.comp f).IsIntegral",
+        "proof": "exact hf.trans _ _ hg\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R S T : Type u_1\ninst✝² : CommRing R\ninst✝¹ : CommRing S\ninst✝ : CommRing T\nf : R →+* S\ng : S →+* T\nhf : f.IsIntegral\nhg : g.IsIntegral\n⊢ (g.comp f).IsIntegral",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\nopen RingHom\n",
+        "formal_statement": "theorem extracted_formal_statement_3 ⦃R S T : Type u_1⦄ [inst : CommRing R] [inst_1 : CommRing S]\n  [inst_2 : CommRing T] (f : R →+* S) (g : S →+* T) (hf : f.IsIntegral) (hg : g.IsIntegral) :\n  (g.comp f).IsIntegral := sorry",
+        "original_theorem_name": "RingHom.isIntegral_stableUnderComposition",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.LocalProperties.Basic\n\nimport Mathlib.RingTheory.Localization.Integral\n\n/-!\n\n# The meta properties of integral ring homomorphisms.\n\n-/\n\n\nnamespace RingHom\n\nopen scoped TensorProduct\n\nopen TensorProduct Algebra.TensorProduct\n\n",
+        "original_theorem_content": "theorem isIntegral_stableUnderComposition : StableUnderComposition fun f => f.IsIntegral := by"
+    }
+]

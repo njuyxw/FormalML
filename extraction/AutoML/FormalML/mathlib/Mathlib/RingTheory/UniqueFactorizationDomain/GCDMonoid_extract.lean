@@ -1,0 +1,7 @@
+import Mathlib
+import Mathlib.RingTheory.UniqueFactorizationDomain.FactorSet
+
+import Mathlib.RingTheory.UniqueFactorizationDomain.NormalizedFactors
+
+open Associates UniqueFactorizationMonoid
+

@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Monomial.lean",
+        "line": 31,
+        "tactic_state_before": "R : Type u\ninst✝ : Semiring R\nf : R[X]\n⊢ f.support.card ≤ 1 ↔ ∃ n a, f = (monomial n) a",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n R : Type u\n inst✝ : Semiring R\n f : R[X]\n ⊢ f.support.card ≤ 1 → ∃ n a, f = (monomial n) a,\n case mpr\n R : Type u\n inst✝ : Semiring R\n f : R[X]\n ⊢ (∃ n a, f = (monomial n) a) → f.support.card ≤ 1]",
+        "goal": "R : Type u\ninst✝ : Semiring R\nf : R[X]\nh✝ : f.support.card ≤ 1 → ∃ n a, f = (monomial n) a\nh : (∃ n a, f = (monomial n) a) → f.support.card ≤ 1\n⊢ f.support.card ≤ 1 ↔ ∃ n a, f = (monomial n) a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u} [inst : Semiring R] {f : R[X]}\n  (h_1 : f.support.card ≤ 1 → ∃ n a, f = (monomial n) a) (h : (∃ n a, f = (monomial n) a) → f.support.card ≤ 1) :\n  f.support.card ≤ 1 ↔ ∃ n a, f = (monomial n) a := sorry",
+        "original_theorem_name": "Polynomial.card_support_le_one_iff_monomial",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\n/-!\n# Univariate monomials\n-/\n\n\nnoncomputable section\n\nnamespace Polynomial\n\nuniverse u\n\nvariable {R : Type u} {a b : R} {m n : ℕ}\nvariable [Semiring R] {p q r : R[X]}\n\ntheorem monomial_one_eq_iff [Nontrivial R] {i j : ℕ} :\n    (monomial i 1 : R[X]) = monomial j 1 ↔ i = j := by\n  simp_rw [← ofFinsupp_single, ofFinsupp.injEq]\n  exact AddMonoidAlgebra.of_injective.eq_iff\n\ninstance infinite [Nontrivial R] : Infinite R[X] :=\n  Infinite.of_injective (fun i => monomial i 1) fun m n h => by simpa [monomial_one_eq_iff] using h\n\n",
+        "original_theorem_content": "theorem card_support_le_one_iff_monomial {f : R[X]} :\n    Finset.card f.support ≤ 1 ↔ ∃ n a, f = monomial n a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Monomial.lean",
+        "line": 46,
+        "tactic_state_before": "case mpr.intro.intro.a\nR : Type u\ninst✝ : Semiring R\nn : ℕ\na : R\n⊢ ((monomial n) a).support ⊆ {n}",
+        "proof": "exact support_monomial' _ _\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u\ninst✝ : Semiring R\nn : ℕ\na : R\n⊢ ((monomial n) a).support ⊆ {n}",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R : Type u} [inst : Semiring R] (n : ℕ) (a : R) :\n  ((monomial n) a).support ⊆ {n} := sorry",
+        "original_theorem_name": "Polynomial.card_support_le_one_iff_monomial",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\n/-!\n# Univariate monomials\n-/\n\n\nnoncomputable section\n\nnamespace Polynomial\n\nuniverse u\n\nvariable {R : Type u} {a b : R} {m n : ℕ}\nvariable [Semiring R] {p q r : R[X]}\n\ntheorem monomial_one_eq_iff [Nontrivial R] {i j : ℕ} :\n    (monomial i 1 : R[X]) = monomial j 1 ↔ i = j := by\n  simp_rw [← ofFinsupp_single, ofFinsupp.injEq]\n  exact AddMonoidAlgebra.of_injective.eq_iff\n\ninstance infinite [Nontrivial R] : Infinite R[X] :=\n  Infinite.of_injective (fun i => monomial i 1) fun m n h => by simpa [monomial_one_eq_iff] using h\n\n",
+        "original_theorem_content": "theorem card_support_le_one_iff_monomial {f : R[X]} :\n    Finset.card f.support ≤ 1 ↔ ∃ n a, f = monomial n a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Monomial.lean",
+        "line": 23,
+        "tactic_state_before": "R : Type u\ninst✝¹ : Semiring R\ninst✝ : Nontrivial R\ni j : ℕ\n⊢ (monomial i) 1 = (monomial j) 1 ↔ i = j",
+        "proof": "simp_rw [← ofFinsupp_single, ofFinsupp.injEq]\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u\n inst✝¹ : Semiring R\n inst✝ : Nontrivial R\n i j : ℕ\n ⊢ Finsupp.single i 1 = Finsupp.single j 1 ↔ i = j]",
+        "goal": "R : Type u\ninst✝¹ : Semiring R\ninst✝ : Nontrivial R\ni j : ℕ\nh : Finsupp.single i 1 = Finsupp.single j 1 ↔ i = j\n⊢ (monomial i) 1 = (monomial j) 1 ↔ i = j",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R : Type u} [inst : Semiring R] [inst_1 : Nontrivial R] {i j : ℕ}\n  (h : Finsupp.single i 1 = Finsupp.single j 1 ↔ i = j) : (monomial i) 1 = (monomial j) 1 ↔ i = j := sorry",
+        "original_theorem_name": "Polynomial.monomial_one_eq_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\n/-!\n# Univariate monomials\n-/\n\n\nnoncomputable section\n\nnamespace Polynomial\n\nuniverse u\n\nvariable {R : Type u} {a b : R} {m n : ℕ}\nvariable [Semiring R] {p q r : R[X]}\n\n",
+        "original_theorem_content": "theorem monomial_one_eq_iff [Nontrivial R] {i j : ℕ} :\n    (monomial i 1 : R[X]) = monomial j 1 ↔ i = j := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Polynomial/Monomial.lean",
+        "line": 24,
+        "tactic_state_before": "R : Type u\ninst✝¹ : Semiring R\ninst✝ : Nontrivial R\ni j : ℕ\n⊢ Finsupp.single i 1 = Finsupp.single j 1 ↔ i = j",
+        "proof": "exact AddMonoidAlgebra.of_injective.eq_iff\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u\ninst✝¹ : Semiring R\ninst✝ : Nontrivial R\ni j : ℕ\n⊢ Finsupp.single i 1 = Finsupp.single j 1 ↔ i = j",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {R : Type u} [inst : Semiring R] [inst_1 : Nontrivial R] {i j : ℕ} :\n  Finsupp.single i 1 = Finsupp.single j 1 ↔ i = j := sorry",
+        "original_theorem_name": "Polynomial.monomial_one_eq_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Nat.Hom\n\nimport Mathlib.Algebra.Polynomial.Basic\n\n/-!\n# Univariate monomials\n-/\n\n\nnoncomputable section\n\nnamespace Polynomial\n\nuniverse u\n\nvariable {R : Type u} {a b : R} {m n : ℕ}\nvariable [Semiring R] {p q r : R[X]}\n\n",
+        "original_theorem_content": "theorem monomial_one_eq_iff [Nontrivial R] {i j : ℕ} :\n    (monomial i 1 : R[X]) = monomial j 1 ↔ i = j := by"
+    }
+]

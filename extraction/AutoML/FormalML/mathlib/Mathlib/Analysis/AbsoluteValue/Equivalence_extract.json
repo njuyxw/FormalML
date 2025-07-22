@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/AbsoluteValue/Equivalence.lean",
+        "line": 36,
+        "tactic_state_before": "case intro.intro.intro.intro\nR : Type u_1\ninst✝ : Semiring R\nf g k : AbsoluteValue R ℝ\nc : ℝ\nhcPos : 0 < c\nhfg : (fun x => f x ^ c) = ⇑g\nd : ℝ\nhdPos : 0 < d\nhgk : (fun x => g x ^ d) = ⇑k\n⊢ f.IsEquiv k",
+        "proof": "refine ⟨c * d, mul_pos hcPos hdPos, ?_⟩\n  try repeat assumption",
+        "tactic_state_after": "[case intro.intro.intro.intro\n R : Type u_1\n inst✝ : Semiring R\n f g k : AbsoluteValue R ℝ\n c : ℝ\n hcPos : 0 < c\n hfg : (fun x => f x ^ c) = ⇑g\n d : ℝ\n hdPos : 0 < d\n hgk : (fun x => g x ^ d) = ⇑k\n ⊢ (fun x => f x ^ (c * d)) = ⇑k]",
+        "goal": "R : Type u_1\ninst✝ : Semiring R\nf g k : AbsoluteValue R ℝ\nc : ℝ\nhcPos : 0 < c\nhfg : (fun x => f x ^ c) = ⇑g\nd : ℝ\nhdPos : 0 < d\nhgk : (fun x => g x ^ d) = ⇑k\nh : (fun x => f x ^ (c * d)) = ⇑k\n⊢ f.IsEquiv k",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen AbsoluteValue\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : Semiring R] {f g k : AbsoluteValue R ℝ} (c : ℝ)\n  (hcPos : 0 < c) (hfg : (fun x => f x ^ c) = ⇑g) (d : ℝ) (hdPos : 0 < d) (hgk : (fun x => g x ^ d) = ⇑k)\n  (h : (fun x => f x ^ (c * d)) = ⇑k) : f.IsEquiv k := sorry",
+        "original_theorem_name": "AbsoluteValue.isEquiv_trans",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# Equivalence of real-valued absolute values\n\nTwo absolute values `v₁, v₂ : AbsoluteValue R ℝ` are *equivalent* if there exists a\npositive real number `c` such that `v₁ x ^ c = v₂ x` for all `x : R`.\n-/\n\nnamespace AbsoluteValue\n\nvariable {R : Type*} [Semiring R]\n\n/-- Two absolute values `f, g` on `R` with values in `ℝ` are *equivalent* if there exists\na positive real constant `c` such that for all `x : R`, `(f x)^c = g x`. -/\ndef IsEquiv (f g : AbsoluteValue R ℝ) : Prop :=\n  ∃ c : ℝ, 0 < c ∧ (f · ^ c) = g\n\n/-- Equivalence of absolute values is reflexive. -/\nlemma isEquiv_refl (f : AbsoluteValue R ℝ) : IsEquiv f f :=\n  ⟨1, Real.zero_lt_one, funext fun x ↦ Real.rpow_one (f x)⟩\n\n/-- Equivalence of absolute values is symmetric. -/\nlemma isEquiv_symm {f g : AbsoluteValue R ℝ} (hfg : IsEquiv f g) : IsEquiv g f := by\n  rcases hfg with ⟨c, hcpos, h⟩\n  refine ⟨1 / c, one_div_pos.mpr hcpos, ?_⟩\n  simp [← h, Real.rpow_rpow_inv (apply_nonneg f _) (ne_of_lt hcpos).symm]\n\n",
+        "original_theorem_content": "/-- Equivalence of absolute values is transitive. -/\nlemma isEquiv_trans {f g k : AbsoluteValue R ℝ} (hfg : IsEquiv f g) (hgk : IsEquiv g k) :\n    IsEquiv f k := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/AbsoluteValue/Equivalence.lean",
+        "line": 37,
+        "tactic_state_before": "case intro.intro.intro.intro\nR : Type u_1\ninst✝ : Semiring R\nf g k : AbsoluteValue R ℝ\nc : ℝ\nhcPos : 0 < c\nhfg : (fun x => f x ^ c) = ⇑g\nd : ℝ\nhdPos : 0 < d\nhgk : (fun x => g x ^ d) = ⇑k\n⊢ (fun x => f x ^ (c * d)) = ⇑k",
+        "proof": "simp [← hgk, ← hfg, Real.rpow_mul (apply_nonneg f _)]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝ : Semiring R\nf g k : AbsoluteValue R ℝ\nc : ℝ\nhcPos : 0 < c\nhfg : (fun x => f x ^ c) = ⇑g\nd : ℝ\nhdPos : 0 < d\nhgk : (fun x => g x ^ d) = ⇑k\n⊢ (fun x => f x ^ (c * d)) = ⇑k",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen AbsoluteValue\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R : Type u_1} [inst : Semiring R] {f g k : AbsoluteValue R ℝ} (c : ℝ)\n  (hcPos : 0 < c) (hfg : (fun x => f x ^ c) = ⇑g) (d : ℝ) (hdPos : 0 < d) (hgk : (fun x => g x ^ d) = ⇑k) :\n  (fun x => f x ^ (c * d)) = ⇑k := sorry",
+        "original_theorem_name": "AbsoluteValue.isEquiv_trans",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# Equivalence of real-valued absolute values\n\nTwo absolute values `v₁, v₂ : AbsoluteValue R ℝ` are *equivalent* if there exists a\npositive real number `c` such that `v₁ x ^ c = v₂ x` for all `x : R`.\n-/\n\nnamespace AbsoluteValue\n\nvariable {R : Type*} [Semiring R]\n\n/-- Two absolute values `f, g` on `R` with values in `ℝ` are *equivalent* if there exists\na positive real constant `c` such that for all `x : R`, `(f x)^c = g x`. -/\ndef IsEquiv (f g : AbsoluteValue R ℝ) : Prop :=\n  ∃ c : ℝ, 0 < c ∧ (f · ^ c) = g\n\n/-- Equivalence of absolute values is reflexive. -/\nlemma isEquiv_refl (f : AbsoluteValue R ℝ) : IsEquiv f f :=\n  ⟨1, Real.zero_lt_one, funext fun x ↦ Real.rpow_one (f x)⟩\n\n/-- Equivalence of absolute values is symmetric. -/\nlemma isEquiv_symm {f g : AbsoluteValue R ℝ} (hfg : IsEquiv f g) : IsEquiv g f := by\n  rcases hfg with ⟨c, hcpos, h⟩\n  refine ⟨1 / c, one_div_pos.mpr hcpos, ?_⟩\n  simp [← h, Real.rpow_rpow_inv (apply_nonneg f _) (ne_of_lt hcpos).symm]\n\n",
+        "original_theorem_content": "/-- Equivalence of absolute values is transitive. -/\nlemma isEquiv_trans {f g k : AbsoluteValue R ℝ} (hfg : IsEquiv f g) (hgk : IsEquiv g k) :\n    IsEquiv f k := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/AbsoluteValue/Equivalence.lean",
+        "line": 28,
+        "tactic_state_before": "case intro.intro\nR : Type u_1\ninst✝ : Semiring R\nf g : AbsoluteValue R ℝ\nc : ℝ\nhcpos : 0 < c\nh : (fun x => f x ^ c) = ⇑g\n⊢ g.IsEquiv f",
+        "proof": "refine ⟨1 / c, one_div_pos.mpr hcpos, ?_⟩\n  try repeat assumption",
+        "tactic_state_after": "[case intro.intro\n R : Type u_1\n inst✝ : Semiring R\n f g : AbsoluteValue R ℝ\n c : ℝ\n hcpos : 0 < c\n h : (fun x => f x ^ c) = ⇑g\n ⊢ (fun x => g x ^ (1 / c)) = ⇑f]",
+        "goal": "R : Type u_1\ninst✝ : Semiring R\nf g : AbsoluteValue R ℝ\nc : ℝ\nhcpos : 0 < c\nh✝ : (fun x => f x ^ c) = ⇑g\nh : (fun x => g x ^ (1 / c)) = ⇑f\n⊢ g.IsEquiv f",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen AbsoluteValue\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R : Type u_1} [inst : Semiring R] {f g : AbsoluteValue R ℝ} (c : ℝ)\n  (hcpos : 0 < c) (h_1 : (fun x => f x ^ c) = ⇑g) (h : (fun x => g x ^ (1 / c)) = ⇑f) : g.IsEquiv f := sorry",
+        "original_theorem_name": "AbsoluteValue.isEquiv_symm",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# Equivalence of real-valued absolute values\n\nTwo absolute values `v₁, v₂ : AbsoluteValue R ℝ` are *equivalent* if there exists a\npositive real number `c` such that `v₁ x ^ c = v₂ x` for all `x : R`.\n-/\n\nnamespace AbsoluteValue\n\nvariable {R : Type*} [Semiring R]\n\n/-- Two absolute values `f, g` on `R` with values in `ℝ` are *equivalent* if there exists\na positive real constant `c` such that for all `x : R`, `(f x)^c = g x`. -/\ndef IsEquiv (f g : AbsoluteValue R ℝ) : Prop :=\n  ∃ c : ℝ, 0 < c ∧ (f · ^ c) = g\n\n/-- Equivalence of absolute values is reflexive. -/\nlemma isEquiv_refl (f : AbsoluteValue R ℝ) : IsEquiv f f :=\n  ⟨1, Real.zero_lt_one, funext fun x ↦ Real.rpow_one (f x)⟩\n\n",
+        "original_theorem_content": "/-- Equivalence of absolute values is symmetric. -/\nlemma isEquiv_symm {f g : AbsoluteValue R ℝ} (hfg : IsEquiv f g) : IsEquiv g f := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/AbsoluteValue/Equivalence.lean",
+        "line": 29,
+        "tactic_state_before": "case intro.intro\nR : Type u_1\ninst✝ : Semiring R\nf g : AbsoluteValue R ℝ\nc : ℝ\nhcpos : 0 < c\nh : (fun x => f x ^ c) = ⇑g\n⊢ (fun x => g x ^ (1 / c)) = ⇑f",
+        "proof": "simp [← h, Real.rpow_rpow_inv (apply_nonneg f _) (ne_of_lt hcpos).symm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝ : Semiring R\nf g : AbsoluteValue R ℝ\nc : ℝ\nhcpos : 0 < c\nh : (fun x => f x ^ c) = ⇑g\n⊢ (fun x => g x ^ (1 / c)) = ⇑f",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Pow.Real\n\nopen AbsoluteValue\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {R : Type u_1} [inst : Semiring R] {f g : AbsoluteValue R ℝ} (c : ℝ)\n  (hcpos : 0 < c) (h : (fun x => f x ^ c) = ⇑g) : (fun x => g x ^ (1 / c)) = ⇑f := sorry",
+        "original_theorem_name": "AbsoluteValue.isEquiv_symm",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Pow.Real\n\n/-!\n# Equivalence of real-valued absolute values\n\nTwo absolute values `v₁, v₂ : AbsoluteValue R ℝ` are *equivalent* if there exists a\npositive real number `c` such that `v₁ x ^ c = v₂ x` for all `x : R`.\n-/\n\nnamespace AbsoluteValue\n\nvariable {R : Type*} [Semiring R]\n\n/-- Two absolute values `f, g` on `R` with values in `ℝ` are *equivalent* if there exists\na positive real constant `c` such that for all `x : R`, `(f x)^c = g x`. -/\ndef IsEquiv (f g : AbsoluteValue R ℝ) : Prop :=\n  ∃ c : ℝ, 0 < c ∧ (f · ^ c) = g\n\n/-- Equivalence of absolute values is reflexive. -/\nlemma isEquiv_refl (f : AbsoluteValue R ℝ) : IsEquiv f f :=\n  ⟨1, Real.zero_lt_one, funext fun x ↦ Real.rpow_one (f x)⟩\n\n",
+        "original_theorem_content": "/-- Equivalence of absolute values is symmetric. -/\nlemma isEquiv_symm {f g : AbsoluteValue R ℝ} (hfg : IsEquiv f g) : IsEquiv g f := by"
+    }
+]

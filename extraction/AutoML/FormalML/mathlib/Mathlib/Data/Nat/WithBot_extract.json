@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/WithBot.lean",
+        "line": 62,
+        "tactic_state_before": "x : WithBot ℕ\n⊢ 1 ≤ x ↔ 0 < x",
+        "proof": "refine ⟨zero_lt_one.trans_le, fun h => ?_⟩\n  try repeat assumption",
+        "tactic_state_after": "[x : WithBot ℕ\n h : 0 < x\n ⊢ 1 ≤ x]",
+        "goal": "x : WithBot ℕ\nh : 1 ≤ x\n⊢ 1 ≤ x ↔ 0 < x",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\nopen Nat\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {x : WithBot ℕ} (h : 1 ≤ x) : 1 ≤ x ↔ 0 < x := sorry",
+        "original_theorem_name": "Nat.WithBot.one_le_iff_zero_lt",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\n/-!\n# `WithBot ℕ`\n\nLemmas about the type of natural numbers with a bottom element adjoined.\n-/\n\n\nnamespace Nat\n\nnamespace WithBot\n\ninstance : WellFoundedRelation (WithBot ℕ) where\n  rel := (· < ·)\n  wf := IsWellFounded.wf\n\ntheorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]\n\ntheorem add_eq_one_iff {n m : WithBot ℕ} : n + m = 1 ↔ n = 0 ∧ m = 1 ∨ n = 1 ∧ m = 0 := by\n  cases n\n  · simp only [WithBot.bot_add, WithBot.bot_ne_one, WithBot.bot_ne_zero, false_and, or_self]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_one_iff]\n\ntheorem add_eq_two_iff {n m : WithBot ℕ} :\n    n + m = 2 ↔ n = 0 ∧ m = 2 ∨ n = 1 ∧ m = 1 ∨ n = 2 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_two_iff]\n\ntheorem add_eq_three_iff {n m : WithBot ℕ} :\n    n + m = 3 ↔ n = 0 ∧ m = 3 ∨ n = 1 ∧ m = 2 ∨ n = 2 ∧ m = 1 ∨ n = 3 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_three_iff]\n\ntheorem coe_nonneg {n : ℕ} : 0 ≤ (n : WithBot ℕ) := by\n  rw [← WithBot.coe_zero, cast_withBot, WithBot.coe_le_coe]\n  exact n.zero_le\n\n@[simp]\ntheorem lt_zero_iff {n : WithBot ℕ} : n < 0 ↔ n = ⊥ := WithBot.lt_coe_bot\n\n",
+        "original_theorem_content": "theorem one_le_iff_zero_lt {x : WithBot ℕ} : 1 ≤ x ↔ 0 < x := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/WithBot.lean",
+        "line": 56,
+        "tactic_state_before": "n : ℕ\n⊢ 0 ≤ n",
+        "proof": "exact n.zero_le\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\n⊢ 0 ≤ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\nopen Nat\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {n : ℕ} : 0 ≤ n := sorry",
+        "original_theorem_name": "Nat.WithBot.coe_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\n/-!\n# `WithBot ℕ`\n\nLemmas about the type of natural numbers with a bottom element adjoined.\n-/\n\n\nnamespace Nat\n\nnamespace WithBot\n\ninstance : WellFoundedRelation (WithBot ℕ) where\n  rel := (· < ·)\n  wf := IsWellFounded.wf\n\ntheorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]\n\ntheorem add_eq_one_iff {n m : WithBot ℕ} : n + m = 1 ↔ n = 0 ∧ m = 1 ∨ n = 1 ∧ m = 0 := by\n  cases n\n  · simp only [WithBot.bot_add, WithBot.bot_ne_one, WithBot.bot_ne_zero, false_and, or_self]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_one_iff]\n\ntheorem add_eq_two_iff {n m : WithBot ℕ} :\n    n + m = 2 ↔ n = 0 ∧ m = 2 ∨ n = 1 ∧ m = 1 ∨ n = 2 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_two_iff]\n\ntheorem add_eq_three_iff {n m : WithBot ℕ} :\n    n + m = 3 ↔ n = 0 ∧ m = 3 ∨ n = 1 ∧ m = 2 ∨ n = 2 ∧ m = 1 ∨ n = 3 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_three_iff]\n\n",
+        "original_theorem_content": "theorem coe_nonneg {n : ℕ} : 0 ≤ (n : WithBot ℕ) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/WithBot.lean",
+        "line": 52,
+        "tactic_state_before": "case coe.coe\na✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 3 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 3 ∨ ↑a✝¹ = 1 ∧ ↑a✝ = 2 ∨ ↑a✝¹ = 2 ∧ ↑a✝ = 1 ∨ ↑a✝¹ = 3 ∧ ↑a✝ = 0",
+        "proof": "simp [← WithBot.coe_add, Nat.add_eq_three_iff]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "a✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 3 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 3 ∨ ↑a✝¹ = 1 ∧ ↑a✝ = 2 ∨ ↑a✝¹ = 2 ∧ ↑a✝ = 1 ∨ ↑a✝¹ = 3 ∧ ↑a✝ = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\nopen Nat\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (a a_1 : ℕ) :\n  ↑a + ↑a_1 = 3 ↔ ↑a = 0 ∧ ↑a_1 = 3 ∨ ↑a = 1 ∧ ↑a_1 = 2 ∨ ↑a = 2 ∧ ↑a_1 = 1 ∨ ↑a = 3 ∧ ↑a_1 = 0 := sorry",
+        "original_theorem_name": "Nat.WithBot.add_eq_three_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\n/-!\n# `WithBot ℕ`\n\nLemmas about the type of natural numbers with a bottom element adjoined.\n-/\n\n\nnamespace Nat\n\nnamespace WithBot\n\ninstance : WellFoundedRelation (WithBot ℕ) where\n  rel := (· < ·)\n  wf := IsWellFounded.wf\n\ntheorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]\n\ntheorem add_eq_one_iff {n m : WithBot ℕ} : n + m = 1 ↔ n = 0 ∧ m = 1 ∨ n = 1 ∧ m = 0 := by\n  cases n\n  · simp only [WithBot.bot_add, WithBot.bot_ne_one, WithBot.bot_ne_zero, false_and, or_self]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_one_iff]\n\ntheorem add_eq_two_iff {n m : WithBot ℕ} :\n    n + m = 2 ↔ n = 0 ∧ m = 2 ∨ n = 1 ∧ m = 1 ∨ n = 2 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_two_iff]\n\n",
+        "original_theorem_content": "theorem add_eq_three_iff {n m : WithBot ℕ} :\n    n + m = 3 ↔ n = 0 ∧ m = 3 ∨ n = 1 ∧ m = 2 ∨ n = 2 ∧ m = 1 ∨ n = 3 ∧ m = 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/WithBot.lean",
+        "line": 44,
+        "tactic_state_before": "case coe.coe\na✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 2 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 2 ∨ ↑a✝¹ = 1 ∧ ↑a✝ = 1 ∨ ↑a✝¹ = 2 ∧ ↑a✝ = 0",
+        "proof": "simp [← WithBot.coe_add, Nat.add_eq_two_iff]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "a✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 2 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 2 ∨ ↑a✝¹ = 1 ∧ ↑a✝ = 1 ∨ ↑a✝¹ = 2 ∧ ↑a✝ = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\nopen Nat\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (a a_1 : ℕ) :\n  ↑a + ↑a_1 = 2 ↔ ↑a = 0 ∧ ↑a_1 = 2 ∨ ↑a = 1 ∧ ↑a_1 = 1 ∨ ↑a = 2 ∧ ↑a_1 = 0 := sorry",
+        "original_theorem_name": "Nat.WithBot.add_eq_two_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\n/-!\n# `WithBot ℕ`\n\nLemmas about the type of natural numbers with a bottom element adjoined.\n-/\n\n\nnamespace Nat\n\nnamespace WithBot\n\ninstance : WellFoundedRelation (WithBot ℕ) where\n  rel := (· < ·)\n  wf := IsWellFounded.wf\n\ntheorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]\n\ntheorem add_eq_one_iff {n m : WithBot ℕ} : n + m = 1 ↔ n = 0 ∧ m = 1 ∨ n = 1 ∧ m = 0 := by\n  cases n\n  · simp only [WithBot.bot_add, WithBot.bot_ne_one, WithBot.bot_ne_zero, false_and, or_self]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, Nat.add_eq_one_iff]\n\n",
+        "original_theorem_content": "theorem add_eq_two_iff {n m : WithBot ℕ} :\n    n + m = 2 ↔ n = 0 ∧ m = 2 ∨ n = 1 ∧ m = 1 ∨ n = 2 ∧ m = 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/WithBot.lean",
+        "line": 36,
+        "tactic_state_before": "case coe.coe\na✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 1 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 1 ∨ ↑a✝¹ = 1 ∧ ↑a✝ = 0",
+        "proof": "simp [← WithBot.coe_add, Nat.add_eq_one_iff]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "a✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 1 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 1 ∨ ↑a✝¹ = 1 ∧ ↑a✝ = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\nopen Nat\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (a a_1 : ℕ) : ↑a + ↑a_1 = 1 ↔ ↑a = 0 ∧ ↑a_1 = 1 ∨ ↑a = 1 ∧ ↑a_1 = 0 := sorry",
+        "original_theorem_name": "Nat.WithBot.add_eq_one_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\n/-!\n# `WithBot ℕ`\n\nLemmas about the type of natural numbers with a bottom element adjoined.\n-/\n\n\nnamespace Nat\n\nnamespace WithBot\n\ninstance : WellFoundedRelation (WithBot ℕ) where\n  rel := (· < ·)\n  wf := IsWellFounded.wf\n\ntheorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by\n  cases n\n  · simp [WithBot.bot_add]\n  cases m\n  · simp [WithBot.add_bot]\n  simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]\n\n",
+        "original_theorem_content": "theorem add_eq_one_iff {n m : WithBot ℕ} : n + m = 1 ↔ n = 0 ∧ m = 1 ∨ n = 1 ∧ m = 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/WithBot.lean",
+        "line": 29,
+        "tactic_state_before": "case coe.coe\na✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 0 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 0",
+        "proof": "simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "a✝¹ a✝ : ℕ\n⊢ ↑a✝¹ + ↑a✝ = 0 ↔ ↑a✝¹ = 0 ∧ ↑a✝ = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\nopen Nat\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_5 (a a_1 : ℕ) : ↑a + ↑a_1 = 0 ↔ ↑a = 0 ∧ ↑a_1 = 0 := sorry",
+        "original_theorem_name": "Nat.WithBot.add_eq_zero_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Group.Nat\n\nimport Mathlib.Algebra.Order.GroupWithZero.Canonical\n\nimport Mathlib.Data.Nat.Cast.WithTop\n\n/-!\n# `WithBot ℕ`\n\nLemmas about the type of natural numbers with a bottom element adjoined.\n-/\n\n\nnamespace Nat\n\nnamespace WithBot\n\ninstance : WellFoundedRelation (WithBot ℕ) where\n  rel := (· < ·)\n  wf := IsWellFounded.wf\n\n",
+        "original_theorem_content": "theorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by"
+    }
+]

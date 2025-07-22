@@ -4,24 +4,24 @@ import os
 
 from provers import *
 from datasets import load_dataset
+from glob import glob
 
-import os
 prover_dict={
     'goedel': GoedelProver,
-    'deepseek_v15_rl': DeepSeekProverV15RL,
-    'deepseek_v2_cot': DeepSeekProverV2CoT,
+    'deepseekProver_v15_rl': DeepSeekProverV15RL,
+    'deepseekProver_v2_cot': DeepSeekProverV2CoT,
     'kimina': KiminaProver,
-    'deepseek_v2_non_cot': DeepSeekProverV2nonCoT,
+    'deepseekProver_v2_non_cot': DeepSeekProverV2nonCoT,
     'stp': STP,
     'leana': leana,
     }
 def main():
     parser = argparse.ArgumentParser(description='Generate proofs using whole-generation prover')
-    parser.add_argument('--prover_name', type=str, default='goedel',
+    parser.add_argument('--prover_name', type=str, default='deepseekProver_v2_non_cot',
                       help='Prover to use')
     parser.add_argument('--gpu', type=int, default=1,
                       help='Number of GPUs to use')
-    parser.add_argument('--num_samples', type=int, default=8,
+    parser.add_argument('--num_samples', type=int, default=32,
                       help='Number of samples to generate')#pass@n中的n
     parser.add_argument('--max_tokens', type=int, default=2048,
                       help='Maximum number of tokens to generate')
@@ -31,31 +31,41 @@ def main():
                       help='Top-p sampling parameter')
     parser.add_argument('--total_segments', type=int, default=1,
                       help='Total number of segments to split data into')
-    parser.add_argument('--dataset_path', type=str, default='zzhisthebest/FormalML',
+    parser.add_argument('--dataset_path', type=str, default="/data0/zzh/FormalML/extraction/AutoML/FormalML",
                       help='Path or name of the dataset to use')
+    parser.add_argument('--num_problems', type=int, default='100',
+                      help='Number of problems to generate proofs. Set to -1 to use all problems.')
     args = parser.parse_args()
 
     # Create results directory if it doesn't exist
     os.makedirs('results', exist_ok=True)
 
     # Load dataset
-    if args.dataset_path.endswith('.json') or args.dataset_path.endswith('.jsonl'):
-        dataset = load_dataset('json', data_files=args.dataset_path)
-        print(f"Local dataset: {args.dataset_path}")
-    else:
-        dataset = load_dataset(args.dataset_path)
-        print(f"HuggingFace dataset: {args.dataset_path}")
-        
-    data_list = dataset["train"]
-    data_list = data_list.rename_column("theorem_header", "header")
+    #if args.dataset_path.endswith('.json') or args.dataset_path.endswith('.jsonl'):
+    #    dataset = load_dataset('json', data_files=args.dataset_path)
+    #    print(f"Local dataset: {args.dataset_path}")
+    #else:
+    #    dataset = load_dataset(args.dataset_path)
+    #    print(f"HuggingFace dataset: {args.dataset_path}")
+    json_files = glob(os.path.join(args.dataset_path, "**/*.json"), recursive=True)
+    # 过滤掉空 JSON 文件
+    valid_json_files = []
+    for f in json_files:
+        with open(f, "r", encoding="utf-8") as file:
+            data = json.load(file)
+            if isinstance(data, list) and len(data) > 0:
+                valid_json_files.append(f)
+    
+    dataset = load_dataset('json', data_files=valid_json_files, split="train")
+
+    data_list = dataset
     data_list = data_list.to_list()
     for d in data_list:
         d["formal_statement"] = d["formal_statement"].replace("sorry", "by\n")
-        d["full_formal_statement"] = d["full_formal_statement"].replace("sorry", "by\n")
     
     total_data_size = len(data_list)
-    if args.num_samples != -1:
-        total_data_size = min(args.num_samples, total_data_size)
+    if args.num_problems != -1:
+        total_data_size = min(args.num_problems, total_data_size)
         data_list = data_list[:total_data_size]
         
 
@@ -94,7 +104,6 @@ def main():
                 "problem_id": global_problem_id,
                 "header": current_segment_data[i]["header"],
                 "formal_statement": current_segment_data[i]["formal_statement"],
-                "full_formal_statement": current_segment_data[i]["full_formal_statement"],
                 "model_output": result["model_outputs"],
                 "full_proof": result["full_code"]
             }

@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Tactic/PNatToNat.lean",
+        "line": 57,
+        "tactic_state_before": "case mk.mk\nval✝¹ : ℕ\nproperty✝¹ : 0 < val✝¹\nval✝ : ℕ\nproperty✝ : 0 < val✝\n⊢ (if val✝ < val✝¹ then val✝¹ - val✝ else 1) = val✝¹ - 1 - val✝ + 1",
+        "proof": "split_ifs\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n val✝¹ : ℕ\n property✝¹ : 0 < val✝¹\n val✝ : ℕ\n property✝ : 0 < val✝\n h✝ : val✝ < val✝¹\n ⊢ val✝¹ - val✝ = val✝¹ - 1 - val✝ + 1,\n case neg\n val✝¹ : ℕ\n property✝¹ : 0 < val✝¹\n val✝ : ℕ\n property✝ : 0 < val✝\n h✝ : ¬val✝ < val✝¹\n ⊢ 1 = val✝¹ - 1 - val✝ + 1]",
+        "goal": "val✝¹ : ℕ\nproperty✝¹ : 0 < val✝¹\nval✝ : ℕ\nproperty✝ : 0 < val✝\nh✝ : val✝¹ - val✝ = val✝¹ - 1 - val✝ + 1\nh : 1 = val✝¹ - 1 - val✝ + 1\n⊢ (if val✝ < val✝¹ then val✝¹ - val✝ else 1) = val✝¹ - 1 - val✝ + 1",
+        "header": "import Mathlib\nimport Mathlib.Data.PNat.Basic\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\nopen Mathlib.Tactic.PNatToNat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (val : ℕ) (property : 0 < val) (val_1 : ℕ) (property_1 : 0 < val_1)\n  (h_1 : val - val_1 = val - 1 - val_1 + 1) (h : 1 = val - 1 - val_1 + 1) :\n  (if val_1 < val then val - val_1 else 1) = val - 1 - val_1 + 1 := sorry",
+        "original_theorem_name": "Mathlib.Tactic.PNatToNat.sub_coe",
+        "original_theorem_importsAndContext": "import Mathlib.Data.PNat.Basic\n\n/-!\n# `pnat_to_nat`\n\nThis file implements the `pnat_to_nat` tactic that shifts `PNat`s in the context to `Nat`.\n\n## Implementation details\nThe implementation follows these steps:\n1. For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`.\n2. Translate arithmetic on `PNat` to `Nat` using the `pnat_to_nat_coe` simp set.\n\n-/\n\nnamespace Mathlib.Tactic.PNatToNat\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\n/-- For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`. -/\nelab \"pnat_positivity\" : tactic => withMainContext do\n  let result ← (← getLCtx).foldlM (init := ← getMainGoal) fun g decl => do\n    let ⟨1, declType, declExpr⟩ ← inferTypeQ decl.toExpr | return g\n    let ~q(PNat) := declType | return g\n    let pf := q(PNat.pos $declExpr)\n    let ctx ← getLCtx\n    let alreadyDeclared := Option.isSome <| ← ctx.findDeclM? fun ldecl => do\n      if ← isDefEq ldecl.type q(0 < PNat.val $declExpr) then\n        pure <| .some ()\n      else\n        pure .none\n    if alreadyDeclared then\n      return g\n    let (_, mvarIdNew) ← (← g.assert .anonymous q(0 < PNat.val $declExpr) pf).intro1P\n    return mvarIdNew\n  setGoals [result]\n\n@[pnat_to_nat_coe]\nlemma coe_inj (m n : PNat) : m = n ↔ (m : ℕ) = (n : ℕ) := by simp\n\n@[pnat_to_nat_coe]\nlemma coe_le_coe (m n : PNat) : m ≤ n ↔ (m : ℕ) ≤ (n : ℕ) := by simp\n\n@[pnat_to_nat_coe]\nlemma coe_lt_coe (m n : PNat) : m < n ↔ (m : ℕ) < (n : ℕ) := by simp\n\nattribute [pnat_to_nat_coe] PNat.add_coe PNat.mul_coe PNat.val_ofNat\n\n",
+        "original_theorem_content": "@[pnat_to_nat_coe]\nlemma sub_coe (a b : PNat) : ((a - b : PNat) : Nat) = a.val - 1 - b.val + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/PNatToNat.lean",
+        "line": 59,
+        "tactic_state_before": "case neg\nval✝¹ : ℕ\nproperty✝¹ : 0 < val✝¹\nval✝ : ℕ\nproperty✝ : 0 < val✝\nh✝ : ¬val✝ < val✝¹\n⊢ 1 = val✝¹ - 1 - val✝ + 1",
+        "proof": "omega\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "val✝¹ : ℕ\nproperty✝¹ : 0 < val✝¹\nval✝ : ℕ\nproperty✝ : 0 < val✝\nh✝ : ¬val✝ < val✝¹\n⊢ 1 = val✝¹ - 1 - val✝ + 1",
+        "header": "import Mathlib\nimport Mathlib.Data.PNat.Basic\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\nopen Mathlib.Tactic.PNatToNat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (val : ℕ) (property : 0 < val) (val_1 : ℕ) (property_1 : 0 < val_1)\n  (h : ¬val_1 < val) : 1 = val - 1 - val_1 + 1 := sorry",
+        "original_theorem_name": "Mathlib.Tactic.PNatToNat.sub_coe",
+        "original_theorem_importsAndContext": "import Mathlib.Data.PNat.Basic\n\n/-!\n# `pnat_to_nat`\n\nThis file implements the `pnat_to_nat` tactic that shifts `PNat`s in the context to `Nat`.\n\n## Implementation details\nThe implementation follows these steps:\n1. For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`.\n2. Translate arithmetic on `PNat` to `Nat` using the `pnat_to_nat_coe` simp set.\n\n-/\n\nnamespace Mathlib.Tactic.PNatToNat\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\n/-- For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`. -/\nelab \"pnat_positivity\" : tactic => withMainContext do\n  let result ← (← getLCtx).foldlM (init := ← getMainGoal) fun g decl => do\n    let ⟨1, declType, declExpr⟩ ← inferTypeQ decl.toExpr | return g\n    let ~q(PNat) := declType | return g\n    let pf := q(PNat.pos $declExpr)\n    let ctx ← getLCtx\n    let alreadyDeclared := Option.isSome <| ← ctx.findDeclM? fun ldecl => do\n      if ← isDefEq ldecl.type q(0 < PNat.val $declExpr) then\n        pure <| .some ()\n      else\n        pure .none\n    if alreadyDeclared then\n      return g\n    let (_, mvarIdNew) ← (← g.assert .anonymous q(0 < PNat.val $declExpr) pf).intro1P\n    return mvarIdNew\n  setGoals [result]\n\n@[pnat_to_nat_coe]\nlemma coe_inj (m n : PNat) : m = n ↔ (m : ℕ) = (n : ℕ) := by simp\n\n@[pnat_to_nat_coe]\nlemma coe_le_coe (m n : PNat) : m ≤ n ↔ (m : ℕ) ≤ (n : ℕ) := by simp\n\n@[pnat_to_nat_coe]\nlemma coe_lt_coe (m n : PNat) : m < n ↔ (m : ℕ) < (n : ℕ) := by simp\n\nattribute [pnat_to_nat_coe] PNat.add_coe PNat.mul_coe PNat.val_ofNat\n\n",
+        "original_theorem_content": "@[pnat_to_nat_coe]\nlemma sub_coe (a b : PNat) : ((a - b : PNat) : Nat) = a.val - 1 - b.val + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/PNatToNat.lean",
+        "line": 49,
+        "tactic_state_before": "m n : ℕ+\n⊢ m < n ↔ ↑m < ↑n",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "m n : ℕ+\n⊢ m < n ↔ ↑m < ↑n",
+        "header": "import Mathlib\nimport Mathlib.Data.PNat.Basic\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\nopen Mathlib.Tactic.PNatToNat\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (m n : ℕ+) : m < n ↔ ↑m < ↑n := sorry",
+        "original_theorem_name": "Mathlib.Tactic.PNatToNat.coe_lt_coe",
+        "original_theorem_importsAndContext": "import Mathlib.Data.PNat.Basic\n\n/-!\n# `pnat_to_nat`\n\nThis file implements the `pnat_to_nat` tactic that shifts `PNat`s in the context to `Nat`.\n\n## Implementation details\nThe implementation follows these steps:\n1. For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`.\n2. Translate arithmetic on `PNat` to `Nat` using the `pnat_to_nat_coe` simp set.\n\n-/\n\nnamespace Mathlib.Tactic.PNatToNat\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\n/-- For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`. -/\nelab \"pnat_positivity\" : tactic => withMainContext do\n  let result ← (← getLCtx).foldlM (init := ← getMainGoal) fun g decl => do\n    let ⟨1, declType, declExpr⟩ ← inferTypeQ decl.toExpr | return g\n    let ~q(PNat) := declType | return g\n    let pf := q(PNat.pos $declExpr)\n    let ctx ← getLCtx\n    let alreadyDeclared := Option.isSome <| ← ctx.findDeclM? fun ldecl => do\n      if ← isDefEq ldecl.type q(0 < PNat.val $declExpr) then\n        pure <| .some ()\n      else\n        pure .none\n    if alreadyDeclared then\n      return g\n    let (_, mvarIdNew) ← (← g.assert .anonymous q(0 < PNat.val $declExpr) pf).intro1P\n    return mvarIdNew\n  setGoals [result]\n\n@[pnat_to_nat_coe]\nlemma coe_inj (m n : PNat) : m = n ↔ (m : ℕ) = (n : ℕ) := by simp\n\n@[pnat_to_nat_coe]\nlemma coe_le_coe (m n : PNat) : m ≤ n ↔ (m : ℕ) ≤ (n : ℕ) := by simp\n\n",
+        "original_theorem_content": "@[pnat_to_nat_coe]\nlemma coe_lt_coe (m n : PNat) : m < n ↔ (m : ℕ) < (n : ℕ) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/PNatToNat.lean",
+        "line": 46,
+        "tactic_state_before": "m n : ℕ+\n⊢ m ≤ n ↔ ↑m ≤ ↑n",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "m n : ℕ+\n⊢ m ≤ n ↔ ↑m ≤ ↑n",
+        "header": "import Mathlib\nimport Mathlib.Data.PNat.Basic\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\nopen Mathlib.Tactic.PNatToNat\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (m n : ℕ+) : m ≤ n ↔ ↑m ≤ ↑n := sorry",
+        "original_theorem_name": "Mathlib.Tactic.PNatToNat.coe_le_coe",
+        "original_theorem_importsAndContext": "import Mathlib.Data.PNat.Basic\n\n/-!\n# `pnat_to_nat`\n\nThis file implements the `pnat_to_nat` tactic that shifts `PNat`s in the context to `Nat`.\n\n## Implementation details\nThe implementation follows these steps:\n1. For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`.\n2. Translate arithmetic on `PNat` to `Nat` using the `pnat_to_nat_coe` simp set.\n\n-/\n\nnamespace Mathlib.Tactic.PNatToNat\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\n/-- For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`. -/\nelab \"pnat_positivity\" : tactic => withMainContext do\n  let result ← (← getLCtx).foldlM (init := ← getMainGoal) fun g decl => do\n    let ⟨1, declType, declExpr⟩ ← inferTypeQ decl.toExpr | return g\n    let ~q(PNat) := declType | return g\n    let pf := q(PNat.pos $declExpr)\n    let ctx ← getLCtx\n    let alreadyDeclared := Option.isSome <| ← ctx.findDeclM? fun ldecl => do\n      if ← isDefEq ldecl.type q(0 < PNat.val $declExpr) then\n        pure <| .some ()\n      else\n        pure .none\n    if alreadyDeclared then\n      return g\n    let (_, mvarIdNew) ← (← g.assert .anonymous q(0 < PNat.val $declExpr) pf).intro1P\n    return mvarIdNew\n  setGoals [result]\n\n@[pnat_to_nat_coe]\nlemma coe_inj (m n : PNat) : m = n ↔ (m : ℕ) = (n : ℕ) := by simp\n\n",
+        "original_theorem_content": "@[pnat_to_nat_coe]\nlemma coe_le_coe (m n : PNat) : m ≤ n ↔ (m : ℕ) ≤ (n : ℕ) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/PNatToNat.lean",
+        "line": 43,
+        "tactic_state_before": "m n : ℕ+\n⊢ m = n ↔ ↑m = ↑n",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "m n : ℕ+\n⊢ m = n ↔ ↑m = ↑n",
+        "header": "import Mathlib\nimport Mathlib.Data.PNat.Basic\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\nopen Mathlib.Tactic.PNatToNat\n",
+        "formal_statement": "theorem extracted_formal_statement_4 (m n : ℕ+) : m = n ↔ ↑m = ↑n := sorry",
+        "original_theorem_name": "Mathlib.Tactic.PNatToNat.coe_inj",
+        "original_theorem_importsAndContext": "import Mathlib.Data.PNat.Basic\n\n/-!\n# `pnat_to_nat`\n\nThis file implements the `pnat_to_nat` tactic that shifts `PNat`s in the context to `Nat`.\n\n## Implementation details\nThe implementation follows these steps:\n1. For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`.\n2. Translate arithmetic on `PNat` to `Nat` using the `pnat_to_nat_coe` simp set.\n\n-/\n\nnamespace Mathlib.Tactic.PNatToNat\n\nopen private getElimNameInfo generalizeTargets generalizeVars from Lean.Elab.Tactic.Induction\n\nopen Lean Meta Elab Tactic Qq Mathlib.Tactic\n\n/-- For each `x : PNat` in the context, add the hypothesis `0 < (↑x : ℕ)`. -/\nelab \"pnat_positivity\" : tactic => withMainContext do\n  let result ← (← getLCtx).foldlM (init := ← getMainGoal) fun g decl => do\n    let ⟨1, declType, declExpr⟩ ← inferTypeQ decl.toExpr | return g\n    let ~q(PNat) := declType | return g\n    let pf := q(PNat.pos $declExpr)\n    let ctx ← getLCtx\n    let alreadyDeclared := Option.isSome <| ← ctx.findDeclM? fun ldecl => do\n      if ← isDefEq ldecl.type q(0 < PNat.val $declExpr) then\n        pure <| .some ()\n      else\n        pure .none\n    if alreadyDeclared then\n      return g\n    let (_, mvarIdNew) ← (← g.assert .anonymous q(0 < PNat.val $declExpr) pf).intro1P\n    return mvarIdNew\n  setGoals [result]\n\n",
+        "original_theorem_content": "@[pnat_to_nat_coe]\nlemma coe_inj (m n : PNat) : m = n ↔ (m : ℕ) = (n : ℕ) := by"
+    }
+]

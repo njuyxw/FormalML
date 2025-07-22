@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Separation/CountableSeparatingOn.lean",
+        "line": 23,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\ns : Set X\ninst✝¹ : T0Space ↑s\ninst✝ : SecondCountableTopology ↑s\n⊢ HasCountableSeparatingOn X IsOpen s",
+        "proof": "suffices HasCountableSeparatingOn s IsOpen univ from .of_subtype fun _ ↦ isOpen_induced_iff.1\n  try repeat assumption",
+        "tactic_state_after": "[X : Type u_1\n inst✝² : TopologicalSpace X\n s : Set X\n inst✝¹ : T0Space ↑s\n inst✝ : SecondCountableTopology ↑s\n ⊢ HasCountableSeparatingOn (↑s) IsOpen univ]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\ns : Set X\ninst✝¹ : T0Space ↑s\ninst✝ : SecondCountableTopology ↑s\nh : HasCountableSeparatingOn (↑s) IsOpen univ\n⊢ HasCountableSeparatingOn X IsOpen s",
+        "header": "import Mathlib\nimport Mathlib.Order.Filter.CountableSeparatingOn\n\nimport Mathlib.Topology.Separation.Basic\n\nopen Set TopologicalSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {X : Type u_1} [inst : TopologicalSpace X] {s : Set X} [inst_1 : T0Space ↑s]\n  [inst_2 : SecondCountableTopology ↑s] (h : HasCountableSeparatingOn (↑s) IsOpen univ) :\n  HasCountableSeparatingOn X IsOpen s := sorry",
+        "original_theorem_name": "instHasCountableSeparatingOnIsOpenOfT0SpaceOfSecondCountableTopologyElem",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Filter.CountableSeparatingOn\n\nimport Mathlib.Topology.Separation.Basic\n\n/-!\n# Countable separating families of sets in topological spaces\n\nIn this file we show that a T₀ topological space with second countable\ntopology has a countable family of open (or closed) sets separating the points.\n-/\n\nvariable {X : Type*}\n\nopen Set TopologicalSpace\n\n",
+        "original_theorem_content": "/-- If `X` is a topological space, `s` is a set in `X` such that the induced topology is T₀ and is\nsecond countable, then there exists a countable family of open sets in `X` that separates points\nof `s`. -/\ninstance [TopologicalSpace X] {s : Set X} [T0Space s] [SecondCountableTopology s] :\n    HasCountableSeparatingOn X IsOpen s := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Separation/CountableSeparatingOn.lean",
+        "line": 25,
+        "tactic_state_before": "X : Type u_1\ninst✝² : TopologicalSpace X\ns : Set X\ninst✝¹ : T0Space ↑s\ninst✝ : SecondCountableTopology ↑s\nx : ↑s\nx✝¹ : x ∈ univ\ny : ↑s\nx✝ : y ∈ univ\nh : ∀ s_1 ∈ countableBasis ↑s, x ∈ s_1 ↔ y ∈ s_1\n⊢ x = y",
+        "proof": "exact ((isBasis_countableBasis _).inseparable_iff.2 h).eq\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X : Type u_1\ninst✝² : TopologicalSpace X\ns : Set X\ninst✝¹ : T0Space ↑s\ninst✝ : SecondCountableTopology ↑s\nx : ↑s\nx✝¹ : x ∈ univ\ny : ↑s\nx✝ : y ∈ univ\nh : ∀ s_1 ∈ countableBasis ↑s, x ∈ s_1 ↔ y ∈ s_1\n⊢ x = y",
+        "header": "import Mathlib\nimport Mathlib.Order.Filter.CountableSeparatingOn\n\nimport Mathlib.Topology.Separation.Basic\n\nopen Set TopologicalSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {X : Type u_1} [inst : TopologicalSpace X] {s : Set X} [inst_1 : T0Space ↑s]\n  [inst_2 : SecondCountableTopology ↑s] (x : ↑s) (x_1 : x ∈ univ) (y : ↑s) (x_2 : y ∈ univ)\n  (h : ∀ s_1 ∈ countableBasis ↑s, x ∈ s_1 ↔ y ∈ s_1) : x = y := sorry",
+        "original_theorem_name": "instHasCountableSeparatingOnIsOpenOfT0SpaceOfSecondCountableTopologyElem",
+        "original_theorem_importsAndContext": "import Mathlib.Order.Filter.CountableSeparatingOn\n\nimport Mathlib.Topology.Separation.Basic\n\n/-!\n# Countable separating families of sets in topological spaces\n\nIn this file we show that a T₀ topological space with second countable\ntopology has a countable family of open (or closed) sets separating the points.\n-/\n\nvariable {X : Type*}\n\nopen Set TopologicalSpace\n\n",
+        "original_theorem_content": "/-- If `X` is a topological space, `s` is a set in `X` such that the induced topology is T₀ and is\nsecond countable, then there exists a countable family of open sets in `X` that separates points\nof `s`. -/\ninstance [TopologicalSpace X] {s : Set X} [T0Space s] [SecondCountableTopology s] :\n    HasCountableSeparatingOn X IsOpen s := by"
+    }
+]

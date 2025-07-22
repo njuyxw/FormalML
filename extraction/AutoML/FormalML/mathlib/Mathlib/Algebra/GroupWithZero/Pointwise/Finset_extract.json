@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Pointwise/Finset.lean",
+        "line": 44,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : GroupWithZero α\ninst✝ : DecidableEq α\ns : Finset α\n⊢ 0 / s ⊆ 0",
+        "proof": "simp [subset_iff, mem_div]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : GroupWithZero α\ninst✝ : DecidableEq α\ns : Finset α\n⊢ 0 / s ⊆ 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\nopen scoped Pointwise\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : GroupWithZero α] [inst_1 : DecidableEq α]\n  (s : Finset α) : 0 / s ⊆ 0 := sorry",
+        "original_theorem_name": "Finset.zero_div_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\n/-!\n# Pointwise operations of finsets in a group with zero\n\nThis file proves properties of pointwise operations of finsets in a group with zero.\n-/\n\n-- TODO\n-- assert_not_exists Ring\nassert_not_exists MulAction\n\nopen scoped Pointwise\n\nnamespace Finset\nvariable {α β : Type*} [DecidableEq β]\n\nsection MulZeroClass\nvariable [DecidableEq α] [MulZeroClass α] {s : Finset α}\n\n/-! Note that `Finset` is not a `MulZeroClass` because `0 * ∅ ≠ 0`. -/\n\nlemma mul_zero_subset (s : Finset α) : s * 0 ⊆ 0 := by simp [subset_iff, mem_mul]\nlemma zero_mul_subset (s : Finset α) : 0 * s ⊆ 0 := by simp [subset_iff, mem_mul]\n\nlemma Nonempty.mul_zero (hs : s.Nonempty) : s * 0 = 0 :=\n  s.mul_zero_subset.antisymm <| by simpa [mem_mul] using hs\n\nlemma Nonempty.zero_mul (hs : s.Nonempty) : 0 * s = 0 :=\n  s.zero_mul_subset.antisymm <| by simpa [mem_mul] using hs\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero α] [DecidableEq α] {s : Finset α}\n\nlemma div_zero_subset (s : Finset α) : s / 0 ⊆ 0 := by simp [subset_iff, mem_div]\n\n",
+        "original_theorem_content": "lemma zero_div_subset (s : Finset α) : 0 / s ⊆ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Pointwise/Finset.lean",
+        "line": 42,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : GroupWithZero α\ninst✝ : DecidableEq α\ns : Finset α\n⊢ s / 0 ⊆ 0",
+        "proof": "simp [subset_iff, mem_div]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : GroupWithZero α\ninst✝ : DecidableEq α\ns : Finset α\n⊢ s / 0 ⊆ 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\nopen scoped Pointwise\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : GroupWithZero α] [inst_1 : DecidableEq α]\n  (s : Finset α) : s / 0 ⊆ 0 := sorry",
+        "original_theorem_name": "Finset.div_zero_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\n/-!\n# Pointwise operations of finsets in a group with zero\n\nThis file proves properties of pointwise operations of finsets in a group with zero.\n-/\n\n-- TODO\n-- assert_not_exists Ring\nassert_not_exists MulAction\n\nopen scoped Pointwise\n\nnamespace Finset\nvariable {α β : Type*} [DecidableEq β]\n\nsection MulZeroClass\nvariable [DecidableEq α] [MulZeroClass α] {s : Finset α}\n\n/-! Note that `Finset` is not a `MulZeroClass` because `0 * ∅ ≠ 0`. -/\n\nlemma mul_zero_subset (s : Finset α) : s * 0 ⊆ 0 := by simp [subset_iff, mem_mul]\nlemma zero_mul_subset (s : Finset α) : 0 * s ⊆ 0 := by simp [subset_iff, mem_mul]\n\nlemma Nonempty.mul_zero (hs : s.Nonempty) : s * 0 = 0 :=\n  s.mul_zero_subset.antisymm <| by simpa [mem_mul] using hs\n\nlemma Nonempty.zero_mul (hs : s.Nonempty) : 0 * s = 0 :=\n  s.zero_mul_subset.antisymm <| by simpa [mem_mul] using hs\n\nend MulZeroClass\n\nsection GroupWithZero\nvariable [GroupWithZero α] [DecidableEq α] {s : Finset α}\n\n",
+        "original_theorem_content": "lemma div_zero_subset (s : Finset α) : s / 0 ⊆ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Pointwise/Finset.lean",
+        "line": 29,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : DecidableEq α\ninst✝ : MulZeroClass α\ns : Finset α\n⊢ 0 * s ⊆ 0",
+        "proof": "simp [subset_iff, mem_mul]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : DecidableEq α\ninst✝ : MulZeroClass α\ns : Finset α\n⊢ 0 * s ⊆ 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\nopen scoped Pointwise\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : DecidableEq α] [inst_1 : MulZeroClass α]\n  (s : Finset α) : 0 * s ⊆ 0 := sorry",
+        "original_theorem_name": "Finset.zero_mul_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\n/-!\n# Pointwise operations of finsets in a group with zero\n\nThis file proves properties of pointwise operations of finsets in a group with zero.\n-/\n\n-- TODO\n-- assert_not_exists Ring\nassert_not_exists MulAction\n\nopen scoped Pointwise\n\nnamespace Finset\nvariable {α β : Type*} [DecidableEq β]\n\nsection MulZeroClass\nvariable [DecidableEq α] [MulZeroClass α] {s : Finset α}\n\n/-! Note that `Finset` is not a `MulZeroClass` because `0 * ∅ ≠ 0`. -/\n\nlemma mul_zero_subset (s : Finset α) : s * 0 ⊆ 0 := by simp [subset_iff, mem_mul]\n",
+        "original_theorem_content": "lemma zero_mul_subset (s : Finset α) : 0 * s ⊆ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Pointwise/Finset.lean",
+        "line": 28,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : DecidableEq α\ninst✝ : MulZeroClass α\ns : Finset α\n⊢ s * 0 ⊆ 0",
+        "proof": "simp [subset_iff, mem_mul]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : DecidableEq α\ninst✝ : MulZeroClass α\ns : Finset α\n⊢ s * 0 ⊆ 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\nopen scoped Pointwise\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} [inst : DecidableEq α] [inst_1 : MulZeroClass α]\n  (s : Finset α) : s * 0 ⊆ 0 := sorry",
+        "original_theorem_name": "Finset.mul_zero_subset",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Basic\n\nimport Mathlib.Algebra.Group.Pointwise.Finset.Basic\n\n/-!\n# Pointwise operations of finsets in a group with zero\n\nThis file proves properties of pointwise operations of finsets in a group with zero.\n-/\n\n-- TODO\n-- assert_not_exists Ring\nassert_not_exists MulAction\n\nopen scoped Pointwise\n\nnamespace Finset\nvariable {α β : Type*} [DecidableEq β]\n\nsection MulZeroClass\nvariable [DecidableEq α] [MulZeroClass α] {s : Finset α}\n\n/-! Note that `Finset` is not a `MulZeroClass` because `0 * ∅ ≠ 0`. -/\n\n",
+        "original_theorem_content": "lemma mul_zero_subset (s : Finset α) : s * 0 ⊆ 0 := by"
+    }
+]

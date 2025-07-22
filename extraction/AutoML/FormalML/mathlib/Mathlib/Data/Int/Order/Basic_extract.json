@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Int/Order/Basic.lean",
+        "line": 45,
+        "tactic_state_before": "a b : ℤ\n⊢ 0 ≤ a * b → 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0",
+        "proof": "intro h\n  try repeat assumption",
+        "tactic_state_after": "[a b : ℤ\n h : 0 ≤ a * b\n ⊢ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0]",
+        "goal": "a b : ℤ\nh : 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0\n⊢ 0 ≤ a * b → 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0",
+        "header": "import Mathlib\nimport Mathlib.Data.Int.Notation\n\nimport Mathlib.Data.Nat.Notation\n\nimport Mathlib.Order.Defs.LinearOrder\n\nopen Nat\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {a b : ℤ} (h : 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0) :\n  0 ≤ a * b → 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0 := sorry",
+        "original_theorem_name": "Int.nonneg_or_nonpos_of_mul_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Int.Notation\n\nimport Mathlib.Data.Nat.Notation\n\nimport Mathlib.Order.Defs.LinearOrder\n\n/-!\n# The order relation on the integers\n-/\n\nopen Nat\n\nnamespace Int\n\nexport private decNonneg from Init.Data.Int.Basic\n\ntheorem le.elim {a b : ℤ} (h : a ≤ b) {P : Prop} (h' : ∀ n : ℕ, a + ↑n = b → P) : P :=\n  Exists.elim (le.dest h) h'\n\nalias ⟨le_of_ofNat_le_ofNat, ofNat_le_ofNat_of_le⟩ := ofNat_le\n\ntheorem lt.elim {a b : ℤ} (h : a < b) {P : Prop} (h' : ∀ n : ℕ, a + ↑(Nat.succ n) = b → P) : P :=\n  Exists.elim (lt.dest h) h'\n\nalias ⟨lt_of_ofNat_lt_ofNat, ofNat_lt_ofNat_of_lt⟩ := ofNat_lt\n\ninstance instLinearOrder : LinearOrder ℤ where\n  le := (·≤·)\n  le_refl := Int.le_refl\n  le_trans := @Int.le_trans\n  le_antisymm := @Int.le_antisymm\n  lt := (·<·)\n  lt_iff_le_not_le := @Int.lt_iff_le_not_le\n  le_total := Int.le_total\n  decidableEq := by infer_instance\n  decidableLE := by infer_instance\n  decidableLT := by infer_instance\n\nprotected theorem eq_zero_or_eq_zero_of_mul_eq_zero {a b : ℤ} (h : a * b = 0) : a = 0 ∨ b = 0 :=\n  Int.mul_eq_zero.mp h\n\n",
+        "original_theorem_content": "theorem nonneg_or_nonpos_of_mul_nonneg {a b : ℤ} : 0 ≤ a * b → 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Int/Order/Basic.lean",
+        "line": 46,
+        "tactic_state_before": "a b : ℤ\nh : 0 ≤ a * b\n⊢ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0",
+        "proof": "by_cases ha : 0 ≤ a\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n a b : ℤ\n h : 0 ≤ a * b\n ha : 0 ≤ a\n ⊢ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0,\n case neg\n a b : ℤ\n h : 0 ≤ a * b\n ha : ¬0 ≤ a\n ⊢ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0]",
+        "goal": "a b : ℤ\nh✝¹ : 0 ≤ a * b\nh✝ h : 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0\n⊢ 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0",
+        "header": "import Mathlib\nimport Mathlib.Data.Int.Notation\n\nimport Mathlib.Data.Nat.Notation\n\nimport Mathlib.Order.Defs.LinearOrder\n\nopen Nat\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {a b : ℤ} (h_1 : 0 ≤ a * b) (h_2 h : 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0) :\n  0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0 := sorry",
+        "original_theorem_name": "Int.nonneg_or_nonpos_of_mul_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Int.Notation\n\nimport Mathlib.Data.Nat.Notation\n\nimport Mathlib.Order.Defs.LinearOrder\n\n/-!\n# The order relation on the integers\n-/\n\nopen Nat\n\nnamespace Int\n\nexport private decNonneg from Init.Data.Int.Basic\n\ntheorem le.elim {a b : ℤ} (h : a ≤ b) {P : Prop} (h' : ∀ n : ℕ, a + ↑n = b → P) : P :=\n  Exists.elim (le.dest h) h'\n\nalias ⟨le_of_ofNat_le_ofNat, ofNat_le_ofNat_of_le⟩ := ofNat_le\n\ntheorem lt.elim {a b : ℤ} (h : a < b) {P : Prop} (h' : ∀ n : ℕ, a + ↑(Nat.succ n) = b → P) : P :=\n  Exists.elim (lt.dest h) h'\n\nalias ⟨lt_of_ofNat_lt_ofNat, ofNat_lt_ofNat_of_lt⟩ := ofNat_lt\n\ninstance instLinearOrder : LinearOrder ℤ where\n  le := (·≤·)\n  le_refl := Int.le_refl\n  le_trans := @Int.le_trans\n  le_antisymm := @Int.le_antisymm\n  lt := (·<·)\n  lt_iff_le_not_le := @Int.lt_iff_le_not_le\n  le_total := Int.le_total\n  decidableEq := by infer_instance\n  decidableLE := by infer_instance\n  decidableLT := by infer_instance\n\nprotected theorem eq_zero_or_eq_zero_of_mul_eq_zero {a b : ℤ} (h : a * b = 0) : a = 0 ∨ b = 0 :=\n  Int.mul_eq_zero.mp h\n\n",
+        "original_theorem_content": "theorem nonneg_or_nonpos_of_mul_nonneg {a b : ℤ} : 0 ≤ a * b → 0 ≤ a ∧ 0 ≤ b ∨ a ≤ 0 ∧ b ≤ 0 := by"
+    }
+]

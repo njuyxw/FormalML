@@ -1,0 +1,93 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 34,
+        "tactic_state_before": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf g : MvPolynomial σ R\nh : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g)\n⊢ f.totalDegree ≤ g.totalDegree",
+        "proof": "simp only [← MvPolynomial.degree_degLexDegree]\n  try repeat assumption",
+        "tactic_state_after": "[σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f g : MvPolynomial σ R\n h : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g)\n ⊢ (degLex.degree f).degree ≤ (degLex.degree g).degree]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf g : MvPolynomial σ R\nh✝ : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g)\nh : (degLex.degree f).degree ≤ (degLex.degree g).degree\n⊢ f.totalDegree ≤ g.totalDegree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f g : MvPolynomial σ R}\n  (h_1 : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g))\n  (h : (degLex.degree f).degree ≤ (degLex.degree g).degree) : f.totalDegree ≤ g.totalDegree := sorry",
+        "original_theorem_name": "MvPolynomial.degLex_totalDegree_monotone",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\ntheorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by\n  by_cases hf : f = 0\n  · simp [hf]\n  apply le_antisymm\n  · apply MvPolynomial.le_totalDegree\n    rw [MvPolynomial.mem_support_iff]\n    change degLex.leadingCoeff f ≠ 0\n    rw [leadingCoeff_ne_zero_iff]\n    exact hf\n  · unfold MvPolynomial.totalDegree\n    apply Finset.sup_le\n    intro b hb\n    exact DegLex.monotone_degree (degLex.le_degree hb)\n\n",
+        "original_theorem_content": "theorem degLex_totalDegree_monotone (h : degLex.degree f ≼[degLex] degLex.degree g) :\n    f.totalDegree ≤ g.totalDegree := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 35,
+        "tactic_state_before": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf g : MvPolynomial σ R\nh : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g)\n⊢ (degLex.degree f).degree ≤ (degLex.degree g).degree",
+        "proof": "exact DegLex.monotone_degree h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf g : MvPolynomial σ R\nh : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g)\n⊢ (degLex.degree f).degree ≤ (degLex.degree g).degree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f g : MvPolynomial σ R}\n  (h : degLex.toSyn (degLex.degree f) ≤ degLex.toSyn (degLex.degree g)) :\n  (degLex.degree f).degree ≤ (degLex.degree g).degree := sorry",
+        "original_theorem_name": "MvPolynomial.degLex_totalDegree_monotone",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\ntheorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by\n  by_cases hf : f = 0\n  · simp [hf]\n  apply le_antisymm\n  · apply MvPolynomial.le_totalDegree\n    rw [MvPolynomial.mem_support_iff]\n    change degLex.leadingCoeff f ≠ 0\n    rw [leadingCoeff_ne_zero_iff]\n    exact hf\n  · unfold MvPolynomial.totalDegree\n    apply Finset.sup_le\n    intro b hb\n    exact DegLex.monotone_degree (degLex.le_degree hb)\n\n",
+        "original_theorem_content": "theorem degLex_totalDegree_monotone (h : degLex.degree f ≼[degLex] degLex.degree g) :\n    f.totalDegree ≤ g.totalDegree := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 19,
+        "tactic_state_before": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\n⊢ (degLex.degree f).degree = f.totalDegree",
+        "proof": "by_cases hf : f = 0\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f : MvPolynomial σ R\n hf : f = 0\n ⊢ (degLex.degree f).degree = f.totalDegree,\n case neg\n σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f : MvPolynomial σ R\n hf : ¬f = 0\n ⊢ (degLex.degree f).degree = f.totalDegree]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nh✝ h : (degLex.degree f).degree = f.totalDegree\n⊢ (degLex.degree f).degree = f.totalDegree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f : MvPolynomial σ R}\n  (h_1 h : (degLex.degree f).degree = f.totalDegree) : (degLex.degree f).degree = f.totalDegree := sorry",
+        "original_theorem_name": "MvPolynomial.degree_degLexDegree",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\n",
+        "original_theorem_content": "theorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 21,
+        "tactic_state_before": "case neg\nσ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\n⊢ (degLex.degree f).degree = f.totalDegree",
+        "proof": "apply le_antisymm\n  try repeat assumption",
+        "tactic_state_after": "[case neg.a\n σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f : MvPolynomial σ R\n hf : ¬f = 0\n ⊢ (degLex.degree f).degree ≤ f.totalDegree,\n case neg.a\n σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f : MvPolynomial σ R\n hf : ¬f = 0\n ⊢ f.totalDegree ≤ (degLex.degree f).degree]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\nh✝ : (degLex.degree f).degree ≤ f.totalDegree\nh : f.totalDegree ≤ (degLex.degree f).degree\n⊢ (degLex.degree f).degree = f.totalDegree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f : MvPolynomial σ R} (hf : ¬f = 0)\n  (h_1 : (degLex.degree f).degree ≤ f.totalDegree) (h : f.totalDegree ≤ (degLex.degree f).degree) :\n  (degLex.degree f).degree = f.totalDegree := sorry",
+        "original_theorem_name": "MvPolynomial.degree_degLexDegree",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\n",
+        "original_theorem_content": "theorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 27,
+        "tactic_state_before": "case neg.a\nσ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\n⊢ f.totalDegree ≤ (degLex.degree f).degree",
+        "proof": "unfold MvPolynomial.totalDegree\n  try repeat assumption",
+        "tactic_state_after": "[case neg.a\n σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f : MvPolynomial σ R\n hf : ¬f = 0\n ⊢ (f.support.sup fun s => s.sum fun x e => e) ≤ (degLex.degree f).degree]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\nh : (f.support.sup fun s => s.sum fun x e => e) ≤ (degLex.degree f).degree\n⊢ f.totalDegree ≤ (degLex.degree f).degree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f : MvPolynomial σ R} (hf : ¬f = 0)\n  (h : (f.support.sup fun s => s.sum fun x e => e) ≤ (degLex.degree f).degree) :\n  f.totalDegree ≤ (degLex.degree f).degree := sorry",
+        "original_theorem_name": "MvPolynomial.degree_degLexDegree",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\n",
+        "original_theorem_content": "theorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 28,
+        "tactic_state_before": "case neg.a\nσ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\n⊢ (f.support.sup fun s => s.sum fun x e => e) ≤ (degLex.degree f).degree",
+        "proof": "apply Finset.sup_le\n  try repeat assumption",
+        "tactic_state_after": "[case neg.a.a\n σ : Type u_1\n inst✝² : LinearOrder σ\n R : Type u_2\n inst✝¹ : CommSemiring R\n inst✝ : WellFoundedGT σ\n f : MvPolynomial σ R\n hf : ¬f = 0\n ⊢ ∀ b ∈ f.support, (b.sum fun x e => e) ≤ (degLex.degree f).degree]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\nh : ∀ b ∈ f.support, (b.sum fun x e => e) ≤ (degLex.degree f).degree\n⊢ (f.support.sup fun s => s.sum fun x e => e) ≤ (degLex.degree f).degree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f : MvPolynomial σ R} (hf : ¬f = 0)\n  (h : ∀ b ∈ f.support, (b.sum fun x e => e) ≤ (degLex.degree f).degree) :\n  (f.support.sup fun s => s.sum fun x e => e) ≤ (degLex.degree f).degree := sorry",
+        "original_theorem_name": "MvPolynomial.degree_degLexDegree",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\n",
+        "original_theorem_content": "theorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/MvPolynomial/MonomialOrder/DegLex.lean",
+        "line": 30,
+        "tactic_state_before": "case neg.a.a\nσ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\nb : σ →₀ ℕ\nhb : b ∈ f.support\n⊢ (b.sum fun x e => e) ≤ (degLex.degree f).degree",
+        "proof": "exact DegLex.monotone_degree (degLex.le_degree hb)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "σ : Type u_1\ninst✝² : LinearOrder σ\nR : Type u_2\ninst✝¹ : CommSemiring R\ninst✝ : WellFoundedGT σ\nf : MvPolynomial σ R\nhf : ¬f = 0\nb : σ →₀ ℕ\nhb : b ∈ f.support\n⊢ (b.sum fun x e => e) ≤ (degLex.degree f).degree",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nopen MvPolynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_6 {σ : Type u_1} [inst : LinearOrder σ] {R : Type u_2}\n  [inst_1 : CommSemiring R] [inst_2 : WellFoundedGT σ] {f : MvPolynomial σ R} (hf : ¬f = 0) (b : σ →₀ ℕ)\n  (hb : b ∈ f.support) : (b.sum fun x e => e) ≤ (degLex.degree f).degree := sorry",
+        "original_theorem_name": "MvPolynomial.degree_degLexDegree",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.MvPolynomial.MonomialOrder\n\nimport Mathlib.Data.Finsupp.MonomialOrder.DegLex\n\n/-! # Some lemmas about the deglex monomial order on multivariate polynomials -/\n\nnamespace MvPolynomial\n\nopen MonomialOrder Finsupp\n\nopen scoped MonomialOrder\n\nvariable {σ : Type*} [LinearOrder σ] {R : Type*} [CommSemiring R] [WellFoundedGT σ]\n  {f g : MvPolynomial σ R}\n\n",
+        "original_theorem_content": "theorem degree_degLexDegree : (degLex.degree f).degree = f.totalDegree := by"
+    }
+]

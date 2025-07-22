@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Sigma.lean",
+        "line": 30,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\nκ : ι → Type u_3\ninst✝ : (i : ι) → Fintype (κ i)\ns : Finset ι\nf : Sigma κ → Set α\n⊢ ⋂ ij ∈ s.sigma fun x => Finset.univ, f ij = ⋂ i ∈ s, ⋂ j, f ⟨i, j⟩",
+        "proof": "aesop\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\nκ : ι → Type u_3\ninst✝ : (i : ι) → Fintype (κ i)\ns : Finset ι\nf : Sigma κ → Set α\n⊢ ⋂ ij ∈ s.sigma fun x => Finset.univ, f ij = ⋂ i ∈ s, ⋂ j, f ⟨i, j⟩",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Sigma\n\nimport Mathlib.Data.Fintype.OfMap\n\nopen Function\n\nopen Nat\n\nopen Finset Function\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {α : Type u_2} {κ : ι → Type u_3}\n  [inst : (i : ι) → Fintype (κ i)] (s : Finset ι) (f : Sigma κ → Set α) :\n  ⋂ ij ∈ s.sigma fun x => Finset.univ, f ij = ⋂ i ∈ s, ⋂ j, f ⟨i, j⟩ := sorry",
+        "original_theorem_name": "Set.biInter_finsetSigma_univ",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Sigma\n\nimport Mathlib.Data.Fintype.OfMap\n\n/-!\n# fintype instances for sigma types\n-/\n\n\nopen Function\n\nopen Nat\n\nuniverse u v\n\nvariable {ι α : Type*} {κ : ι → Type*} [Π i, Fintype (κ i)]\n\nopen Finset Function\n\nlemma Set.biUnion_finsetSigma_univ (s : Finset ι) (f : Sigma κ → Set α) :\n    ⋃ ij ∈ s.sigma fun _ ↦ Finset.univ, f ij = ⋃ i ∈ s, ⋃ j, f ⟨i, j⟩ := by aesop\n\nlemma Set.biUnion_finsetSigma_univ' (s : Finset ι) (f : Π i, κ i → Set α) :\n    ⋃ i ∈ s, ⋃ j, f i j = ⋃ ij ∈ s.sigma fun _ ↦ Finset.univ, f ij.1 ij.2 := by aesop\n\n",
+        "original_theorem_content": "lemma Set.biInter_finsetSigma_univ (s : Finset ι) (f : Sigma κ → Set α) :\n    ⋂ ij ∈ s.sigma fun _ ↦ Finset.univ, f ij = ⋂ i ∈ s, ⋂ j, f ⟨i, j⟩ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Sigma.lean",
+        "line": 27,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\nκ : ι → Type u_3\ninst✝ : (i : ι) → Fintype (κ i)\ns : Finset ι\nf : (i : ι) → κ i → Set α\n⊢ ⋃ i ∈ s, ⋃ j, f i j = ⋃ ij ∈ s.sigma fun x => Finset.univ, f ij.fst ij.snd",
+        "proof": "aesop\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\nκ : ι → Type u_3\ninst✝ : (i : ι) → Fintype (κ i)\ns : Finset ι\nf : (i : ι) → κ i → Set α\n⊢ ⋃ i ∈ s, ⋃ j, f i j = ⋃ ij ∈ s.sigma fun x => Finset.univ, f ij.fst ij.snd",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Sigma\n\nimport Mathlib.Data.Fintype.OfMap\n\nopen Function\n\nopen Nat\n\nopen Finset Function\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {α : Type u_2} {κ : ι → Type u_3}\n  [inst : (i : ι) → Fintype (κ i)] (s : Finset ι) (f : (i : ι) → κ i → Set α) :\n  ⋃ i ∈ s, ⋃ j, f i j = ⋃ ij ∈ s.sigma fun x => Finset.univ, f ij.fst ij.snd := sorry",
+        "original_theorem_name": "Set.biUnion_finsetSigma_univ'",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Sigma\n\nimport Mathlib.Data.Fintype.OfMap\n\n/-!\n# fintype instances for sigma types\n-/\n\n\nopen Function\n\nopen Nat\n\nuniverse u v\n\nvariable {ι α : Type*} {κ : ι → Type*} [Π i, Fintype (κ i)]\n\nopen Finset Function\n\nlemma Set.biUnion_finsetSigma_univ (s : Finset ι) (f : Sigma κ → Set α) :\n    ⋃ ij ∈ s.sigma fun _ ↦ Finset.univ, f ij = ⋃ i ∈ s, ⋃ j, f ⟨i, j⟩ := by aesop\n\n",
+        "original_theorem_content": "lemma Set.biUnion_finsetSigma_univ' (s : Finset ι) (f : Π i, κ i → Set α) :\n    ⋃ i ∈ s, ⋃ j, f i j = ⋃ ij ∈ s.sigma fun _ ↦ Finset.univ, f ij.1 ij.2 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Fintype/Sigma.lean",
+        "line": 24,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\nκ : ι → Type u_3\ninst✝ : (i : ι) → Fintype (κ i)\ns : Finset ι\nf : Sigma κ → Set α\n⊢ ⋃ ij ∈ s.sigma fun x => Finset.univ, f ij = ⋃ i ∈ s, ⋃ j, f ⟨i, j⟩",
+        "proof": "aesop\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\nκ : ι → Type u_3\ninst✝ : (i : ι) → Fintype (κ i)\ns : Finset ι\nf : Sigma κ → Set α\n⊢ ⋃ ij ∈ s.sigma fun x => Finset.univ, f ij = ⋃ i ∈ s, ⋃ j, f ⟨i, j⟩",
+        "header": "import Mathlib\nimport Mathlib.Data.Finset.Sigma\n\nimport Mathlib.Data.Fintype.OfMap\n\nopen Function\n\nopen Nat\n\nopen Finset Function\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {ι : Type u_1} {α : Type u_2} {κ : ι → Type u_3}\n  [inst : (i : ι) → Fintype (κ i)] (s : Finset ι) (f : Sigma κ → Set α) :\n  ⋃ ij ∈ s.sigma fun x => Finset.univ, f ij = ⋃ i ∈ s, ⋃ j, f ⟨i, j⟩ := sorry",
+        "original_theorem_name": "Set.biUnion_finsetSigma_univ",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Finset.Sigma\n\nimport Mathlib.Data.Fintype.OfMap\n\n/-!\n# fintype instances for sigma types\n-/\n\n\nopen Function\n\nopen Nat\n\nuniverse u v\n\nvariable {ι α : Type*} {κ : ι → Type*} [Π i, Fintype (κ i)]\n\nopen Finset Function\n\n",
+        "original_theorem_content": "lemma Set.biUnion_finsetSigma_univ (s : Finset ι) (f : Sigma κ → Set α) :\n    ⋃ ij ∈ s.sigma fun _ ↦ Finset.univ, f ij = ⋃ i ∈ s, ⋃ j, f ⟨i, j⟩ := by"
+    }
+]

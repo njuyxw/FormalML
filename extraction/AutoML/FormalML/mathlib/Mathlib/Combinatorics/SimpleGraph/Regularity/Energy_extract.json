@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Combinatorics/SimpleGraph/Regularity/Energy.lean",
+        "line": 39,
+        "tactic_state_before": "α : Type u_1\ninst✝¹ : DecidableEq α\ns : Finset α\nP : Finpartition s\nG : SimpleGraph α\ninst✝ : DecidableRel G.Adj\n⊢ 0 ≤ P.energy G",
+        "proof": "exact div_nonneg (Finset.sum_nonneg fun _ _ => sq_nonneg _) <| sq_nonneg _\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝¹ : DecidableEq α\ns : Finset α\nP : Finpartition s\nG : SimpleGraph α\ninst✝ : DecidableRel G.Adj\n⊢ 0 ≤ P.energy G",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Module.NatInt\n\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\n\nimport Mathlib.Combinatorics.SimpleGraph.Density\n\nimport Mathlib.Data.Rat.BigOperators\n\nopen Finset\n\nopen Finpartition\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : DecidableEq α] {s : Finset α} (P : Finpartition s)\n  (G : SimpleGraph α) [inst_1 : DecidableRel G.Adj] : 0 ≤ P.energy G := sorry",
+        "original_theorem_name": "Finpartition.energy_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Module.NatInt\n\nimport Mathlib.Algebra.Order.BigOperators.Group.Finset\n\nimport Mathlib.Combinatorics.SimpleGraph.Density\n\nimport Mathlib.Data.Rat.BigOperators\n\n/-!\n# Energy of a partition\n\nThis file defines the energy of a partition.\n\nThe energy is the auxiliary quantity that drives the induction process in the proof of Szemerédi's\nRegularity Lemma. As long as we do not have a suitable equipartition, we will find a new one that\nhas an energy greater than the previous one plus some fixed constant.\n\n## References\n\n[Yaël Dillies, Bhavik Mehta, *Formalising Szemerédi’s Regularity Lemma in Lean*][srl_itp]\n-/\n\n\nopen Finset\n\nvariable {α : Type*} [DecidableEq α] {s : Finset α} (P : Finpartition s) (G : SimpleGraph α)\n  [DecidableRel G.Adj]\n\nnamespace Finpartition\n\n/-- The energy of a partition, also known as index. Auxiliary quantity for Szemerédi's regularity\nlemma. -/\ndef energy : ℚ :=\n  ((∑ uv ∈ P.parts.offDiag, G.edgeDensity uv.1 uv.2 ^ 2) : ℚ) / (#P.parts : ℚ) ^ 2\n\n",
+        "original_theorem_content": "theorem energy_nonneg : 0 ≤ P.energy G := by"
+    }
+]

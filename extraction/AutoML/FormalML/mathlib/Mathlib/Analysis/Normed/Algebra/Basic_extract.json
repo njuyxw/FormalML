@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Algebra/Basic.lean",
+        "line": 42,
+        "tactic_state_before": "𝕜 : Type u_1\nA : Type u_2\ninst✝⁴ : NontriviallyNormedField 𝕜\ninst✝³ : NormedRing A\ninst✝² : NormedAlgebra 𝕜 A\ninst✝¹ : CompleteSpace A\ninst✝ : ProperSpace 𝕜\n⊢ CompactSpace ↑(characterSpace 𝕜 A)",
+        "proof": "rw [← isCompact_iff_compactSpace]\n  try repeat assumption",
+        "tactic_state_after": "[𝕜 : Type u_1\n A : Type u_2\n inst✝⁴ : NontriviallyNormedField 𝕜\n inst✝³ : NormedRing A\n inst✝² : NormedAlgebra 𝕜 A\n inst✝¹ : CompleteSpace A\n inst✝ : ProperSpace 𝕜\n ⊢ IsCompact (characterSpace 𝕜 A)]",
+        "goal": "𝕜 : Type u_1\nA : Type u_2\ninst✝⁴ : NontriviallyNormedField 𝕜\ninst✝³ : NormedRing A\ninst✝² : NormedAlgebra 𝕜 A\ninst✝¹ : CompleteSpace A\ninst✝ : ProperSpace 𝕜\nh : IsCompact (characterSpace 𝕜 A)\n⊢ CompactSpace ↑(characterSpace 𝕜 A)",
+        "header": "import Mathlib\nimport Mathlib.Topology.Algebra.Module.CharacterSpace\n\nimport Mathlib.Analysis.Normed.Module.WeakDual\n\nimport Mathlib.Analysis.Normed.Algebra.Spectrum\n\nopen WeakDual\n\nopen CharacterSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {𝕜 : Type u_1} {A : Type u_2} [inst : NontriviallyNormedField 𝕜]\n  [inst_1 : NormedRing A] [inst_2 : NormedAlgebra 𝕜 A] [inst_3 : CompleteSpace A] [inst_4 : ProperSpace 𝕜]\n  (h : IsCompact (characterSpace 𝕜 A)) : CompactSpace ↑(characterSpace 𝕜 A) := sorry",
+        "original_theorem_name": "WeakDual.CharacterSpace.instCompactSpaceElemCharacterSpaceOfProperSpace",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Algebra.Module.CharacterSpace\n\nimport Mathlib.Analysis.Normed.Module.WeakDual\n\nimport Mathlib.Analysis.Normed.Algebra.Spectrum\n\n/-!\n# Normed algebras\n\nThis file contains basic facts about normed algebras.\n\n## Main results\n\n* We show that the character space of a normed algebra is compact using the Banach-Alaoglu theorem.\n\n## TODO\n\n* Show compactness for topological vector spaces; this requires the TVS version of Banach-Alaoglu.\n\n## Tags\n\nnormed algebra, character space, continuous functional calculus\n\n-/\n\n\nvariable {𝕜 : Type*} {A : Type*}\n\nnamespace WeakDual\n\nnamespace CharacterSpace\n\nvariable [NontriviallyNormedField 𝕜] [NormedRing A] [NormedAlgebra 𝕜 A] [CompleteSpace A]\n\ntheorem norm_le_norm_one (φ : characterSpace 𝕜 A) : ‖toNormedDual (φ : WeakDual 𝕜 A)‖ ≤ ‖(1 : A)‖ :=\n  ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg (1 : A)) fun a =>\n    mul_comm ‖a‖ ‖(1 : A)‖ ▸ spectrum.norm_le_norm_mul_of_mem (apply_mem_spectrum φ a)\n\n",
+        "original_theorem_content": "instance [ProperSpace 𝕜] : CompactSpace (characterSpace 𝕜 A) := by"
+    }
+]

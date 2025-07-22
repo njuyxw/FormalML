@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Complex/UnitDisc/Basic.lean",
+        "line": 50,
+        "tactic_state_before": "case h.e'_4\nz : 𝔻\n⊢ 1 = 1 ^ 2",
+        "proof": "exact (one_pow 2).symm\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "z : 𝔻\n⊢ 1 = 1 ^ 2",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.Circle\n\nimport Mathlib.Analysis.NormedSpace.BallAction\n\nopen Set Function Metric\n\nopen UnitDisc\n\nopen Complex\n\nopen UnitDisc\n",
+        "formal_statement": "theorem extracted_formal_statement_0 : 1 = 1 ^ 2 := sorry",
+        "original_theorem_name": "Complex.UnitDisc.normSq_lt_one",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.Circle\n\nimport Mathlib.Analysis.NormedSpace.BallAction\n\n/-!\n# Poincaré disc\n\nIn this file we define `Complex.UnitDisc` to be the unit disc in the complex plane. We also\nintroduce some basic operations on this disc.\n-/\n\n\nopen Set Function Metric\n\nnoncomputable section\n\nlocal notation \"conj'\" => starRingEnd ℂ\n\nnamespace Complex\n\n/-- The complex unit disc, denoted as `𝔻` withinin the Complex namespace -/\ndef UnitDisc : Type :=\n  ball (0 : ℂ) 1 deriving TopologicalSpace\n\n@[inherit_doc] scoped[UnitDisc] notation \"𝔻\" => Complex.UnitDisc\nopen UnitDisc\n\nnamespace UnitDisc\n\ninstance instCommSemigroup : CommSemigroup UnitDisc := by unfold UnitDisc; infer_instance\ninstance instHasDistribNeg : HasDistribNeg UnitDisc := by unfold UnitDisc; infer_instance\ninstance instCoe : Coe UnitDisc ℂ := ⟨Subtype.val⟩\n\ntheorem coe_injective : Injective ((↑) : 𝔻 → ℂ) :=\n  Subtype.coe_injective\n\ntheorem norm_lt_one (z : 𝔻) : ‖(z : ℂ)‖ < 1 :=\n  mem_ball_zero_iff.1 z.2\n\ntheorem norm_ne_one (z : 𝔻) : ‖(z : ℂ)‖ ≠ 1 :=\n  z.norm_lt_one.ne\n\n@[deprecated (since := \"2025-02-16\")] alias abs_lt_one := norm_lt_one\n@[deprecated (since := \"2025-02-16\")] alias abs_ne_one := norm_ne_one\n\n",
+        "original_theorem_content": "theorem normSq_lt_one (z : 𝔻) : normSq z < 1 := by"
+    }
+]

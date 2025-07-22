@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Retract.lean",
+        "line": 41,
+        "tactic_state_before": "C : Type u\ninst✝¹ : Category.{v, u} C\nD : Type u'\ninst✝ : Category.{v', u'} D\nX Y : C\nh : Retract X Y\nF : C ⥤ D\n⊢ F.map h.i ≫ F.map h.r = 𝟙 (F.obj X)",
+        "proof": "rw [← F.map_comp h.i h.r, h.retract, F.map_id]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u\ninst✝¹ : Category.{v, u} C\nD : Type u'\ninst✝ : Category.{v', u'} D\nX Y : C\nh : Retract X Y\nF : C ⥤ D\n⊢ F.map h.i ≫ F.map h.r = 𝟙 (F.obj X)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Comma.Arrow\n\nimport Mathlib.CategoryTheory.EpiMono\n\nopen CategoryTheory\n\nopen Retract\n\nopen RetractArrow\n\nopen Iso\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u} [inst : Category.{v, u} C] {D : Type u'}\n  [inst_1 : Category.{v', u'} D] {X Y : C} (h : Retract X Y) (F : C ⥤ D) : F.map h.i ≫ F.map h.r = 𝟙 (F.obj X) := sorry",
+        "original_theorem_name": "CategoryTheory.Retract.map_r",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Comma.Arrow\n\nimport Mathlib.CategoryTheory.EpiMono\n\n/-!\n# Retracts\n\nDefines retracts of objects and morphisms.\n\n-/\n\nuniverse v v' u u'\n\nnamespace CategoryTheory\n\nvariable {C : Type u} [Category.{v} C] {D : Type u'} [Category.{v'} D]\n\n/-- An object `X` is a retract of `Y` if there are morphisms `i : X ⟶ Y` and `r : Y ⟶ X` such\nthat `i ≫ r = 𝟙 X`. -/\nstructure Retract (X Y : C) where\n  /-- the split monomorphism -/\n  i : X ⟶ Y\n  /-- the split epimorphism -/\n  r : Y ⟶ X\n  retract : i ≫ r = 𝟙 X := by aesop_cat\n\nnamespace Retract\n\nattribute [reassoc (attr := simp)] retract\n\nvariable {X Y : C} (h : Retract X Y)\n\n",
+        "original_theorem_content": "/-- If `X` is a retract of `Y`, then `F.obj X` is a retract of `F.obj Y`. -/\n@[simps]\ndef map (F : C ⥤ D) : Retract (F.obj X) (F.obj Y) where\n  i := F.map h.i\n  r := F.map h.r\n  retract := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Retract.lean",
+        "line": 41,
+        "tactic_state_before": "C : Type u\ninst✝¹ : Category.{v, u} C\nD : Type u'\ninst✝ : Category.{v', u'} D\nX Y : C\nh : Retract X Y\nF : C ⥤ D\n⊢ F.map h.i ≫ F.map h.r = 𝟙 (F.obj X)",
+        "proof": "rw [← F.map_comp h.i h.r, h.retract, F.map_id]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u\ninst✝¹ : Category.{v, u} C\nD : Type u'\ninst✝ : Category.{v', u'} D\nX Y : C\nh : Retract X Y\nF : C ⥤ D\n⊢ F.map h.i ≫ F.map h.r = 𝟙 (F.obj X)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Comma.Arrow\n\nimport Mathlib.CategoryTheory.EpiMono\n\nopen CategoryTheory\n\nopen Retract\n\nopen RetractArrow\n\nopen Iso\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {C : Type u} [inst : Category.{v, u} C] {D : Type u'}\n  [inst_1 : Category.{v', u'} D] {X Y : C} (h : Retract X Y) (F : C ⥤ D) : F.map h.i ≫ F.map h.r = 𝟙 (F.obj X) := sorry",
+        "original_theorem_name": "CategoryTheory.Retract.map_r",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Comma.Arrow\n\nimport Mathlib.CategoryTheory.EpiMono\n\n/-!\n# Retracts\n\nDefines retracts of objects and morphisms.\n\n-/\n\nuniverse v v' u u'\n\nnamespace CategoryTheory\n\nvariable {C : Type u} [Category.{v} C] {D : Type u'} [Category.{v'} D]\n\n/-- An object `X` is a retract of `Y` if there are morphisms `i : X ⟶ Y` and `r : Y ⟶ X` such\nthat `i ≫ r = 𝟙 X`. -/\nstructure Retract (X Y : C) where\n  /-- the split monomorphism -/\n  i : X ⟶ Y\n  /-- the split epimorphism -/\n  r : Y ⟶ X\n  retract : i ≫ r = 𝟙 X := by aesop_cat\n\nnamespace Retract\n\nattribute [reassoc (attr := simp)] retract\n\nvariable {X Y : C} (h : Retract X Y)\n\n",
+        "original_theorem_content": "/-- If `X` is a retract of `Y`, then `F.obj X` is a retract of `F.obj Y`. -/\n@[simps]\ndef map (F : C ⥤ D) : Retract (F.obj X) (F.obj Y) where\n  i := F.map h.i\n  r := F.map h.r\n  retract := by"
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Spectrum/Prime/Noetherian.lean",
+        "line": 43,
+        "tactic_state_before": "R : Type u\ninst✝¹ : CommRing R\ninst✝ : IsNoetherianRing R\nI : Ideal R\n⊢ I.minimalPrimes.Finite",
+        "proof": "rw [I.minimalPrimes_eq_comap]\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u\n inst✝¹ : CommRing R\n inst✝ : IsNoetherianRing R\n I : Ideal R\n ⊢ (Ideal.comap (Ideal.Quotient.mk I) '' minimalPrimes (R ⧸ I)).Finite]",
+        "goal": "R : Type u\ninst✝¹ : CommRing R\ninst✝ : IsNoetherianRing R\nI : Ideal R\nh : (Ideal.comap (Ideal.Quotient.mk I) '' minimalPrimes (R ⧸ I)).Finite\n⊢ I.minimalPrimes.Finite",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Spectrum.Prime.Topology\n\nimport Mathlib.RingTheory.Ideal.Quotient.Noetherian\n\nimport Mathlib.RingTheory.Artinian.Module\n\nimport Mathlib.Topology.NoetherianSpace\n\nopen TopologicalSpace\n\nopen PrimeSpectrum\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (R : Type u) [inst : CommRing R] [inst_1 : IsNoetherianRing R] (I : Ideal R)\n  (h : (Ideal.comap (Ideal.Quotient.mk I) '' minimalPrimes (R ⧸ I)).Finite) : I.minimalPrimes.Finite := sorry",
+        "original_theorem_name": "Ideal.finite_minimalPrimes_of_isNoetherianRing",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Spectrum.Prime.Topology\n\nimport Mathlib.RingTheory.Ideal.Quotient.Noetherian\n\nimport Mathlib.RingTheory.Artinian.Module\n\nimport Mathlib.Topology.NoetherianSpace\n\n/-!\nThis file proves additional properties of the prime spectrum a ring is Noetherian.\n-/\n\n\nuniverse u v\n\nnamespace PrimeSpectrum\n\nopen TopologicalSpace\n\nsection IsNoetherianRing\n\nvariable (R : Type u) [CommRing R] [IsNoetherianRing R]\n\ninstance : NoetherianSpace (PrimeSpectrum R) :=\n  ((noetherianSpace_TFAE <| PrimeSpectrum R).out 0 1).mpr (closedsEmbedding R).dual.wellFoundedLT\n\nlemma _root_.minimalPrimes.finite_of_isNoetherianRing : (minimalPrimes R).Finite :=\n  minimalPrimes.equivIrreducibleComponents R\n    |>.set_finite_iff\n    |>.mpr NoetherianSpace.finite_irreducibleComponents\n\nlemma finite_setOf_isMin :\n    {x : PrimeSpectrum R | IsMin x}.Finite := by\n  have : Function.Injective (asIdeal (R := R)) := @PrimeSpectrum.ext _ _\n  refine Set.Finite.of_finite_image (f := asIdeal) ?_ this.injOn\n  simp_rw [isMin_iff]\n  exact (minimalPrimes.finite_of_isNoetherianRing R).subset (Set.image_preimage_subset _ _)\n\n",
+        "original_theorem_content": "lemma _root_.Ideal.finite_minimalPrimes_of_isNoetherianRing (I : Ideal R) :\n    I.minimalPrimes.Finite := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Spectrum/Prime/Noetherian.lean",
+        "line": 44,
+        "tactic_state_before": "R : Type u\ninst✝¹ : CommRing R\ninst✝ : IsNoetherianRing R\nI : Ideal R\n⊢ (Ideal.comap (Ideal.Quotient.mk I) '' minimalPrimes (R ⧸ I)).Finite",
+        "proof": "apply Set.Finite.image\n  try repeat assumption",
+        "tactic_state_after": "[case hs\n R : Type u\n inst✝¹ : CommRing R\n inst✝ : IsNoetherianRing R\n I : Ideal R\n ⊢ (minimalPrimes (R ⧸ I)).Finite]",
+        "goal": "R : Type u\ninst✝¹ : CommRing R\ninst✝ : IsNoetherianRing R\nI : Ideal R\nh : (minimalPrimes (R ⧸ I)).Finite\n⊢ (Ideal.comap (Ideal.Quotient.mk I) '' minimalPrimes (R ⧸ I)).Finite",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Spectrum.Prime.Topology\n\nimport Mathlib.RingTheory.Ideal.Quotient.Noetherian\n\nimport Mathlib.RingTheory.Artinian.Module\n\nimport Mathlib.Topology.NoetherianSpace\n\nopen TopologicalSpace\n\nopen PrimeSpectrum\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (R : Type u) [inst : CommRing R] [inst_1 : IsNoetherianRing R] (I : Ideal R)\n  (h : (minimalPrimes (R ⧸ I)).Finite) : (Ideal.comap (Ideal.Quotient.mk I) '' minimalPrimes (R ⧸ I)).Finite := sorry",
+        "original_theorem_name": "Ideal.finite_minimalPrimes_of_isNoetherianRing",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Spectrum.Prime.Topology\n\nimport Mathlib.RingTheory.Ideal.Quotient.Noetherian\n\nimport Mathlib.RingTheory.Artinian.Module\n\nimport Mathlib.Topology.NoetherianSpace\n\n/-!\nThis file proves additional properties of the prime spectrum a ring is Noetherian.\n-/\n\n\nuniverse u v\n\nnamespace PrimeSpectrum\n\nopen TopologicalSpace\n\nsection IsNoetherianRing\n\nvariable (R : Type u) [CommRing R] [IsNoetherianRing R]\n\ninstance : NoetherianSpace (PrimeSpectrum R) :=\n  ((noetherianSpace_TFAE <| PrimeSpectrum R).out 0 1).mpr (closedsEmbedding R).dual.wellFoundedLT\n\nlemma _root_.minimalPrimes.finite_of_isNoetherianRing : (minimalPrimes R).Finite :=\n  minimalPrimes.equivIrreducibleComponents R\n    |>.set_finite_iff\n    |>.mpr NoetherianSpace.finite_irreducibleComponents\n\nlemma finite_setOf_isMin :\n    {x : PrimeSpectrum R | IsMin x}.Finite := by\n  have : Function.Injective (asIdeal (R := R)) := @PrimeSpectrum.ext _ _\n  refine Set.Finite.of_finite_image (f := asIdeal) ?_ this.injOn\n  simp_rw [isMin_iff]\n  exact (minimalPrimes.finite_of_isNoetherianRing R).subset (Set.image_preimage_subset _ _)\n\n",
+        "original_theorem_content": "lemma _root_.Ideal.finite_minimalPrimes_of_isNoetherianRing (I : Ideal R) :\n    I.minimalPrimes.Finite := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/Spectrum/Prime/Noetherian.lean",
+        "line": 45,
+        "tactic_state_before": "case hs\nR : Type u\ninst✝¹ : CommRing R\ninst✝ : IsNoetherianRing R\nI : Ideal R\n⊢ (minimalPrimes (R ⧸ I)).Finite",
+        "proof": "apply minimalPrimes.finite_of_isNoetherianRing\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u\ninst✝¹ : CommRing R\ninst✝ : IsNoetherianRing R\nI : Ideal R\n⊢ (minimalPrimes (R ⧸ I)).Finite",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Spectrum.Prime.Topology\n\nimport Mathlib.RingTheory.Ideal.Quotient.Noetherian\n\nimport Mathlib.RingTheory.Artinian.Module\n\nimport Mathlib.Topology.NoetherianSpace\n\nopen TopologicalSpace\n\nopen PrimeSpectrum\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (R : Type u) [inst : CommRing R] [inst_1 : IsNoetherianRing R] (I : Ideal R) :\n  (minimalPrimes (R ⧸ I)).Finite := sorry",
+        "original_theorem_name": "Ideal.finite_minimalPrimes_of_isNoetherianRing",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Spectrum.Prime.Topology\n\nimport Mathlib.RingTheory.Ideal.Quotient.Noetherian\n\nimport Mathlib.RingTheory.Artinian.Module\n\nimport Mathlib.Topology.NoetherianSpace\n\n/-!\nThis file proves additional properties of the prime spectrum a ring is Noetherian.\n-/\n\n\nuniverse u v\n\nnamespace PrimeSpectrum\n\nopen TopologicalSpace\n\nsection IsNoetherianRing\n\nvariable (R : Type u) [CommRing R] [IsNoetherianRing R]\n\ninstance : NoetherianSpace (PrimeSpectrum R) :=\n  ((noetherianSpace_TFAE <| PrimeSpectrum R).out 0 1).mpr (closedsEmbedding R).dual.wellFoundedLT\n\nlemma _root_.minimalPrimes.finite_of_isNoetherianRing : (minimalPrimes R).Finite :=\n  minimalPrimes.equivIrreducibleComponents R\n    |>.set_finite_iff\n    |>.mpr NoetherianSpace.finite_irreducibleComponents\n\nlemma finite_setOf_isMin :\n    {x : PrimeSpectrum R | IsMin x}.Finite := by\n  have : Function.Injective (asIdeal (R := R)) := @PrimeSpectrum.ext _ _\n  refine Set.Finite.of_finite_image (f := asIdeal) ?_ this.injOn\n  simp_rw [isMin_iff]\n  exact (minimalPrimes.finite_of_isNoetherianRing R).subset (Set.image_preimage_subset _ _)\n\n",
+        "original_theorem_content": "lemma _root_.Ideal.finite_minimalPrimes_of_isNoetherianRing (I : Ideal R) :\n    I.minimalPrimes.Finite := by"
+    }
+]

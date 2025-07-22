@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Matrix/DMatrix.lean",
+        "line": 53,
+        "tactic_state_before": "case a\nm : Type u_1\nn : Type u_2\nα : m → n → Type v\nM : DMatrix m n α\nβ : m → n → Type w\nγ : m → n → Type z\nf : ⦃i : m⦄ → ⦃j : n⦄ → α i j → β i j\ng : ⦃i : m⦄ → ⦃j : n⦄ → β i j → γ i j\ni✝ : m\nj✝ : n\n⊢ (M.map f).map g i✝ j✝ = M.map (fun x x_1 x_2 => g (f x_2)) i✝ j✝",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "m : Type u_1\nn : Type u_2\nα : m → n → Type v\nM : DMatrix m n α\nβ : m → n → Type w\nγ : m → n → Type z\nf : ⦃i : m⦄ → ⦃j : n⦄ → α i j → β i j\ng : ⦃i : m⦄ → ⦃j : n⦄ → β i j → γ i j\ni✝ : m\nj✝ : n\n⊢ (M.map f).map g i✝ j✝ = M.map (fun x x_1 x_2 => g (f x_2)) i✝ j✝",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Hom.Defs\n\nimport Mathlib.Algebra.Group.Pi.Basic\n\nopen DMatrix\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {m : Type u_1} {n : Type u_2} {α : m → n → Type v}\n  {M : DMatrix m n α} {β : m → n → Type w} {γ : m → n → Type z} {f : ⦃i : m⦄ → ⦃j : n⦄ → α i j → β i j}\n  {g : ⦃i : m⦄ → ⦃j : n⦄ → β i j → γ i j} (i : m) (j : n) :\n  (M.map f).map g i j = M.map (fun x x_1 x_2 => g (f x_2)) i j := sorry",
+        "original_theorem_name": "DMatrix.map_map",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Hom.Defs\n\nimport Mathlib.Algebra.Group.Pi.Basic\n\n/-!\n# Dependent-typed matrices\n-/\n\n\nuniverse u u' v w z\n\n/-- `DMatrix m n` is the type of dependently typed matrices\nwhose rows are indexed by the type `m` and\nwhose columns are indexed by the type `n`.\n\nIn most applications `m` and `n` are finite types. -/\ndef DMatrix (m : Type u) (n : Type u') (α : m → n → Type v) : Type max u u' v :=\n  ∀ i j, α i j\n\nvariable {m n : Type*}\nvariable {α : m → n → Type v}\n\nnamespace DMatrix\n\nsection Ext\n\nvariable {M N : DMatrix m n α}\n\ntheorem ext_iff : (∀ i j, M i j = N i j) ↔ M = N :=\n  ⟨fun h => funext fun i => funext <| h i, fun h => by simp [h]⟩\n\n@[ext]\ntheorem ext : (∀ i j, M i j = N i j) → M = N :=\n  ext_iff.mp\n\nend Ext\n\n/-- `M.map f` is the DMatrix obtained by applying `f` to each entry of the matrix `M`. -/\ndef map (M : DMatrix m n α) {β : m → n → Type w} (f : ∀ ⦃i j⦄, α i j → β i j) : DMatrix m n β :=\n  fun i j => f (M i j)\n\n@[simp]\ntheorem map_apply {M : DMatrix m n α} {β : m → n → Type w} {f : ∀ ⦃i j⦄, α i j → β i j} {i : m}\n    {j : n} : M.map f i j = f (M i j) := rfl\n\n",
+        "original_theorem_content": "@[simp]\ntheorem map_map {M : DMatrix m n α} {β : m → n → Type w} {γ : m → n → Type z}\n    {f : ∀ ⦃i j⦄, α i j → β i j} {g : ∀ ⦃i j⦄, β i j → γ i j} :\n    (M.map f).map g = M.map fun _ _ x => g (f x) := by"
+    }
+]

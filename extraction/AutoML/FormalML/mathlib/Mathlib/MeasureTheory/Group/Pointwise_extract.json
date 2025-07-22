@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Group/Pointwise.lean",
+        "line": 28,
+        "tactic_state_before": "G₀ : Type u_1\nα : Type u_2\ninst✝⁴ : GroupWithZero G₀\ninst✝³ : MulAction G₀ α\ninst✝² : MeasurableSpace G₀\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G₀ α\ns : Set α\nhs : MeasurableSet s\na : G₀\nha : a ≠ 0\n⊢ MeasurableSet (a • s)",
+        "proof": "rw [← preimage_smul_inv₀ ha]\n  try repeat assumption",
+        "tactic_state_after": "[G₀ : Type u_1\n α : Type u_2\n inst✝⁴ : GroupWithZero G₀\n inst✝³ : MulAction G₀ α\n inst✝² : MeasurableSpace G₀\n inst✝¹ : MeasurableSpace α\n inst✝ : MeasurableSMul G₀ α\n s : Set α\n hs : MeasurableSet s\n a : G₀\n ha : a ≠ 0\n ⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)]",
+        "goal": "G₀ : Type u_1\nα : Type u_2\ninst✝⁴ : GroupWithZero G₀\ninst✝³ : MulAction G₀ α\ninst✝² : MeasurableSpace G₀\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G₀ α\ns : Set α\nhs : MeasurableSet s\na : G₀\nha : a ≠ 0\nh : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)\n⊢ MeasurableSet (a • s)",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Group.Arithmetic\n\nopen Pointwise\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {G₀ : Type u_1} {α : Type u_2} [inst : GroupWithZero G₀]\n  [inst_1 : MulAction G₀ α] [inst_2 : MeasurableSpace G₀] [inst_3 : MeasurableSpace α] [inst_4 : MeasurableSMul G₀ α]\n  {s : Set α} (hs : MeasurableSet s) {a : G₀} (ha : a ≠ 0) (h : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)) :\n  MeasurableSet (a • s) := sorry",
+        "original_theorem_name": "MeasurableSet.const_smul_of_ne_zero",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Group.Arithmetic\n\n/-!\n# Pointwise set operations on `MeasurableSet`s\n\nIn this file we prove several versions of the following fact: if `s` is a measurable set, then so is\n`a • s`. Note that the pointwise product of two measurable sets need not be measurable, so there is\nno `MeasurableSet.mul` etc.\n-/\n\n\nopen Pointwise\n\nopen Set\n\n@[to_additive]\ntheorem MeasurableSet.const_smul {G α : Type*} [Group G] [MulAction G α] [MeasurableSpace G]\n    [MeasurableSpace α] [MeasurableSMul G α] {s : Set α} (hs : MeasurableSet s) (a : G) :\n    MeasurableSet (a • s) := by\n  rw [← preimage_smul_inv]\n  exact measurable_const_smul _ hs\n\n",
+        "original_theorem_content": "theorem MeasurableSet.const_smul_of_ne_zero {G₀ α : Type*} [GroupWithZero G₀] [MulAction G₀ α]\n    [MeasurableSpace G₀] [MeasurableSpace α] [MeasurableSMul G₀ α] {s : Set α}\n    (hs : MeasurableSet s) {a : G₀} (ha : a ≠ 0) : MeasurableSet (a • s) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Group/Pointwise.lean",
+        "line": 29,
+        "tactic_state_before": "G₀ : Type u_1\nα : Type u_2\ninst✝⁴ : GroupWithZero G₀\ninst✝³ : MulAction G₀ α\ninst✝² : MeasurableSpace G₀\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G₀ α\ns : Set α\nhs : MeasurableSet s\na : G₀\nha : a ≠ 0\n⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)",
+        "proof": "exact measurable_const_smul _ hs\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G₀ : Type u_1\nα : Type u_2\ninst✝⁴ : GroupWithZero G₀\ninst✝³ : MulAction G₀ α\ninst✝² : MeasurableSpace G₀\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G₀ α\ns : Set α\nhs : MeasurableSet s\na : G₀\nha : a ≠ 0\n⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Group.Arithmetic\n\nopen Pointwise\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {G₀ : Type u_1} {α : Type u_2} [inst : GroupWithZero G₀]\n  [inst_1 : MulAction G₀ α] [inst_2 : MeasurableSpace G₀] [inst_3 : MeasurableSpace α] [inst_4 : MeasurableSMul G₀ α]\n  {s : Set α} (hs : MeasurableSet s) {a : G₀} (ha : a ≠ 0) : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s) := sorry",
+        "original_theorem_name": "MeasurableSet.const_smul_of_ne_zero",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Group.Arithmetic\n\n/-!\n# Pointwise set operations on `MeasurableSet`s\n\nIn this file we prove several versions of the following fact: if `s` is a measurable set, then so is\n`a • s`. Note that the pointwise product of two measurable sets need not be measurable, so there is\nno `MeasurableSet.mul` etc.\n-/\n\n\nopen Pointwise\n\nopen Set\n\n@[to_additive]\ntheorem MeasurableSet.const_smul {G α : Type*} [Group G] [MulAction G α] [MeasurableSpace G]\n    [MeasurableSpace α] [MeasurableSMul G α] {s : Set α} (hs : MeasurableSet s) (a : G) :\n    MeasurableSet (a • s) := by\n  rw [← preimage_smul_inv]\n  exact measurable_const_smul _ hs\n\n",
+        "original_theorem_content": "theorem MeasurableSet.const_smul_of_ne_zero {G₀ α : Type*} [GroupWithZero G₀] [MulAction G₀ α]\n    [MeasurableSpace G₀] [MeasurableSpace α] [MeasurableSMul G₀ α] {s : Set α}\n    (hs : MeasurableSet s) {a : G₀} (ha : a ≠ 0) : MeasurableSet (a • s) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Group/Pointwise.lean",
+        "line": 22,
+        "tactic_state_before": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\n⊢ MeasurableSet (a • s)",
+        "proof": "rw [← preimage_smul_inv]\n  try repeat assumption",
+        "tactic_state_after": "[G : Type u_1\n α : Type u_2\n inst✝⁴ : Group G\n inst✝³ : MulAction G α\n inst✝² : MeasurableSpace G\n inst✝¹ : MeasurableSpace α\n inst✝ : MeasurableSMul G α\n s : Set α\n hs : MeasurableSet s\n a : G\n ⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)]",
+        "goal": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\nh : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)\n⊢ MeasurableSet (a • s)",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Group.Arithmetic\n\nopen Pointwise\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {G : Type u_1} {α : Type u_2} [inst : Group G] [inst_1 : MulAction G α]\n  [inst_2 : MeasurableSpace G] [inst_3 : MeasurableSpace α] [inst_4 : MeasurableSMul G α] {s : Set α}\n  (hs : MeasurableSet s) (a : G) (h : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)) : MeasurableSet (a • s) := sorry",
+        "original_theorem_name": "MeasurableSet.const_vadd",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Group.Arithmetic\n\n/-!\n# Pointwise set operations on `MeasurableSet`s\n\nIn this file we prove several versions of the following fact: if `s` is a measurable set, then so is\n`a • s`. Note that the pointwise product of two measurable sets need not be measurable, so there is\nno `MeasurableSet.mul` etc.\n-/\n\n\nopen Pointwise\n\nopen Set\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem MeasurableSet.const_smul {G α : Type*} [Group G] [MulAction G α] [MeasurableSpace G]\n    [MeasurableSpace α] [MeasurableSMul G α] {s : Set α} (hs : MeasurableSet s) (a : G) :\n    MeasurableSet (a • s) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Group/Pointwise.lean",
+        "line": 22,
+        "tactic_state_before": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\n⊢ MeasurableSet (a • s)",
+        "proof": "rw [← preimage_smul_inv]\n  try repeat assumption",
+        "tactic_state_after": "[G : Type u_1\n α : Type u_2\n inst✝⁴ : Group G\n inst✝³ : MulAction G α\n inst✝² : MeasurableSpace G\n inst✝¹ : MeasurableSpace α\n inst✝ : MeasurableSMul G α\n s : Set α\n hs : MeasurableSet s\n a : G\n ⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)]",
+        "goal": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\nh : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)\n⊢ MeasurableSet (a • s)",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Group.Arithmetic\n\nopen Pointwise\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {G : Type u_1} {α : Type u_2} [inst : Group G] [inst_1 : MulAction G α]\n  [inst_2 : MeasurableSpace G] [inst_3 : MeasurableSpace α] [inst_4 : MeasurableSMul G α] {s : Set α}\n  (hs : MeasurableSet s) (a : G) (h : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)) : MeasurableSet (a • s) := sorry",
+        "original_theorem_name": "MeasurableSet.const_vadd",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Group.Arithmetic\n\n/-!\n# Pointwise set operations on `MeasurableSet`s\n\nIn this file we prove several versions of the following fact: if `s` is a measurable set, then so is\n`a • s`. Note that the pointwise product of two measurable sets need not be measurable, so there is\nno `MeasurableSet.mul` etc.\n-/\n\n\nopen Pointwise\n\nopen Set\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem MeasurableSet.const_smul {G α : Type*} [Group G] [MulAction G α] [MeasurableSpace G]\n    [MeasurableSpace α] [MeasurableSMul G α] {s : Set α} (hs : MeasurableSet s) (a : G) :\n    MeasurableSet (a • s) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Group/Pointwise.lean",
+        "line": 23,
+        "tactic_state_before": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\n⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)",
+        "proof": "exact measurable_const_smul _ hs\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\n⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Group.Arithmetic\n\nopen Pointwise\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {G : Type u_1} {α : Type u_2} [inst : Group G] [inst_1 : MulAction G α]\n  [inst_2 : MeasurableSpace G] [inst_3 : MeasurableSpace α] [inst_4 : MeasurableSMul G α] {s : Set α}\n  (hs : MeasurableSet s) (a : G) : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s) := sorry",
+        "original_theorem_name": "MeasurableSet.const_vadd",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Group.Arithmetic\n\n/-!\n# Pointwise set operations on `MeasurableSet`s\n\nIn this file we prove several versions of the following fact: if `s` is a measurable set, then so is\n`a • s`. Note that the pointwise product of two measurable sets need not be measurable, so there is\nno `MeasurableSet.mul` etc.\n-/\n\n\nopen Pointwise\n\nopen Set\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem MeasurableSet.const_smul {G α : Type*} [Group G] [MulAction G α] [MeasurableSpace G]\n    [MeasurableSpace α] [MeasurableSMul G α] {s : Set α} (hs : MeasurableSet s) (a : G) :\n    MeasurableSet (a • s) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Group/Pointwise.lean",
+        "line": 23,
+        "tactic_state_before": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\n⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)",
+        "proof": "exact measurable_const_smul _ hs\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G : Type u_1\nα : Type u_2\ninst✝⁴ : Group G\ninst✝³ : MulAction G α\ninst✝² : MeasurableSpace G\ninst✝¹ : MeasurableSpace α\ninst✝ : MeasurableSMul G α\ns : Set α\nhs : MeasurableSet s\na : G\n⊢ MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s)",
+        "header": "import Mathlib\nimport Mathlib.MeasureTheory.Group.Arithmetic\n\nopen Pointwise\n\nopen Set\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {G : Type u_1} {α : Type u_2} [inst : Group G] [inst_1 : MulAction G α]\n  [inst_2 : MeasurableSpace G] [inst_3 : MeasurableSpace α] [inst_4 : MeasurableSMul G α] {s : Set α}\n  (hs : MeasurableSet s) (a : G) : MeasurableSet ((fun x => a⁻¹ • x) ⁻¹' s) := sorry",
+        "original_theorem_name": "MeasurableSet.const_vadd",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Group.Arithmetic\n\n/-!\n# Pointwise set operations on `MeasurableSet`s\n\nIn this file we prove several versions of the following fact: if `s` is a measurable set, then so is\n`a • s`. Note that the pointwise product of two measurable sets need not be measurable, so there is\nno `MeasurableSet.mul` etc.\n-/\n\n\nopen Pointwise\n\nopen Set\n\n",
+        "original_theorem_content": "@[to_additive]\ntheorem MeasurableSet.const_smul {G α : Type*} [Group G] [MulAction G α] [MeasurableSpace G]\n    [MeasurableSpace α] [MeasurableSMul G α] {s : Set α} (hs : MeasurableSet s) (a : G) :\n    MeasurableSet (a • s) := by"
+    }
+]

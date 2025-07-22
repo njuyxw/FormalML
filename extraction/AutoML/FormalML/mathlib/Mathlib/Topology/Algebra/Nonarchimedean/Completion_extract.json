@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Algebra/Nonarchimedean/Completion.lean",
+        "line": 25,
+        "tactic_state_before": "case intro.intro.intro\nG : Type u_1\ninst✝³ : AddGroup G\ninst✝² : UniformSpace G\ninst✝¹ : IsUniformAddGroup G\ninst✝ : NonarchimedeanAddGroup G\nU : Set (Completion G)\nhU : U ∈ 𝓝 0\nC : Set (Completion G)\nC_subset_U : id C ⊆ U\nhC : C ∈ 𝓝 0\nC_closed : IsClosed C\n⊢ ∃ V, ↑V ⊆ U",
+        "proof": "have : toCompl ⁻¹' C ∈ 𝓝 0 := continuous_toCompl.continuousAt.preimage_mem_nhds (by rwa [map_zero])\n  try repeat assumption",
+        "tactic_state_after": "[case intro.intro.intro\n G : Type u_1\n inst✝³ : AddGroup G\n inst✝² : UniformSpace G\n inst✝¹ : IsUniformAddGroup G\n inst✝ : NonarchimedeanAddGroup G\n U : Set (Completion G)\n hU : U ∈ 𝓝 0\n C : Set (Completion G)\n C_subset_U : id C ⊆ U\n hC : C ∈ 𝓝 0\n C_closed : IsClosed C\n this : ⇑toCompl ⁻¹' C ∈ 𝓝 0\n ⊢ ∃ V, ↑V ⊆ U]",
+        "goal": "G : Type u_1\ninst✝³ : AddGroup G\ninst✝² : UniformSpace G\ninst✝¹ : IsUniformAddGroup G\ninst✝ : NonarchimedeanAddGroup G\nU : Set (Completion G)\nhU : U ∈ 𝓝 0\nC : Set (Completion G)\nC_subset_U : id C ⊆ U\nhC : C ∈ 𝓝 0\nC_closed : IsClosed C\n⊢ ⇑toCompl ⁻¹' C ∈ 𝓝 0",
+        "header": "import Mathlib\nimport Mathlib.Topology.Algebra.Nonarchimedean.Basic\n\nimport Mathlib.Topology.Algebra.GroupCompletion\n\nimport Mathlib.Topology.Algebra.UniformRing\n\nopen UniformSpace UniformSpace.Completion AddSubgroup OpenAddSubgroup Topology\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {G : Type u_1} [inst : AddGroup G] [inst_1 : UniformSpace G]\n  [inst_2 : IsUniformAddGroup G] [inst_3 : NonarchimedeanAddGroup G] (U : Set (Completion G)) (hU : U ∈ 𝓝 0)\n  (C : Set (Completion G)) (C_subset_U : id C ⊆ U) (hC : C ∈ 𝓝 0) (C_closed : IsClosed C) :\n  ⇑toCompl ⁻¹' C ∈ 𝓝 0 := sorry",
+        "original_theorem_name": "instNonarchimedeanAddGroupCompletion",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.Algebra.Nonarchimedean.Basic\n\nimport Mathlib.Topology.Algebra.GroupCompletion\n\nimport Mathlib.Topology.Algebra.UniformRing\n\n/-!\n# The completion of a nonarchimedean additive group\n\nThe completion of a nonarchimedean additive group is a nonarchimedean additive group.\n\nThe completion of a nonarchimedean ring is a nonarchimedean ring.\n-/\n\nopen UniformSpace UniformSpace.Completion AddSubgroup OpenAddSubgroup Topology\n\n",
+        "original_theorem_content": "/-- The completion of a nonarchimedean additive group is a nonarchimedean additive group. -/\ninstance {G : Type*} [AddGroup G] [UniformSpace G] [IsUniformAddGroup G]\n    [NonarchimedeanAddGroup G] : NonarchimedeanAddGroup (Completion G) where\n  is_nonarchimedean := by"
+    }
+]

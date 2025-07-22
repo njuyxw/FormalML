@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/SetTheory/Descriptive/Tree.lean",
+        "line": 38,
+        "tactic_state_before": "case intro\nA : Type u_1\nT : ↥(tree A)\nx w✝ : List A\nh : x ++ w✝ ∈ T\n⊢ x ∈ T",
+        "proof": "exact mem_of_append h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "A : Type u_1\nT : ↥(tree A)\nx w✝ : List A\nh : x ++ w✝ ∈ T\n⊢ x ∈ T",
+        "header": "import Mathlib\nimport Mathlib.Order.CompleteLattice.SetLike\n\nopen Descriptive\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {A : Type u_1} {T : ↥(tree A)} {x : List A} (w : List A) (h : x ++ w ∈ T) :\n  x ∈ T := sorry",
+        "original_theorem_name": "Descriptive.mem_of_prefix",
+        "original_theorem_importsAndContext": "import Mathlib.Order.CompleteLattice.SetLike\n\n/-!\n# Trees in the sense of descriptive set theory\n\nThis file defines trees of depth `ω` in the sense of descriptive set theory as sets of finite\nsequences that are stable under taking prefixes.\n\n## Main declarations\n\n* `tree A`: a (possibly infinite) tree of depth at most `ω` with nodes in `A`\n-/\n\nnamespace Descriptive\n\n/-- A tree is a set of finite sequences, implemented as `List A`, that is stable under\n  taking prefixes. For the definition we use the equivalent property `x ++ [a] ∈ T → x ∈ T`,\n  which is more convenient to check. We define `tree A` as a complete sublattice of\n  `Set (List A)`, which coerces to the type of trees on `A`. -/\ndef tree (A : Type*) : CompleteSublattice (Set (List A)) :=\n  CompleteSublattice.mk' {T | ∀ ⦃x : List A⦄ ⦃a : A⦄, x ++ [a] ∈ T → x ∈ T}\n    (by rintro S hS x a ⟨t, ht, hx⟩; use t, ht, hS ht hx)\n    (by rintro S hS x a h T hT; exact hS hT <| h T hT)\n\ninstance (A : Type*) : SetLike (tree A) (List A) := SetLike.instSubtypeSet\n\nvariable {A : Type*} {T : tree A}\n\nlemma mem_of_append {x y : List A} (h : x ++ y ∈ T) : x ∈ T := by\n  induction' y with y ys ih generalizing x\n  · simpa using h\n  · exact T.prop (ih (by simpa))\n\n",
+        "original_theorem_content": "lemma mem_of_prefix {x y : List A} (h' : x <+: y) (h : y ∈ T) : x ∈ T := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/SetTheory/Descriptive/Tree.lean",
+        "line": 34,
+        "tactic_state_before": "case cons\nA : Type u_1\nT : ↥(tree A)\ny : A\nys : List A\nih : ∀ {x : List A}, x ++ ys ∈ T → x ∈ T\nx : List A\nh : x ++ y :: ys ∈ T\n⊢ x ∈ T",
+        "proof": "exact T.prop (ih (by simpa))\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "A : Type u_1\nT : ↥(tree A)\ny : A\nys : List A\nih : ∀ {x : List A}, x ++ ys ∈ T → x ∈ T\nx : List A\nh : x ++ y :: ys ∈ T\n⊢ x ∈ T",
+        "header": "import Mathlib\nimport Mathlib.Order.CompleteLattice.SetLike\n\nopen Descriptive\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {A : Type u_1} {T : ↥(tree A)} (y : A) (ys : List A)\n  (ih : ∀ {x : List A}, x ++ ys ∈ T → x ∈ T) {x : List A} (h : x ++ y :: ys ∈ T) : x ∈ T := sorry",
+        "original_theorem_name": "Descriptive.mem_of_append",
+        "original_theorem_importsAndContext": "import Mathlib.Order.CompleteLattice.SetLike\n\n/-!\n# Trees in the sense of descriptive set theory\n\nThis file defines trees of depth `ω` in the sense of descriptive set theory as sets of finite\nsequences that are stable under taking prefixes.\n\n## Main declarations\n\n* `tree A`: a (possibly infinite) tree of depth at most `ω` with nodes in `A`\n-/\n\nnamespace Descriptive\n\n/-- A tree is a set of finite sequences, implemented as `List A`, that is stable under\n  taking prefixes. For the definition we use the equivalent property `x ++ [a] ∈ T → x ∈ T`,\n  which is more convenient to check. We define `tree A` as a complete sublattice of\n  `Set (List A)`, which coerces to the type of trees on `A`. -/\ndef tree (A : Type*) : CompleteSublattice (Set (List A)) :=\n  CompleteSublattice.mk' {T | ∀ ⦃x : List A⦄ ⦃a : A⦄, x ++ [a] ∈ T → x ∈ T}\n    (by rintro S hS x a ⟨t, ht, hx⟩; use t, ht, hS ht hx)\n    (by rintro S hS x a h T hT; exact hS hT <| h T hT)\n\ninstance (A : Type*) : SetLike (tree A) (List A) := SetLike.instSubtypeSet\n\nvariable {A : Type*} {T : tree A}\n\n",
+        "original_theorem_content": "lemma mem_of_append {x y : List A} (h : x ++ y ∈ T) : x ∈ T := by"
+    }
+]

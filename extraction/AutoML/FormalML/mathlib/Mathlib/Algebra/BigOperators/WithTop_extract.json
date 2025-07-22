@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/WithTop.lean",
+        "line": 69,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝¹ : AddCommMonoid α\ns : Finset ι\nf : ι → WithBot α\ninst✝ : LT α\n⊢ ⊥ < ∑ i ∈ s, f i ↔ ∀ i ∈ s, ⊥ < f i",
+        "proof": "simp only [WithBot.bot_lt_iff_ne_bot, ne_eq, sum_eq_bot_iff, not_exists, not_and]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝¹ : AddCommMonoid α\ns : Finset ι\nf : ι → WithBot α\ninst✝ : LT α\n⊢ ⊥ < ∑ i ∈ s, f i ↔ ∀ i ∈ s, ⊥ < f i",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Finset\n\nopen WithTop\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {α : Type u_2} [inst : AddCommMonoid α] {s : Finset ι}\n  {f : ι → WithBot α} [inst_1 : LT α] : ⊥ < ∑ i ∈ s, f i ↔ ∀ i ∈ s, ⊥ < f i := sorry",
+        "original_theorem_name": "WithBot.bot_lt_sum_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums in `WithTop`\n\nThis file proves results about finite sums over monoids extended by a bottom or top element.\n-/\n\nopen Finset\n\nvariable {ι α : Type*}\n\nnamespace WithTop\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithTop α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithTop α) := map_sum addHom f s\n\n/-- A sum is infinite iff one term is infinite. -/\n@[simp] lemma sum_eq_top : ∑ i ∈ s, f i = ⊤ ↔ ∃ i ∈ s, f i = ⊤ := by\n  induction s using Finset.cons_induction <;> simp [*]\n\n/-- A sum is finite iff all terms are finite. -/\nlemma sum_ne_top : ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤ := by simp\n\nvariable [LT α]\n\n/-- A sum is finite iff all terms are finite. -/\n@[simp] lemma sum_lt_top : ∑ i ∈ s, f i < ⊤ ↔ ∀ i ∈ s, f i < ⊤ := by\n  simp [WithTop.lt_top_iff_ne_top]\n\nend AddCommMonoid\n\nsection CommMonoidWithZero\nvariable [CommMonoidWithZero α] [NoZeroDivisors α] [Nontrivial α] [DecidableEq α]\n  {s : Finset ι} {f : ι → WithTop α}\n\n/-- A product of finite terms is finite. -/\nlemma prod_ne_top (h : ∀ i ∈ s, f i ≠ ⊤) : ∏ i ∈ s, f i ≠ ⊤ :=\n  prod_induction f (· ≠ ⊤) (fun _ _ ↦ mul_ne_top) coe_ne_top h\n\n/-- A product of finite terms is finite. -/\nlemma prod_lt_top [LT α] (h : ∀ i ∈ s, f i < ⊤) : ∏ i ∈ s, f i < ⊤ :=\n  prod_induction f (· < ⊤) (fun _ _ ↦ mul_lt_top) (coe_lt_top _) h\n\nend CommMonoidWithZero\nend WithTop\n\nnamespace WithBot\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithBot α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithBot α) := map_sum addHom f s\n\n/-- A sum is infinite iff one term is infinite. -/\nlemma sum_eq_bot_iff : ∑ i ∈ s, f i = ⊥ ↔ ∃ i ∈ s, f i = ⊥ := by\n  induction s using Finset.cons_induction <;> simp [*]\n\nvariable [LT α]\n\n",
+        "original_theorem_content": "/-- A sum is finite iff all terms are finite. -/\nlemma bot_lt_sum_iff : ⊥ < ∑ i ∈ s, f i ↔ ∀ i ∈ s, ⊥ < f i := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/WithTop.lean",
+        "line": 65,
+        "tactic_state_before": "case cons\nι : Type u_1\nα : Type u_2\ninst✝ : AddCommMonoid α\ns : Finset ι\nf : ι → WithBot α\na✝¹ : ι\ns✝ : Finset ι\nh✝ : a✝¹ ∉ s✝\na✝ : ∑ i ∈ s✝, f i = ⊥ ↔ ∃ i ∈ s✝, f i = ⊥\n⊢ ∑ i ∈ cons a✝¹ s✝ h✝, f i = ⊥ ↔ ∃ i ∈ cons a✝¹ s✝ h✝, f i = ⊥",
+        "proof": "simp [*]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : AddCommMonoid α\ns : Finset ι\nf : ι → WithBot α\na✝¹ : ι\ns✝ : Finset ι\nh✝ : a✝¹ ∉ s✝\na✝ : ∑ i ∈ s✝, f i = ⊥ ↔ ∃ i ∈ s✝, f i = ⊥\n⊢ ∑ i ∈ cons a✝¹ s✝ h✝, f i = ⊥ ↔ ∃ i ∈ cons a✝¹ s✝ h✝, f i = ⊥",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Finset\n\nopen WithTop\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {α : Type u_2} [inst : AddCommMonoid α] {s : Finset ι}\n  {f : ι → WithBot α} (a : ι) (s_1 : Finset ι) (h : a ∉ s_1) (a_1 : ∑ i ∈ s_1, f i = ⊥ ↔ ∃ i ∈ s_1, f i = ⊥) :\n  ∑ i ∈ cons a s_1 h, f i = ⊥ ↔ ∃ i ∈ cons a s_1 h, f i = ⊥ := sorry",
+        "original_theorem_name": "WithBot.sum_eq_bot_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums in `WithTop`\n\nThis file proves results about finite sums over monoids extended by a bottom or top element.\n-/\n\nopen Finset\n\nvariable {ι α : Type*}\n\nnamespace WithTop\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithTop α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithTop α) := map_sum addHom f s\n\n/-- A sum is infinite iff one term is infinite. -/\n@[simp] lemma sum_eq_top : ∑ i ∈ s, f i = ⊤ ↔ ∃ i ∈ s, f i = ⊤ := by\n  induction s using Finset.cons_induction <;> simp [*]\n\n/-- A sum is finite iff all terms are finite. -/\nlemma sum_ne_top : ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤ := by simp\n\nvariable [LT α]\n\n/-- A sum is finite iff all terms are finite. -/\n@[simp] lemma sum_lt_top : ∑ i ∈ s, f i < ⊤ ↔ ∀ i ∈ s, f i < ⊤ := by\n  simp [WithTop.lt_top_iff_ne_top]\n\nend AddCommMonoid\n\nsection CommMonoidWithZero\nvariable [CommMonoidWithZero α] [NoZeroDivisors α] [Nontrivial α] [DecidableEq α]\n  {s : Finset ι} {f : ι → WithTop α}\n\n/-- A product of finite terms is finite. -/\nlemma prod_ne_top (h : ∀ i ∈ s, f i ≠ ⊤) : ∏ i ∈ s, f i ≠ ⊤ :=\n  prod_induction f (· ≠ ⊤) (fun _ _ ↦ mul_ne_top) coe_ne_top h\n\n/-- A product of finite terms is finite. -/\nlemma prod_lt_top [LT α] (h : ∀ i ∈ s, f i < ⊤) : ∏ i ∈ s, f i < ⊤ :=\n  prod_induction f (· < ⊤) (fun _ _ ↦ mul_lt_top) (coe_lt_top _) h\n\nend CommMonoidWithZero\nend WithTop\n\nnamespace WithBot\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithBot α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithBot α) := map_sum addHom f s\n\n",
+        "original_theorem_content": "/-- A sum is infinite iff one term is infinite. -/\nlemma sum_eq_bot_iff : ∑ i ∈ s, f i = ⊥ ↔ ∃ i ∈ s, f i = ⊥ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/WithTop.lean",
+        "line": 35,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝¹ : AddCommMonoid α\ns : Finset ι\nf : ι → WithTop α\ninst✝ : LT α\n⊢ ∑ i ∈ s, f i < ⊤ ↔ ∀ i ∈ s, f i < ⊤",
+        "proof": "simp [WithTop.lt_top_iff_ne_top]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝¹ : AddCommMonoid α\ns : Finset ι\nf : ι → WithTop α\ninst✝ : LT α\n⊢ ∑ i ∈ s, f i < ⊤ ↔ ∀ i ∈ s, f i < ⊤",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Finset\n\nopen WithTop\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {ι : Type u_1} {α : Type u_2} [inst : AddCommMonoid α] {s : Finset ι}\n  {f : ι → WithTop α} [inst_1 : LT α] : ∑ i ∈ s, f i < ⊤ ↔ ∀ i ∈ s, f i < ⊤ := sorry",
+        "original_theorem_name": "WithTop.sum_lt_top",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums in `WithTop`\n\nThis file proves results about finite sums over monoids extended by a bottom or top element.\n-/\n\nopen Finset\n\nvariable {ι α : Type*}\n\nnamespace WithTop\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithTop α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithTop α) := map_sum addHom f s\n\n/-- A sum is infinite iff one term is infinite. -/\n@[simp] lemma sum_eq_top : ∑ i ∈ s, f i = ⊤ ↔ ∃ i ∈ s, f i = ⊤ := by\n  induction s using Finset.cons_induction <;> simp [*]\n\n/-- A sum is finite iff all terms are finite. -/\nlemma sum_ne_top : ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤ := by simp\n\nvariable [LT α]\n\n",
+        "original_theorem_content": "/-- A sum is finite iff all terms are finite. -/\n@[simp] lemma sum_lt_top : ∑ i ∈ s, f i < ⊤ ↔ ∀ i ∈ s, f i < ⊤ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/WithTop.lean",
+        "line": 30,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝ : AddCommMonoid α\ns : Finset ι\nf : ι → WithTop α\n⊢ ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤",
+        "proof": "simp\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : AddCommMonoid α\ns : Finset ι\nf : ι → WithTop α\n⊢ ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Finset\n\nopen WithTop\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {ι : Type u_1} {α : Type u_2} [inst : AddCommMonoid α] {s : Finset ι}\n  {f : ι → WithTop α} : ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤ := sorry",
+        "original_theorem_name": "WithTop.sum_ne_top",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums in `WithTop`\n\nThis file proves results about finite sums over monoids extended by a bottom or top element.\n-/\n\nopen Finset\n\nvariable {ι α : Type*}\n\nnamespace WithTop\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithTop α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithTop α) := map_sum addHom f s\n\n/-- A sum is infinite iff one term is infinite. -/\n@[simp] lemma sum_eq_top : ∑ i ∈ s, f i = ⊤ ↔ ∃ i ∈ s, f i = ⊤ := by\n  induction s using Finset.cons_induction <;> simp [*]\n\n",
+        "original_theorem_content": "/-- A sum is finite iff all terms are finite. -/\nlemma sum_ne_top : ∑ i ∈ s, f i ≠ ⊤ ↔ ∀ i ∈ s, f i ≠ ⊤ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/BigOperators/WithTop.lean",
+        "line": 28,
+        "tactic_state_before": "case cons\nι : Type u_1\nα : Type u_2\ninst✝ : AddCommMonoid α\ns : Finset ι\nf : ι → WithTop α\na✝¹ : ι\ns✝ : Finset ι\nh✝ : a✝¹ ∉ s✝\na✝ : ∑ i ∈ s✝, f i = ⊤ ↔ ∃ i ∈ s✝, f i = ⊤\n⊢ ∑ i ∈ cons a✝¹ s✝ h✝, f i = ⊤ ↔ ∃ i ∈ cons a✝¹ s✝ h✝, f i = ⊤",
+        "proof": "simp [*]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝ : AddCommMonoid α\ns : Finset ι\nf : ι → WithTop α\na✝¹ : ι\ns✝ : Finset ι\nh✝ : a✝¹ ∉ s✝\na✝ : ∑ i ∈ s✝, f i = ⊤ ↔ ∃ i ∈ s✝, f i = ⊤\n⊢ ∑ i ∈ cons a✝¹ s✝ h✝, f i = ⊤ ↔ ∃ i ∈ cons a✝¹ s✝ h✝, f i = ⊤",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\nopen Finset\n\nopen WithTop\n\nopen WithBot\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {ι : Type u_1} {α : Type u_2} [inst : AddCommMonoid α] {s : Finset ι}\n  {f : ι → WithTop α} (a : ι) (s_1 : Finset ι) (h : a ∉ s_1) (a_1 : ∑ i ∈ s_1, f i = ⊤ ↔ ∃ i ∈ s_1, f i = ⊤) :\n  ∑ i ∈ cons a s_1 h, f i = ⊤ ↔ ∃ i ∈ cons a s_1 h, f i = ⊤ := sorry",
+        "original_theorem_name": "WithTop.sum_eq_top",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.WithTop\n\nimport Mathlib.Algebra.BigOperators.Group.Finset.Basic\n\n/-!\n# Sums in `WithTop`\n\nThis file proves results about finite sums over monoids extended by a bottom or top element.\n-/\n\nopen Finset\n\nvariable {ι α : Type*}\n\nnamespace WithTop\nsection AddCommMonoid\nvariable [AddCommMonoid α] {s : Finset ι} {f : ι → WithTop α}\n\n@[simp, norm_cast] lemma coe_sum (s : Finset ι) (f : ι → α) :\n    ∑ i ∈ s, f i = ∑ i ∈ s, (f i : WithTop α) := map_sum addHom f s\n\n",
+        "original_theorem_content": "/-- A sum is infinite iff one term is infinite. -/\n@[simp] lemma sum_eq_top : ∑ i ∈ s, f i = ⊤ ↔ ∃ i ∈ s, f i = ⊤ := by"
+    }
+]

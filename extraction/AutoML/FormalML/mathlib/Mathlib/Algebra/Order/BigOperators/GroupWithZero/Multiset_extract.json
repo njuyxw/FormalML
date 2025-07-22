@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/BigOperators/GroupWithZero/Multiset.lean",
+        "line": 32,
+        "tactic_state_before": "case a\nR : Type u_1\ninst✝³ : CommMonoidWithZero R\ninst✝² : PartialOrder R\ninst✝¹ : ZeroLEOneClass R\ninst✝ : PosMulMono R\nι : Type u_2\nf g : ι → R\na✝ : List ι\nh0 : ∀ i ∈ a✝, 0 ≤ f i\nh : ∀ i ∈ a✝, f i ≤ g i\n⊢ (List.map f a✝).prod ≤ (List.map g a✝).prod",
+        "proof": "apply List.prod_map_le_prod_map₀ f g h0 h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝³ : CommMonoidWithZero R\ninst✝² : PartialOrder R\ninst✝¹ : ZeroLEOneClass R\ninst✝ : PosMulMono R\nι : Type u_2\nf g : ι → R\na✝ : List ι\nh0 : ∀ i ∈ a✝, 0 ≤ f i\nh : ∀ i ∈ a✝, f i ≤ g i\n⊢ (List.map f a✝).prod ≤ (List.map g a✝).prod",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.BigOperators.GroupWithZero.List\n\nimport Mathlib.Algebra.BigOperators.Group.Multiset.Defs\n\nopen Multiset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : CommMonoidWithZero R] [inst_1 : PartialOrder R]\n  [inst_2 : ZeroLEOneClass R] [inst_3 : PosMulMono R] {ι : Type u_2} (f g : ι → R) (a : List ι) (h0 : ∀ i ∈ a, 0 ≤ f i)\n  (h : ∀ i ∈ a, f i ≤ g i) : (List.map f a).prod ≤ (List.map g a).prod := sorry",
+        "original_theorem_name": "Multiset.prod_map_le_prod_map₀",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.BigOperators.GroupWithZero.List\n\nimport Mathlib.Algebra.BigOperators.Group.Multiset.Defs\n\n/-!\n# Big operators on a multiset in ordered groups with zeros\n\nThis file contains the results concerning the interaction of multiset big operators with ordered\ngroups with zeros.\n-/\n\nnamespace Multiset\nvariable {R : Type*} [CommMonoidWithZero R] [PartialOrder R] [ZeroLEOneClass R] [PosMulMono R]\n\nlemma prod_nonneg {s : Multiset R} (h : ∀ a ∈ s, 0 ≤ a) : 0 ≤ s.prod := by\n  cases s using Quotient.ind\n  simp only [quot_mk_to_coe, mem_coe, prod_coe] at *\n  apply List.prod_nonneg h\n\nlemma one_le_prod {s : Multiset R} (h : ∀ a ∈ s, 1 ≤ a) : 1 ≤ s.prod := by\n  cases s using Quotient.ind\n  simp only [quot_mk_to_coe, mem_coe, prod_coe] at *\n  apply List.one_le_prod h\n\n",
+        "original_theorem_content": "theorem prod_map_le_prod_map₀ {ι : Type*} {s : Multiset ι} (f : ι → R) (g : ι → R)\n    (h0 : ∀ i ∈ s, 0 ≤ f i) (h : ∀ i ∈ s, f i ≤ g i) :\n    (map f s).prod ≤ (map g s).prod := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/BigOperators/GroupWithZero/Multiset.lean",
+        "line": 25,
+        "tactic_state_before": "case a\nR : Type u_1\ninst✝³ : CommMonoidWithZero R\ninst✝² : PartialOrder R\ninst✝¹ : ZeroLEOneClass R\ninst✝ : PosMulMono R\na✝ : List R\nh : ∀ a ∈ a✝, 1 ≤ a\n⊢ 1 ≤ a✝.prod",
+        "proof": "apply List.one_le_prod h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝³ : CommMonoidWithZero R\ninst✝² : PartialOrder R\ninst✝¹ : ZeroLEOneClass R\ninst✝ : PosMulMono R\na✝ : List R\nh : ∀ a ∈ a✝, 1 ≤ a\n⊢ 1 ≤ a✝.prod",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.BigOperators.GroupWithZero.List\n\nimport Mathlib.Algebra.BigOperators.Group.Multiset.Defs\n\nopen Multiset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R : Type u_1} [inst : CommMonoidWithZero R] [inst_1 : PartialOrder R]\n  [inst_2 : ZeroLEOneClass R] [inst_3 : PosMulMono R] (a : List R) (h : ∀ a_1 ∈ a, 1 ≤ a_1) : 1 ≤ a.prod := sorry",
+        "original_theorem_name": "Multiset.one_le_prod",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.BigOperators.GroupWithZero.List\n\nimport Mathlib.Algebra.BigOperators.Group.Multiset.Defs\n\n/-!\n# Big operators on a multiset in ordered groups with zeros\n\nThis file contains the results concerning the interaction of multiset big operators with ordered\ngroups with zeros.\n-/\n\nnamespace Multiset\nvariable {R : Type*} [CommMonoidWithZero R] [PartialOrder R] [ZeroLEOneClass R] [PosMulMono R]\n\nlemma prod_nonneg {s : Multiset R} (h : ∀ a ∈ s, 0 ≤ a) : 0 ≤ s.prod := by\n  cases s using Quotient.ind\n  simp only [quot_mk_to_coe, mem_coe, prod_coe] at *\n  apply List.prod_nonneg h\n\n",
+        "original_theorem_content": "lemma one_le_prod {s : Multiset R} (h : ∀ a ∈ s, 1 ≤ a) : 1 ≤ s.prod := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/BigOperators/GroupWithZero/Multiset.lean",
+        "line": 20,
+        "tactic_state_before": "case a\nR : Type u_1\ninst✝³ : CommMonoidWithZero R\ninst✝² : PartialOrder R\ninst✝¹ : ZeroLEOneClass R\ninst✝ : PosMulMono R\na✝ : List R\nh : ∀ a ∈ a✝, 0 ≤ a\n⊢ 0 ≤ a✝.prod",
+        "proof": "apply List.prod_nonneg h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝³ : CommMonoidWithZero R\ninst✝² : PartialOrder R\ninst✝¹ : ZeroLEOneClass R\ninst✝ : PosMulMono R\na✝ : List R\nh : ∀ a ∈ a✝, 0 ≤ a\n⊢ 0 ≤ a✝.prod",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.BigOperators.GroupWithZero.List\n\nimport Mathlib.Algebra.BigOperators.Group.Multiset.Defs\n\nopen Multiset\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R : Type u_1} [inst : CommMonoidWithZero R] [inst_1 : PartialOrder R]\n  [inst_2 : ZeroLEOneClass R] [inst_3 : PosMulMono R] (a : List R) (h : ∀ a_1 ∈ a, 0 ≤ a_1) : 0 ≤ a.prod := sorry",
+        "original_theorem_name": "Multiset.prod_nonneg",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.BigOperators.GroupWithZero.List\n\nimport Mathlib.Algebra.BigOperators.Group.Multiset.Defs\n\n/-!\n# Big operators on a multiset in ordered groups with zeros\n\nThis file contains the results concerning the interaction of multiset big operators with ordered\ngroups with zeros.\n-/\n\nnamespace Multiset\nvariable {R : Type*} [CommMonoidWithZero R] [PartialOrder R] [ZeroLEOneClass R] [PosMulMono R]\n\n",
+        "original_theorem_content": "lemma prod_nonneg {s : Multiset R} (h : ∀ a ∈ s, 0 ≤ a) : 0 ≤ s.prod := by"
+    }
+]

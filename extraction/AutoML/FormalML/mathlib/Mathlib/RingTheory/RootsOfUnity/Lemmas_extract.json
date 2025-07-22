@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RootsOfUnity/Lemmas.lean",
+        "line": 28,
+        "tactic_state_before": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\n⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1",
+        "proof": "have := X_pow_sub_C_eq_prod hμ n.zero_lt_succ (one_pow (n + 1))\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n inst✝¹ : CommRing R\n inst✝ : IsDomain R\n n : ℕ\n μ : R\n hμ : IsPrimitiveRoot μ (n + 1)\n this : X ^ (n + 1) - C 1 = ∏ i ∈ range (n + 1), (X - C (μ ^ i * 1))\n ⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1]",
+        "goal": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\n⊢ X ^ (n + 1) - C 1 = ∏ i ∈ range (n + 1), (X - C (μ ^ i * 1))",
+        "header": "import Mathlib\nimport Mathlib.FieldTheory.KummerExtension\n\nopen Finset Polynomial\n\nopen IsPrimitiveRoot\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : CommRing R] [inst_1 : IsDomain R] {n : ℕ} {μ : R}\n  (hμ : IsPrimitiveRoot μ (n + 1)) : X ^ (n + 1) - C 1 = ∏ i ∈ range (n + 1), (X - C (μ ^ i * 1)) := sorry",
+        "original_theorem_name": "IsPrimitiveRoot.prod_one_sub_pow_eq_order",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.KummerExtension\n\n/-!\n# More results on primitive roots of unity\n\n(We put these in a separate file because of the `KummerExtension` import.)\n\nAssume that `μ` is a primitive `n`th root of unity in an integral domain `R`. Then\n$$ \\prod_{k=1}^{n-1} (1 - \\mu^k) = n \\,; $$\nsee `IsPrimitiveRoot.prod_one_sub_pow_eq_order` and its variant\n`IsPrimitiveRoot.prod_pow_sub_one_eq_order` in terms of `∏ (μ^k - 1)`.\n\nWe use this to deduce that `n` is divisible by `(μ - 1)^k` in `ℤ[μ] ⊆ R` when `k < n`.\n-/\n\nvariable {R : Type*} [CommRing R] [IsDomain R]\n\nnamespace IsPrimitiveRoot\n\nopen Finset Polynomial\n\n",
+        "original_theorem_content": "/-- If `μ` is a primitive `n`th root of unity in `R`, then `∏(1≤k<n) (1-μ^k) = n`.\n(Stated with `n+1` in place of `n` to avoid the condition `n ≠ 0`.) -/\nlemma prod_one_sub_pow_eq_order {n : ℕ} {μ : R} (hμ : IsPrimitiveRoot μ (n + 1)) :\n    ∏ k ∈ range n, (1 - μ ^ (k + 1)) = n + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RootsOfUnity/Lemmas.lean",
+        "line": 29,
+        "tactic_state_before": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : X ^ (n + 1) - C 1 = ∏ i ∈ range (n + 1), (X - C (μ ^ i * 1))\n⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1",
+        "proof": "rw [C_1, ← mul_geom_sum, prod_range_succ', pow_zero, mul_one, mul_comm, eq_comm] at this\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n inst✝¹ : CommRing R\n inst✝ : IsDomain R\n n : ℕ\n μ : R\n hμ : IsPrimitiveRoot μ (n + 1)\n this : (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) * (X - C 1) = (∑ i ∈ range (n + 1), X ^ i) * (X - 1)\n ⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1]",
+        "goal": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : X ^ (n + 1) - C 1 = ∏ i ∈ range (n + 1), (X - C (μ ^ i * 1))\n⊢ (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) * (X - C 1) = (∑ i ∈ range (n + 1), X ^ i) * (X - 1)",
+        "header": "import Mathlib\nimport Mathlib.FieldTheory.KummerExtension\n\nopen Finset Polynomial\n\nopen IsPrimitiveRoot\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R : Type u_1} [inst : CommRing R] [inst_1 : IsDomain R] {n : ℕ} {μ : R}\n  (hμ : IsPrimitiveRoot μ (n + 1)) (this : X ^ (n + 1) - C 1 = ∏ i ∈ range (n + 1), (X - C (μ ^ i * 1))) :\n  (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) * (X - C 1) = (∑ i ∈ range (n + 1), X ^ i) * (X - 1) := sorry",
+        "original_theorem_name": "IsPrimitiveRoot.prod_one_sub_pow_eq_order",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.KummerExtension\n\n/-!\n# More results on primitive roots of unity\n\n(We put these in a separate file because of the `KummerExtension` import.)\n\nAssume that `μ` is a primitive `n`th root of unity in an integral domain `R`. Then\n$$ \\prod_{k=1}^{n-1} (1 - \\mu^k) = n \\,; $$\nsee `IsPrimitiveRoot.prod_one_sub_pow_eq_order` and its variant\n`IsPrimitiveRoot.prod_pow_sub_one_eq_order` in terms of `∏ (μ^k - 1)`.\n\nWe use this to deduce that `n` is divisible by `(μ - 1)^k` in `ℤ[μ] ⊆ R` when `k < n`.\n-/\n\nvariable {R : Type*} [CommRing R] [IsDomain R]\n\nnamespace IsPrimitiveRoot\n\nopen Finset Polynomial\n\n",
+        "original_theorem_content": "/-- If `μ` is a primitive `n`th root of unity in `R`, then `∏(1≤k<n) (1-μ^k) = n`.\n(Stated with `n+1` in place of `n` to avoid the condition `n ≠ 0`.) -/\nlemma prod_one_sub_pow_eq_order {n : ℕ} {μ : R} (hμ : IsPrimitiveRoot μ (n + 1)) :\n    ∏ k ∈ range n, (1 - μ ^ (k + 1)) = n + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RootsOfUnity/Lemmas.lean",
+        "line": 30,
+        "tactic_state_before": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) * (X - C 1) = (∑ i ∈ range (n + 1), X ^ i) * (X - 1)\n⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1",
+        "proof": "replace this := mul_right_cancel₀ (Polynomial.X_sub_C_ne_zero 1) this\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n inst✝¹ : CommRing R\n inst✝ : IsDomain R\n n : ℕ\n μ : R\n hμ : IsPrimitiveRoot μ (n + 1)\n this : ∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1)) = ∑ i ∈ range (n + 1), X ^ i\n ⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1]",
+        "goal": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) * (X - C 1) = (∑ i ∈ range (n + 1), X ^ i) * (X - 1)\n⊢ ∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1)) = ∑ i ∈ range (n + 1), X ^ i",
+        "header": "import Mathlib\nimport Mathlib.FieldTheory.KummerExtension\n\nopen Finset Polynomial\n\nopen IsPrimitiveRoot\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R : Type u_1} [inst : CommRing R] [inst_1 : IsDomain R] {n : ℕ} {μ : R}\n  (hμ : IsPrimitiveRoot μ (n + 1))\n  (this : (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) * (X - C 1) = (∑ i ∈ range (n + 1), X ^ i) * (X - 1)) :\n  ∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1)) = ∑ i ∈ range (n + 1), X ^ i := sorry",
+        "original_theorem_name": "IsPrimitiveRoot.prod_one_sub_pow_eq_order",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.KummerExtension\n\n/-!\n# More results on primitive roots of unity\n\n(We put these in a separate file because of the `KummerExtension` import.)\n\nAssume that `μ` is a primitive `n`th root of unity in an integral domain `R`. Then\n$$ \\prod_{k=1}^{n-1} (1 - \\mu^k) = n \\,; $$\nsee `IsPrimitiveRoot.prod_one_sub_pow_eq_order` and its variant\n`IsPrimitiveRoot.prod_pow_sub_one_eq_order` in terms of `∏ (μ^k - 1)`.\n\nWe use this to deduce that `n` is divisible by `(μ - 1)^k` in `ℤ[μ] ⊆ R` when `k < n`.\n-/\n\nvariable {R : Type*} [CommRing R] [IsDomain R]\n\nnamespace IsPrimitiveRoot\n\nopen Finset Polynomial\n\n",
+        "original_theorem_content": "/-- If `μ` is a primitive `n`th root of unity in `R`, then `∏(1≤k<n) (1-μ^k) = n`.\n(Stated with `n+1` in place of `n` to avoid the condition `n ≠ 0`.) -/\nlemma prod_one_sub_pow_eq_order {n : ℕ} {μ : R} (hμ : IsPrimitiveRoot μ (n + 1)) :\n    ∏ k ∈ range n, (1 - μ ^ (k + 1)) = n + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RootsOfUnity/Lemmas.lean",
+        "line": 31,
+        "tactic_state_before": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : ∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1)) = ∑ i ∈ range (n + 1), X ^ i\n⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1",
+        "proof": "apply_fun Polynomial.eval 1 at this\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n inst✝¹ : CommRing R\n inst✝ : IsDomain R\n n : ℕ\n μ : R\n hμ : IsPrimitiveRoot μ (n + 1)\n this : eval 1 (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) = eval 1 (∑ i ∈ range (n + 1), X ^ i)\n ⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1]",
+        "goal": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : ∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1)) = ∑ i ∈ range (n + 1), X ^ i\n⊢ eval 1 (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) = eval 1 (∑ i ∈ range (n + 1), X ^ i)",
+        "header": "import Mathlib\nimport Mathlib.FieldTheory.KummerExtension\n\nopen Finset Polynomial\n\nopen IsPrimitiveRoot\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {R : Type u_1} [inst : CommRing R] [inst_1 : IsDomain R] {n : ℕ} {μ : R}\n  (hμ : IsPrimitiveRoot μ (n + 1)) (this : ∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1)) = ∑ i ∈ range (n + 1), X ^ i) :\n  eval 1 (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) = eval 1 (∑ i ∈ range (n + 1), X ^ i) := sorry",
+        "original_theorem_name": "IsPrimitiveRoot.prod_one_sub_pow_eq_order",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.KummerExtension\n\n/-!\n# More results on primitive roots of unity\n\n(We put these in a separate file because of the `KummerExtension` import.)\n\nAssume that `μ` is a primitive `n`th root of unity in an integral domain `R`. Then\n$$ \\prod_{k=1}^{n-1} (1 - \\mu^k) = n \\,; $$\nsee `IsPrimitiveRoot.prod_one_sub_pow_eq_order` and its variant\n`IsPrimitiveRoot.prod_pow_sub_one_eq_order` in terms of `∏ (μ^k - 1)`.\n\nWe use this to deduce that `n` is divisible by `(μ - 1)^k` in `ℤ[μ] ⊆ R` when `k < n`.\n-/\n\nvariable {R : Type*} [CommRing R] [IsDomain R]\n\nnamespace IsPrimitiveRoot\n\nopen Finset Polynomial\n\n",
+        "original_theorem_content": "/-- If `μ` is a primitive `n`th root of unity in `R`, then `∏(1≤k<n) (1-μ^k) = n`.\n(Stated with `n+1` in place of `n` to avoid the condition `n ≠ 0`.) -/\nlemma prod_one_sub_pow_eq_order {n : ℕ} {μ : R} (hμ : IsPrimitiveRoot μ (n + 1)) :\n    ∏ k ∈ range n, (1 - μ ^ (k + 1)) = n + 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/RingTheory/RootsOfUnity/Lemmas.lean",
+        "line": 32,
+        "tactic_state_before": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : eval 1 (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) = eval 1 (∑ i ∈ range (n + 1), X ^ i)\n⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1",
+        "proof": "simpa only [mul_one, map_pow, eval_prod, eval_sub, eval_X, eval_pow, eval_C, eval_geom_sum, one_pow,\n  sum_const, card_range, nsmul_eq_mul, Nat.cast_add, Nat.cast_one] using this\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝¹ : CommRing R\ninst✝ : IsDomain R\nn : ℕ\nμ : R\nhμ : IsPrimitiveRoot μ (n + 1)\nthis : eval 1 (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) = eval 1 (∑ i ∈ range (n + 1), X ^ i)\n⊢ ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1",
+        "header": "import Mathlib\nimport Mathlib.FieldTheory.KummerExtension\n\nopen Finset Polynomial\n\nopen IsPrimitiveRoot\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {R : Type u_1} [inst : CommRing R] [inst_1 : IsDomain R] {n : ℕ} {μ : R}\n  (hμ : IsPrimitiveRoot μ (n + 1))\n  (this : eval 1 (∏ k ∈ range n, (X - C (μ ^ (k + 1) * 1))) = eval 1 (∑ i ∈ range (n + 1), X ^ i)) :\n  ∏ k ∈ range n, (1 - μ ^ (k + 1)) = ↑n + 1 := sorry",
+        "original_theorem_name": "IsPrimitiveRoot.prod_one_sub_pow_eq_order",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.KummerExtension\n\n/-!\n# More results on primitive roots of unity\n\n(We put these in a separate file because of the `KummerExtension` import.)\n\nAssume that `μ` is a primitive `n`th root of unity in an integral domain `R`. Then\n$$ \\prod_{k=1}^{n-1} (1 - \\mu^k) = n \\,; $$\nsee `IsPrimitiveRoot.prod_one_sub_pow_eq_order` and its variant\n`IsPrimitiveRoot.prod_pow_sub_one_eq_order` in terms of `∏ (μ^k - 1)`.\n\nWe use this to deduce that `n` is divisible by `(μ - 1)^k` in `ℤ[μ] ⊆ R` when `k < n`.\n-/\n\nvariable {R : Type*} [CommRing R] [IsDomain R]\n\nnamespace IsPrimitiveRoot\n\nopen Finset Polynomial\n\n",
+        "original_theorem_content": "/-- If `μ` is a primitive `n`th root of unity in `R`, then `∏(1≤k<n) (1-μ^k) = n`.\n(Stated with `n+1` in place of `n` to avoid the condition `n ≠ 0`.) -/\nlemma prod_one_sub_pow_eq_order {n : ℕ} {μ : R} (hμ : IsPrimitiveRoot μ (n + 1)) :\n    ∏ k ∈ range n, (1 - μ ^ (k + 1)) = n + 1 := by"
+    }
+]

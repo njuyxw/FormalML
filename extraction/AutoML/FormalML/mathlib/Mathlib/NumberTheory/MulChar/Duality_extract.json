@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/MulChar/Duality.lean",
+        "line": 34,
+        "tactic_state_before": "M : Type u_1\nR : Type u_2\ninst✝³ : CommMonoid M\ninst✝² : CommRing R\ninst✝¹ : Finite Mˣ\ninst✝ : IsDomain R\nthis : Finite (Mˣ →* Rˣ)\n⊢ Finite (MulChar M R)",
+        "proof": "exact .of_equiv _ MulChar.equivToUnitHom.symm\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\nR : Type u_2\ninst✝³ : CommMonoid M\ninst✝² : CommRing R\ninst✝¹ : Finite Mˣ\ninst✝ : IsDomain R\nthis : Finite (Mˣ →* Rˣ)\n⊢ Finite (MulChar M R)",
+        "header": "import Mathlib\nimport Mathlib.GroupTheory.FiniteAbelian.Duality\n\nimport Mathlib.NumberTheory.MulChar.Basic\n\nopen MulChar\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {M : Type u_1} {R : Type u_2} [inst : CommMonoid M] [inst_1 : CommRing R]\n  [inst_2 : Finite Mˣ] [inst_3 : IsDomain R] (this : Finite (Mˣ →* Rˣ)) : Finite (MulChar M R) := sorry",
+        "original_theorem_name": "MulChar.finite",
+        "original_theorem_importsAndContext": "import Mathlib.GroupTheory.FiniteAbelian.Duality\n\nimport Mathlib.NumberTheory.MulChar.Basic\n\n/-!\n# Duality for multiplicative characters\n\nLet `M` be a finite commutative monoid and `R` a ring that has enough `n`th roots of unity,\nwhere `n` is the exponent of `M`. Then the main results of this file are as follows.\n\n* `MulChar.exists_apply_ne_one_of_hasEnoughRootsOfUnity`: multiplicative characters\n  `M → R` separate elements of `Mˣ`.\n\n* `MulChar.mulEquiv_units`: the group of multiplicative characters `M → R` is\n   (noncanonically) isomorphic to `Mˣ`.\n-/\n\nnamespace MulChar\n\nvariable {M R : Type*} [CommMonoid M] [CommRing R]\n\n",
+        "original_theorem_content": "instance finite [Finite Mˣ] [IsDomain R] : Finite (MulChar M R) := by"
+    }
+]

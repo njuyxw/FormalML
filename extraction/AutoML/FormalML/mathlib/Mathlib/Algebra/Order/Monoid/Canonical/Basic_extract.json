@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Monoid/Canonical/Basic.lean",
+        "line": 17,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝¹ : LinearOrderedAddCommMonoid α\ninst✝ : CanonicallyOrderedAdd α\ns : Finset ι\nf : ι → α\nhs : s.Nonempty\n⊢ s.sup' hs f = 0 ↔ ∀ i ∈ s, f i = 0",
+        "proof": "simp [sup'_eq_sup]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝¹ : LinearOrderedAddCommMonoid α\ninst✝ : CanonicallyOrderedAdd α\ns : Finset ι\nf : ι → α\nhs : s.Nonempty\n⊢ s.sup' hs f = 0 ↔ ∀ i ∈ s, f i = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Monoid.Canonical.Defs\n\nimport Mathlib.Data.Finset.Lattice.Fold\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {α : Type u_2} [inst : LinearOrderedAddCommMonoid α]\n  [inst_1 : CanonicallyOrderedAdd α] {s : Finset ι} {f : ι → α} (hs : s.Nonempty) :\n  s.sup' hs f = 0 ↔ ∀ i ∈ s, f i = 0 := sorry",
+        "original_theorem_name": "Finset.sup'_eq_zero",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Monoid.Canonical.Defs\n\nimport Mathlib.Data.Finset.Lattice.Fold\n\n/-!\n# Extra lemmas about canonically ordered monoids\n-/\n\nnamespace Finset\nvariable {ι α : Type*} [LinearOrderedAddCommMonoid α] [CanonicallyOrderedAdd α]\n  {s : Finset ι} {f : ι → α}\n\n@[simp] lemma sup_eq_zero : s.sup f = 0 ↔ ∀ i ∈ s, f i = 0 := by simp [← bot_eq_zero']\n",
+        "original_theorem_content": "@[simp] lemma sup'_eq_zero (hs) : s.sup' hs f = 0 ↔ ∀ i ∈ s, f i = 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Monoid/Canonical/Basic.lean",
+        "line": 16,
+        "tactic_state_before": "ι : Type u_1\nα : Type u_2\ninst✝¹ : LinearOrderedAddCommMonoid α\ninst✝ : CanonicallyOrderedAdd α\ns : Finset ι\nf : ι → α\n⊢ s.sup f = 0 ↔ ∀ i ∈ s, f i = 0",
+        "proof": "simp [← bot_eq_zero']\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nα : Type u_2\ninst✝¹ : LinearOrderedAddCommMonoid α\ninst✝ : CanonicallyOrderedAdd α\ns : Finset ι\nf : ι → α\n⊢ s.sup f = 0 ↔ ∀ i ∈ s, f i = 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Monoid.Canonical.Defs\n\nimport Mathlib.Data.Finset.Lattice.Fold\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {α : Type u_2} [inst : LinearOrderedAddCommMonoid α]\n  [inst_1 : CanonicallyOrderedAdd α] {s : Finset ι} {f : ι → α} : s.sup f = 0 ↔ ∀ i ∈ s, f i = 0 := sorry",
+        "original_theorem_name": "Finset.sup_eq_zero",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Monoid.Canonical.Defs\n\nimport Mathlib.Data.Finset.Lattice.Fold\n\n/-!\n# Extra lemmas about canonically ordered monoids\n-/\n\nnamespace Finset\nvariable {ι α : Type*} [LinearOrderedAddCommMonoid α] [CanonicallyOrderedAdd α]\n  {s : Finset ι} {f : ι → α}\n\n",
+        "original_theorem_content": "@[simp] lemma sup_eq_zero : s.sup f = 0 ↔ ∀ i ∈ s, f i = 0 := by"
+    }
+]

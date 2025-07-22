@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/FieldTheory/Finite/Trace.lean",
+        "line": 24,
+        "tactic_state_before": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\n⊢ ∃ b, (Algebra.trace (ZMod (ringChar F)) F) (a * b) ≠ 0",
+        "proof": "haveI : Fact (ringChar F).Prime := ⟨CharP.char_is_prime F _⟩\n  try repeat assumption",
+        "tactic_state_after": "[F : Type u_1\n inst✝² : Field F\n inst✝¹ : Finite F\n inst✝ : Algebra (ZMod (ringChar F)) F\n a : F\n ha : a ≠ 0\n this : Fact (Nat.Prime (ringChar F))\n ⊢ ∃ b, (Algebra.trace (ZMod (ringChar F)) F) (a * b) ≠ 0]",
+        "goal": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\n⊢ Fact (Nat.Prime (ringChar F))",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\nopen FiniteField\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (F : Type u_1) [inst : Field F] [inst_1 : Finite F] {a : F} (ha : a ≠ 0) :\n  Fact (Nat.Prime (ringChar F)) := sorry",
+        "original_theorem_name": "FiniteField.trace_to_zmod_nondegenerate",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\n/-!\n# The trace map for finite fields\n\nWe state the fact that the trace map from a finite field of\ncharacteristic `p` to `ZMod p` is nondegenerate.\n\n## Tags\nfinite field, trace\n-/\n\n\nnamespace FiniteField\n\n",
+        "original_theorem_content": "/-- The trace map from a finite field to its prime field is nongedenerate. -/\ntheorem trace_to_zmod_nondegenerate (F : Type*) [Field F] [Finite F]\n    [Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) :\n    ∃ b : F, Algebra.trace (ZMod (ringChar F)) F (a * b) ≠ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/FieldTheory/Finite/Trace.lean",
+        "line": 25,
+        "tactic_state_before": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\nthis : Fact (Nat.Prime (ringChar F))\n⊢ ∃ b, (Algebra.trace (ZMod (ringChar F)) F) (a * b) ≠ 0",
+        "proof": "have htr := traceForm_nondegenerate (ZMod (ringChar F)) F a\n  try repeat assumption",
+        "tactic_state_after": "[F : Type u_1\n inst✝² : Field F\n inst✝¹ : Finite F\n inst✝ : Algebra (ZMod (ringChar F)) F\n a : F\n ha : a ≠ 0\n this : Fact (Nat.Prime (ringChar F))\n htr : (∀ (n : F), ((Algebra.traceForm (ZMod (ringChar F)) F) a) n = 0) → a = 0\n ⊢ ∃ b, (Algebra.trace (ZMod (ringChar F)) F) (a * b) ≠ 0]",
+        "goal": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\nthis : Fact (Nat.Prime (ringChar F))\n⊢ (∀ (n : F), ((Algebra.traceForm (ZMod (ringChar F)) F) a) n = 0) → a = 0",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\nopen FiniteField\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (F : Type u_1) [inst : Field F] [inst_1 : Finite F]\n  [inst_2 : Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) (this : Fact (Nat.Prime (ringChar F))) :\n  (∀ (n : F), ((Algebra.traceForm (ZMod (ringChar F)) F) a) n = 0) → a = 0 := sorry",
+        "original_theorem_name": "FiniteField.trace_to_zmod_nondegenerate",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\n/-!\n# The trace map for finite fields\n\nWe state the fact that the trace map from a finite field of\ncharacteristic `p` to `ZMod p` is nondegenerate.\n\n## Tags\nfinite field, trace\n-/\n\n\nnamespace FiniteField\n\n",
+        "original_theorem_content": "/-- The trace map from a finite field to its prime field is nongedenerate. -/\ntheorem trace_to_zmod_nondegenerate (F : Type*) [Field F] [Finite F]\n    [Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) :\n    ∃ b : F, Algebra.trace (ZMod (ringChar F)) F (a * b) ≠ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/FieldTheory/Finite/Trace.lean",
+        "line": 26,
+        "tactic_state_before": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\nthis : Fact (Nat.Prime (ringChar F))\nhtr : (∀ (n : F), ((Algebra.traceForm (ZMod (ringChar F)) F) a) n = 0) → a = 0\n⊢ ∃ b, (Algebra.trace (ZMod (ringChar F)) F) (a * b) ≠ 0",
+        "proof": "simp_rw [Algebra.traceForm_apply] at htr\n  try repeat assumption",
+        "tactic_state_after": "[F : Type u_1\n inst✝² : Field F\n inst✝¹ : Finite F\n inst✝ : Algebra (ZMod (ringChar F)) F\n a : F\n ha : a ≠ 0\n this : Fact (Nat.Prime (ringChar F))\n htr : (∀ (n : F), (Algebra.trace (ZMod (ringChar F)) F) (a * n) = 0) → a = 0\n ⊢ ∃ b, (Algebra.trace (ZMod (ringChar F)) F) (a * b) ≠ 0]",
+        "goal": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\nthis : Fact (Nat.Prime (ringChar F))\nhtr : (∀ (n : F), ((Algebra.traceForm (ZMod (ringChar F)) F) a) n = 0) → a = 0\n⊢ (∀ (n : F), (Algebra.trace (ZMod (ringChar F)) F) (a * n) = 0) → a = 0",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\nopen FiniteField\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (F : Type u_1) [inst : Field F] [inst_1 : Finite F]\n  [inst_2 : Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) (this : Fact (Nat.Prime (ringChar F)))\n  (htr : (∀ (n : F), ((Algebra.traceForm (ZMod (ringChar F)) F) a) n = 0) → a = 0) :\n  (∀ (n : F), (Algebra.trace (ZMod (ringChar F)) F) (a * n) = 0) → a = 0 := sorry",
+        "original_theorem_name": "FiniteField.trace_to_zmod_nondegenerate",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\n/-!\n# The trace map for finite fields\n\nWe state the fact that the trace map from a finite field of\ncharacteristic `p` to `ZMod p` is nondegenerate.\n\n## Tags\nfinite field, trace\n-/\n\n\nnamespace FiniteField\n\n",
+        "original_theorem_content": "/-- The trace map from a finite field to its prime field is nongedenerate. -/\ntheorem trace_to_zmod_nondegenerate (F : Type*) [Field F] [Finite F]\n    [Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) :\n    ∃ b : F, Algebra.trace (ZMod (ringChar F)) F (a * b) ≠ 0 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/FieldTheory/Finite/Trace.lean",
+        "line": 28,
+        "tactic_state_before": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\nthis : Fact (Nat.Prime (ringChar F))\nhtr : (∀ (n : F), (Algebra.trace (ZMod (ringChar F)) F) (a * n) = 0) → a = 0\nhf : ∀ (b : F), (Algebra.trace (ZMod (ringChar F)) F) (a * b) = 0\n⊢ False",
+        "proof": "exact ha (htr hf)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "F : Type u_1\ninst✝² : Field F\ninst✝¹ : Finite F\ninst✝ : Algebra (ZMod (ringChar F)) F\na : F\nha : a ≠ 0\nthis : Fact (Nat.Prime (ringChar F))\nhtr : (∀ (n : F), (Algebra.trace (ZMod (ringChar F)) F) (a * n) = 0) → a = 0\nhf : ∀ (b : F), (Algebra.trace (ZMod (ringChar F)) F) (a * b) = 0\n⊢ False",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\nopen FiniteField\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (F : Type u_1) [inst : Field F] [inst_1 : Finite F]\n  [inst_2 : Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) (this : Fact (Nat.Prime (ringChar F)))\n  (htr : (∀ (n : F), (Algebra.trace (ZMod (ringChar F)) F) (a * n) = 0) → a = 0)\n  (hf : ∀ (b : F), (Algebra.trace (ZMod (ringChar F)) F) (a * b) = 0) : False := sorry",
+        "original_theorem_name": "FiniteField.trace_to_zmod_nondegenerate",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Trace.Basic\n\nimport Mathlib.FieldTheory.Finite.GaloisField\n\n/-!\n# The trace map for finite fields\n\nWe state the fact that the trace map from a finite field of\ncharacteristic `p` to `ZMod p` is nondegenerate.\n\n## Tags\nfinite field, trace\n-/\n\n\nnamespace FiniteField\n\n",
+        "original_theorem_content": "/-- The trace map from a finite field to its prime field is nongedenerate. -/\ntheorem trace_to_zmod_nondegenerate (F : Type*) [Field F] [Finite F]\n    [Algebra (ZMod (ringChar F)) F] {a : F} (ha : a ≠ 0) :\n    ∃ b : F, Algebra.trace (ZMod (ringChar F)) F (a * b) ≠ 0 := by"
+    }
+]

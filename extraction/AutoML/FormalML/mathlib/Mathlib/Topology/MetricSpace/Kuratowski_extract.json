@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Kuratowski.lean",
+        "line": 49,
+        "tactic_state_before": "α : Type u\ninst✝ : MetricSpace α\nx : ℕ → α\na b : α\nn : ℕ\n⊢ ‖dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n))‖ ≤ dist a b",
+        "proof": "convert abs_dist_sub_le a b (x n) using 2\n  try repeat assumption",
+        "tactic_state_after": "[case h.e'_3.h.e'_1\n α : Type u\n inst✝ : MetricSpace α\n x : ℕ → α\n a b : α\n n : ℕ\n ⊢ dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n)) = dist a (x n) - dist b (x n)]",
+        "goal": "α : Type u\ninst✝ : MetricSpace α\nx : ℕ → α\na b : α\nn : ℕ\nh : dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n)) = dist a (x n) - dist b (x n)\n⊢ ‖dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n))‖ ≤ dist a b",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Lp.lpSpace\n\nimport Mathlib.Topology.Sets.Compacts\n\nopen Set Metric TopologicalSpace NNReal ENNReal lp Function\n\nopen TopologicalSpace KuratowskiEmbedding\n\nopen KuratowskiEmbedding\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u} [inst : MetricSpace α] (x : ℕ → α) (a b : α) (n : ℕ)\n  (h : dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n)) = dist a (x n) - dist b (x n)) :\n  ‖dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n))‖ ≤ dist a b := sorry",
+        "original_theorem_name": "KuratowskiEmbedding.embeddingOfSubset_dist_le",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Lp.lpSpace\n\nimport Mathlib.Topology.Sets.Compacts\n\n/-!\n# The Kuratowski embedding\n\nAny separable metric space can be embedded isometrically in `ℓ^∞(ℕ, ℝ)`.\nAny partially defined Lipschitz map into `ℓ^∞` can be extended to the whole space.\n\n-/\n\nnoncomputable section\n\n\nopen Set Metric TopologicalSpace NNReal ENNReal lp Function\n\nuniverse u\n\nvariable {α : Type u}\n\nnamespace KuratowskiEmbedding\n\n/-! ### Any separable metric space can be embedded isometrically in ℓ^∞(ℕ, ℝ) -/\n\n\nvariable {n : ℕ} [MetricSpace α] (x : ℕ → α) (a : α)\n\n/-- A metric space can be embedded in `l^∞(ℝ)` via the distances to points in\na fixed countable set, if this set is dense. This map is given in `kuratowskiEmbedding`,\nwithout density assumptions. -/\ndef embeddingOfSubset : ℓ^∞(ℕ) :=\n  ⟨fun n => dist a (x n) - dist (x 0) (x n), by\n    apply memℓp_infty\n    use dist a (x 0)\n    rintro - ⟨n, rfl⟩\n    exact abs_dist_sub_le _ _ _⟩\n\ntheorem embeddingOfSubset_coe : embeddingOfSubset x a n = dist a (x n) - dist (x 0) (x n) :=\n  rfl\n\n",
+        "original_theorem_content": "/-- The embedding map is always a semi-contraction. -/\ntheorem embeddingOfSubset_dist_le (a b : α) :\n    dist (embeddingOfSubset x a) (embeddingOfSubset x b) ≤ dist a b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Kuratowski.lean",
+        "line": 50,
+        "tactic_state_before": "case h.e'_3.h.e'_1\nα : Type u\ninst✝ : MetricSpace α\nx : ℕ → α\na b : α\nn : ℕ\n⊢ dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n)) = dist a (x n) - dist b (x n)",
+        "proof": "ring\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u\ninst✝ : MetricSpace α\nx : ℕ → α\na b : α\nn : ℕ\n⊢ dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n)) = dist a (x n) - dist b (x n)",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Lp.lpSpace\n\nimport Mathlib.Topology.Sets.Compacts\n\nopen Set Metric TopologicalSpace NNReal ENNReal lp Function\n\nopen TopologicalSpace KuratowskiEmbedding\n\nopen KuratowskiEmbedding\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u} [inst : MetricSpace α] (x : ℕ → α) (a b : α) (n : ℕ) :\n  dist a (x n) - dist (x 0) (x n) - (dist b (x n) - dist (x 0) (x n)) = dist a (x n) - dist b (x n) := sorry",
+        "original_theorem_name": "KuratowskiEmbedding.embeddingOfSubset_dist_le",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Lp.lpSpace\n\nimport Mathlib.Topology.Sets.Compacts\n\n/-!\n# The Kuratowski embedding\n\nAny separable metric space can be embedded isometrically in `ℓ^∞(ℕ, ℝ)`.\nAny partially defined Lipschitz map into `ℓ^∞` can be extended to the whole space.\n\n-/\n\nnoncomputable section\n\n\nopen Set Metric TopologicalSpace NNReal ENNReal lp Function\n\nuniverse u\n\nvariable {α : Type u}\n\nnamespace KuratowskiEmbedding\n\n/-! ### Any separable metric space can be embedded isometrically in ℓ^∞(ℕ, ℝ) -/\n\n\nvariable {n : ℕ} [MetricSpace α] (x : ℕ → α) (a : α)\n\n/-- A metric space can be embedded in `l^∞(ℝ)` via the distances to points in\na fixed countable set, if this set is dense. This map is given in `kuratowskiEmbedding`,\nwithout density assumptions. -/\ndef embeddingOfSubset : ℓ^∞(ℕ) :=\n  ⟨fun n => dist a (x n) - dist (x 0) (x n), by\n    apply memℓp_infty\n    use dist a (x 0)\n    rintro - ⟨n, rfl⟩\n    exact abs_dist_sub_le _ _ _⟩\n\ntheorem embeddingOfSubset_coe : embeddingOfSubset x a n = dist a (x n) - dist (x 0) (x n) :=\n  rfl\n\n",
+        "original_theorem_content": "/-- The embedding map is always a semi-contraction. -/\ntheorem embeddingOfSubset_dist_le (a b : α) :\n    dist (embeddingOfSubset x a) (embeddingOfSubset x b) ≤ dist a b := by"
+    }
+]

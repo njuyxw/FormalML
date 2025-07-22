@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Combinatorics/SimpleGraph/Hasse.lean",
+        "line": 69,
+        "tactic_state_before": "case Adj.h.h.a\nα : Type u_1\nβ : Type u_2\ninst✝¹ : PartialOrder α\ninst✝ : PartialOrder β\nx y : α × β\n⊢ (hasse (α × β)).Adj x y ↔ (hasse α □ hasse β).Adj x y",
+        "proof": "simp_rw [boxProd_adj, hasse_adj, Prod.covBy_iff, or_and_right, @eq_comm _ y.1, @eq_comm _ y.2,\n  or_or_or_comm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nβ : Type u_2\ninst✝¹ : PartialOrder α\ninst✝ : PartialOrder β\nx y : α × β\n⊢ (hasse (α × β)).Adj x y ↔ (hasse α □ hasse β).Adj x y",
+        "header": "import Mathlib\nimport Mathlib.Combinatorics.SimpleGraph.Prod\n\nimport Mathlib.Data.Fin.SuccPred\n\nimport Mathlib.Data.Nat.SuccPred\n\nimport Mathlib.Order.SuccPred.Relation\n\nimport Mathlib.Tactic.FinCases\n\nopen Order OrderDual Relation\n\nopen SimpleGraph\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (α : Type u_1) (β : Type u_2) [inst : PartialOrder α]\n  [inst_1 : PartialOrder β] (x y : α × β) : (hasse (α × β)).Adj x y ↔ (hasse α □ hasse β).Adj x y := sorry",
+        "original_theorem_name": "SimpleGraph.hasse_prod",
+        "original_theorem_importsAndContext": "import Mathlib.Combinatorics.SimpleGraph.Prod\n\nimport Mathlib.Data.Fin.SuccPred\n\nimport Mathlib.Data.Nat.SuccPred\n\nimport Mathlib.Order.SuccPred.Relation\n\nimport Mathlib.Tactic.FinCases\n\n/-!\n# The Hasse diagram as a graph\n\nThis file defines the Hasse diagram of an order (graph of `CovBy`, the covering relation) and the\npath graph on `n` vertices.\n\n## Main declarations\n\n* `SimpleGraph.hasse`: Hasse diagram of an order.\n* `SimpleGraph.pathGraph`: Path graph on `n` vertices.\n-/\n\n\nopen Order OrderDual Relation\n\nnamespace SimpleGraph\n\nvariable (α β : Type*)\n\nsection Preorder\n\nvariable [Preorder α]\n\n/-- The Hasse diagram of an order as a simple graph. The graph of the covering relation. -/\ndef hasse : SimpleGraph α where\n  Adj a b := a ⋖ b ∨ b ⋖ a\n  symm _a _b := Or.symm\n  loopless _a h := h.elim (irrefl _) (irrefl _)\n\nvariable {α β} {a b : α}\n\n@[simp]\ntheorem hasse_adj : (hasse α).Adj a b ↔ a ⋖ b ∨ b ⋖ a :=\n  Iff.rfl\n\n/-- `αᵒᵈ` and `α` have the same Hasse diagram. -/\ndef hasseDualIso : hasse αᵒᵈ ≃g hasse α :=\n  { ofDual with map_rel_iff' := by simp [or_comm] }\n\n@[simp]\ntheorem hasseDualIso_apply (a : αᵒᵈ) : hasseDualIso a = ofDual a :=\n  rfl\n\n@[simp]\ntheorem hasseDualIso_symm_apply (a : α) : hasseDualIso.symm a = toDual a :=\n  rfl\n\nend Preorder\n\nsection PartialOrder\n\nvariable [PartialOrder α] [PartialOrder β]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem hasse_prod : hasse (α × β) = hasse α □ hasse β := by"
+    }
+]

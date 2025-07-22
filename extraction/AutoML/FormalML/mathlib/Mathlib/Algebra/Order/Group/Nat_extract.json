@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Group/Nat.lean",
+        "line": 40,
+        "tactic_state_before": "m n k : ℕ\n⊢ m - n ≤ k ↔ m ≤ k + n",
+        "proof": "induction n generalizing k with\n| zero => simp\n| succ n ih => simp only [sub_succ, pred_le_iff, ih, succ_add, add_succ]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "m n k : ℕ\n⊢ m - n ≤ k ↔ m ≤ k + n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Nat.Defs\n\nimport Mathlib.Algebra.Order.Monoid.Canonical.Defs\n\nimport Mathlib.Algebra.Order.Sub.Defs\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (m n k : ℕ) : m - n ≤ k ↔ m ≤ k + n := sorry",
+        "original_theorem_name": "Nat.instOrderedSub",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Nat.Defs\n\nimport Mathlib.Algebra.Order.Monoid.Canonical.Defs\n\nimport Mathlib.Algebra.Order.Sub.Defs\n\n/-!\n# The naturals form a linear ordered monoid\n\nThis file contains the linear ordered monoid instance on the natural numbers.\n\nSee note [foundational algebra order theory].\n-/\n\nnamespace Nat\n\n/-! ### Instances -/\n\ninstance instLinearOrderedAddCommMonoid : LinearOrderedAddCommMonoid ℕ where\n  __ := instLinearOrder\n  add_le_add_left := @Nat.add_le_add_left\n\ninstance instCanonicallyOrderedAdd : CanonicallyOrderedAdd ℕ where\n  le_self_add := Nat.le_add_right\n  exists_add_of_le := Nat.exists_eq_add_of_le\n\ninstance instLinearOrderedCommMonoid : LinearOrderedCommMonoid ℕ where\n  __ := instLinearOrder\n  mul_le_mul_left _ _ h _ := mul_le_mul_left _ h\n\ninstance instLinearOrderedCancelAddCommMonoid : LinearOrderedCancelAddCommMonoid ℕ where\n  __ := instLinearOrder\n  add_le_add_left := @Nat.add_le_add_left\n  le_of_add_le_add_left := @Nat.le_of_add_le_add_left\n\n",
+        "original_theorem_content": "instance instOrderedSub : OrderedSub ℕ := by"
+    }
+]

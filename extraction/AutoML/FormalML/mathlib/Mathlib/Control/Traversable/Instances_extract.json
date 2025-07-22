@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Control/Traversable/Instances.lean",
+        "line": 38,
+        "tactic_state_before": "case some\nF G : Type u → Type u\ninst✝² : Applicative F\ninst✝¹ : Applicative G\ninst✝ : LawfulApplicative G\nα : Type u_1\nβ γ : Type u\nf : β → F γ\ng : α → G β\nval✝ : α\n⊢ Option.traverse (Comp.mk ∘ (fun x => f <$> x) ∘ g) (some val✝) =\n    Comp.mk (Option.traverse f <$> Option.traverse g (some val✝))",
+        "proof": "simp! [functor_norm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "F G : Type u → Type u\ninst✝² : Applicative F\ninst✝¹ : Applicative G\ninst✝ : LawfulApplicative G\nα : Type u_1\nβ γ : Type u\nf : β → F γ\ng : α → G β\nval✝ : α\n⊢ Option.traverse (Comp.mk ∘ (fun x => f <$> x) ∘ g) (some val✝) =\n    Comp.mk (Option.traverse f <$> Option.traverse g (some val✝))",
+        "header": "import Mathlib\nimport Mathlib.Control.Applicative\n\nimport Mathlib.Control.Traversable.Basic\n\nimport Mathlib.Data.List.Forall2\n\nimport Mathlib.Data.Set.Functor\n\nopen Functor\n\nopen Applicative Functor List\n\nopen Applicative Functor\n\nopen List\n\nopen Sum\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {F G : Type u → Type u} [inst : Applicative F] [inst_1 : Applicative G]\n  [inst_2 : LawfulApplicative G] {α : Type u_1} {β γ : Type u} (f : β → F γ) (g : α → G β) (val : α) :\n  Option.traverse (Comp.mk ∘ (fun x => f <$> x) ∘ g) (some val) =\n    Comp.mk (Option.traverse f <$> Option.traverse g (some val)) := sorry",
+        "original_theorem_name": "Option.comp_traverse",
+        "original_theorem_importsAndContext": "import Mathlib.Control.Applicative\n\nimport Mathlib.Control.Traversable.Basic\n\nimport Mathlib.Data.List.Forall2\n\nimport Mathlib.Data.Set.Functor\n\n/-!\n# LawfulTraversable instances\n\nThis file provides instances of `LawfulTraversable` for types from the core library: `Option`,\n`List` and `Sum`.\n-/\n\n\nuniverse u v\n\nsection Option\n\nopen Functor\n\nvariable {F G : Type u → Type u}\nvariable [Applicative F] [Applicative G]\nvariable [LawfulApplicative G]\n\ntheorem Option.id_traverse {α} (x : Option α) : Option.traverse (pure : α → Id α) x = x := by\n  cases x <;> rfl\n\n",
+        "original_theorem_content": "theorem Option.comp_traverse {α β γ} (f : β → F γ) (g : α → G β) (x : Option α) :\n    Option.traverse (Comp.mk ∘ (f <$> ·) ∘ g) x =\n      Comp.mk (Option.traverse f <$> Option.traverse g x) := by"
+    }
+]

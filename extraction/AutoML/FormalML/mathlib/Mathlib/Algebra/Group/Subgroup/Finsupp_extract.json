@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Group/Subgroup/Finsupp.lean",
+        "line": 41,
+        "tactic_state_before": "case intro\nM : Type u_1\ninst✝ : CommGroup M\nι : Type u_2\nf : ι → M\na : ι →₀ ℤ\n⊢ (a.prod fun x1 x2 => f x1 ^ x2) ∈ closure (Set.range f)",
+        "proof": "exact Submonoid.prod_mem _ fun i hi ↦ zpow_mem (subset_closure (Set.mem_range_self i)) _\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\ninst✝ : CommGroup M\nι : Type u_2\nf : ι → M\na : ι →₀ ℤ\n⊢ (a.prod fun x1 x2 => f x1 ^ x2) ∈ closure (Set.range f)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Finsupp.Basic\n\nimport Mathlib.Algebra.Group.Subgroup.Lattice\n\nopen Subgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {M : Type u_1} [inst : CommGroup M] {ι : Type u_2} {f : ι → M}\n  (a : ι →₀ ℤ) : (a.prod fun x1 x2 => f x1 ^ x2) ∈ closure (Set.range f) := sorry",
+        "original_theorem_name": "AddSubgroup.mem_closure_range_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Finsupp.Basic\n\nimport Mathlib.Algebra.Group.Subgroup.Lattice\n\n/-! # Connection between `Subgroup.closure` and `Finsupp.prod` -/\n\nassert_not_exists Field\n\nnamespace Subgroup\n\nvariable {M : Type*} [CommGroup M] {ι : Type*} (f : ι → M) (x : M)\n\n@[to_additive]\ntheorem exists_finsupp_of_mem_closure_range (hx : x ∈ closure (Set.range f)) :\n    ∃ a : ι →₀ ℤ, x = a.prod (f · ^ ·) := by\n  classical\n  induction hx using closure_induction with\n  | mem x h => obtain ⟨i, rfl⟩ := h; exact ⟨Finsupp.single i 1, by simp⟩\n  | one => use 0; simp\n  | mul x y hx hy hx' hy' =>\n    obtain ⟨⟨v, rfl⟩, w, rfl⟩ := And.intro hx' hy'\n    use v + w\n    rw [Finsupp.prod_add_index]\n    · simp\n    · simp [zpow_add]\n  | inv x hx hx' =>\n    obtain ⟨a, rfl⟩ := hx'\n    use -a\n    rw [Finsupp.prod_neg_index]\n    · simp\n    · simp [zpow_neg]\n\n",
+        "original_theorem_content": "variable {f x} in\n@[to_additive]\ntheorem mem_closure_range_iff :\n    x ∈ closure (Set.range f) ↔ ∃ a : ι →₀ ℤ, x = a.prod (f · ^ ·) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Group/Subgroup/Finsupp.lean",
+        "line": 41,
+        "tactic_state_before": "case intro\nM : Type u_1\ninst✝ : CommGroup M\nι : Type u_2\nf : ι → M\na : ι →₀ ℤ\n⊢ (a.prod fun x1 x2 => f x1 ^ x2) ∈ closure (Set.range f)",
+        "proof": "exact Submonoid.prod_mem _ fun i hi ↦ zpow_mem (subset_closure (Set.mem_range_self i)) _\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\ninst✝ : CommGroup M\nι : Type u_2\nf : ι → M\na : ι →₀ ℤ\n⊢ (a.prod fun x1 x2 => f x1 ^ x2) ∈ closure (Set.range f)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Finsupp.Basic\n\nimport Mathlib.Algebra.Group.Subgroup.Lattice\n\nopen Subgroup\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {M : Type u_1} [inst : CommGroup M] {ι : Type u_2} {f : ι → M}\n  (a : ι →₀ ℤ) : (a.prod fun x1 x2 => f x1 ^ x2) ∈ closure (Set.range f) := sorry",
+        "original_theorem_name": "AddSubgroup.mem_closure_range_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Finsupp.Basic\n\nimport Mathlib.Algebra.Group.Subgroup.Lattice\n\n/-! # Connection between `Subgroup.closure` and `Finsupp.prod` -/\n\nassert_not_exists Field\n\nnamespace Subgroup\n\nvariable {M : Type*} [CommGroup M] {ι : Type*} (f : ι → M) (x : M)\n\n@[to_additive]\ntheorem exists_finsupp_of_mem_closure_range (hx : x ∈ closure (Set.range f)) :\n    ∃ a : ι →₀ ℤ, x = a.prod (f · ^ ·) := by\n  classical\n  induction hx using closure_induction with\n  | mem x h => obtain ⟨i, rfl⟩ := h; exact ⟨Finsupp.single i 1, by simp⟩\n  | one => use 0; simp\n  | mul x y hx hy hx' hy' =>\n    obtain ⟨⟨v, rfl⟩, w, rfl⟩ := And.intro hx' hy'\n    use v + w\n    rw [Finsupp.prod_add_index]\n    · simp\n    · simp [zpow_add]\n  | inv x hx hx' =>\n    obtain ⟨a, rfl⟩ := hx'\n    use -a\n    rw [Finsupp.prod_neg_index]\n    · simp\n    · simp [zpow_neg]\n\n",
+        "original_theorem_content": "variable {f x} in\n@[to_additive]\ntheorem mem_closure_range_iff :\n    x ∈ closure (Set.range f) ↔ ∃ a : ι →₀ ℤ, x = a.prod (f · ^ ·) := by"
+    }
+]

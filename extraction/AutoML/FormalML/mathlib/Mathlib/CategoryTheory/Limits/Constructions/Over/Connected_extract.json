@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Limits/Constructions/Over/Connected.lean",
+        "line": 58,
+        "tactic_state_before": "J : Type u'\ninst✝² : Category.{v', u'} J\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : IsConnected J\nB : C\nF : J ⥤ Over B\nc : Cone (F ⋙ forget B)\n⊢ (forget B).mapCone (raiseCone c) = c",
+        "proof": "aesop_cat\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "J : Type u'\ninst✝² : Category.{v', u'} J\nC : Type u\ninst✝¹ : Category.{v, u} C\ninst✝ : IsConnected J\nB : C\nF : J ⥤ Over B\nc : Cone (F ⋙ forget B)\n⊢ (forget B).mapCone (raiseCone c) = c",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Limits.Creates\n\nimport Mathlib.CategoryTheory.Comma.Over.Basic\n\nimport Mathlib.CategoryTheory.IsConnected\n\nopen CategoryTheory CategoryTheory.Limits\n\nopen CategoryTheory.Over\n\nopen CreatesConnected\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {J : Type u'} [inst : Category.{v', u'} J] {C : Type u}\n  [inst_1 : Category.{v, u} C] [inst_2 : IsConnected J] {B : C} {F : J ⥤ Over B} (c : Cone (F ⋙ forget B)) :\n  (forget B).mapCone (raiseCone c) = c := sorry",
+        "original_theorem_name": "CategoryTheory.Over.CreatesConnected.raised_cone_lowers_to_original",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Limits.Creates\n\nimport Mathlib.CategoryTheory.Comma.Over.Basic\n\nimport Mathlib.CategoryTheory.IsConnected\n\n/-!\n# Connected limits in the over category\n\nShows that the forgetful functor `Over B ⥤ C` creates connected limits, in particular `Over B` has\nany connected limit which `C` has.\n-/\n\n\nuniverse v' u' v u\n\n-- morphism levels before object levels. See note [CategoryTheory universes].\nnoncomputable section\n\nopen CategoryTheory CategoryTheory.Limits\n\nvariable {J : Type u'} [Category.{v'} J]\nvariable {C : Type u} [Category.{v} C]\nvariable {X : C}\n\nnamespace CategoryTheory.Over\n\nnamespace CreatesConnected\n\n/-- (Impl) Given a diagram in the over category, produce a natural transformation from the\ndiagram legs to the specific object.\n-/\ndef natTransInOver {B : C} (F : J ⥤ Over B) :\n    F ⋙ forget B ⟶ (CategoryTheory.Functor.const J).obj B where\n  app j := (F.obj j).hom\n\n/-- (Impl) Given a cone in the base category, raise it to a cone in the over category. Note this is\nwhere the connected assumption is used.\n-/\n@[simps]\ndef raiseCone [IsConnected J] {B : C} {F : J ⥤ Over B} (c : Cone (F ⋙ forget B)) :\n    Cone F where\n  pt := Over.mk (c.π.app (Classical.arbitrary J) ≫ (F.obj (Classical.arbitrary J)).hom)\n  π :=\n    { app := fun j =>\n        Over.homMk (c.π.app j) (nat_trans_from_is_connected (c.π ≫ natTransInOver F) j _)\n      naturality := by\n        intro X Y f\n        apply CommaMorphism.ext\n        · simpa using (c.w f).symm\n        · simp }\n\n",
+        "original_theorem_content": "theorem raised_cone_lowers_to_original [IsConnected J] {B : C} {F : J ⥤ Over B}\n    (c : Cone (F ⋙ forget B)) :\n    (forget B).mapCone (raiseCone c) = c := by"
+    }
+]

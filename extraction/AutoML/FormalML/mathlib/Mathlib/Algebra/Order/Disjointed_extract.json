@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Order/Disjointed.lean",
+        "line": 39,
+        "tactic_state_before": "α : Type u_1\nι : Type u_2\ninst✝⁶ : GeneralizedBooleanAlgebra α\ninst✝⁵ : LinearOrder ι\ninst✝⁴ : LocallyFiniteOrderBot ι\ninst✝³ : Add ι\ninst✝² : One ι\ninst✝¹ : SuccAddOrder ι\ninst✝ : NoMaxOrder ι\nf : ι → α\nhf : Monotone f\ni : ι\n⊢ ¬IsMax i",
+        "proof": "exact not_isMax i\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nι : Type u_2\ninst✝⁶ : GeneralizedBooleanAlgebra α\ninst✝⁵ : LinearOrder ι\ninst✝⁴ : LocallyFiniteOrderBot ι\ninst✝³ : Add ι\ninst✝² : One ι\ninst✝¹ : SuccAddOrder ι\ninst✝ : NoMaxOrder ι\nf : ι → α\nhf : Monotone f\ni : ι\n⊢ ¬IsMax i",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.PartialSups\n\nimport Mathlib.Data.Nat.SuccPred\n\nimport Mathlib.Order.Disjointed\n\nopen Order\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {ι : Type u_2} [inst : GeneralizedBooleanAlgebra α]\n  [inst_1 : LinearOrder ι] [inst_2 : LocallyFiniteOrderBot ι] [inst_3 : Add ι] [inst_4 : One ι] [inst_5 : NoMaxOrder ι]\n  {f : ι → α} (hf : Monotone f) (i : ι) : ¬IsMax i := sorry",
+        "original_theorem_name": "Monotone.disjointed_add_one",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.PartialSups\n\nimport Mathlib.Data.Nat.SuccPred\n\nimport Mathlib.Order.Disjointed\n\n/-!\n# `Disjointed` for functions on a `SuccAddOrder`\n\nThis file contains material excised from `Mathlib.Order.Disjointed` to avoid import dependencies\nfrom `Mathlib.Algebra.Order` into `Mathlib.Order`.\n\n## TODO\n\nFind a useful statement of `disjointedRec_succ`.\n-/\n\nopen Order\n\nvariable {α ι : Type*} [GeneralizedBooleanAlgebra α]\n\nsection SuccAddOrder\n\nvariable [LinearOrder ι] [LocallyFiniteOrderBot ι] [Add ι] [One ι] [SuccAddOrder ι]\n\ntheorem disjointed_add_one [NoMaxOrder ι] (f : ι → α) (i : ι) :\n    disjointed f (i + 1) = f (i + 1) \\ partialSups f i := by\n  simpa only [succ_eq_add_one] using disjointed_succ f (not_isMax i)\n\nprotected lemma Monotone.disjointed_add_one_sup {f : ι → α} (hf : Monotone f) (i : ι) :\n    disjointed f (i + 1) ⊔ f i = f (i + 1) := by\n  simpa only [succ_eq_add_one i] using hf.disjointed_succ_sup i\n\n",
+        "original_theorem_content": "protected lemma Monotone.disjointed_add_one [NoMaxOrder ι]  {f : ι → α} (hf : Monotone f) (i : ι) :\n    disjointed f (i + 1) = f (i + 1) \\ f i := by"
+    }
+]

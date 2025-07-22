@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/List/Prime.lean",
+        "line": 48,
+        "tactic_state_before": "case intro.intro\nM : Type u_1\ninst✝¹ : CancelCommMonoidWithZero M\ninst✝ : Subsingleton Mˣ\np : M\nhp : Prime p\nL : List M\nhL : ∀ (q : M), q ∈ L → Prime q\nhpL : p ∣ L.prod\nx : M\nhx1 : x ∈ L\nhx2 : p ∣ x\n⊢ p ∈ L",
+        "proof": "rwa [(prime_dvd_prime_iff_eq hp (hL x hx1)).mp hx2]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\ninst✝¹ : CancelCommMonoidWithZero M\ninst✝ : Subsingleton Mˣ\np : M\nhp : Prime p\nL : List M\nhL : ∀ (q : M), q ∈ L → Prime q\nhpL : p ∣ L.prod\nx : M\nhx1 : x ∈ L\nhx2 : p ∣ x\n⊢ p ∈ L",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Group.List.Lemmas\n\nimport Mathlib.Algebra.GroupWithZero.Associated\n\nopen List\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {M : Type u_1} [inst : CancelCommMonoidWithZero M] [inst_1 : Subsingleton Mˣ]\n  {p : M} (hp : Prime p) {L : List M} (hL : ∀ (q : M), q ∈ L → Prime q) (hpL : p ∣ L.prod) (x : M) (hx1 : x ∈ L)\n  (hx2 : p ∣ x) : p ∈ L := sorry",
+        "original_theorem_name": "mem_list_primes_of_dvd_prod",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Group.List.Lemmas\n\nimport Mathlib.Algebra.GroupWithZero.Associated\n\n/-!\n# Products of lists of prime elements.\n\nThis file contains some theorems relating `Prime` and products of `List`s.\n\n-/\n\n\nopen List\n\nsection CommMonoidWithZero\n\nvariable {M : Type*} [CommMonoidWithZero M]\n\n/-- Prime `p` divides the product of a list `L` iff it divides some `a ∈ L` -/\ntheorem Prime.dvd_prod_iff {p : M} {L : List M} (pp : Prime p) : p ∣ L.prod ↔ ∃ a ∈ L, p ∣ a := by\n  constructor\n  · intro h\n    induction' L with L_hd L_tl L_ih\n    · rw [prod_nil] at h\n      exact absurd h pp.not_dvd_one\n    · rw [prod_cons] at h\n      rcases pp.dvd_or_dvd h with hd | hd\n      · exact ⟨L_hd, mem_cons_self L_hd L_tl, hd⟩\n      · obtain ⟨x, hx1, hx2⟩ := L_ih hd\n        exact ⟨x, mem_cons_of_mem L_hd hx1, hx2⟩\n  · exact fun ⟨a, ha1, ha2⟩ => dvd_trans ha2 (dvd_prod ha1)\n\ntheorem Prime.not_dvd_prod {p : M} {L : List M} (pp : Prime p) (hL : ∀ a ∈ L, ¬p ∣ a) :\n    ¬p ∣ L.prod :=\n  mt (Prime.dvd_prod_iff pp).1 <| not_exists.2 fun a => not_and.2 (hL a)\n\nend CommMonoidWithZero\n\nsection CancelCommMonoidWithZero\n\nvariable {M : Type*} [CancelCommMonoidWithZero M] [Subsingleton Mˣ]\n\n",
+        "original_theorem_content": "theorem mem_list_primes_of_dvd_prod {p : M} (hp : Prime p) {L : List M} (hL : ∀ q ∈ L, Prime q)\n    (hpL : p ∣ L.prod) : p ∈ L := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/List/Prime.lean",
+        "line": 23,
+        "tactic_state_before": "M : Type u_1\ninst✝ : CommMonoidWithZero M\np : M\nL : List M\npp : Prime p\n⊢ p ∣ L.prod ↔ ∃ a, a ∈ L ∧ p ∣ a",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n M : Type u_1\n inst✝ : CommMonoidWithZero M\n p : M\n L : List M\n pp : Prime p\n ⊢ p ∣ L.prod → ∃ a, a ∈ L ∧ p ∣ a,\n case mpr\n M : Type u_1\n inst✝ : CommMonoidWithZero M\n p : M\n L : List M\n pp : Prime p\n ⊢ (∃ a, a ∈ L ∧ p ∣ a) → p ∣ L.prod]",
+        "goal": "M : Type u_1\ninst✝ : CommMonoidWithZero M\np : M\nL : List M\npp : Prime p\nh✝ : p ∣ L.prod → ∃ a, a ∈ L ∧ p ∣ a\nh : (∃ a, a ∈ L ∧ p ∣ a) → p ∣ L.prod\n⊢ p ∣ L.prod ↔ ∃ a, a ∈ L ∧ p ∣ a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Group.List.Lemmas\n\nimport Mathlib.Algebra.GroupWithZero.Associated\n\nopen List\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {M : Type u_1} [inst : CommMonoidWithZero M] {p : M} {L : List M}\n  (pp : Prime p) (h_1 : p ∣ L.prod → ∃ a, a ∈ L ∧ p ∣ a) (h : (∃ a, a ∈ L ∧ p ∣ a) → p ∣ L.prod) :\n  p ∣ L.prod ↔ ∃ a, a ∈ L ∧ p ∣ a := sorry",
+        "original_theorem_name": "Prime.dvd_prod_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Group.List.Lemmas\n\nimport Mathlib.Algebra.GroupWithZero.Associated\n\n/-!\n# Products of lists of prime elements.\n\nThis file contains some theorems relating `Prime` and products of `List`s.\n\n-/\n\n\nopen List\n\nsection CommMonoidWithZero\n\nvariable {M : Type*} [CommMonoidWithZero M]\n\n",
+        "original_theorem_content": "/-- Prime `p` divides the product of a list `L` iff it divides some `a ∈ L` -/\ntheorem Prime.dvd_prod_iff {p : M} {L : List M} (pp : Prime p) : p ∣ L.prod ↔ ∃ a ∈ L, p ∣ a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/List/Prime.lean",
+        "line": 33,
+        "tactic_state_before": "case mpr\nM : Type u_1\ninst✝ : CommMonoidWithZero M\np : M\nL : List M\npp : Prime p\n⊢ (∃ a, a ∈ L ∧ p ∣ a) → p ∣ L.prod",
+        "proof": "exact fun ⟨a, ha1, ha2⟩ => dvd_trans ha2 (dvd_prod ha1)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M : Type u_1\ninst✝ : CommMonoidWithZero M\np : M\nL : List M\npp : Prime p\n⊢ (∃ a, a ∈ L ∧ p ∣ a) → p ∣ L.prod",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Group.List.Lemmas\n\nimport Mathlib.Algebra.GroupWithZero.Associated\n\nopen List\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {M : Type u_1} [inst : CommMonoidWithZero M] {p : M} {L : List M}\n  (pp : Prime p) : (∃ a, a ∈ L ∧ p ∣ a) → p ∣ L.prod := sorry",
+        "original_theorem_name": "Prime.dvd_prod_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Group.List.Lemmas\n\nimport Mathlib.Algebra.GroupWithZero.Associated\n\n/-!\n# Products of lists of prime elements.\n\nThis file contains some theorems relating `Prime` and products of `List`s.\n\n-/\n\n\nopen List\n\nsection CommMonoidWithZero\n\nvariable {M : Type*} [CommMonoidWithZero M]\n\n",
+        "original_theorem_content": "/-- Prime `p` divides the product of a list `L` iff it divides some `a ∈ L` -/\ntheorem Prime.dvd_prod_iff {p : M} {L : List M} (pp : Prime p) : p ∣ L.prod ↔ ∃ a ∈ L, p ∣ a := by"
+    }
+]

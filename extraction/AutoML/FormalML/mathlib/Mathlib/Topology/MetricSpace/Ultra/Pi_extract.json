@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Ultra/Pi.lean",
+        "line": 23,
+        "tactic_state_before": "ι : Type u_1\nX : ι → Type u_2\ninst✝² : Fintype ι\ninst✝¹ : (i : ι) → PseudoMetricSpace (X i)\ninst✝ : ∀ (i : ι), IsUltrametricDist (X i)\n⊢ IsUltrametricDist ((i : ι) → X i)",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case dist_triangle_max\n ι : Type u_1\n X : ι → Type u_2\n inst✝² : Fintype ι\n inst✝¹ : (i : ι) → PseudoMetricSpace (X i)\n inst✝ : ∀ (i : ι), IsUltrametricDist (X i)\n ⊢ ∀ (x y z : (i : ι) → X i), dist x z ≤ dist x y ⊔ dist y z]",
+        "goal": "ι : Type u_1\nX : ι → Type u_2\ninst✝² : Fintype ι\ninst✝¹ : (i : ι) → PseudoMetricSpace (X i)\ninst✝ : ∀ (i : ι), IsUltrametricDist (X i)\nh : ∀ (x y z : (i : ι) → X i), dist x z ≤ dist x y ⊔ dist y z\n⊢ IsUltrametricDist ((i : ι) → X i)",
+        "header": "import Mathlib\nimport Mathlib.Topology.MetricSpace.Pseudo.Pi\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {ι : Type u_1} {X : ι → Type u_2} [inst : Fintype ι]\n  [inst_1 : (i : ι) → PseudoMetricSpace (X i)] [inst_2 : ∀ (i : ι), IsUltrametricDist (X i)]\n  (h : ∀ (x y z : (i : ι) → X i), dist x z ≤ dist x y ⊔ dist y z) : IsUltrametricDist ((i : ι) → X i) := sorry",
+        "original_theorem_name": "Pi.instIsUltrametricDist",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.MetricSpace.Pseudo.Pi\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n\n/-!\n# Ultrametric distances on pi types\n\nThis file contains results on the behavior of ultrametrics in products of ultrametric spaces.\n\n## Main results\n\n* `Pi.instIsUltrametricDist`: a product of ultrametric spaces is ultrametric.\n\n\nultrametric, nonarchimedean\n-/\n\n",
+        "original_theorem_content": "instance Pi.instIsUltrametricDist {ι : Type*} {X : ι → Type*} [Fintype ι]\n    [(i : ι) → PseudoMetricSpace (X i)] [(i : ι) → IsUltrametricDist (X i)] :\n    IsUltrametricDist ((i : ι) → X i) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Ultra/Pi.lean",
+        "line": 25,
+        "tactic_state_before": "case dist_triangle_max\nι : Type u_1\nX : ι → Type u_2\ninst✝² : Fintype ι\ninst✝¹ : (i : ι) → PseudoMetricSpace (X i)\ninst✝ : ∀ (i : ι), IsUltrametricDist (X i)\nf g h : (i : ι) → X i\n⊢ dist f h ≤ dist f g ⊔ dist g h",
+        "proof": "simp only [dist_pi_def, ← NNReal.coe_max, NNReal.coe_le_coe, ← Finset.sup_sup]\n  try repeat assumption",
+        "tactic_state_after": "[case dist_triangle_max\n ι : Type u_1\n X : ι → Type u_2\n inst✝² : Fintype ι\n inst✝¹ : (i : ι) → PseudoMetricSpace (X i)\n inst✝ : ∀ (i : ι), IsUltrametricDist (X i)\n f g h : (i : ι) → X i\n ⊢ (Finset.univ.sup fun b => nndist (f b) (h b)) ≤\n     Finset.univ.sup ((fun b => nndist (f b) (g b)) ⊔ fun b => nndist (g b) (h b))]",
+        "goal": "ι : Type u_1\nX : ι → Type u_2\ninst✝² : Fintype ι\ninst✝¹ : (i : ι) → PseudoMetricSpace (X i)\ninst✝ : ∀ (i : ι), IsUltrametricDist (X i)\nf g h✝ : (i : ι) → X i\nh :\n  (Finset.univ.sup fun b => nndist (f b) (h✝ b)) ≤\n    Finset.univ.sup ((fun b => nndist (f b) (g b)) ⊔ fun b => nndist (g b) (h✝ b))\n⊢ dist f h✝ ≤ dist f g ⊔ dist g h✝",
+        "header": "import Mathlib\nimport Mathlib.Topology.MetricSpace.Pseudo.Pi\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {ι : Type u_1} {X : ι → Type u_2} [inst : Fintype ι]\n  [inst_1 : (i : ι) → PseudoMetricSpace (X i)] [inst_2 : ∀ (i : ι), IsUltrametricDist (X i)] (f g h_1 : (i : ι) → X i)\n  (h :\n    (Finset.univ.sup fun b => nndist (f b) (h_1 b)) ≤\n      Finset.univ.sup ((fun b => nndist (f b) (g b)) ⊔ fun b => nndist (g b) (h_1 b))) :\n  dist f h_1 ≤ dist f g ⊔ dist g h_1 := sorry",
+        "original_theorem_name": "Pi.instIsUltrametricDist",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.MetricSpace.Pseudo.Pi\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n\n/-!\n# Ultrametric distances on pi types\n\nThis file contains results on the behavior of ultrametrics in products of ultrametric spaces.\n\n## Main results\n\n* `Pi.instIsUltrametricDist`: a product of ultrametric spaces is ultrametric.\n\n\nultrametric, nonarchimedean\n-/\n\n",
+        "original_theorem_content": "instance Pi.instIsUltrametricDist {ι : Type*} {X : ι → Type*} [Fintype ι]\n    [(i : ι) → PseudoMetricSpace (X i)] [(i : ι) → IsUltrametricDist (X i)] :\n    IsUltrametricDist ((i : ι) → X i) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Ultra/Pi.lean",
+        "line": 26,
+        "tactic_state_before": "case dist_triangle_max\nι : Type u_1\nX : ι → Type u_2\ninst✝² : Fintype ι\ninst✝¹ : (i : ι) → PseudoMetricSpace (X i)\ninst✝ : ∀ (i : ι), IsUltrametricDist (X i)\nf g h : (i : ι) → X i\n⊢ (Finset.univ.sup fun b => nndist (f b) (h b)) ≤\n    Finset.univ.sup ((fun b => nndist (f b) (g b)) ⊔ fun b => nndist (g b) (h b))",
+        "proof": "exact Finset.sup_mono_fun fun i _ ↦ IsUltrametricDist.dist_triangle_max (f i) (g i) (h i)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "ι : Type u_1\nX : ι → Type u_2\ninst✝² : Fintype ι\ninst✝¹ : (i : ι) → PseudoMetricSpace (X i)\ninst✝ : ∀ (i : ι), IsUltrametricDist (X i)\nf g h : (i : ι) → X i\n⊢ (Finset.univ.sup fun b => nndist (f b) (h b)) ≤\n    Finset.univ.sup ((fun b => nndist (f b) (g b)) ⊔ fun b => nndist (g b) (h b))",
+        "header": "import Mathlib\nimport Mathlib.Topology.MetricSpace.Pseudo.Pi\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {ι : Type u_1} {X : ι → Type u_2} [inst : Fintype ι]\n  [inst_1 : (i : ι) → PseudoMetricSpace (X i)] [inst_2 : ∀ (i : ι), IsUltrametricDist (X i)] (f g h : (i : ι) → X i) :\n  (Finset.univ.sup fun b => nndist (f b) (h b)) ≤\n    Finset.univ.sup ((fun b => nndist (f b) (g b)) ⊔ fun b => nndist (g b) (h b)) := sorry",
+        "original_theorem_name": "Pi.instIsUltrametricDist",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.MetricSpace.Pseudo.Pi\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n\n/-!\n# Ultrametric distances on pi types\n\nThis file contains results on the behavior of ultrametrics in products of ultrametric spaces.\n\n## Main results\n\n* `Pi.instIsUltrametricDist`: a product of ultrametric spaces is ultrametric.\n\n\nultrametric, nonarchimedean\n-/\n\n",
+        "original_theorem_content": "instance Pi.instIsUltrametricDist {ι : Type*} {X : ι → Type*} [Fintype ι]\n    [(i : ι) → PseudoMetricSpace (X i)] [(i : ι) → IsUltrametricDist (X i)] :\n    IsUltrametricDist ((i : ι) → X i) := by"
+    }
+]

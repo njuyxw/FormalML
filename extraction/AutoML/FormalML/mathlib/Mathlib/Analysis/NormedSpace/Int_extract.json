@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/NormedSpace/Int.lean",
+        "line": 38,
+        "tactic_state_before": "n : ℤ\n⊢ ↑n.toNat + ↑(-n).toNat = ‖n‖",
+        "proof": "simpa only [NNReal.coe_natCast, NNReal.coe_add] using\n  congrArg NNReal.toReal (toNat_add_toNat_neg_eq_nnnorm n)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℤ\n⊢ ↑n.toNat + ↑(-n).toNat = ‖n‖",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Ring.Lemmas\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (n : ℤ) : ↑n.toNat + ↑(-n).toNat = ‖n‖ := sorry",
+        "original_theorem_name": "Int.toNat_add_toNat_neg_eq_norm",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Ring.Lemmas\n\n/-!\n# The integers as normed ring\n\nThis file contains basic facts about the integers as normed ring.\n\nRecall that `‖n‖` denotes the norm of `n` as real number.\nThis norm is always nonnegative, so we can bundle the norm together with this fact,\nto obtain a term of type `NNReal` (the nonnegative real numbers).\nThe resulting nonnegative real number is denoted by `‖n‖₊`.\n-/\n\n\nnamespace Int\n\ntheorem nnnorm_coe_units (e : ℤˣ) : ‖(e : ℤ)‖₊ = 1 := by\n  obtain rfl | rfl := units_eq_one_or e <;>\n    simp only [Units.coe_neg_one, Units.val_one, nnnorm_neg, nnnorm_one]\n\ntheorem norm_coe_units (e : ℤˣ) : ‖(e : ℤ)‖ = 1 := by\n  rw [← coe_nnnorm, nnnorm_coe_units, NNReal.coe_one]\n\n@[simp]\ntheorem nnnorm_natCast (n : ℕ) : ‖(n : ℤ)‖₊ = n :=\n  Real.nnnorm_natCast _\n\n@[simp] lemma enorm_natCast (n : ℕ) : ‖(n : ℤ)‖ₑ = n := Real.enorm_natCast _\n\n@[simp]\ntheorem toNat_add_toNat_neg_eq_nnnorm (n : ℤ) : ↑n.toNat + ↑(-n).toNat = ‖n‖₊ := by\n  rw [← Nat.cast_add, toNat_add_toNat_neg_eq_natAbs, NNReal.natCast_natAbs]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem toNat_add_toNat_neg_eq_norm (n : ℤ) : ↑n.toNat + ↑(-n).toNat = ‖n‖ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/NormedSpace/Int.lean",
+        "line": 34,
+        "tactic_state_before": "n : ℤ\n⊢ ↑n.toNat + ↑(-n).toNat = ‖n‖₊",
+        "proof": "rw [← Nat.cast_add, toNat_add_toNat_neg_eq_natAbs, NNReal.natCast_natAbs]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℤ\n⊢ ↑n.toNat + ↑(-n).toNat = ‖n‖₊",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Ring.Lemmas\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (n : ℤ) : ↑n.toNat + ↑(-n).toNat = ‖n‖₊ := sorry",
+        "original_theorem_name": "Int.toNat_add_toNat_neg_eq_nnnorm",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Ring.Lemmas\n\n/-!\n# The integers as normed ring\n\nThis file contains basic facts about the integers as normed ring.\n\nRecall that `‖n‖` denotes the norm of `n` as real number.\nThis norm is always nonnegative, so we can bundle the norm together with this fact,\nto obtain a term of type `NNReal` (the nonnegative real numbers).\nThe resulting nonnegative real number is denoted by `‖n‖₊`.\n-/\n\n\nnamespace Int\n\ntheorem nnnorm_coe_units (e : ℤˣ) : ‖(e : ℤ)‖₊ = 1 := by\n  obtain rfl | rfl := units_eq_one_or e <;>\n    simp only [Units.coe_neg_one, Units.val_one, nnnorm_neg, nnnorm_one]\n\ntheorem norm_coe_units (e : ℤˣ) : ‖(e : ℤ)‖ = 1 := by\n  rw [← coe_nnnorm, nnnorm_coe_units, NNReal.coe_one]\n\n@[simp]\ntheorem nnnorm_natCast (n : ℕ) : ‖(n : ℤ)‖₊ = n :=\n  Real.nnnorm_natCast _\n\n@[simp] lemma enorm_natCast (n : ℕ) : ‖(n : ℤ)‖ₑ = n := Real.enorm_natCast _\n\n",
+        "original_theorem_content": "@[simp]\ntheorem toNat_add_toNat_neg_eq_nnnorm (n : ℤ) : ↑n.toNat + ↑(-n).toNat = ‖n‖₊ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/NormedSpace/Int.lean",
+        "line": 22,
+        "tactic_state_before": "case inr\n⊢ ‖↑(-1)‖₊ = 1",
+        "proof": "simp only [Units.coe_neg_one, Units.val_one, nnnorm_neg, nnnorm_one]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "⊢ ‖↑(-1)‖₊ = 1",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Ring.Lemmas\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_2 : ‖↑(-1)‖₊ = 1 := sorry",
+        "original_theorem_name": "Int.nnnorm_coe_units",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Ring.Lemmas\n\n/-!\n# The integers as normed ring\n\nThis file contains basic facts about the integers as normed ring.\n\nRecall that `‖n‖` denotes the norm of `n` as real number.\nThis norm is always nonnegative, so we can bundle the norm together with this fact,\nto obtain a term of type `NNReal` (the nonnegative real numbers).\nThe resulting nonnegative real number is denoted by `‖n‖₊`.\n-/\n\n\nnamespace Int\n\n",
+        "original_theorem_content": "theorem nnnorm_coe_units (e : ℤˣ) : ‖(e : ℤ)‖₊ = 1 := by"
+    }
+]

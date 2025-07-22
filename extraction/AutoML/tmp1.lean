@@ -1,15 +1,23 @@
-import SciLean
-import SciLean.Analysis.Calculus.FDeriv
+import Mathlib
+import Mathlib.Analysis.Normed.Lp.PiLp
 
-open SciLean
+import Mathlib.Analysis.InnerProductSpace.PiL2
 
-open SciLean
+open scoped NNReal Matrix
 
-open fwdFDeriv
+open scoped Matrix
 
-theorem extracted_formal_statement_23 {K : Type u_3} [inst : RCLike K] {X : Type u_1}
-  [inst_1 : NormedAddCommGroup X] [inst_2 : NormedSpace K X] {Y : Type u_2} [inst_3 : NormedAddCommGroup Y]
-  [inst_4 : NormedSpace K Y] :
-  (fun x dx => ((fun xy => xy.2) x, (fderiv K (fun xy => xy.2) x) dx)) = fun xy dxy => (xy.2, dxy.2) := by
-  fun_trans
-  try repeat assumption
+open Matrix
+theorem extracted_formal_statement_0 {n : Type u_4} {α : Type u_5} {ι : Type u_7} [inst : Fintype n]
+  [inst_1 : Unique ι] [inst_2 : SeminormedAddCommGroup α] (v : n → α) :
+  (∑ x, ‖replicateCol ι v x default‖ ^ 2) ^ (1 / 2) = (∑ i, ‖(WithLp.equiv 2 (n → α)).symm v i‖ ^ 2) ^ (1 / 2) := by
+  have h : ∀ x, replicateCol ι v x default = (WithLp.equiv 2 (n → α)).symm v x := by
+    intro x
+    simp [replicateCol_apply, Equiv.symm_apply_apply]
+  simp_all [h]
+  <;> congr 1
+  <;> ext x
+  <;> simp [h]
+  <;> congr 1
+  <;> ext x
+  <;> simp [h]

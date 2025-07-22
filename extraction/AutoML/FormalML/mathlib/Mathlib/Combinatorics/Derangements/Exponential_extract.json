@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Combinatorics/Derangements/Exponential.lean",
+        "line": 42,
+        "tactic_state_before": "s : ℕ → ℝ := fun n => ∑ k ∈ Finset.range n, (-1) ^ k / ↑k.factorial\nn k : ℕ\nhk : k ∈ Finset.range (n + 1)\n⊢ (-1) ^ k * ↑((k + 1).ascFactorial (n - k)) / ↑n.factorial = (-1) ^ k / ↑k.factorial",
+        "proof": "have h_le : k ≤ n := Finset.mem_range_succ_iff.mp hk\n  try repeat assumption",
+        "tactic_state_after": "[s : ℕ → ℝ := fun n => ∑ k ∈ Finset.range n, (-1) ^ k / ↑k.factorial\n n k : ℕ\n hk : k ∈ Finset.range (n + 1)\n h_le : k ≤ n\n ⊢ (-1) ^ k * ↑((k + 1).ascFactorial (n - k)) / ↑n.factorial = (-1) ^ k / ↑k.factorial]",
+        "goal": "s : ℕ → ℝ := fun n => ∑ k ∈ Finset.range n, (-1) ^ k / ↑k.factorial\nn k : ℕ\nhk : k ∈ Finset.range (n + 1)\n⊢ k ≤ n",
+        "header": "import Mathlib\nimport Mathlib.Algebra.BigOperators.Field\n\nimport Mathlib.Analysis.SpecialFunctions.Exponential\n\nimport Mathlib.Combinatorics.Derangements.Finite\n\nimport Mathlib.Data.Nat.Cast.Field\n\nopen Filter NormedSpace\n\nopen scoped Topology\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (n k : ℕ) (hk : k ∈ Finset.range (n + 1)) : k ≤ n := sorry",
+        "original_theorem_name": "numDerangements_tendsto_inv_e",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.BigOperators.Field\n\nimport Mathlib.Analysis.SpecialFunctions.Exponential\n\nimport Mathlib.Combinatorics.Derangements.Finite\n\nimport Mathlib.Data.Nat.Cast.Field\n\n/-!\n# Derangement exponential series\n\nThis file proves that the probability of a permutation on n elements being a derangement is 1/e.\nThe specific lemma is `numDerangements_tendsto_inv_e`.\n-/\n\n\nopen Filter NormedSpace\n\nopen scoped Topology\n\n",
+        "original_theorem_content": "theorem numDerangements_tendsto_inv_e :\n    Tendsto (fun n => (numDerangements n : ℝ) / n.factorial) atTop (𝓝 (Real.exp (-1))) := by"
+    }
+]

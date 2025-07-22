@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/AlgebraicGeometry/Morphisms/UniversallyInjective.lean",
+        "line": 51,
+        "tactic_state_before": "case h.h.h.a\nX Y : Scheme\nf : X ⟶ Y\n⊢ UniversallyInjective f ↔\n    (topologically fun {α β} [TopologicalSpace α] [TopologicalSpace β] x => Function.Injective x).universally f",
+        "proof": "rw [universallyInjective_iff]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X Y : Scheme\nf : X ⟶ Y\n⊢ UniversallyInjective f ↔\n    (topologically fun {α β} [TopologicalSpace α] [TopologicalSpace β] x => Function.Injective x).universally f",
+        "header": "import Mathlib\nimport Mathlib.AlgebraicGeometry.PullbackCarrier\n\nimport Mathlib.Topology.LocalAtTarget\n\nopen CategoryTheory CategoryTheory.Limits Opposite TopologicalSpace\n\nopen CategoryTheory.MorphismProperty Function\n\nopen AlgebraicGeometry\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (X Y : Scheme) (f : X ⟶ Y) :\n  UniversallyInjective f ↔\n    (topologically fun {α β} [TopologicalSpace α] [TopologicalSpace β] x => Function.Injective x).universally f := sorry",
+        "original_theorem_name": "AlgebraicGeometry.universallyInjective_eq",
+        "original_theorem_importsAndContext": "import Mathlib.AlgebraicGeometry.PullbackCarrier\n\nimport Mathlib.Topology.LocalAtTarget\n\n/-!\n# Universally injective morphism\n\nA morphism of schemes `f : X ⟶ Y` is universally injective if `X ×[Y] Y' ⟶ Y'` is injective\nfor all base changes `Y' ⟶ Y`. This is equivalent to the diagonal morphism being surjective\n(`AlgebraicGeometry.UniversallyInjective.iff_diagonal`).\n\nWe show that being universally injective is local at the target, and is stable under\ncompositions and base changes.\n\n## TODO\n- https://stacks.math.columbia.edu/tag/01S4\n  Show that this is equivalent to radicial morphisms\n  (injective + purely inseparable residue field extensions)\n\n-/\n\nnoncomputable section\n\nopen CategoryTheory CategoryTheory.Limits Opposite TopologicalSpace\n\nuniverse v u\n\nnamespace AlgebraicGeometry\n\nvariable {X Y : Scheme.{u}} (f : X ⟶ Y)\n\nopen CategoryTheory.MorphismProperty Function\n\n/--\nA morphism of schemes `f : X ⟶ Y` is universally injective if the base change `X ×[Y] Y' ⟶ Y'`\nalong any morphism `Y' ⟶ Y` is injective (on points).\n-/\n@[mk_iff]\nclass UniversallyInjective (f : X ⟶ Y) : Prop where\n  universally_injective : universally (topologically (Injective ·)) f\n\ntheorem Scheme.Hom.injective (f : X.Hom Y) [UniversallyInjective f] :\n    Function.Injective f.base :=\n  UniversallyInjective.universally_injective _ _ _ .of_id_snd\n\n",
+        "original_theorem_content": "theorem universallyInjective_eq :\n    @UniversallyInjective = universally (topologically (Injective ·)) := by"
+    }
+]

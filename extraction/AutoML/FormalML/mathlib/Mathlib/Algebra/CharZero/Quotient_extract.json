@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/CharZero/Quotient.lean",
+        "line": 28,
+        "tactic_state_before": "R : Type u_1\ninst✝¹ : DivisionRing R\ninst✝ : CharZero R\np r : R\nz : ℤ\nhz : z ≠ 0\n⊢ (∃ k, k • p = z • r) ↔ ∃ k k_1, k_1 • p + ↑k • p * (↑z)⁻¹ = r",
+        "proof": "have hz' : (z : R) ≠ 0 := Int.cast_ne_zero.mpr hz\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n inst✝¹ : DivisionRing R\n inst✝ : CharZero R\n p r : R\n z : ℤ\n hz : z ≠ 0\n hz' : ↑z ≠ 0\n ⊢ (∃ k, k • p = z • r) ↔ ∃ k k_1, k_1 • p + ↑k • p * (↑z)⁻¹ = r]",
+        "goal": "R : Type u_1\ninst✝¹ : DivisionRing R\ninst✝ : CharZero R\np r : R\nz : ℤ\nhz : z ≠ 0\n⊢ ↑z ≠ 0",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Field.Basic\n\nimport Mathlib.Algebra.Order.Group.Unbundled.Int\n\nimport Mathlib.Algebra.Module.NatInt\n\nimport Mathlib.GroupTheory.QuotientGroup.Defs\n\nimport Mathlib.Algebra.Group.Subgroup.ZPowers.Basic\n\nopen AddSubgroup\n\nopen QuotientAddGroup\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : DivisionRing R] [inst_1 : CharZero R] {p : R} {z : ℤ}\n  (hz : z ≠ 0) : ↑z ≠ 0 := sorry",
+        "original_theorem_name": "AddSubgroup.zsmul_mem_zmultiples_iff_exists_sub_div",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Field.Basic\n\nimport Mathlib.Algebra.Order.Group.Unbundled.Int\n\nimport Mathlib.Algebra.Module.NatInt\n\nimport Mathlib.GroupTheory.QuotientGroup.Defs\n\nimport Mathlib.Algebra.Group.Subgroup.ZPowers.Basic\n\n/-!\n# Lemmas about quotients in characteristic zero\n-/\n\n\nvariable {R : Type*} [DivisionRing R] [CharZero R] {p : R}\n\nnamespace AddSubgroup\n\n",
+        "original_theorem_content": "/-- `z • r` is a multiple of `p` iff `r` is `pk/z` above a multiple of `p`, where `0 ≤ k < |z|`. -/\ntheorem zsmul_mem_zmultiples_iff_exists_sub_div {r : R} {z : ℤ} (hz : z ≠ 0) :\n    z • r ∈ AddSubgroup.zmultiples p ↔\n      ∃ k : Fin z.natAbs, r - (k : ℕ) • (p / z : R) ∈ AddSubgroup.zmultiples p := by"
+    }
+]

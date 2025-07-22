@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Tactic/NormNum/IsCoprime.lean",
+        "line": 23,
+        "tactic_state_before": "x y : ℤ\nd : ℕ\nhd : x.gcd y = d\nh : d.beq 1 = false\n⊢ ¬IsCoprime x y",
+        "proof": "rw [Int.isCoprime_iff_gcd_eq_one, hd]\n  try repeat assumption",
+        "tactic_state_after": "[x y : ℤ\n d : ℕ\n hd : x.gcd y = d\n h : d.beq 1 = false\n ⊢ ¬d = 1]",
+        "goal": "x y : ℤ\nd : ℕ\nhd : x.gcd y = d\nh✝ : d.beq 1 = false\nh : ¬d = 1\n⊢ ¬IsCoprime x y",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Coprime.Lemmas\n\nimport Mathlib.Tactic.NormNum.GCD\n\nopen Qq Lean Elab.Tactic Mathlib.Meta.NormNum\n\nopen Tactic\n\nopen NormNum\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (x y : ℤ) (d : ℕ) (hd : x.gcd y = d) (h_1 : d.beq 1 = false) (h : ¬d = 1) :\n  ¬IsCoprime x y := sorry",
+        "original_theorem_name": "Tactic.NormNum.int_not_isCoprime_helper",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Coprime.Lemmas\n\nimport Mathlib.Tactic.NormNum.GCD\n\n/-! # `norm_num` extension for `IsCoprime`\n\nThis module defines a `norm_num` extension for `IsCoprime` over `ℤ`.\n\n(While `IsCoprime` is defined over `ℕ`, since it uses Bezout's identity with `ℕ` coefficients\nit does not correspond to the usual notion of coprime.)\n-/\n\nnamespace Tactic\n\nnamespace NormNum\n\nopen Qq Lean Elab.Tactic Mathlib.Meta.NormNum\n\n",
+        "original_theorem_content": "theorem int_not_isCoprime_helper (x y : ℤ) (d : ℕ) (hd : Int.gcd x y = d)\n    (h : Nat.beq d 1 = false) : ¬ IsCoprime x y := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Tactic/NormNum/IsCoprime.lean",
+        "line": 24,
+        "tactic_state_before": "x y : ℤ\nd : ℕ\nhd : x.gcd y = d\nh : d.beq 1 = false\n⊢ ¬d = 1",
+        "proof": "exact Nat.ne_of_beq_eq_false h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x y : ℤ\nd : ℕ\nhd : x.gcd y = d\nh : d.beq 1 = false\n⊢ ¬d = 1",
+        "header": "import Mathlib\nimport Mathlib.RingTheory.Coprime.Lemmas\n\nimport Mathlib.Tactic.NormNum.GCD\n\nopen Qq Lean Elab.Tactic Mathlib.Meta.NormNum\n\nopen Tactic\n\nopen NormNum\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (x y : ℤ) (d : ℕ) (hd : x.gcd y = d) (h : d.beq 1 = false) : ¬d = 1 := sorry",
+        "original_theorem_name": "Tactic.NormNum.int_not_isCoprime_helper",
+        "original_theorem_importsAndContext": "import Mathlib.RingTheory.Coprime.Lemmas\n\nimport Mathlib.Tactic.NormNum.GCD\n\n/-! # `norm_num` extension for `IsCoprime`\n\nThis module defines a `norm_num` extension for `IsCoprime` over `ℤ`.\n\n(While `IsCoprime` is defined over `ℕ`, since it uses Bezout's identity with `ℕ` coefficients\nit does not correspond to the usual notion of coprime.)\n-/\n\nnamespace Tactic\n\nnamespace NormNum\n\nopen Qq Lean Elab.Tactic Mathlib.Meta.NormNum\n\n",
+        "original_theorem_content": "theorem int_not_isCoprime_helper (x y : ℤ) (d : ℕ) (hd : Int.gcd x y = d)\n    (h : Nat.beq d 1 = false) : ¬ IsCoprime x y := by"
+    }
+]

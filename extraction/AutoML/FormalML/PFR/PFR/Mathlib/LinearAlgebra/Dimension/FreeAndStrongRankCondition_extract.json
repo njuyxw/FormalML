@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "PFR/PFR/Mathlib/LinearAlgebra/Dimension/FreeAndStrongRankCondition.lean",
+        "line": 21,
+        "tactic_state_before": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\n⊢ Countable V",
+        "proof": "have : #V ≤ ℵ₀ := cardinal_le_aleph0_of_finiteDimensional K V\n  try repeat assumption",
+        "tactic_state_after": "[K : Type u\n V : Type v\n inst✝⁵ : Ring K\n inst✝⁴ : StrongRankCondition K\n inst✝³ : AddCommGroup V\n inst✝² : Module K V\n inst✝¹ : Free K V\n inst✝ : Module.Finite K V\n h : Countable K\n this : #V ≤ ℵ₀\n ⊢ Countable V]",
+        "goal": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\n⊢ #V ≤ ℵ₀",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (K : Type u) (V : Type v) [inst : Ring K] [inst_1 : StrongRankCondition K]\n  [inst_2 : AddCommGroup V] [inst_3 : Module K V] [inst_4 : Free K V] [inst_5 : Module.Finite K V] [h : Countable K] :\n  #V ≤ ℵ₀ := sorry",
+        "original_theorem_name": "countable_of_finiteDimensional",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n\nuniverse u v\n\nvariable {K : Type u} {V : Type v} [Ring K] [StrongRankCondition K]\n  [AddCommGroup V] [Module K V] [Module.Free K V] [Module.Finite K V]\n\nvariable (K V) in\ntheorem cardinal_le_aleph0_of_finiteDimensional [h : Countable K] :\n    #V ≤ ℵ₀ := by\n  rw [← lift_le_aleph0.{v, u}, lift_cardinalMk_eq_lift_cardinalMk_field_pow_lift_rank K V]\n  apply power_le_aleph0 (lift_le_aleph0.mpr (mk_le_aleph0_iff.mpr h))\n    (lift_lt_aleph0.mpr (rank_lt_aleph0 K V))\n\n",
+        "original_theorem_content": "variable (K V) in\ntheorem countable_of_finiteDimensional [h : Countable K] : Countable V := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/LinearAlgebra/Dimension/FreeAndStrongRankCondition.lean",
+        "line": 22,
+        "tactic_state_before": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\nthis : #V ≤ ℵ₀\n⊢ Countable V",
+        "proof": "exact mk_le_aleph0_iff.mp this\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\nthis : #V ≤ ℵ₀\n⊢ Countable V",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (K : Type u) (V : Type v) [inst : Ring K] [inst_1 : StrongRankCondition K]\n  [inst_2 : AddCommGroup V] [inst_3 : Module K V] [inst_4 : Free K V] [inst_5 : Module.Finite K V] [h : Countable K]\n  (this : #V ≤ ℵ₀) : Countable V := sorry",
+        "original_theorem_name": "countable_of_finiteDimensional",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n\nuniverse u v\n\nvariable {K : Type u} {V : Type v} [Ring K] [StrongRankCondition K]\n  [AddCommGroup V] [Module K V] [Module.Free K V] [Module.Finite K V]\n\nvariable (K V) in\ntheorem cardinal_le_aleph0_of_finiteDimensional [h : Countable K] :\n    #V ≤ ℵ₀ := by\n  rw [← lift_le_aleph0.{v, u}, lift_cardinalMk_eq_lift_cardinalMk_field_pow_lift_rank K V]\n  apply power_le_aleph0 (lift_le_aleph0.mpr (mk_le_aleph0_iff.mpr h))\n    (lift_lt_aleph0.mpr (rank_lt_aleph0 K V))\n\n",
+        "original_theorem_content": "variable (K V) in\ntheorem countable_of_finiteDimensional [h : Countable K] : Countable V := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/LinearAlgebra/Dimension/FreeAndStrongRankCondition.lean",
+        "line": 15,
+        "tactic_state_before": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\n⊢ #V ≤ ℵ₀",
+        "proof": "rw [← lift_le_aleph0.{v, u}, lift_cardinalMk_eq_lift_cardinalMk_field_pow_lift_rank K V]\n  try repeat assumption",
+        "tactic_state_after": "[K : Type u\n V : Type v\n inst✝⁵ : Ring K\n inst✝⁴ : StrongRankCondition K\n inst✝³ : AddCommGroup V\n inst✝² : Module K V\n inst✝¹ : Free K V\n inst✝ : Module.Finite K V\n h : Countable K\n ⊢ lift.{v, u} #K ^ lift.{u, v} (Module.rank K V) ≤ ℵ₀]",
+        "goal": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh✝ : Countable K\nh : lift.{v, u} #K ^ lift.{u, v} (Module.rank K V) ≤ ℵ₀\n⊢ #V ≤ ℵ₀",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (K : Type u) (V : Type v) [inst : Ring K] [inst_1 : StrongRankCondition K]\n  [inst_2 : AddCommGroup V] [inst_3 : Module K V] [inst_4 : Free K V] [inst_5 : Module.Finite K V] [h_1 : Countable K]\n  (h : lift.{v, u} #K ^ lift.{u, v} (Module.rank K V) ≤ ℵ₀) : #V ≤ ℵ₀ := sorry",
+        "original_theorem_name": "cardinal_le_aleph0_of_finiteDimensional",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n\nuniverse u v\n\nvariable {K : Type u} {V : Type v} [Ring K] [StrongRankCondition K]\n  [AddCommGroup V] [Module K V] [Module.Free K V] [Module.Finite K V]\n\n",
+        "original_theorem_content": "variable (K V) in\ntheorem cardinal_le_aleph0_of_finiteDimensional [h : Countable K] :\n    #V ≤ ℵ₀ := by"
+    },
+    {
+        "filename": "PFR/PFR/Mathlib/LinearAlgebra/Dimension/FreeAndStrongRankCondition.lean",
+        "line": 16,
+        "tactic_state_before": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\n⊢ lift.{v, u} #K ^ lift.{u, v} (Module.rank K V) ≤ ℵ₀",
+        "proof": "apply\n  power_le_aleph0 (lift_le_aleph0.mpr (mk_le_aleph0_iff.mpr h)) (lift_lt_aleph0.mpr (rank_lt_aleph0 K V))\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "K : Type u\nV : Type v\ninst✝⁵ : Ring K\ninst✝⁴ : StrongRankCondition K\ninst✝³ : AddCommGroup V\ninst✝² : Module K V\ninst✝¹ : Free K V\ninst✝ : Module.Finite K V\nh : Countable K\n⊢ lift.{v, u} #K ^ lift.{u, v} (Module.rank K V) ≤ ℵ₀",
+        "header": "import PFR\nimport Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (K : Type u) (V : Type v) [inst : Ring K] [inst_1 : StrongRankCondition K]\n  [inst_2 : AddCommGroup V] [inst_3 : Module K V] [inst_4 : Free K V] [inst_5 : Module.Finite K V] [h : Countable K] :\n  lift.{v, u} #K ^ lift.{u, v} (Module.rank K V) ≤ ℵ₀ := sorry",
+        "original_theorem_name": "cardinal_le_aleph0_of_finiteDimensional",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.Dimension.FreeAndStrongRankCondition\n\nopen Cardinal Module Module Set Submodule\n\nuniverse u v\n\nvariable {K : Type u} {V : Type v} [Ring K] [StrongRankCondition K]\n  [AddCommGroup V] [Module K V] [Module.Free K V] [Module.Finite K V]\n\n",
+        "original_theorem_content": "variable (K V) in\ntheorem cardinal_le_aleph0_of_finiteDimensional [h : Countable K] :\n    #V ≤ ℵ₀ := by"
+    }
+]

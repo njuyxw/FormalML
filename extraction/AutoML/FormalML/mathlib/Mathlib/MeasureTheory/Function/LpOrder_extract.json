@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Function/LpOrder.lean",
+        "line": 48,
+        "tactic_state_before": "α : Type u_1\nE : Type u_2\nm : MeasurableSpace α\nμ : Measure α\np : ℝ≥0∞\ninst✝ : NormedLatticeAddCommGroup E\nf g₁ g₂ : ↥(Lp E p μ)\nhg₁₂ : g₁ ≤ g₂\n⊢ f + g₁ ≤ f + g₂",
+        "proof": "rw [← coeFn_le] at hg₁₂ ⊢\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n E : Type u_2\n m : MeasurableSpace α\n μ : Measure α\n p : ℝ≥0∞\n inst✝ : NormedLatticeAddCommGroup E\n f g₁ g₂ : ↥(Lp E p μ)\n hg₁₂ : ↑↑g₁ ≤ᶠ[ae μ] ↑↑g₂\n ⊢ ↑↑(f + g₁) ≤ᶠ[ae μ] ↑↑(f + g₂)]",
+        "goal": "α : Type u_1\nE : Type u_2\nm : MeasurableSpace α\nμ : Measure α\np : ℝ≥0∞\ninst✝ : NormedLatticeAddCommGroup E\nf g₁ g₂ : ↥(Lp E p μ)\nhg₁₂ : g₁ ≤ g₂\nh : ↑↑(f + g₁) ≤ᶠ[ae μ] ↑↑(f + g₂)\n⊢ f + g₁ ≤ f + g₂",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Order.Lattice\n\nimport Mathlib.MeasureTheory.Function.LpSpace.Basic\n\nopen TopologicalSpace MeasureTheory\n\nopen scoped ENNReal\n\nopen MeasureTheory\n\nopen Lp\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} {E : Type u_2} {m : MeasurableSpace α} {μ : Measure α}\n  {p : ℝ≥0∞} [inst : NormedLatticeAddCommGroup E] (f g₁ g₂ : ↥(Lp E p μ)) (hg₁₂ : g₁ ≤ g₂)\n  (h : ↑↑(f + g₁) ≤ᶠ[ae μ] ↑↑(f + g₂)) : f + g₁ ≤ f + g₂ := sorry",
+        "original_theorem_name": "MeasureTheory.Lp.instAddLeftMono",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Order.Lattice\n\nimport Mathlib.MeasureTheory.Function.LpSpace.Basic\n\n/-!\n# Order related properties of Lp spaces\n\n## Results\n\n- `Lp E p μ` is an `OrderedAddCommGroup` when `E` is a `NormedLatticeAddCommGroup`.\n\n## TODO\n\n- move definitions of `Lp.posPart` and `Lp.negPart` to this file, and define them as\n  `PosPart.pos` and `NegPart.neg` given by the lattice structure.\n\n-/\n\n\n\nopen TopologicalSpace MeasureTheory\nopen scoped ENNReal\n\nvariable {α E : Type*} {m : MeasurableSpace α} {μ : Measure α} {p : ℝ≥0∞}\n\nnamespace MeasureTheory\n\nnamespace Lp\n\nsection Order\n\nvariable [NormedLatticeAddCommGroup E]\n\ntheorem coeFn_le (f g : Lp E p μ) : f ≤ᵐ[μ] g ↔ f ≤ g := by\n  rw [← Subtype.coe_le_coe, ← AEEqFun.coeFn_le]\n\ntheorem coeFn_nonneg (f : Lp E p μ) : 0 ≤ᵐ[μ] f ↔ 0 ≤ f := by\n  rw [← coeFn_le]\n  have h0 := Lp.coeFn_zero E p μ\n  constructor <;> intro h <;> filter_upwards [h, h0] with _ _ h2\n  · rwa [h2]\n  · rwa [← h2]\n\n",
+        "original_theorem_content": "instance instAddLeftMono : AddLeftMono (Lp E p μ) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/MeasureTheory/Function/LpOrder.lean",
+        "line": 37,
+        "tactic_state_before": "α : Type u_1\nE : Type u_2\nm : MeasurableSpace α\nμ : Measure α\np : ℝ≥0∞\ninst✝ : NormedLatticeAddCommGroup E\nf g : ↥(Lp E p μ)\n⊢ ↑↑f ≤ᶠ[ae μ] ↑↑g ↔ f ≤ g",
+        "proof": "rw [← Subtype.coe_le_coe, ← AEEqFun.coeFn_le]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\nE : Type u_2\nm : MeasurableSpace α\nμ : Measure α\np : ℝ≥0∞\ninst✝ : NormedLatticeAddCommGroup E\nf g : ↥(Lp E p μ)\n⊢ ↑↑f ≤ᶠ[ae μ] ↑↑g ↔ f ≤ g",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Order.Lattice\n\nimport Mathlib.MeasureTheory.Function.LpSpace.Basic\n\nopen TopologicalSpace MeasureTheory\n\nopen scoped ENNReal\n\nopen MeasureTheory\n\nopen Lp\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} {E : Type u_2} {m : MeasurableSpace α} {μ : Measure α}\n  {p : ℝ≥0∞} [inst : NormedLatticeAddCommGroup E] (f g : ↥(Lp E p μ)) : ↑↑f ≤ᶠ[ae μ] ↑↑g ↔ f ≤ g := sorry",
+        "original_theorem_name": "MeasureTheory.Lp.coeFn_le",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Order.Lattice\n\nimport Mathlib.MeasureTheory.Function.LpSpace.Basic\n\n/-!\n# Order related properties of Lp spaces\n\n## Results\n\n- `Lp E p μ` is an `OrderedAddCommGroup` when `E` is a `NormedLatticeAddCommGroup`.\n\n## TODO\n\n- move definitions of `Lp.posPart` and `Lp.negPart` to this file, and define them as\n  `PosPart.pos` and `NegPart.neg` given by the lattice structure.\n\n-/\n\n\n\nopen TopologicalSpace MeasureTheory\nopen scoped ENNReal\n\nvariable {α E : Type*} {m : MeasurableSpace α} {μ : Measure α} {p : ℝ≥0∞}\n\nnamespace MeasureTheory\n\nnamespace Lp\n\nsection Order\n\nvariable [NormedLatticeAddCommGroup E]\n\n",
+        "original_theorem_content": "theorem coeFn_le (f g : Lp E p μ) : f ≤ᵐ[μ] g ↔ f ≤ g := by"
+    }
+]

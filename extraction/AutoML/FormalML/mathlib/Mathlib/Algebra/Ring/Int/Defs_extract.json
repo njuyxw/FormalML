@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Ring/Int/Defs.lean",
+        "line": 69,
+        "tactic_state_before": "case succ\nR : Type u_1\ninst✝ : Ring R\nn : ℤ\nn✝ : ℕ\na✝ : ↑(n ^ n✝) = ↑n ^ n✝\n⊢ ↑(n ^ (n✝ + 1)) = ↑n ^ (n✝ + 1)",
+        "proof": "simp [_root_.pow_succ, *]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝ : Ring R\nn : ℤ\nn✝ : ℕ\na✝ : ↑(n ^ n✝) = ↑n ^ n✝\n⊢ ↑(n ^ (n✝ + 1)) = ↑n ^ (n✝ + 1)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.CharZero.Defs\n\nimport Mathlib.Algebra.Ring.Defs\n\nimport Mathlib.Algebra.Group.Int.Defs\n\nimport Mathlib.Data.Int.Cast.Basic\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : Ring R] (n : ℤ) (n_1 : ℕ) (a : ↑(n ^ n_1) = ↑n ^ n_1) :\n  ↑(n ^ (n_1 + 1)) = ↑n ^ (n_1 + 1) := sorry",
+        "original_theorem_name": "Int.cast_pow",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.CharZero.Defs\n\nimport Mathlib.Algebra.Ring.Defs\n\nimport Mathlib.Algebra.Group.Int.Defs\n\nimport Mathlib.Data.Int.Cast.Basic\n\n/-!\n# The integers are a ring\n\nThis file contains the commutative ring instance on `ℤ`.\n\nSee note [foundational algebra order theory].\n-/\n\nassert_not_exists DenselyOrdered Set.Subsingleton\n\nnamespace Int\n\ninstance instCommRing : CommRing ℤ where\n  __ := instAddCommGroup\n  __ := instCommSemigroup\n  zero_mul := Int.zero_mul\n  mul_zero := Int.mul_zero\n  left_distrib := Int.mul_add\n  right_distrib := Int.add_mul\n  mul_one := Int.mul_one\n  one_mul := Int.one_mul\n  npow n x := x ^ n\n  npow_zero _ := rfl\n  npow_succ _ _ := rfl\n  natCast := (·)\n  natCast_zero := rfl\n  natCast_succ _ := rfl\n  intCast := (·)\n  intCast_ofNat _ := rfl\n  intCast_negSucc _ := rfl\n\ninstance instCancelCommMonoidWithZero : CancelCommMonoidWithZero ℤ where\n  mul_left_cancel_of_ne_zero {_a _b _c} ha := (mul_eq_mul_left_iff ha).1\n\ninstance instCharZero : CharZero ℤ where cast_injective _ _ := ofNat.inj\n\ninstance instMulDivCancelClass : MulDivCancelClass ℤ where mul_div_cancel _ _ := mul_ediv_cancel _\n\n@[simp, norm_cast]\nlemma cast_mul {α : Type*} [NonAssocRing α] : ∀ m n, ((m * n : ℤ) : α) = m * n := fun m => by\n  obtain ⟨m, rfl | rfl⟩ := Int.eq_nat_or_neg m\n  · induction m with\n    | zero => simp\n    | succ m ih => simp_all [add_mul]\n  · induction m with\n    | zero => simp\n    | succ m ih => simp_all [add_mul]\n\n/-- Note this holds in marginally more generality than `Int.cast_mul` -/\nlemma cast_mul_eq_zsmul_cast {α : Type*} [AddGroupWithOne α] :\n    ∀ m n : ℤ, ↑(m * n) = m • (n : α) :=\n  fun m ↦ Int.induction_on m (by simp) (fun _ ih ↦ by simp [add_mul, add_zsmul, ih]) fun _ ih ↦ by\n    simp only [sub_mul, one_mul, cast_sub, ih, sub_zsmul, one_zsmul, ← sub_eq_add_neg, forall_const]\n\n",
+        "original_theorem_content": "@[simp, norm_cast] lemma cast_pow {R : Type*} [Ring R] (n : ℤ) (m : ℕ) :\n    ↑(n ^ m) = (n ^ m : R) := by"
+    }
+]

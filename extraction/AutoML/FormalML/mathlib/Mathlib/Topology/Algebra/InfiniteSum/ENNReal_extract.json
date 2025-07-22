@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/Algebra/InfiniteSum/ENNReal.lean",
+        "line": 35,
+        "tactic_state_before": "α : Type u_1\ns : Set α\nc : ℝ≥0∞\n⊢ ∑' (x : ↑s), c = ↑s.encard * c",
+        "proof": "simp [← tsum_set_one, ← ENNReal.tsum_mul_right]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ns : Set α\nc : ℝ≥0∞\n⊢ ∑' (x : ↑s), c = ↑s.encard * c",
+        "header": "import Mathlib\nimport Mathlib.Data.Real.ENatENNReal\n\nimport Mathlib.Data.Set.Card\n\nimport Mathlib.Topology.Instances.ENNReal.Lemmas\n\nopen Set Function\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} (s : Set α) (c : ℝ≥0∞) : ∑' (x : ↑s), c = ↑s.encard * c := sorry",
+        "original_theorem_name": "ENNReal.tsum_set_const",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.ENatENNReal\n\nimport Mathlib.Data.Set.Card\n\nimport Mathlib.Topology.Instances.ENNReal.Lemmas\n\n/-!\n# Infinite sums of ENNReal and Set.encard\n\nThis file provides lemmas relating sums of constants to the cardinality of the domain of these sums.\n\n## TODO\n\n+ Once we have a topology on `ENat`, provide an `ENat` valued version\n+ Once we replace `PartENat` entirely with `ENat` (and replace `PartENat.card` with a `ENat.card`),\n  provide versions which sum over the whole type.\n-/\n\nopen Set Function\n\nvariable {α : Type*} (s : Set α)\n\nnamespace ENNReal\n\nlemma tsum_set_one : ∑' _ : s, (1 : ℝ≥0∞) = s.encard := by\n  obtain (hfin | hinf) := Set.finite_or_infinite s\n  · lift s to Finset α using hfin\n    simp [tsum_fintype]\n  · have : Infinite s := infinite_coe_iff.mpr hinf\n    rw [tsum_const_eq_top_of_ne_zero one_ne_zero, encard_eq_top hinf, ENat.toENNReal_top]\n\n",
+        "original_theorem_content": "lemma tsum_set_const (c : ℝ≥0∞) : ∑' _ : s, c = s.encard * c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Algebra/InfiniteSum/ENNReal.lean",
+        "line": 28,
+        "tactic_state_before": "α : Type u_1\ns : Set α\n⊢ ∑' (x : ↑s), 1 = ↑s.encard",
+        "proof": "obtain (hfin | hinf) := Set.finite_or_infinite s\n  try repeat assumption",
+        "tactic_state_after": "[case inl\n α : Type u_1\n s : Set α\n hfin : s.Finite\n ⊢ ∑' (x : ↑s), 1 = ↑s.encard,\n case inr\n α : Type u_1\n s : Set α\n hinf : s.Infinite\n ⊢ ∑' (x : ↑s), 1 = ↑s.encard]",
+        "goal": "α : Type u_1\ns : Set α\nh✝ h : ∑' (x : ↑s), 1 = ↑s.encard\n⊢ ∑' (x : ↑s), 1 = ↑s.encard",
+        "header": "import Mathlib\nimport Mathlib.Data.Real.ENatENNReal\n\nimport Mathlib.Data.Set.Card\n\nimport Mathlib.Topology.Instances.ENNReal.Lemmas\n\nopen Set Function\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} (s : Set α) (h_1 h : ∑' (x : ↑s), 1 = ↑s.encard) :\n  ∑' (x : ↑s), 1 = ↑s.encard := sorry",
+        "original_theorem_name": "ENNReal.tsum_set_one",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.ENatENNReal\n\nimport Mathlib.Data.Set.Card\n\nimport Mathlib.Topology.Instances.ENNReal.Lemmas\n\n/-!\n# Infinite sums of ENNReal and Set.encard\n\nThis file provides lemmas relating sums of constants to the cardinality of the domain of these sums.\n\n## TODO\n\n+ Once we have a topology on `ENat`, provide an `ENat` valued version\n+ Once we replace `PartENat` entirely with `ENat` (and replace `PartENat.card` with a `ENat.card`),\n  provide versions which sum over the whole type.\n-/\n\nopen Set Function\n\nvariable {α : Type*} (s : Set α)\n\nnamespace ENNReal\n\n",
+        "original_theorem_content": "lemma tsum_set_one : ∑' _ : s, (1 : ℝ≥0∞) = s.encard := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/Algebra/InfiniteSum/ENNReal.lean",
+        "line": 31,
+        "tactic_state_before": "case inr\nα : Type u_1\ns : Set α\nhinf : s.Infinite\n⊢ ∑' (x : ↑s), 1 = ↑s.encard",
+        "proof": "have : Infinite s := infinite_coe_iff.mpr hinf\n  try repeat assumption",
+        "tactic_state_after": "[case inr\n α : Type u_1\n s : Set α\n hinf : s.Infinite\n this : Infinite ↑s\n ⊢ ∑' (x : ↑s), 1 = ↑s.encard]",
+        "goal": "α : Type u_1\ns : Set α\nhinf : s.Infinite\n⊢ Infinite ↑s",
+        "header": "import Mathlib\nimport Mathlib.Data.Real.ENatENNReal\n\nimport Mathlib.Data.Set.Card\n\nimport Mathlib.Topology.Instances.ENNReal.Lemmas\n\nopen Set Function\n\nopen ENNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} (s : Set α) (hinf : s.Infinite) : Infinite ↑s := sorry",
+        "original_theorem_name": "ENNReal.tsum_set_one",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Real.ENatENNReal\n\nimport Mathlib.Data.Set.Card\n\nimport Mathlib.Topology.Instances.ENNReal.Lemmas\n\n/-!\n# Infinite sums of ENNReal and Set.encard\n\nThis file provides lemmas relating sums of constants to the cardinality of the domain of these sums.\n\n## TODO\n\n+ Once we have a topology on `ENat`, provide an `ENat` valued version\n+ Once we replace `PartENat` entirely with `ENat` (and replace `PartENat.card` with a `ENat.card`),\n  provide versions which sum over the whole type.\n-/\n\nopen Set Function\n\nvariable {α : Type*} (s : Set α)\n\nnamespace ENNReal\n\n",
+        "original_theorem_content": "lemma tsum_set_one : ∑' _ : s, (1 : ℝ≥0∞) = s.encard := by"
+    }
+]

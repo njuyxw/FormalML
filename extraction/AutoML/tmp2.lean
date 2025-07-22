@@ -1,15 +1,9 @@
-import PFR
-import PFR.ForMathlib.CompactProb
+import Mathlib
+import Aesop
 
-import PFR.ForMathlib.Entropy.RuzsaDist
+set_option maxHeartbeats 0
 
-open MeasureTheory ProbabilityTheory
+open BigOperators Real Nat Topology Rat
 
-theorem extracted_formal_statement_6 {Ω₀₁ : Type u_1} {Ω₀₂ : Type u_2} [inst : MeasureSpace Ω₀₁]
-  [inst_1 : MeasureSpace Ω₀₂] [inst_2 : IsProbabilityMeasure ℙ] [inst_3 : IsProbabilityMeasure ℙ] {G : Type uG}
-  [inst_4 : AddCommGroup G] [inst_5 : MeasurableSpace G] (p : refPackage Ω₀₁ Ω₀₂ G) [inst_6 : TopologicalSpace G]
-  [inst_7 : DiscreteTopology G] [inst_8 : BorelSpace G] (obs₁ : Continuous fun μ => d[p.X₀₂ ; ℙ # id ; ↑μ.2])
-  (obs₂ : Continuous fun μ => d[id ; ↑μ.1 # id ; ↑μ.2]) (obs₃ : Continuous fun μ => d[p.X₀₁ ; ℙ # id ; ↑μ.1]) :
-  Continuous fun μ => τ[id ; ↑μ.1 # id ; ↑μ.2 | p] := by
-  continuity
-  try repeat assumption
+theorem test : 1 = 1 := by
+  simp

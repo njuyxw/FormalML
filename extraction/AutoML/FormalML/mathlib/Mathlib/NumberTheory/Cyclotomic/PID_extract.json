@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/Cyclotomic/PID.lean",
+        "line": 43,
+        "tactic_state_before": "K : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {5} ℚ K\n⊢ IsPrincipalIdealRing (𝓞 K)",
+        "proof": "apply RingOfIntegers.isPrincipalIdealRing_of_abs_discr_lt\n  try repeat assumption",
+        "tactic_state_after": "[case h\n K : Type u\n inst✝² : Field K\n inst✝¹ : NumberField K\n inst✝ : IsCyclotomicExtension {5} ℚ K\n ⊢ ↑|discr K| <\n     (2 * (π / 4) ^ nrComplexPlaces K * (↑(Module.finrank ℚ K) ^ Module.finrank ℚ K / ↑(Module.finrank ℚ K)!)) ^ 2]",
+        "goal": "K : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {5} ℚ K\nh :\n  ↑|discr K| <\n    (2 * (π / 4) ^ nrComplexPlaces K * (↑(Module.finrank ℚ K) ^ Module.finrank ℚ K / ↑(Module.finrank ℚ K)!)) ^ 2\n⊢ IsPrincipalIdealRing (𝓞 K)",
+        "header": "import Mathlib\nimport Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nopen IsCyclotomicExtension.Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (K : Type u) [inst : Field K] [inst_1 : NumberField K]\n  [inst_2 : IsCyclotomicExtension {5} ℚ K]\n  (h :\n    ↑|discr K| <\n      (2 * (π / 4) ^ nrComplexPlaces K * (↑(Module.finrank ℚ K) ^ Module.finrank ℚ K / ↑(Module.finrank ℚ K)!)) ^ 2) :\n  IsPrincipalIdealRing (𝓞 K) := sorry",
+        "original_theorem_name": "IsCyclotomicExtension.Rat.five_pid",
+        "original_theorem_importsAndContext": "import Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\n/-!\n# Cyclotomic fields whose ring of integers is a PID.\nWe prove that `ℤ [ζₚ]` is a PID for specific values of `p`. The result holds for `p ≤ 19`,\nbut the proof is more and more involved.\n\n## Main results\n* `three_pid`: If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain.\n* `five_pid`: If `IsCyclotomicExtension {5} ℚ K` then `𝓞 K` is a principal ideal domain.\n-/\n\nuniverse u\n\nnamespace IsCyclotomicExtension.Rat\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nvariable (K : Type u) [Field K] [NumberField K]\n\n/-- If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain. -/\ntheorem three_pid [IsCyclotomicExtension {3} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by\n  apply RingOfIntegers.isPrincipalIdealRing_of_abs_discr_lt\n  rw [absdiscr_prime 3 K, IsCyclotomicExtension.finrank (n := 3) K\n    (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 3, totient_prime\n      PNat.prime_three]\n  simp only [Int.reduceNeg, PNat.val_ofNat, succ_sub_succ_eq_sub, tsub_zero, zero_lt_two,\n    Nat.div_self, pow_one, cast_ofNat, neg_mul, one_mul, abs_neg, Int.cast_abs, Int.cast_ofNat,\n    factorial_two, gt_iff_lt, abs_of_pos (show (0 : ℝ) < 3 by norm_num)]\n  suffices (2 * (3 / 4) * (2 ^ 2 / 2)) ^ 2 < (2 * (π / 4) * (2 ^ 2 / 2)) ^ 2 from\n    lt_trans (by norm_num) this\n  gcongr\n  exact pi_gt_three\n\n",
+        "original_theorem_content": "/-- If `IsCyclotomicExtension {5} ℚ K` then `𝓞 K` is a principal ideal domain. -/\ntheorem five_pid [IsCyclotomicExtension {5} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/Cyclotomic/PID.lean",
+        "line": 52,
+        "tactic_state_before": "case h.hab.bc.bc.h.hab\nK : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {5} ℚ K\n⊢ 3 < π",
+        "proof": "exact pi_gt_three\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "K : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {5} ℚ K\n⊢ 3 < π",
+        "header": "import Mathlib\nimport Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nopen IsCyclotomicExtension.Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 : 3 < π := sorry",
+        "original_theorem_name": "IsCyclotomicExtension.Rat.five_pid",
+        "original_theorem_importsAndContext": "import Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\n/-!\n# Cyclotomic fields whose ring of integers is a PID.\nWe prove that `ℤ [ζₚ]` is a PID for specific values of `p`. The result holds for `p ≤ 19`,\nbut the proof is more and more involved.\n\n## Main results\n* `three_pid`: If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain.\n* `five_pid`: If `IsCyclotomicExtension {5} ℚ K` then `𝓞 K` is a principal ideal domain.\n-/\n\nuniverse u\n\nnamespace IsCyclotomicExtension.Rat\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nvariable (K : Type u) [Field K] [NumberField K]\n\n/-- If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain. -/\ntheorem three_pid [IsCyclotomicExtension {3} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by\n  apply RingOfIntegers.isPrincipalIdealRing_of_abs_discr_lt\n  rw [absdiscr_prime 3 K, IsCyclotomicExtension.finrank (n := 3) K\n    (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 3, totient_prime\n      PNat.prime_three]\n  simp only [Int.reduceNeg, PNat.val_ofNat, succ_sub_succ_eq_sub, tsub_zero, zero_lt_two,\n    Nat.div_self, pow_one, cast_ofNat, neg_mul, one_mul, abs_neg, Int.cast_abs, Int.cast_ofNat,\n    factorial_two, gt_iff_lt, abs_of_pos (show (0 : ℝ) < 3 by norm_num)]\n  suffices (2 * (3 / 4) * (2 ^ 2 / 2)) ^ 2 < (2 * (π / 4) * (2 ^ 2 / 2)) ^ 2 from\n    lt_trans (by norm_num) this\n  gcongr\n  exact pi_gt_three\n\n",
+        "original_theorem_content": "/-- If `IsCyclotomicExtension {5} ℚ K` then `𝓞 K` is a principal ideal domain. -/\ntheorem five_pid [IsCyclotomicExtension {5} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/Cyclotomic/PID.lean",
+        "line": 29,
+        "tactic_state_before": "K : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {3} ℚ K\n⊢ IsPrincipalIdealRing (𝓞 K)",
+        "proof": "apply RingOfIntegers.isPrincipalIdealRing_of_abs_discr_lt\n  try repeat assumption",
+        "tactic_state_after": "[case h\n K : Type u\n inst✝² : Field K\n inst✝¹ : NumberField K\n inst✝ : IsCyclotomicExtension {3} ℚ K\n ⊢ ↑|discr K| <\n     (2 * (π / 4) ^ nrComplexPlaces K * (↑(Module.finrank ℚ K) ^ Module.finrank ℚ K / ↑(Module.finrank ℚ K)!)) ^ 2]",
+        "goal": "K : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {3} ℚ K\nh :\n  ↑|discr K| <\n    (2 * (π / 4) ^ nrComplexPlaces K * (↑(Module.finrank ℚ K) ^ Module.finrank ℚ K / ↑(Module.finrank ℚ K)!)) ^ 2\n⊢ IsPrincipalIdealRing (𝓞 K)",
+        "header": "import Mathlib\nimport Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nopen IsCyclotomicExtension.Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (K : Type u) [inst : Field K] [inst_1 : NumberField K]\n  [inst_2 : IsCyclotomicExtension {3} ℚ K]\n  (h :\n    ↑|discr K| <\n      (2 * (π / 4) ^ nrComplexPlaces K * (↑(Module.finrank ℚ K) ^ Module.finrank ℚ K / ↑(Module.finrank ℚ K)!)) ^ 2) :\n  IsPrincipalIdealRing (𝓞 K) := sorry",
+        "original_theorem_name": "IsCyclotomicExtension.Rat.three_pid",
+        "original_theorem_importsAndContext": "import Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\n/-!\n# Cyclotomic fields whose ring of integers is a PID.\nWe prove that `ℤ [ζₚ]` is a PID for specific values of `p`. The result holds for `p ≤ 19`,\nbut the proof is more and more involved.\n\n## Main results\n* `three_pid`: If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain.\n* `five_pid`: If `IsCyclotomicExtension {5} ℚ K` then `𝓞 K` is a principal ideal domain.\n-/\n\nuniverse u\n\nnamespace IsCyclotomicExtension.Rat\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nvariable (K : Type u) [Field K] [NumberField K]\n\n",
+        "original_theorem_content": "/-- If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain. -/\ntheorem three_pid [IsCyclotomicExtension {3} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/NumberTheory/Cyclotomic/PID.lean",
+        "line": 37,
+        "tactic_state_before": "case h.hab.bc.bc.h\nK : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {3} ℚ K\n⊢ 3 < π",
+        "proof": "exact pi_gt_three\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "K : Type u\ninst✝² : Field K\ninst✝¹ : NumberField K\ninst✝ : IsCyclotomicExtension {3} ℚ K\n⊢ 3 < π",
+        "header": "import Mathlib\nimport Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nopen IsCyclotomicExtension.Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_3 : 3 < π := sorry",
+        "original_theorem_name": "IsCyclotomicExtension.Rat.three_pid",
+        "original_theorem_importsAndContext": "import Mathlib.NumberTheory.NumberField.ClassNumber\n\nimport Mathlib.NumberTheory.Cyclotomic.Rat\n\nimport Mathlib.NumberTheory.Cyclotomic.Embeddings\n\n/-!\n# Cyclotomic fields whose ring of integers is a PID.\nWe prove that `ℤ [ζₚ]` is a PID for specific values of `p`. The result holds for `p ≤ 19`,\nbut the proof is more and more involved.\n\n## Main results\n* `three_pid`: If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain.\n* `five_pid`: If `IsCyclotomicExtension {5} ℚ K` then `𝓞 K` is a principal ideal domain.\n-/\n\nuniverse u\n\nnamespace IsCyclotomicExtension.Rat\n\nopen NumberField Polynomial InfinitePlace Nat Real cyclotomic\n\nvariable (K : Type u) [Field K] [NumberField K]\n\n",
+        "original_theorem_content": "/-- If `IsCyclotomicExtension {3} ℚ K` then `𝓞 K` is a principal ideal domain. -/\ntheorem three_pid [IsCyclotomicExtension {3} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by"
+    }
+]

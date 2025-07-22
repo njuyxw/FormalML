@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/ObjectProperty/Shift.lean",
+        "line": 46,
+        "tactic_state_before": "case h.a\nC : Type u_1\ninst✝³ : Category.{u_3, u_1} C\nP : ObjectProperty C\nA : Type u_2\ninst✝² : AddMonoid A\ninst✝¹ : HasShift C A\na b c : A\nh : a + b = c\ninst✝ : P.IsClosedUnderIsomorphisms\nX : C\n⊢ (P.shift b).shift a X ↔ P.shift c X",
+        "proof": "exact P.prop_iff_of_iso ((shiftFunctorAdd' C a b c h).symm.app X)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u_1\ninst✝³ : Category.{u_3, u_1} C\nP : ObjectProperty C\nA : Type u_2\ninst✝² : AddMonoid A\ninst✝¹ : HasShift C A\na b c : A\nh : a + b = c\ninst✝ : P.IsClosedUnderIsomorphisms\nX : C\n⊢ (P.shift b).shift a X ↔ P.shift c X",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.ObjectProperty.ClosedUnderIsomorphisms\n\nimport Mathlib.CategoryTheory.Shift.Basic\n\nopen CategoryTheory Category\n\nopen CategoryTheory\n\nopen ObjectProperty\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u_1} [inst : Category.{u_3, u_1} C] (P : ObjectProperty C)\n  {A : Type u_2} [inst_1 : AddMonoid A] [inst_2 : HasShift C A] (a b c : A) (h : a + b = c)\n  [inst_3 : P.IsClosedUnderIsomorphisms] (X : C) : (P.shift b).shift a X ↔ P.shift c X := sorry",
+        "original_theorem_name": "CategoryTheory.ObjectProperty.shift_shift",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.ObjectProperty.ClosedUnderIsomorphisms\n\nimport Mathlib.CategoryTheory.Shift.Basic\n\n/-!\n# Properties of objects on categories equipped with shift\n\nGiven a predicate `P : ObjectProperty C` on objects of a category equipped with a shift\nby `A`, we define shifted properties of objects `P.shift a` for all `a : A`.\n\n-/\n\nopen CategoryTheory Category\n\nnamespace CategoryTheory\n\nvariable {C : Type*} [Category C] (P : ObjectProperty C)\n  {A : Type*} [AddMonoid A] [HasShift C A]\n\nnamespace ObjectProperty\n\n/-- Given a predicate `P : C → Prop` on objects of a category equipped with a shift by `A`,\nthis is the predicate which is satisfied by `X` if `P (X⟦a⟧)`. -/\ndef shift (a : A) : ObjectProperty C := fun X => P (X⟦a⟧)\n\nlemma prop_shift_iff (a : A) (X : C) : P.shift a X ↔ P (X⟦a⟧) := Iff.rfl\n\ninstance (a : A) [P.IsClosedUnderIsomorphisms] :\n    (P.shift a).IsClosedUnderIsomorphisms where\n  of_iso e hX := P.prop_of_iso ((shiftFunctor C a).mapIso e) hX\n\nvariable (A)\n\n@[simp]\nlemma shift_zero [P.IsClosedUnderIsomorphisms] : P.shift (0 : A) = P := by\n  ext X\n  exact P.prop_iff_of_iso ((shiftFunctorZero C A).app X)\n\nvariable {A}\n\n",
+        "original_theorem_content": "lemma shift_shift (a b c : A) (h : a + b = c) [P.IsClosedUnderIsomorphisms] :\n    (P.shift b).shift a = P.shift c := by"
+    }
+]

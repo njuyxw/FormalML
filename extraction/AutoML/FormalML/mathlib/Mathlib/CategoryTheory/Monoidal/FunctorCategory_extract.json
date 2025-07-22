@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/CategoryTheory/Monoidal/FunctorCategory.lean",
+        "line": 53,
+        "tactic_state_before": "C : Type u₁\ninst✝² : Category.{v₁, u₁} C\nD : Type u₂\ninst✝¹ : Category.{v₂, u₂} D\ninst✝ : MonoidalCategory D\nF G F' G' : C ⥤ D\nα : F ⟶ G\nβ : F' ⟶ G'\nX Y : C\nf : X ⟶ Y\n⊢ (F.map f ⊗ F'.map f) ≫ (α.app Y ⊗ β.app Y) = (α.app X ⊗ β.app X) ≫ (G.map f ⊗ G'.map f)",
+        "proof": "rw [← tensor_comp, α.naturality, β.naturality, tensor_comp]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "C : Type u₁\ninst✝² : Category.{v₁, u₁} C\nD : Type u₂\ninst✝¹ : Category.{v₂, u₂} D\ninst✝ : MonoidalCategory D\nF G F' G' : C ⥤ D\nα : F ⟶ G\nβ : F' ⟶ G'\nX Y : C\nf : X ⟶ Y\n⊢ (F.map f ⊗ F'.map f) ≫ (α.app Y ⊗ β.app Y) = (α.app X ⊗ β.app X) ≫ (G.map f ⊗ G'.map f)",
+        "header": "import Mathlib\nimport Mathlib.CategoryTheory.Monoidal.Braided.Basic\n\nimport Mathlib.CategoryTheory.Functor.Category\n\nimport Mathlib.CategoryTheory.Functor.Const\n\nopen CategoryTheory\n\nopen CategoryTheory.MonoidalCategory\n\nopen CategoryTheory.Monoidal.FunctorCategory\n\nopen CategoryTheory.BraidedCategory\n\nopen CategoryTheory.SymmetricCategory\n\nopen CategoryTheory.Monoidal\n\nopen FunctorCategory\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {C : Type u₁} [inst : Category.{v₁, u₁} C] {D : Type u₂}\n  [inst_1 : Category.{v₂, u₂} D] [inst_2 : MonoidalCategory D] {F G F' G' : C ⥤ D} (α : F ⟶ G) (β : F' ⟶ G') (X Y : C)\n  (f : X ⟶ Y) : (F.map f ⊗ F'.map f) ≫ (α.app Y ⊗ β.app Y) = (α.app X ⊗ β.app X) ≫ (G.map f ⊗ G'.map f) := sorry",
+        "original_theorem_name": "CategoryTheory.Monoidal.FunctorCategory.tensorHom_app",
+        "original_theorem_importsAndContext": "import Mathlib.CategoryTheory.Monoidal.Braided.Basic\n\nimport Mathlib.CategoryTheory.Functor.Category\n\nimport Mathlib.CategoryTheory.Functor.Const\n\n/-!\n# Monoidal structure on `C ⥤ D` when `D` is monoidal.\n\nWhen `C` is any category, and `D` is a monoidal category,\nthere is a natural \"pointwise\" monoidal structure on `C ⥤ D`.\n\nThe initial intended application is tensor product of presheaves.\n-/\n\n\nuniverse v₁ v₂ u₁ u₂\n\nopen CategoryTheory\n\nopen CategoryTheory.MonoidalCategory\n\nnamespace CategoryTheory.Monoidal\n\nvariable {C : Type u₁} [Category.{v₁} C]\nvariable {D : Type u₂} [Category.{v₂} D] [MonoidalCategory.{v₂} D]\n\nnamespace FunctorCategory\n\nvariable (F G F' G' : C ⥤ D)\n\n/-- (An auxiliary definition for `functorCategoryMonoidal`.)\nTensor product of functors `C ⥤ D`, when `D` is monoidal.\n-/\n@[simps]\ndef tensorObj : C ⥤ D where\n  obj X := F.obj X ⊗ G.obj X\n  map f := F.map f ⊗ G.map f\n\nvariable {F G F' G'}\nvariable (α : F ⟶ G) (β : F' ⟶ G')\n\n",
+        "original_theorem_content": "/-- (An auxiliary definition for `functorCategoryMonoidal`.)\nTensor product of natural transformations into `D`, when `D` is monoidal.\n-/\n@[simps]\ndef tensorHom : tensorObj F F' ⟶ tensorObj G G' where\n  app X := α.app X ⊗ β.app X\n  naturality X Y f := by"
+    }
+]

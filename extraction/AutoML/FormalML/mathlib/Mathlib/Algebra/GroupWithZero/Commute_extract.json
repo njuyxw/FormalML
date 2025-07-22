@@ -1,0 +1,67 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Commute.lean",
+        "line": 83,
+        "tactic_state_before": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\na b c : G₀\nhac : Commute a c\nhbc : Commute b c\n⊢ Commute (a / b) c",
+        "proof": "rw [div_eq_mul_inv]\n  try repeat assumption",
+        "tactic_state_after": "[G₀ : Type u_2\n inst✝ : GroupWithZero G₀\n a b c : G₀\n hac : Commute a c\n hbc : Commute b c\n ⊢ Commute (a * b⁻¹) c]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\na b c : G₀\nhac : Commute a c\nhbc : Commute b c\nh : Commute (a * b⁻¹) c\n⊢ Commute (a / b) c",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\nopen Ring\n\nopen Commute\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {G₀ : Type u_2} [inst : GroupWithZero G₀] {a b c : G₀} (hac : Commute a c)\n  (hbc : Commute b c) (h : Commute (a * b⁻¹) c) : Commute (a / b) c := sorry",
+        "original_theorem_name": "Commute.div_left",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\n/-!\n# Lemmas about commuting elements in a `MonoidWithZero` or a `GroupWithZero`.\n\n-/\n\nassert_not_exists DenselyOrdered\n\nvariable {M₀ G₀ : Type*}\nvariable [MonoidWithZero M₀]\n\nnamespace Ring\n\ntheorem mul_inverse_rev' {a b : M₀} (h : Commute a b) :\n    inverse (a * b) = inverse b * inverse a := by\n  by_cases hab : IsUnit (a * b)\n  · obtain ⟨⟨a, rfl⟩, b, rfl⟩ := h.isUnit_mul_iff.mp hab\n    rw [← Units.val_mul, inverse_unit, inverse_unit, inverse_unit, ← Units.val_mul, mul_inv_rev]\n  obtain ha | hb := not_and_or.mp (mt h.isUnit_mul_iff.mpr hab)\n  · rw [inverse_non_unit _ hab, inverse_non_unit _ ha, mul_zero]\n  · rw [inverse_non_unit _ hab, inverse_non_unit _ hb, zero_mul]\n\ntheorem mul_inverse_rev {M₀} [CommMonoidWithZero M₀] (a b : M₀) :\n    Ring.inverse (a * b) = inverse b * inverse a :=\n  mul_inverse_rev' (Commute.all _ _)\n\nlemma inverse_pow (r : M₀) : ∀ n : ℕ, Ring.inverse r ^ n = Ring.inverse (r ^ n)\n  | 0 => by rw [pow_zero, pow_zero, Ring.inverse_one]\n  | n + 1 => by\n    rw [pow_succ', pow_succ, Ring.mul_inverse_rev' ((Commute.refl r).pow_left n),\n      Ring.inverse_pow r n]\n\nlemma inverse_pow_mul_eq_iff_eq_mul {a : M₀} (b c : M₀) (ha : IsUnit a) {k : ℕ} :\n    Ring.inverse a ^ k * b = c ↔ b = a ^ k * c := by\n  rw [Ring.inverse_pow, Ring.inverse_mul_eq_iff_eq_mul _ _ _ (IsUnit.pow _ ha)]\n\nend Ring\n\ntheorem Commute.ring_inverse_ring_inverse {a b : M₀} (h : Commute a b) :\n    Commute (Ring.inverse a) (Ring.inverse b) :=\n  (Ring.mul_inverse_rev' h.symm).symm.trans <| (congr_arg _ h.symm.eq).trans <|\n    Ring.mul_inverse_rev' h\n\nnamespace Commute\n\n@[simp]\ntheorem zero_right [MulZeroClass G₀] (a : G₀) : Commute a 0 :=\n  SemiconjBy.zero_right a\n\n@[simp]\ntheorem zero_left [MulZeroClass G₀] (a : G₀) : Commute 0 a :=\n  SemiconjBy.zero_left a a\n\nvariable [GroupWithZero G₀] {a b c : G₀}\n\n@[simp]\ntheorem inv_left_iff₀ : Commute a⁻¹ b ↔ Commute a b :=\n  SemiconjBy.inv_symm_left_iff₀\n\ntheorem inv_left₀ (h : Commute a b) : Commute a⁻¹ b :=\n  inv_left_iff₀.2 h\n\n@[simp]\ntheorem inv_right_iff₀ : Commute a b⁻¹ ↔ Commute a b :=\n  SemiconjBy.inv_right_iff₀\n\ntheorem inv_right₀ (h : Commute a b) : Commute a b⁻¹ :=\n  inv_right_iff₀.2 h\n\n@[simp]\ntheorem div_right (hab : Commute a b) (hac : Commute a c) : Commute a (b / c) :=\n  SemiconjBy.div_right hab hac\n\n",
+        "original_theorem_content": "@[simp]\ntheorem div_left (hac : Commute a c) (hbc : Commute b c) : Commute (a / b) c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Commute.lean",
+        "line": 84,
+        "tactic_state_before": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\na b c : G₀\nhac : Commute a c\nhbc : Commute b c\n⊢ Commute (a * b⁻¹) c",
+        "proof": "exact hac.mul_left hbc.inv_left₀\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "G₀ : Type u_2\ninst✝ : GroupWithZero G₀\na b c : G₀\nhac : Commute a c\nhbc : Commute b c\n⊢ Commute (a * b⁻¹) c",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\nopen Ring\n\nopen Commute\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {G₀ : Type u_2} [inst : GroupWithZero G₀] {a b c : G₀} (hac : Commute a c)\n  (hbc : Commute b c) : Commute (a * b⁻¹) c := sorry",
+        "original_theorem_name": "Commute.div_left",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\n/-!\n# Lemmas about commuting elements in a `MonoidWithZero` or a `GroupWithZero`.\n\n-/\n\nassert_not_exists DenselyOrdered\n\nvariable {M₀ G₀ : Type*}\nvariable [MonoidWithZero M₀]\n\nnamespace Ring\n\ntheorem mul_inverse_rev' {a b : M₀} (h : Commute a b) :\n    inverse (a * b) = inverse b * inverse a := by\n  by_cases hab : IsUnit (a * b)\n  · obtain ⟨⟨a, rfl⟩, b, rfl⟩ := h.isUnit_mul_iff.mp hab\n    rw [← Units.val_mul, inverse_unit, inverse_unit, inverse_unit, ← Units.val_mul, mul_inv_rev]\n  obtain ha | hb := not_and_or.mp (mt h.isUnit_mul_iff.mpr hab)\n  · rw [inverse_non_unit _ hab, inverse_non_unit _ ha, mul_zero]\n  · rw [inverse_non_unit _ hab, inverse_non_unit _ hb, zero_mul]\n\ntheorem mul_inverse_rev {M₀} [CommMonoidWithZero M₀] (a b : M₀) :\n    Ring.inverse (a * b) = inverse b * inverse a :=\n  mul_inverse_rev' (Commute.all _ _)\n\nlemma inverse_pow (r : M₀) : ∀ n : ℕ, Ring.inverse r ^ n = Ring.inverse (r ^ n)\n  | 0 => by rw [pow_zero, pow_zero, Ring.inverse_one]\n  | n + 1 => by\n    rw [pow_succ', pow_succ, Ring.mul_inverse_rev' ((Commute.refl r).pow_left n),\n      Ring.inverse_pow r n]\n\nlemma inverse_pow_mul_eq_iff_eq_mul {a : M₀} (b c : M₀) (ha : IsUnit a) {k : ℕ} :\n    Ring.inverse a ^ k * b = c ↔ b = a ^ k * c := by\n  rw [Ring.inverse_pow, Ring.inverse_mul_eq_iff_eq_mul _ _ _ (IsUnit.pow _ ha)]\n\nend Ring\n\ntheorem Commute.ring_inverse_ring_inverse {a b : M₀} (h : Commute a b) :\n    Commute (Ring.inverse a) (Ring.inverse b) :=\n  (Ring.mul_inverse_rev' h.symm).symm.trans <| (congr_arg _ h.symm.eq).trans <|\n    Ring.mul_inverse_rev' h\n\nnamespace Commute\n\n@[simp]\ntheorem zero_right [MulZeroClass G₀] (a : G₀) : Commute a 0 :=\n  SemiconjBy.zero_right a\n\n@[simp]\ntheorem zero_left [MulZeroClass G₀] (a : G₀) : Commute 0 a :=\n  SemiconjBy.zero_left a a\n\nvariable [GroupWithZero G₀] {a b c : G₀}\n\n@[simp]\ntheorem inv_left_iff₀ : Commute a⁻¹ b ↔ Commute a b :=\n  SemiconjBy.inv_symm_left_iff₀\n\ntheorem inv_left₀ (h : Commute a b) : Commute a⁻¹ b :=\n  inv_left_iff₀.2 h\n\n@[simp]\ntheorem inv_right_iff₀ : Commute a b⁻¹ ↔ Commute a b :=\n  SemiconjBy.inv_right_iff₀\n\ntheorem inv_right₀ (h : Commute a b) : Commute a b⁻¹ :=\n  inv_right_iff₀.2 h\n\n@[simp]\ntheorem div_right (hab : Commute a b) (hac : Commute a c) : Commute a (b / c) :=\n  SemiconjBy.div_right hab hac\n\n",
+        "original_theorem_content": "@[simp]\ntheorem div_left (hac : Commute a c) (hbc : Commute b c) : Commute (a / b) c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Commute.lean",
+        "line": 42,
+        "tactic_state_before": "M₀ : Type u_1\ninst✝ : MonoidWithZero M₀\na b c : M₀\nha : IsUnit a\nk : ℕ\n⊢ inverse a ^ k * b = c ↔ b = a ^ k * c",
+        "proof": "rw [Ring.inverse_pow, Ring.inverse_mul_eq_iff_eq_mul _ _ _ (IsUnit.pow _ ha)]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M₀ : Type u_1\ninst✝ : MonoidWithZero M₀\na b c : M₀\nha : IsUnit a\nk : ℕ\n⊢ inverse a ^ k * b = c ↔ b = a ^ k * c",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\nopen Ring\n\nopen Commute\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {M₀ : Type u_1} [inst : MonoidWithZero M₀] {a : M₀} (b c : M₀) (ha : IsUnit a)\n  {k : ℕ} : inverse a ^ k * b = c ↔ b = a ^ k * c := sorry",
+        "original_theorem_name": "Ring.inverse_pow_mul_eq_iff_eq_mul",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\n/-!\n# Lemmas about commuting elements in a `MonoidWithZero` or a `GroupWithZero`.\n\n-/\n\nassert_not_exists DenselyOrdered\n\nvariable {M₀ G₀ : Type*}\nvariable [MonoidWithZero M₀]\n\nnamespace Ring\n\ntheorem mul_inverse_rev' {a b : M₀} (h : Commute a b) :\n    inverse (a * b) = inverse b * inverse a := by\n  by_cases hab : IsUnit (a * b)\n  · obtain ⟨⟨a, rfl⟩, b, rfl⟩ := h.isUnit_mul_iff.mp hab\n    rw [← Units.val_mul, inverse_unit, inverse_unit, inverse_unit, ← Units.val_mul, mul_inv_rev]\n  obtain ha | hb := not_and_or.mp (mt h.isUnit_mul_iff.mpr hab)\n  · rw [inverse_non_unit _ hab, inverse_non_unit _ ha, mul_zero]\n  · rw [inverse_non_unit _ hab, inverse_non_unit _ hb, zero_mul]\n\ntheorem mul_inverse_rev {M₀} [CommMonoidWithZero M₀] (a b : M₀) :\n    Ring.inverse (a * b) = inverse b * inverse a :=\n  mul_inverse_rev' (Commute.all _ _)\n\nlemma inverse_pow (r : M₀) : ∀ n : ℕ, Ring.inverse r ^ n = Ring.inverse (r ^ n)\n  | 0 => by rw [pow_zero, pow_zero, Ring.inverse_one]\n  | n + 1 => by\n    rw [pow_succ', pow_succ, Ring.mul_inverse_rev' ((Commute.refl r).pow_left n),\n      Ring.inverse_pow r n]\n\n",
+        "original_theorem_content": "lemma inverse_pow_mul_eq_iff_eq_mul {a : M₀} (b c : M₀) (ha : IsUnit a) {k : ℕ} :\n    Ring.inverse a ^ k * b = c ↔ b = a ^ k * c := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Commute.lean",
+        "line": 23,
+        "tactic_state_before": "M₀ : Type u_1\ninst✝ : MonoidWithZero M₀\na b : M₀\nh : Commute a b\n⊢ inverse (a * b) = inverse b * inverse a",
+        "proof": "by_cases hab : IsUnit (a * b)\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n M₀ : Type u_1\n inst✝ : MonoidWithZero M₀\n a b : M₀\n h : Commute a b\n hab : IsUnit (a * b)\n ⊢ inverse (a * b) = inverse b * inverse a,\n case neg\n M₀ : Type u_1\n inst✝ : MonoidWithZero M₀\n a b : M₀\n h : Commute a b\n hab : ¬IsUnit (a * b)\n ⊢ inverse (a * b) = inverse b * inverse a]",
+        "goal": "M₀ : Type u_1\ninst✝ : MonoidWithZero M₀\na b : M₀\nh✝¹ : Commute a b\nh✝ h : inverse (a * b) = inverse b * inverse a\n⊢ inverse (a * b) = inverse b * inverse a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\nopen Ring\n\nopen Commute\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {M₀ : Type u_1} [inst : MonoidWithZero M₀] {a b : M₀} (h_1 : Commute a b)\n  (h_2 h : inverse (a * b) = inverse b * inverse a) : inverse (a * b) = inverse b * inverse a := sorry",
+        "original_theorem_name": "Ring.mul_inverse_rev'",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\n/-!\n# Lemmas about commuting elements in a `MonoidWithZero` or a `GroupWithZero`.\n\n-/\n\nassert_not_exists DenselyOrdered\n\nvariable {M₀ G₀ : Type*}\nvariable [MonoidWithZero M₀]\n\nnamespace Ring\n\n",
+        "original_theorem_content": "theorem mul_inverse_rev' {a b : M₀} (h : Commute a b) :\n    inverse (a * b) = inverse b * inverse a := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Commute.lean",
+        "line": 28,
+        "tactic_state_before": "case neg.inr\nM₀ : Type u_1\ninst✝ : MonoidWithZero M₀\na b : M₀\nh : Commute a b\nhab : ¬IsUnit (a * b)\nhb : ¬IsUnit b\n⊢ inverse (a * b) = inverse b * inverse a",
+        "proof": "rw [inverse_non_unit _ hab, inverse_non_unit _ hb, zero_mul]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "M₀ : Type u_1\ninst✝ : MonoidWithZero M₀\na b : M₀\nh : Commute a b\nhab : ¬IsUnit (a * b)\nhb : ¬IsUnit b\n⊢ inverse (a * b) = inverse b * inverse a",
+        "header": "import Mathlib\nimport Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\nopen Ring\n\nopen Commute\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {M₀ : Type u_1} [inst : MonoidWithZero M₀] {a b : M₀} (h : Commute a b)\n  (hab : ¬IsUnit (a * b)) (hb : ¬IsUnit b) : inverse (a * b) = inverse b * inverse a := sorry",
+        "original_theorem_name": "Ring.mul_inverse_rev'",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.GroupWithZero.Semiconj\n\nimport Mathlib.Algebra.Group.Commute.Units\n\nimport Mathlib.Tactic.Nontriviality\n\n/-!\n# Lemmas about commuting elements in a `MonoidWithZero` or a `GroupWithZero`.\n\n-/\n\nassert_not_exists DenselyOrdered\n\nvariable {M₀ G₀ : Type*}\nvariable [MonoidWithZero M₀]\n\nnamespace Ring\n\n",
+        "original_theorem_content": "theorem mul_inverse_rev' {a b : M₀} (h : Commute a b) :\n    inverse (a * b) = inverse b * inverse a := by"
+    }
+]

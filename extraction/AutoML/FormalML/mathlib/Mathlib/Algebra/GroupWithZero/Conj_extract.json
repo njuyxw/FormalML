@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Conj.lean",
+        "line": 20,
+        "tactic_state_before": "α : Type u_1\ninst✝ : GroupWithZero α\na b : α\n⊢ IsConj a b ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "proof": "rw [IsConj, Units.exists_iff_ne_zero (p := (SemiconjBy · a b))]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : GroupWithZero α\n a b : α\n ⊢ (∃ x, x ≠ 0 ∧ SemiconjBy x a b) ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b]",
+        "goal": "α : Type u_1\ninst✝ : GroupWithZero α\na b : α\nh : (∃ x, x ≠ 0 ∧ SemiconjBy x a b) ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b\n⊢ IsConj a b ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen GroupWithZero\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : GroupWithZero α] {a b : α}\n  (h : (∃ x, x ≠ 0 ∧ SemiconjBy x a b) ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b) :\n  IsConj a b ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b := sorry",
+        "original_theorem_name": "IsConj.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Conjugacy in a group with zero\n-/\n\nassert_not_exists Multiset\n-- TODO\n-- assert_not_exists DenselyOrdered\n\nnamespace GroupWithZero\n\nvariable {α : Type*} [GroupWithZero α] {a b : α}\n\n",
+        "original_theorem_content": "@[simp] lemma isConj_iff₀ : IsConj a b ↔ ∃ c : α, c ≠ 0 ∧ c * a * c⁻¹ = b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Conj.lean",
+        "line": 20,
+        "tactic_state_before": "α : Type u_1\ninst✝ : GroupWithZero α\na b : α\n⊢ IsConj a b ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "proof": "rw [IsConj, Units.exists_iff_ne_zero (p := (SemiconjBy · a b))]\n  try repeat assumption",
+        "tactic_state_after": "[α : Type u_1\n inst✝ : GroupWithZero α\n a b : α\n ⊢ (∃ x, x ≠ 0 ∧ SemiconjBy x a b) ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b]",
+        "goal": "α : Type u_1\ninst✝ : GroupWithZero α\na b : α\nh : (∃ x, x ≠ 0 ∧ SemiconjBy x a b) ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b\n⊢ IsConj a b ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen GroupWithZero\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : GroupWithZero α] {a b : α}\n  (h : (∃ x, x ≠ 0 ∧ SemiconjBy x a b) ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b) :\n  IsConj a b ↔ ∃ c, c ≠ 0 ∧ c * a * c⁻¹ = b := sorry",
+        "original_theorem_name": "IsConj.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Conjugacy in a group with zero\n-/\n\nassert_not_exists Multiset\n-- TODO\n-- assert_not_exists DenselyOrdered\n\nnamespace GroupWithZero\n\nvariable {α : Type*} [GroupWithZero α] {a b : α}\n\n",
+        "original_theorem_content": "@[simp] lemma isConj_iff₀ : IsConj a b ↔ ∃ c : α, c ≠ 0 ∧ c * a * c⁻¹ = b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Conj.lean",
+        "line": 22,
+        "tactic_state_before": "case a.h.e'_2.h.a\nα : Type u_1\ninst✝ : GroupWithZero α\na b c : α\n⊢ c ≠ 0 ∧ SemiconjBy c a b ↔ c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "proof": "exact and_congr_right (mul_inv_eq_iff_eq_mul₀ · |>.symm)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : GroupWithZero α\na b c : α\n⊢ c ≠ 0 ∧ SemiconjBy c a b ↔ c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen GroupWithZero\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {α : Type u_1} [inst : GroupWithZero α] {a b : α} (c : α) :\n  c ≠ 0 ∧ SemiconjBy c a b ↔ c ≠ 0 ∧ c * a * c⁻¹ = b := sorry",
+        "original_theorem_name": "IsConj.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Conjugacy in a group with zero\n-/\n\nassert_not_exists Multiset\n-- TODO\n-- assert_not_exists DenselyOrdered\n\nnamespace GroupWithZero\n\nvariable {α : Type*} [GroupWithZero α] {a b : α}\n\n",
+        "original_theorem_content": "@[simp] lemma isConj_iff₀ : IsConj a b ↔ ∃ c : α, c ≠ 0 ∧ c * a * c⁻¹ = b := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/GroupWithZero/Conj.lean",
+        "line": 22,
+        "tactic_state_before": "case a.h.e'_2.h.a\nα : Type u_1\ninst✝ : GroupWithZero α\na b c : α\n⊢ c ≠ 0 ∧ SemiconjBy c a b ↔ c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "proof": "exact and_congr_right (mul_inv_eq_iff_eq_mul₀ · |>.symm)\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : GroupWithZero α\na b c : α\n⊢ c ≠ 0 ∧ SemiconjBy c a b ↔ c ≠ 0 ∧ c * a * c⁻¹ = b",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\nopen GroupWithZero\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {α : Type u_1} [inst : GroupWithZero α] {a b : α} (c : α) :\n  c ≠ 0 ∧ SemiconjBy c a b ↔ c ≠ 0 ∧ c * a * c⁻¹ = b := sorry",
+        "original_theorem_name": "IsConj.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Conj\n\nimport Mathlib.Algebra.GroupWithZero.Units.Basic\n\n/-!\n# Conjugacy in a group with zero\n-/\n\nassert_not_exists Multiset\n-- TODO\n-- assert_not_exists DenselyOrdered\n\nnamespace GroupWithZero\n\nvariable {α : Type*} [GroupWithZero α] {a b : α}\n\n",
+        "original_theorem_content": "@[simp] lemma isConj_iff₀ : IsConj a b ↔ ∃ c : α, c ≠ 0 ∧ c * a * c⁻¹ = b := by"
+    }
+]

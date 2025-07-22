@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/InnerProductSpace/WeakOperatorTopology.lean",
+        "line": 24,
+        "tactic_state_before": "𝕜 : Type u_1\nE : Type u_2\nF : Type u_3\ninst✝⁵ : RCLike 𝕜\ninst✝⁴ : AddCommGroup E\ninst✝³ : TopologicalSpace E\ninst✝² : Module 𝕜 E\ninst✝¹ : NormedAddCommGroup F\ninst✝ : InnerProductSpace 𝕜 F\nA B : E →WOT[𝕜] F\nh : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜\n⊢ A = B",
+        "proof": "rw [ext_iff]\n  try repeat assumption",
+        "tactic_state_after": "[𝕜 : Type u_1\n E : Type u_2\n F : Type u_3\n inst✝⁵ : RCLike 𝕜\n inst✝⁴ : AddCommGroup E\n inst✝³ : TopologicalSpace E\n inst✝² : Module 𝕜 E\n inst✝¹ : NormedAddCommGroup F\n inst✝ : InnerProductSpace 𝕜 F\n A B : E →WOT[𝕜] F\n h : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜\n ⊢ ∀ (x : E), A x = B x]",
+        "goal": "𝕜 : Type u_1\nE : Type u_2\nF : Type u_3\ninst✝⁵ : RCLike 𝕜\ninst✝⁴ : AddCommGroup E\ninst✝³ : TopologicalSpace E\ninst✝² : Module 𝕜 E\ninst✝¹ : NormedAddCommGroup F\ninst✝ : InnerProductSpace 𝕜 F\nA B : E →WOT[𝕜] F\nh✝ : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜\nh : ∀ (x : E), A x = B x\n⊢ A = B",
+        "header": "import Mathlib\nimport Mathlib.Analysis.InnerProductSpace.Dual\n\nimport Mathlib.Analysis.LocallyConvex.WeakOperatorTopology\n\nopen scoped Topology InnerProductSpace\n\nopen ContinuousLinearMapWOT\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {𝕜 : Type u_1} {E : Type u_2} {F : Type u_3} [inst : RCLike 𝕜]\n  [inst_1 : AddCommGroup E] [inst_2 : TopologicalSpace E] [inst_3 : Module 𝕜 E] [inst_4 : NormedAddCommGroup F]\n  [inst_5 : InnerProductSpace 𝕜 F] {A B : E →WOT[𝕜] F} (h_1 : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜)\n  (h : ∀ (x : E), A x = B x) : A = B := sorry",
+        "original_theorem_name": "ContinuousLinearMapWOT.ext_inner_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.InnerProductSpace.Dual\n\nimport Mathlib.Analysis.LocallyConvex.WeakOperatorTopology\n\n/-!\n# The weak operator topology in Hilbert spaces\n\nThis file gives a few properties of the weak operator topology that are specific to operators on\nHilbert spaces. This mostly involves using the Fréchet-Riesz representation to convert between\napplications of elements of the dual and inner products with vectors in the space.\n-/\n\nopen scoped Topology InnerProductSpace\n\nnamespace ContinuousLinearMapWOT\n\nvariable {𝕜 : Type*} {E : Type*} {F : Type*} [RCLike 𝕜] [AddCommGroup E] [TopologicalSpace E]\n  [Module 𝕜 E] [NormedAddCommGroup F] [InnerProductSpace 𝕜 F]\n\n",
+        "original_theorem_content": "@[ext]\nlemma ext_inner {A B : E →WOT[𝕜] F} (h : ∀ x y, ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜) : A = B := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/InnerProductSpace/WeakOperatorTopology.lean",
+        "line": 24,
+        "tactic_state_before": "𝕜 : Type u_1\nE : Type u_2\nF : Type u_3\ninst✝⁵ : RCLike 𝕜\ninst✝⁴ : AddCommGroup E\ninst✝³ : TopologicalSpace E\ninst✝² : Module 𝕜 E\ninst✝¹ : NormedAddCommGroup F\ninst✝ : InnerProductSpace 𝕜 F\nA B : E →WOT[𝕜] F\nh : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜\n⊢ A = B",
+        "proof": "rw [ext_iff]\n  try repeat assumption",
+        "tactic_state_after": "[𝕜 : Type u_1\n E : Type u_2\n F : Type u_3\n inst✝⁵ : RCLike 𝕜\n inst✝⁴ : AddCommGroup E\n inst✝³ : TopologicalSpace E\n inst✝² : Module 𝕜 E\n inst✝¹ : NormedAddCommGroup F\n inst✝ : InnerProductSpace 𝕜 F\n A B : E →WOT[𝕜] F\n h : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜\n ⊢ ∀ (x : E), A x = B x]",
+        "goal": "𝕜 : Type u_1\nE : Type u_2\nF : Type u_3\ninst✝⁵ : RCLike 𝕜\ninst✝⁴ : AddCommGroup E\ninst✝³ : TopologicalSpace E\ninst✝² : Module 𝕜 E\ninst✝¹ : NormedAddCommGroup F\ninst✝ : InnerProductSpace 𝕜 F\nA B : E →WOT[𝕜] F\nh✝ : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜\nh : ∀ (x : E), A x = B x\n⊢ A = B",
+        "header": "import Mathlib\nimport Mathlib.Analysis.InnerProductSpace.Dual\n\nimport Mathlib.Analysis.LocallyConvex.WeakOperatorTopology\n\nopen scoped Topology InnerProductSpace\n\nopen ContinuousLinearMapWOT\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {𝕜 : Type u_1} {E : Type u_2} {F : Type u_3} [inst : RCLike 𝕜]\n  [inst_1 : AddCommGroup E] [inst_2 : TopologicalSpace E] [inst_3 : Module 𝕜 E] [inst_4 : NormedAddCommGroup F]\n  [inst_5 : InnerProductSpace 𝕜 F] {A B : E →WOT[𝕜] F} (h_1 : ∀ (x : E) (y : F), ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜)\n  (h : ∀ (x : E), A x = B x) : A = B := sorry",
+        "original_theorem_name": "ContinuousLinearMapWOT.ext_inner_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.InnerProductSpace.Dual\n\nimport Mathlib.Analysis.LocallyConvex.WeakOperatorTopology\n\n/-!\n# The weak operator topology in Hilbert spaces\n\nThis file gives a few properties of the weak operator topology that are specific to operators on\nHilbert spaces. This mostly involves using the Fréchet-Riesz representation to convert between\napplications of elements of the dual and inner products with vectors in the space.\n-/\n\nopen scoped Topology InnerProductSpace\n\nnamespace ContinuousLinearMapWOT\n\nvariable {𝕜 : Type*} {E : Type*} {F : Type*} [RCLike 𝕜] [AddCommGroup E] [TopologicalSpace E]\n  [Module 𝕜 E] [NormedAddCommGroup F] [InnerProductSpace 𝕜 F]\n\n",
+        "original_theorem_content": "@[ext]\nlemma ext_inner {A B : E →WOT[𝕜] F} (h : ∀ x y, ⟪y, A x⟫_𝕜 = ⟪y, B x⟫_𝕜) : A = B := by"
+    }
+]

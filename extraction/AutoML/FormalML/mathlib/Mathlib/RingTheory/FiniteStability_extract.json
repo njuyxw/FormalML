@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/RingTheory/FiniteStability.lean",
+        "line": 35,
+        "tactic_state_before": "case hg'\nR : Type w₁\ninst✝⁴ : CommRing R\nA : Type w₂\ninst✝³ : CommRing A\ninst✝² : Algebra R A\nB : Type w₃\ninst✝¹ : CommRing B\ninst✝ : Algebra R B\nσ : Type u_1\nf : MvPolynomial σ R →ₐ[R] A\nhf : Function.Surjective ⇑f\n⊢ Function.Surjective ⇑f.toLinearMap",
+        "proof": "exact hf\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type w₁\ninst✝⁴ : CommRing R\nA : Type w₂\ninst✝³ : CommRing A\ninst✝² : Algebra R A\nB : Type w₃\ninst✝¹ : CommRing B\ninst✝ : Algebra R B\nσ : Type u_1\nf : MvPolynomial σ R →ₐ[R] A\nhf : Function.Surjective ⇑f\n⊢ Function.Surjective ⇑f.toLinearMap",
+        "header": "import Mathlib\nimport Mathlib.LinearAlgebra.TensorProduct.RightExactness\n\nimport Mathlib.RingTheory.FinitePresentation\n\nimport Mathlib.RingTheory.TensorProduct.MvPolynomial\n\nopen scoped TensorProduct\n\nopen Algebra\n\nopen FiniteType\n\nopen FinitePresentation\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type w₁} [inst : CommRing R] {A : Type w₂}\n  [inst_1 : CommRing A] [inst_2 : Algebra R A] (B : Type w₃) [inst_3 : CommRing B] [inst_4 : Algebra R B] {σ : Type u_1}\n  {f : MvPolynomial σ R →ₐ[R] A} (hf : Function.Surjective ⇑f) : Function.Surjective ⇑f.toLinearMap := sorry",
+        "original_theorem_name": "Algebra.FiniteType.baseChangeAux_surj",
+        "original_theorem_importsAndContext": "import Mathlib.LinearAlgebra.TensorProduct.RightExactness\n\nimport Mathlib.RingTheory.FinitePresentation\n\nimport Mathlib.RingTheory.TensorProduct.MvPolynomial\n\n/-!\n\n# Stability of finiteness conditions in commutative algebra\n\nIn this file we show that `Algebra.FiniteType` and `Algebra.FinitePresentation` are\nstable under base change.\n\n-/\n\nopen scoped TensorProduct\n\nuniverse w₁ w₂ w₃\n\nvariable {R : Type w₁} [CommRing R]\nvariable {A : Type w₂} [CommRing A] [Algebra R A]\nvariable (B : Type w₃) [CommRing B] [Algebra R B]\n\nnamespace Algebra\n\nnamespace FiniteType\n\n",
+        "original_theorem_content": "theorem baseChangeAux_surj {σ : Type*} {f : MvPolynomial σ R →ₐ[R] A} (hf : Function.Surjective f) :\n    Function.Surjective (Algebra.TensorProduct.map (AlgHom.id B B) f) := by"
+    }
+]

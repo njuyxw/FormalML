@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/Group/Commute/Hom.lean",
+        "line": 20,
+        "tactic_state_before": "F : Type u_1\nM : Type u_2\nN : Type u_3\ninst✝³ : Mul M\ninst✝² : Mul N\na x y : M\ninst✝¹ : FunLike F M N\ninst✝ : MulHomClass F M N\nh : SemiconjBy a x y\nf : F\n⊢ SemiconjBy (f a) (f x) (f y)",
+        "proof": "simpa only [SemiconjBy, map_mul] using congr_arg f h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "F : Type u_1\nM : Type u_2\nN : Type u_3\ninst✝³ : Mul M\ninst✝² : Mul N\na x y : M\ninst✝¹ : FunLike F M N\ninst✝ : MulHomClass F M N\nh : SemiconjBy a x y\nf : F\n⊢ SemiconjBy (f a) (f x) (f y)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Commute.Defs\n\nimport Mathlib.Algebra.Group.Hom.Defs\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {F : Type u_1} {M : Type u_2} {N : Type u_3} [inst : Mul M]\n  [inst_1 : Mul N] {a x y : M} [inst_2 : FunLike F M N] [inst_3 : MulHomClass F M N] (h : SemiconjBy a x y) (f : F) :\n  SemiconjBy (f a) (f x) (f y) := sorry",
+        "original_theorem_name": "SemiconjBy.map",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Commute.Defs\n\nimport Mathlib.Algebra.Group.Hom.Defs\n\n/-!\n# Multiplicative homomorphisms respect semiconjugation and commutation.\n-/\n\nassert_not_exists MonoidWithZero DenselyOrdered\n\nsection Commute\n\nvariable {F M N : Type*} [Mul M] [Mul N] {a x y : M} [FunLike F M N]\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\nprotected theorem SemiconjBy.map [MulHomClass F M N] (h : SemiconjBy a x y) (f : F) :\n    SemiconjBy (f a) (f x) (f y) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/Group/Commute/Hom.lean",
+        "line": 20,
+        "tactic_state_before": "F : Type u_1\nM : Type u_2\nN : Type u_3\ninst✝³ : Mul M\ninst✝² : Mul N\na x y : M\ninst✝¹ : FunLike F M N\ninst✝ : MulHomClass F M N\nh : SemiconjBy a x y\nf : F\n⊢ SemiconjBy (f a) (f x) (f y)",
+        "proof": "simpa only [SemiconjBy, map_mul] using congr_arg f h\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "F : Type u_1\nM : Type u_2\nN : Type u_3\ninst✝³ : Mul M\ninst✝² : Mul N\na x y : M\ninst✝¹ : FunLike F M N\ninst✝ : MulHomClass F M N\nh : SemiconjBy a x y\nf : F\n⊢ SemiconjBy (f a) (f x) (f y)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Group.Commute.Defs\n\nimport Mathlib.Algebra.Group.Hom.Defs\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {F : Type u_1} {M : Type u_2} {N : Type u_3} [inst : Mul M]\n  [inst_1 : Mul N] {a x y : M} [inst_2 : FunLike F M N] [inst_3 : MulHomClass F M N] (h : SemiconjBy a x y) (f : F) :\n  SemiconjBy (f a) (f x) (f y) := sorry",
+        "original_theorem_name": "SemiconjBy.map",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Group.Commute.Defs\n\nimport Mathlib.Algebra.Group.Hom.Defs\n\n/-!\n# Multiplicative homomorphisms respect semiconjugation and commutation.\n-/\n\nassert_not_exists MonoidWithZero DenselyOrdered\n\nsection Commute\n\nvariable {F M N : Type*} [Mul M] [Mul N] {a x y : M} [FunLike F M N]\n\n",
+        "original_theorem_content": "@[to_additive (attr := simp)]\nprotected theorem SemiconjBy.map [MulHomClass F M N] (h : SemiconjBy a x y) (f : F) :\n    SemiconjBy (f a) (f x) (f y) := by"
+    }
+]

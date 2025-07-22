@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Group/Completion.lean",
+        "line": 48,
+        "tactic_state_before": "E : Type u_2\ninst✝ : SeminormedAddCommGroup E\nx : E\n⊢ ‖↑x‖ₑ = ‖x‖ₑ",
+        "proof": "simp [enorm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "E : Type u_2\ninst✝ : SeminormedAddCommGroup E\nx : E\n⊢ ‖↑x‖ₑ = ‖x‖ₑ",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Group.Uniform\n\nimport Mathlib.Topology.Algebra.GroupCompletion\n\nimport Mathlib.Topology.MetricSpace.Completion\n\nopen UniformSpace\n\nopen Completion\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {E : Type u_2} [inst : SeminormedAddCommGroup E] (x : E) :\n  ‖↑x‖ₑ = ‖x‖ₑ := sorry",
+        "original_theorem_name": "UniformSpace.Completion.enorm_coe",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Group.Uniform\n\nimport Mathlib.Topology.Algebra.GroupCompletion\n\nimport Mathlib.Topology.MetricSpace.Completion\n\n/-!\n# Completion of a normed group\n\nIn this file we prove that the completion of a (semi)normed group is a normed group.\n\n## Tags\n\nnormed group, completion\n-/\n\n\nnoncomputable section\n\nnamespace UniformSpace\n\nnamespace Completion\n\nvariable (E : Type*)\n\ninstance [UniformSpace E] [Norm E] : Norm (Completion E) where\n  norm := Completion.extension Norm.norm\n\n@[simp]\ntheorem norm_coe {E} [SeminormedAddCommGroup E] (x : E) : ‖(x : Completion E)‖ = ‖x‖ :=\n  Completion.extension_coe uniformContinuous_norm x\n\ninstance [SeminormedAddCommGroup E] : NormedAddCommGroup (Completion E) where\n  dist_eq x y := by\n    induction x, y using Completion.induction_on₂\n    · refine isClosed_eq (Completion.uniformContinuous_extension₂ _).continuous ?_\n      exact Continuous.comp Completion.continuous_extension continuous_sub\n    · rw [← Completion.coe_sub, norm_coe, Completion.dist_eq, dist_eq_norm]\n\n@[simp]\ntheorem nnnorm_coe {E} [SeminormedAddCommGroup E] (x : E) : ‖(x : Completion E)‖₊ = ‖x‖₊ := by\n  simp [nnnorm]\n\n",
+        "original_theorem_content": "@[simp]\nlemma enorm_coe {E} [SeminormedAddCommGroup E] (x : E) : ‖(x : Completion E)‖ₑ = ‖x‖ₑ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Group/Completion.lean",
+        "line": 44,
+        "tactic_state_before": "E : Type u_2\ninst✝ : SeminormedAddCommGroup E\nx : E\n⊢ ‖↑x‖₊ = ‖x‖₊",
+        "proof": "simp [nnnorm]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "E : Type u_2\ninst✝ : SeminormedAddCommGroup E\nx : E\n⊢ ‖↑x‖₊ = ‖x‖₊",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Group.Uniform\n\nimport Mathlib.Topology.Algebra.GroupCompletion\n\nimport Mathlib.Topology.MetricSpace.Completion\n\nopen UniformSpace\n\nopen Completion\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {E : Type u_2} [inst : SeminormedAddCommGroup E] (x : E) :\n  ‖↑x‖₊ = ‖x‖₊ := sorry",
+        "original_theorem_name": "UniformSpace.Completion.nnnorm_coe",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Group.Uniform\n\nimport Mathlib.Topology.Algebra.GroupCompletion\n\nimport Mathlib.Topology.MetricSpace.Completion\n\n/-!\n# Completion of a normed group\n\nIn this file we prove that the completion of a (semi)normed group is a normed group.\n\n## Tags\n\nnormed group, completion\n-/\n\n\nnoncomputable section\n\nnamespace UniformSpace\n\nnamespace Completion\n\nvariable (E : Type*)\n\ninstance [UniformSpace E] [Norm E] : Norm (Completion E) where\n  norm := Completion.extension Norm.norm\n\n@[simp]\ntheorem norm_coe {E} [SeminormedAddCommGroup E] (x : E) : ‖(x : Completion E)‖ = ‖x‖ :=\n  Completion.extension_coe uniformContinuous_norm x\n\ninstance [SeminormedAddCommGroup E] : NormedAddCommGroup (Completion E) where\n  dist_eq x y := by\n    induction x, y using Completion.induction_on₂\n    · refine isClosed_eq (Completion.uniformContinuous_extension₂ _).continuous ?_\n      exact Continuous.comp Completion.continuous_extension continuous_sub\n    · rw [← Completion.coe_sub, norm_coe, Completion.dist_eq, dist_eq_norm]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem nnnorm_coe {E} [SeminormedAddCommGroup E] (x : E) : ‖(x : Completion E)‖₊ = ‖x‖₊ := by"
+    }
+]

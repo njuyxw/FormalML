@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Group/Int.lean",
+        "line": 52,
+        "tactic_state_before": "α : Type u_1\ninst✝ : SeminormedCommGroup α\nn : ℤ\na : α\n⊢ ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊",
+        "proof": "simpa only [← NNReal.coe_le_coe, NNReal.coe_mul] using norm_zpow_le_mul_norm n a\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : SeminormedCommGroup α\nn : ℤ\na : α\n⊢ ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Group.Basic\n\nimport Mathlib.Topology.Instances.Int\n\nopen NNReal\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : SeminormedCommGroup α] (n : ℤ) (a : α) :\n  ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊ := sorry",
+        "original_theorem_name": "nnnorm_zpow_le_mul_norm",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Group.Basic\n\nimport Mathlib.Topology.Instances.Int\n\n/-! # ℤ as a normed group -/\n\nopen NNReal\n\nvariable {α : Type*}\nnamespace Int\n\ninstance instNormedAddCommGroup : NormedAddCommGroup ℤ where\n  norm n := ‖(n : ℝ)‖\n  dist_eq m n := by simp only [Int.dist_eq, norm, Int.cast_sub]\n\n@[norm_cast]\ntheorem norm_cast_real (m : ℤ) : ‖(m : ℝ)‖ = ‖m‖ :=\n  rfl\n\ntheorem norm_eq_abs (n : ℤ) : ‖n‖ = |(n : ℝ)| :=\n  rfl\n\n@[simp]\ntheorem norm_natCast (n : ℕ) : ‖(n : ℤ)‖ = n := by simp [Int.norm_eq_abs]\n\ntheorem _root_.NNReal.natCast_natAbs (n : ℤ) : (n.natAbs : ℝ≥0) = ‖n‖₊ :=\n  NNReal.eq <|\n    calc\n      ((n.natAbs : ℝ≥0) : ℝ) = (n.natAbs : ℤ) := by simp only [Int.cast_natCast, NNReal.coe_natCast]\n      _ = |(n : ℝ)| := by simp only [Int.natCast_natAbs, Int.cast_abs]\n      _ = ‖n‖ := (norm_eq_abs n).symm\n\ntheorem abs_le_floor_nnreal_iff (z : ℤ) (c : ℝ≥0) : |z| ≤ ⌊c⌋₊ ↔ ‖z‖₊ ≤ c := by\n  rw [Int.abs_eq_natAbs, Int.ofNat_le, Nat.le_floor_iff (zero_le c), NNReal.natCast_natAbs z]\n\nend Int\n\n-- Now that we've installed the norm on `ℤ`,\n-- we can state some lemmas about `zsmul`.\nsection\n\nvariable [SeminormedCommGroup α]\n\n@[to_additive norm_zsmul_le]\ntheorem norm_zpow_le_mul_norm (n : ℤ) (a : α) : ‖a ^ n‖ ≤ ‖n‖ * ‖a‖ := by\n  rcases n.eq_nat_or_neg with ⟨n, rfl | rfl⟩ <;> simpa using norm_pow_le_mul_norm\n\n",
+        "original_theorem_content": "@[to_additive nnnorm_zsmul_le]\ntheorem nnnorm_zpow_le_mul_norm (n : ℤ) (a : α) : ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Group/Int.lean",
+        "line": 52,
+        "tactic_state_before": "α : Type u_1\ninst✝ : SeminormedCommGroup α\nn : ℤ\na : α\n⊢ ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊",
+        "proof": "simpa only [← NNReal.coe_le_coe, NNReal.coe_mul] using norm_zpow_le_mul_norm n a\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : SeminormedCommGroup α\nn : ℤ\na : α\n⊢ ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Group.Basic\n\nimport Mathlib.Topology.Instances.Int\n\nopen NNReal\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : SeminormedCommGroup α] (n : ℤ) (a : α) :\n  ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊ := sorry",
+        "original_theorem_name": "nnnorm_zpow_le_mul_norm",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Group.Basic\n\nimport Mathlib.Topology.Instances.Int\n\n/-! # ℤ as a normed group -/\n\nopen NNReal\n\nvariable {α : Type*}\nnamespace Int\n\ninstance instNormedAddCommGroup : NormedAddCommGroup ℤ where\n  norm n := ‖(n : ℝ)‖\n  dist_eq m n := by simp only [Int.dist_eq, norm, Int.cast_sub]\n\n@[norm_cast]\ntheorem norm_cast_real (m : ℤ) : ‖(m : ℝ)‖ = ‖m‖ :=\n  rfl\n\ntheorem norm_eq_abs (n : ℤ) : ‖n‖ = |(n : ℝ)| :=\n  rfl\n\n@[simp]\ntheorem norm_natCast (n : ℕ) : ‖(n : ℤ)‖ = n := by simp [Int.norm_eq_abs]\n\ntheorem _root_.NNReal.natCast_natAbs (n : ℤ) : (n.natAbs : ℝ≥0) = ‖n‖₊ :=\n  NNReal.eq <|\n    calc\n      ((n.natAbs : ℝ≥0) : ℝ) = (n.natAbs : ℤ) := by simp only [Int.cast_natCast, NNReal.coe_natCast]\n      _ = |(n : ℝ)| := by simp only [Int.natCast_natAbs, Int.cast_abs]\n      _ = ‖n‖ := (norm_eq_abs n).symm\n\ntheorem abs_le_floor_nnreal_iff (z : ℤ) (c : ℝ≥0) : |z| ≤ ⌊c⌋₊ ↔ ‖z‖₊ ≤ c := by\n  rw [Int.abs_eq_natAbs, Int.ofNat_le, Nat.le_floor_iff (zero_le c), NNReal.natCast_natAbs z]\n\nend Int\n\n-- Now that we've installed the norm on `ℤ`,\n-- we can state some lemmas about `zsmul`.\nsection\n\nvariable [SeminormedCommGroup α]\n\n@[to_additive norm_zsmul_le]\ntheorem norm_zpow_le_mul_norm (n : ℤ) (a : α) : ‖a ^ n‖ ≤ ‖n‖ * ‖a‖ := by\n  rcases n.eq_nat_or_neg with ⟨n, rfl | rfl⟩ <;> simpa using norm_pow_le_mul_norm\n\n",
+        "original_theorem_content": "@[to_additive nnnorm_zsmul_le]\ntheorem nnnorm_zpow_le_mul_norm (n : ℤ) (a : α) : ‖a ^ n‖₊ ≤ ‖n‖₊ * ‖a‖₊ := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Analysis/Normed/Group/Int.lean",
+        "line": 36,
+        "tactic_state_before": "z : ℤ\nc : ℝ≥0\n⊢ |z| ≤ ↑⌊c⌋₊ ↔ ‖z‖₊ ≤ c",
+        "proof": "rw [Int.abs_eq_natAbs, Int.ofNat_le, Nat.le_floor_iff (zero_le c), NNReal.natCast_natAbs z]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "z : ℤ\nc : ℝ≥0\n⊢ |z| ≤ ↑⌊c⌋₊ ↔ ‖z‖₊ ≤ c",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Group.Basic\n\nimport Mathlib.Topology.Instances.Int\n\nopen NNReal\n\nopen Int\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (z : ℤ) (c : ℝ≥0) : |z| ≤ ↑⌊c⌋₊ ↔ ‖z‖₊ ≤ c := sorry",
+        "original_theorem_name": "Int.abs_le_floor_nnreal_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Group.Basic\n\nimport Mathlib.Topology.Instances.Int\n\n/-! # ℤ as a normed group -/\n\nopen NNReal\n\nvariable {α : Type*}\nnamespace Int\n\ninstance instNormedAddCommGroup : NormedAddCommGroup ℤ where\n  norm n := ‖(n : ℝ)‖\n  dist_eq m n := by simp only [Int.dist_eq, norm, Int.cast_sub]\n\n@[norm_cast]\ntheorem norm_cast_real (m : ℤ) : ‖(m : ℝ)‖ = ‖m‖ :=\n  rfl\n\ntheorem norm_eq_abs (n : ℤ) : ‖n‖ = |(n : ℝ)| :=\n  rfl\n\n@[simp]\ntheorem norm_natCast (n : ℕ) : ‖(n : ℤ)‖ = n := by simp [Int.norm_eq_abs]\n\ntheorem _root_.NNReal.natCast_natAbs (n : ℤ) : (n.natAbs : ℝ≥0) = ‖n‖₊ :=\n  NNReal.eq <|\n    calc\n      ((n.natAbs : ℝ≥0) : ℝ) = (n.natAbs : ℤ) := by simp only [Int.cast_natCast, NNReal.coe_natCast]\n      _ = |(n : ℝ)| := by simp only [Int.natCast_natAbs, Int.cast_abs]\n      _ = ‖n‖ := (norm_eq_abs n).symm\n\n",
+        "original_theorem_content": "theorem abs_le_floor_nnreal_iff (z : ℤ) (c : ℝ≥0) : |z| ≤ ⌊c⌋₊ ↔ ‖z‖₊ ≤ c := by"
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/Complex/IntegerCompl.lean",
+        "line": 31,
+        "tactic_state_before": "x : ℂ\na : ℤ\n⊢ (∃ n, ↑n = x + ↑a) ↔ ∃ n, ↑n = x",
+        "proof": "exact\n  ⟨(Exists.elim · fun n hn ↦ ⟨n - a, by simp [hn]⟩), (Exists.elim · fun n hn ↦ ⟨n + a, by simp [hn]⟩)⟩\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "x : ℂ\na : ℤ\n⊢ (∃ n, ↑n = x + ↑a) ↔ ∃ n, ↑n = x",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\n\nopen UpperHalfPlane\n\nopen Complex\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {x : ℂ} (a : ℤ) : (∃ n, ↑n = x + ↑a) ↔ ∃ n, ↑n = x := sorry",
+        "original_theorem_name": "Complex.integerComplement.add_coe_int_mem",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Complex.UpperHalfPlane.Basic\n\n/-!\n# Integer Complement\n\nWe define the complement of the integers in the complex plane and give some basic lemmas about it.\nWe also show that the upper half plane embeds into the integer complement.\n\n-/\n\nopen UpperHalfPlane\n\n/-- The complement of the integers in `ℂ` -/\ndef Complex.integerComplement := (Set.range ((↑) : ℤ → ℂ))ᶜ\n\nnamespace Complex\n\nlocal notation \"ℂ_ℤ \" => integerComplement\n\nlemma integerComplement_eq : ℂ_ℤ = {z : ℂ | ¬ ∃ (n : ℤ), n = z} := rfl\n\nlemma integerComplement.mem_iff {x : ℂ} : x ∈ ℂ_ℤ ↔ ¬ ∃ (n : ℤ), n = x := Iff.rfl\n\nlemma UpperHalfPlane.coe_mem_integerComplement (z : ℍ) : ↑z ∈ ℂ_ℤ :=\n  not_exists.mpr fun x hx ↦ ne_int z x hx.symm\n\n",
+        "original_theorem_content": "lemma integerComplement.add_coe_int_mem {x : ℂ} (a : ℤ) : x + (a : ℂ) ∈ ℂ_ℤ ↔ x ∈ ℂ_ℤ := by"
+    }
+]

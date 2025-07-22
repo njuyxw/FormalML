@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Analysis/SpecialFunctions/PolynomialExp.lean",
+        "line": 24,
+        "tactic_state_before": "p : ℝ[X]\n⊢ Tendsto (fun x => eval x p / rexp x) atTop (𝓝 0)",
+        "proof": "induction p using Polynomial.induction_on' with\n| monomial n c =>\n  simpa [exp_neg, div_eq_mul_inv, mul_assoc] using tendsto_const_nhds.mul (tendsto_pow_mul_exp_neg_atTop_nhds_zero n)\n| add p q hp hq => simpa [add_div] using hp.add hq\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "p : ℝ[X]\n⊢ Tendsto (fun x => eval x p / rexp x) atTop (𝓝 0)",
+        "header": "import Mathlib\nimport Mathlib.Analysis.SpecialFunctions.Exp\n\nopen Filter Topology Real\n\nopen Polynomial\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (p : ℝ[X]) : Tendsto (fun x => eval x p / rexp x) atTop (𝓝 0) := sorry",
+        "original_theorem_name": "Polynomial.tendsto_div_exp_atTop",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.SpecialFunctions.Exp\n\n/-!\n# Limits of `P(x) / e ^ x` for a polynomial `P`\n\nIn this file we prove that $\\lim_{x\\to\\infty}\\frac{P(x)}{e^x}=0$ for any polynomial `P`.\n\n## TODO\n\nAdd more similar lemmas: limit at `-∞`, versions with $e^{cx}$ etc.\n\n## Keywords\n\npolynomial, limit, exponential\n-/\n\nopen Filter Topology Real\n\nnamespace Polynomial\n\n",
+        "original_theorem_content": "theorem tendsto_div_exp_atTop (p : ℝ[X]) : Tendsto (fun x ↦ p.eval x / exp x) atTop (𝓝 0) := by"
+    }
+]

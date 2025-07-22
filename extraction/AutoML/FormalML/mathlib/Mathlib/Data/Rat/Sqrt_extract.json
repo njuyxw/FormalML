@@ -1,0 +1,54 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Sqrt.lean",
+        "line": 46,
+        "tactic_state_before": "n : ℕ\n⊢ sqrt ↑n = ↑n.sqrt",
+        "proof": "rw [← Int.cast_natCast, sqrt_intCast, Int.sqrt_natCast, Int.cast_natCast]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "n : ℕ\n⊢ sqrt ↑n = ↑n.sqrt",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (n : ℕ) : sqrt ↑n = ↑n.sqrt := sorry",
+        "original_theorem_name": "Rat.sqrt_natCast",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\n/-!\n# Square root on rational numbers\n\nThis file defines the square root function on rational numbers `Rat.sqrt`\nand proves several theorems about it.\n\n-/\n\n\nnamespace Rat\n\n/-- Square root function on rational numbers, defined by taking the (integer) square root of the\nnumerator and the square root (on natural numbers) of the denominator. -/\n@[pp_nodot]\ndef sqrt (q : ℚ) : ℚ := mkRat (Int.sqrt q.num) (Nat.sqrt q.den)\n\ntheorem sqrt_eq (q : ℚ) : Rat.sqrt (q * q) = |q| := by\n  rw [sqrt, mul_self_num, mul_self_den, Int.sqrt_eq, Nat.sqrt_eq, abs_def, divInt_ofNat]\n\ntheorem exists_mul_self (x : ℚ) : (∃ q, q * q = x) ↔ Rat.sqrt x * Rat.sqrt x = x :=\n  ⟨fun ⟨n, hn⟩ => by rw [← hn, sqrt_eq, abs_mul_abs_self], fun h => ⟨Rat.sqrt x, h⟩⟩\n\nlemma sqrt_nonneg (q : ℚ) : 0 ≤ Rat.sqrt q := mkRat_nonneg (Int.sqrt_nonneg _) _\n\n/-- `IsSquare` can be decided on `ℚ` by checking against the square root. -/\ninstance : DecidablePred (IsSquare : ℚ → Prop) :=\n  fun m => decidable_of_iff' (sqrt m * sqrt m = m) <| by\n    simp_rw [← exists_mul_self m, IsSquare, eq_comm]\n\n@[simp, norm_cast]\ntheorem sqrt_intCast (z : ℤ) : Rat.sqrt (z : ℚ) = Int.sqrt z := by\n  simp only [sqrt, num_intCast, den_intCast, Nat.sqrt_one, mkRat_one]\n\n",
+        "original_theorem_content": "@[simp, norm_cast]\ntheorem sqrt_natCast (n : ℕ) : Rat.sqrt (n : ℚ) = Nat.sqrt n := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Sqrt.lean",
+        "line": 42,
+        "tactic_state_before": "z : ℤ\n⊢ sqrt ↑z = ↑(Int.sqrt z)",
+        "proof": "simp only [sqrt, num_intCast, den_intCast, Nat.sqrt_one, mkRat_one]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "z : ℤ\n⊢ sqrt ↑z = ↑(Int.sqrt z)",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 (z : ℤ) : sqrt ↑z = ↑(Int.sqrt z) := sorry",
+        "original_theorem_name": "Rat.sqrt_intCast",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\n/-!\n# Square root on rational numbers\n\nThis file defines the square root function on rational numbers `Rat.sqrt`\nand proves several theorems about it.\n\n-/\n\n\nnamespace Rat\n\n/-- Square root function on rational numbers, defined by taking the (integer) square root of the\nnumerator and the square root (on natural numbers) of the denominator. -/\n@[pp_nodot]\ndef sqrt (q : ℚ) : ℚ := mkRat (Int.sqrt q.num) (Nat.sqrt q.den)\n\ntheorem sqrt_eq (q : ℚ) : Rat.sqrt (q * q) = |q| := by\n  rw [sqrt, mul_self_num, mul_self_den, Int.sqrt_eq, Nat.sqrt_eq, abs_def, divInt_ofNat]\n\ntheorem exists_mul_self (x : ℚ) : (∃ q, q * q = x) ↔ Rat.sqrt x * Rat.sqrt x = x :=\n  ⟨fun ⟨n, hn⟩ => by rw [← hn, sqrt_eq, abs_mul_abs_self], fun h => ⟨Rat.sqrt x, h⟩⟩\n\nlemma sqrt_nonneg (q : ℚ) : 0 ≤ Rat.sqrt q := mkRat_nonneg (Int.sqrt_nonneg _) _\n\n/-- `IsSquare` can be decided on `ℚ` by checking against the square root. -/\ninstance : DecidablePred (IsSquare : ℚ → Prop) :=\n  fun m => decidable_of_iff' (sqrt m * sqrt m = m) <| by\n    simp_rw [← exists_mul_self m, IsSquare, eq_comm]\n\n",
+        "original_theorem_content": "@[simp, norm_cast]\ntheorem sqrt_intCast (z : ℤ) : Rat.sqrt (z : ℚ) = Int.sqrt z := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Sqrt.lean",
+        "line": 28,
+        "tactic_state_before": "q : ℚ\n⊢ sqrt (q * q) = |q|",
+        "proof": "rw [sqrt, mul_self_num, mul_self_den, Int.sqrt_eq, Nat.sqrt_eq, abs_def, divInt_ofNat]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "q : ℚ\n⊢ sqrt (q * q) = |q|",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_2 (q : ℚ) : sqrt (q * q) = |q| := sorry",
+        "original_theorem_name": "Rat.sqrt_eq",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\n/-!\n# Square root on rational numbers\n\nThis file defines the square root function on rational numbers `Rat.sqrt`\nand proves several theorems about it.\n\n-/\n\n\nnamespace Rat\n\n/-- Square root function on rational numbers, defined by taking the (integer) square root of the\nnumerator and the square root (on natural numbers) of the denominator. -/\n@[pp_nodot]\ndef sqrt (q : ℚ) : ℚ := mkRat (Int.sqrt q.num) (Nat.sqrt q.den)\n\n",
+        "original_theorem_content": "theorem sqrt_eq (q : ℚ) : Rat.sqrt (q * q) = |q| := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Rat/Sqrt.lean",
+        "line": 28,
+        "tactic_state_before": "q : ℚ\n⊢ sqrt (q * q) = |q|",
+        "proof": "rw [sqrt, mul_self_num, mul_self_den, Int.sqrt_eq, Nat.sqrt_eq, abs_def, divInt_ofNat]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "q : ℚ\n⊢ sqrt (q * q) = |q|",
+        "header": "import Mathlib\nimport Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\nopen Rat\n",
+        "formal_statement": "theorem extracted_formal_statement_3 (q : ℚ) : sqrt (q * q) = |q| := sorry",
+        "original_theorem_name": "Rat.sqrt_eq",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.Order.Ring.Abs\n\nimport Mathlib.Algebra.Order.Ring.Rat\n\nimport Mathlib.Data.Rat.Lemmas\n\nimport Mathlib.Data.Int.Sqrt\n\n/-!\n# Square root on rational numbers\n\nThis file defines the square root function on rational numbers `Rat.sqrt`\nand proves several theorems about it.\n\n-/\n\n\nnamespace Rat\n\n/-- Square root function on rational numbers, defined by taking the (integer) square root of the\nnumerator and the square root (on natural numbers) of the denominator. -/\n@[pp_nodot]\ndef sqrt (q : ℚ) : ℚ := mkRat (Int.sqrt q.num) (Nat.sqrt q.den)\n\n",
+        "original_theorem_content": "theorem sqrt_eq (q : ℚ) : Rat.sqrt (q * q) = |q| := by"
+    }
+]

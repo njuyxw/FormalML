@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Choose/Mul.lean",
+        "line": 37,
+        "tactic_state_before": "m n : ℕ\nhn : n ≠ 0\n⊢ (m * n).choose n = m * (m * n - 1).choose (n - 1)",
+        "proof": "by_cases hm : m = 0\n  try repeat assumption",
+        "tactic_state_after": "[case pos\n m n : ℕ\n hn : n ≠ 0\n hm : m = 0\n ⊢ (m * n).choose n = m * (m * n - 1).choose (n - 1),\n case neg\n m n : ℕ\n hn : n ≠ 0\n hm : ¬m = 0\n ⊢ (m * n).choose n = m * (m * n - 1).choose (n - 1)]",
+        "goal": "m n : ℕ\nhn : n ≠ 0\nh✝ h : (m * n).choose n = m * (m * n - 1).choose (n - 1)\n⊢ (m * n).choose n = m * (m * n - 1).choose (n - 1)",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Choose.Basic\n\nimport Mathlib.Tactic.Ring.RingNF\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {m n : ℕ} (hn : n ≠ 0) (h_1 h : (m * n).choose n = m * (m * n - 1).choose (n - 1)) :\n  (m * n).choose n = m * (m * n - 1).choose (n - 1) := sorry",
+        "original_theorem_name": "Nat.choose_mul_right",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Choose.Basic\n\nimport Mathlib.Tactic.Ring.RingNF\n\n/-! # Two lemmas on choose\n\nThe proofs of these lemmas use the `ring` tactic\nand can't be given in `Mathlib.Data.Nat.Choose.Basic`\n\n-/\n\nnamespace Nat\n\ntheorem choose_mul_add {m n : ℕ} (hn : n ≠ 0) :\n    (m * n + n).choose n = (m + 1) * (m * n + n - 1).choose (n - 1) := by\n  rw [← Nat.mul_left_inj (mul_ne_zero (factorial_ne_zero (m * n)) (factorial_ne_zero n))]\n  set p := n - 1\n  have hp : n = p + 1 := (succ_pred_eq_of_ne_zero hn).symm\n  simp only [hp, add_succ_sub_one]\n  calc\n    (m * (p + 1) + (p + 1)).choose (p + 1) * ((m * (p+1))! * (p+1)!)\n      = (m * (p + 1) + (p + 1)).choose (p + 1) * (m * (p+1))! * (p+1)! := by ring\n    _ = (m * (p+ 1) + (p + 1))! := by rw [add_choose_mul_factorial_mul_factorial]\n    _ = ((m * (p+ 1) + p) + 1)! := by ring_nf\n    _ = ((m * (p + 1) + p) + 1) * (m * (p + 1) + p)! := by rw [factorial_succ]\n    _ = (m * (p + 1) + p)! * ((p + 1) * (m + 1)) := by ring\n    _ = ((m * (p + 1) + p).choose p * (m * (p+1))! * (p)!) * ((p + 1) * (m + 1)) := by\n      rw [add_choose_mul_factorial_mul_factorial]\n    _ = (m * (p + 1) + p).choose p * (m * (p+1))! * (((p + 1) * (p)!) * (m + 1)) := by ring\n    _ = (m * (p + 1) + p).choose p * (m * (p+1))! * ((p + 1)! * (m + 1)) := by rw [factorial_succ]\n    _ = (m + 1) * (m * (p + 1) + p).choose p * ((m * (p + 1))! * (p + 1)!) := by ring\n\n",
+        "original_theorem_content": "theorem choose_mul_right {m n : ℕ} (hn : n ≠ 0) :\n    (m * n).choose n = m * (m * n - 1).choose (n - 1) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Data/Nat/Choose/Mul.lean",
+        "line": 18,
+        "tactic_state_before": "m n : ℕ\nhn : n ≠ 0\n⊢ (m * n + n).choose n = (m + 1) * (m * n + n - 1).choose (n - 1)",
+        "proof": "rw [← Nat.mul_left_inj (mul_ne_zero (factorial_ne_zero (m * n)) (factorial_ne_zero n))]\n  try repeat assumption",
+        "tactic_state_after": "[m n : ℕ\n hn : n ≠ 0\n ⊢ (m * n + n).choose n * ((m * n)! * n !) = (m + 1) * (m * n + n - 1).choose (n - 1) * ((m * n)! * n !)]",
+        "goal": "m n : ℕ\nhn : n ≠ 0\nh : (m * n + n).choose n * ((m * n)! * n !) = (m + 1) * (m * n + n - 1).choose (n - 1) * ((m * n)! * n !)\n⊢ (m * n + n).choose n = (m + 1) * (m * n + n - 1).choose (n - 1)",
+        "header": "import Mathlib\nimport Mathlib.Data.Nat.Choose.Basic\n\nimport Mathlib.Tactic.Ring.RingNF\n\nopen Nat\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {m n : ℕ} (hn : n ≠ 0)\n  (h : (m * n + n).choose n * ((m * n)! * n !) = (m + 1) * (m * n + n - 1).choose (n - 1) * ((m * n)! * n !)) :\n  (m * n + n).choose n = (m + 1) * (m * n + n - 1).choose (n - 1) := sorry",
+        "original_theorem_name": "Nat.choose_mul_add",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Nat.Choose.Basic\n\nimport Mathlib.Tactic.Ring.RingNF\n\n/-! # Two lemmas on choose\n\nThe proofs of these lemmas use the `ring` tactic\nand can't be given in `Mathlib.Data.Nat.Choose.Basic`\n\n-/\n\nnamespace Nat\n\n",
+        "original_theorem_content": "theorem choose_mul_add {m n : ℕ} (hn : n ≠ 0) :\n    (m * n + n).choose n = (m + 1) * (m * n + n - 1).choose (n - 1) := by"
+    }
+]

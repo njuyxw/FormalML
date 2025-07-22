@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Geometry/Manifold/Metrizable.lean",
+        "line": 31,
+        "tactic_state_before": "E : Type u_1\ninst✝⁷ : NormedAddCommGroup E\ninst✝⁶ : NormedSpace ℝ E\ninst✝⁵ : FiniteDimensional ℝ E\nH : Type u_2\ninst✝⁴ : TopologicalSpace H\nI : ModelWithCorners ℝ E H\nM : Type u_3\ninst✝³ : TopologicalSpace M\ninst✝² : ChartedSpace H M\ninst✝¹ : SigmaCompactSpace M\ninst✝ : T2Space M\nthis✝² : LocallyCompactSpace H\nthis✝¹ : LocallyCompactSpace M\nthis✝ : SecondCountableTopology H\nthis : SecondCountableTopology M\n⊢ MetrizableSpace M",
+        "proof": "exact metrizableSpace_of_t3_secondCountable M\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "E : Type u_1\ninst✝⁷ : NormedAddCommGroup E\ninst✝⁶ : NormedSpace ℝ E\ninst✝⁵ : FiniteDimensional ℝ E\nH : Type u_2\ninst✝⁴ : TopologicalSpace H\nI : ModelWithCorners ℝ E H\nM : Type u_3\ninst✝³ : TopologicalSpace M\ninst✝² : ChartedSpace H M\ninst✝¹ : SigmaCompactSpace M\ninst✝ : T2Space M\nthis✝² : LocallyCompactSpace H\nthis✝¹ : LocallyCompactSpace M\nthis✝ : SecondCountableTopology H\nthis : SecondCountableTopology M\n⊢ MetrizableSpace M",
+        "header": "import Mathlib\nimport Mathlib.Analysis.Normed.Module.FiniteDimension\n\nimport Mathlib.Geometry.Manifold.IsManifold.Basic\n\nimport Mathlib.Topology.Compactness.Paracompact\n\nimport Mathlib.Topology.Metrizable.Urysohn\n\nopen TopologicalSpace\n",
+        "formal_statement": "theorem extracted_formal_statement_0 (M : Type u_3) [inst : TopologicalSpace M] [inst_1 : SigmaCompactSpace M]\n  [inst_2 : T2Space M] (this_1 : LocallyCompactSpace M) (this : SecondCountableTopology M) : MetrizableSpace M := sorry",
+        "original_theorem_name": "Manifold.metrizableSpace",
+        "original_theorem_importsAndContext": "import Mathlib.Analysis.Normed.Module.FiniteDimension\n\nimport Mathlib.Geometry.Manifold.IsManifold.Basic\n\nimport Mathlib.Topology.Compactness.Paracompact\n\nimport Mathlib.Topology.Metrizable.Urysohn\n\n/-!\n# Metrizability of a σ-compact manifold\n\nIn this file we show that a σ-compact Hausdorff topological manifold over a finite dimensional real\nvector space is metrizable.\n-/\n\n\nopen TopologicalSpace\n\n",
+        "original_theorem_content": "/-- A σ-compact Hausdorff topological manifold over a finite dimensional real vector space is\nmetrizable. -/\ntheorem Manifold.metrizableSpace {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]\n    [FiniteDimensional ℝ E] {H : Type*} [TopologicalSpace H] (I : ModelWithCorners ℝ E H)\n    (M : Type*) [TopologicalSpace M] [ChartedSpace H M] [SigmaCompactSpace M] [T2Space M] :\n    MetrizableSpace M := by"
+    }
+]

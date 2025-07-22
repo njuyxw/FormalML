@@ -1,0 +1,15 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Data/Sym/Sym2/Order.lean",
+        "line": 30,
+        "tactic_state_before": "case h\nα : Type u_1\ninst✝ : Lattice α\nx✝ y✝ : α\n⊢ s(x✝, y✝).inf ≤ s(x✝, y✝).sup",
+        "proof": "simp [_root_.inf_le_sup]\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "α : Type u_1\ninst✝ : Lattice α\nx✝ y✝ : α\n⊢ s(x✝, y✝).inf ≤ s(x✝, y✝).sup",
+        "header": "import Mathlib\nimport Mathlib.Data.Sym.Sym2\n\nimport Mathlib.Order.Lattice\n\nopen Sym2\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : Lattice α] (x y : α) :\n  s(x, y).inf ≤ s(x, y).sup := sorry",
+        "original_theorem_name": "Sym2.inf_le_sup",
+        "original_theorem_importsAndContext": "import Mathlib.Data.Sym.Sym2\n\nimport Mathlib.Order.Lattice\n\n/-!\n# Sorting the elements of `Sym2`\n\nThis files provides `Sym2.sortEquiv`, the forward direction of which is somewhat analogous to\n`Multiset.sort`.\n-/\n\nnamespace Sym2\n\nvariable {α}\n\n/-- The supremum of the two elements. -/\ndef sup [SemilatticeSup α] (x : Sym2 α) : α := Sym2.lift ⟨(· ⊔ ·), sup_comm⟩ x\n\n@[simp] theorem sup_mk [SemilatticeSup α] (a b : α) : s(a, b).sup = a ⊔ b := rfl\n\n/-- The infimum of the two elements. -/\ndef inf [SemilatticeInf α] (x : Sym2 α) : α := Sym2.lift ⟨(· ⊓ ·), inf_comm⟩ x\n\n@[simp] theorem inf_mk [SemilatticeInf α] (a b : α) : s(a, b).inf = a ⊓ b := rfl\n\n",
+        "original_theorem_content": "protected theorem inf_le_sup [Lattice α] (s : Sym2 α) : s.inf ≤ s.sup := by"
+    }
+]

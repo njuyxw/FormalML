@@ -1,0 +1,80 @@
+[
+    {
+        "filename": "mathlib/Archive/Imo/Imo2005Q4.lean",
+        "line": 48,
+        "tactic_state_before": "k : ℕ\nhk : 0 < k\n⊢ (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) ↔ k = 1",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n k : ℕ\n hk : 0 < k\n ⊢ (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) → k = 1,\n case mpr\n k : ℕ\n hk : 0 < k\n ⊢ k = 1 → ∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k]",
+        "goal": "k : ℕ\nhk : 0 < k\nh✝ : (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) → k = 1\nh : k = 1 → ∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k\n⊢ (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) ↔ k = 1",
+        "header": "import Archive\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen IMO2005Q4\n\nopen IMO2005Q4\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {k : ℕ} (hk : 0 < k)\n  (h_1 : (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) → k = 1)\n  (h : k = 1 → ∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) :\n  (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) ↔ k = 1 := sorry",
+        "original_theorem_name": "imo2005_q4",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# IMO 2005 Q4\n\nProblem: Determine all positive integers relatively prime to all the terms of the infinite sequence\n`a n = 2 ^ n + 3 ^ n + 6 ^ n - 1`, for `n ≥ 1`.\n\nThis is quite an easy problem, in which the key point is a modular arithmetic calculation with\nthe sequence `a n` relative to an arbitrary prime.\n-/\n\nnamespace IMO2005Q4\n\n/-- The sequence considered in the problem, `2 ^ n + 3 ^ n + 6 ^ n - 1`. -/\ndef a (n : ℕ) : ℤ :=\n  2 ^ n + 3 ^ n + 6 ^ n - 1\n\n/-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the\n`(p - 2)`th term of the sequence has `p` as a factor. -/\ntheorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :\n    ↑p ∣ a (p - 2) := by\n  -- Since `p` is neither `2` nor `3`, it is coprime with `2`, `3`, and `6`\n  rw [Ne, ← Nat.prime_dvd_prime_iff_eq hp (by decide), ← Nat.Prime.coprime_iff_not_dvd hp]\n    at hp2 hp3\n  have : Int.gcd p 6 = 1 := Nat.coprime_mul_iff_right.2 ⟨hp2, hp3⟩\n  -- Nat arithmetic needed to deal with powers\n  have hp' : p - 1 = p - 2 + 1 := Eq.symm <| Nat.succ_pred <| (tsub_pos_of_lt hp.one_lt).ne'\n  -- Thus it suffices to show that `6 * a (p - 2) ≡ 0 [ZMOD p]`\n  rw [← Int.modEq_zero_iff_dvd, ← Int.ediv_one p, ← Nat.cast_one, ← this]\n  refine Int.ModEq.cancel_left_div_gcd (Nat.cast_pos.2 hp.pos) ?_\n  calc\n    6 * a (p - 2) = 3 * 2 ^ (p - 1) + 2 * 3 ^ (p - 1) + (2 * 3) ^ (p - 1) - 6 := by\n      simp only [a, hp', pow_succ']; ring\n    _ ≡ 3 * 1 + 2 * 1 + 1 - 6 [ZMOD p] := by\n      gcongr <;> apply Int.ModEq.pow_card_sub_one_eq_one hp <;>\n        rwa [Int.isCoprime_iff_gcd_eq_one, Int.gcd_comm]\n    _ = 0 := rfl\n\nend IMO2005Q4\n\nopen IMO2005Q4\n\n",
+        "original_theorem_content": "/-- Main statement:  The only positive integer coprime to all terms of the sequence `a` is `1`. -/\ntheorem imo2005_q4 {k : ℕ} (hk : 0 < k) : (∀ n : ℕ, 1 ≤ n → IsCoprime (a n) k) ↔ k = 1 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2005Q4.lean",
+        "line": 52,
+        "tactic_state_before": "case mp\nk : ℕ\nhk : 0 < k\n⊢ (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) → k = 1",
+        "proof": "intro h\n  try repeat assumption",
+        "tactic_state_after": "[case mp\n k : ℕ\n hk : 0 < k\n h : ∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k\n ⊢ k = 1]",
+        "goal": "k : ℕ\nhk : 0 < k\nh : k = 1\n⊢ (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) → k = 1",
+        "header": "import Archive\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen IMO2005Q4\n\nopen IMO2005Q4\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {k : ℕ} (hk : 0 < k) (h : k = 1) :\n  (∀ (n : ℕ), 1 ≤ n → IsCoprime (IMO2005Q4.a n) ↑k) → k = 1 := sorry",
+        "original_theorem_name": "imo2005_q4",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# IMO 2005 Q4\n\nProblem: Determine all positive integers relatively prime to all the terms of the infinite sequence\n`a n = 2 ^ n + 3 ^ n + 6 ^ n - 1`, for `n ≥ 1`.\n\nThis is quite an easy problem, in which the key point is a modular arithmetic calculation with\nthe sequence `a n` relative to an arbitrary prime.\n-/\n\nnamespace IMO2005Q4\n\n/-- The sequence considered in the problem, `2 ^ n + 3 ^ n + 6 ^ n - 1`. -/\ndef a (n : ℕ) : ℤ :=\n  2 ^ n + 3 ^ n + 6 ^ n - 1\n\n/-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the\n`(p - 2)`th term of the sequence has `p` as a factor. -/\ntheorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :\n    ↑p ∣ a (p - 2) := by\n  -- Since `p` is neither `2` nor `3`, it is coprime with `2`, `3`, and `6`\n  rw [Ne, ← Nat.prime_dvd_prime_iff_eq hp (by decide), ← Nat.Prime.coprime_iff_not_dvd hp]\n    at hp2 hp3\n  have : Int.gcd p 6 = 1 := Nat.coprime_mul_iff_right.2 ⟨hp2, hp3⟩\n  -- Nat arithmetic needed to deal with powers\n  have hp' : p - 1 = p - 2 + 1 := Eq.symm <| Nat.succ_pred <| (tsub_pos_of_lt hp.one_lt).ne'\n  -- Thus it suffices to show that `6 * a (p - 2) ≡ 0 [ZMOD p]`\n  rw [← Int.modEq_zero_iff_dvd, ← Int.ediv_one p, ← Nat.cast_one, ← this]\n  refine Int.ModEq.cancel_left_div_gcd (Nat.cast_pos.2 hp.pos) ?_\n  calc\n    6 * a (p - 2) = 3 * 2 ^ (p - 1) + 2 * 3 ^ (p - 1) + (2 * 3) ^ (p - 1) - 6 := by\n      simp only [a, hp', pow_succ']; ring\n    _ ≡ 3 * 1 + 2 * 1 + 1 - 6 [ZMOD p] := by\n      gcongr <;> apply Int.ModEq.pow_card_sub_one_eq_one hp <;>\n        rwa [Int.isCoprime_iff_gcd_eq_one, Int.gcd_comm]\n    _ = 0 := rfl\n\nend IMO2005Q4\n\nopen IMO2005Q4\n\n",
+        "original_theorem_content": "/-- Main statement:  The only positive integer coprime to all terms of the sequence `a` is `1`. -/\ntheorem imo2005_q4 {k : ℕ} (hk : 0 < k) : (∀ n : ℕ, 1 ≤ n → IsCoprime (a n) k) ↔ k = 1 := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2005Q4.lean",
+        "line": 25,
+        "tactic_state_before": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ ↑p ∣ a (p - 2)",
+        "proof": "rw [Ne, ← Nat.prime_dvd_prime_iff_eq hp (by decide), ← Nat.Prime.coprime_iff_not_dvd hp] at hp2 hp3\n  try repeat assumption",
+        "tactic_state_after": "[p : ℕ\n hp : Nat.Prime p\n hp2 : p.Coprime 2\n hp3 : p.Coprime 3\n ⊢ ↑p ∣ a (p - 2)]",
+        "goal": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ p.Coprime 2",
+        "header": "import Archive\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen IMO2005Q4\n\nopen IMO2005Q4\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) : p.Coprime 2 := sorry",
+        "original_theorem_name": "IMO2005Q4.a.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# IMO 2005 Q4\n\nProblem: Determine all positive integers relatively prime to all the terms of the infinite sequence\n`a n = 2 ^ n + 3 ^ n + 6 ^ n - 1`, for `n ≥ 1`.\n\nThis is quite an easy problem, in which the key point is a modular arithmetic calculation with\nthe sequence `a n` relative to an arbitrary prime.\n-/\n\nnamespace IMO2005Q4\n\n/-- The sequence considered in the problem, `2 ^ n + 3 ^ n + 6 ^ n - 1`. -/\ndef a (n : ℕ) : ℤ :=\n  2 ^ n + 3 ^ n + 6 ^ n - 1\n\n",
+        "original_theorem_content": "/-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the\n`(p - 2)`th term of the sequence has `p` as a factor. -/\ntheorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :\n    ↑p ∣ a (p - 2) := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2005Q4.lean",
+        "line": 25,
+        "tactic_state_before": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ ↑p ∣ a (p - 2)",
+        "proof": "rw [Ne, ← Nat.prime_dvd_prime_iff_eq hp (by decide), ← Nat.Prime.coprime_iff_not_dvd hp] at hp2 hp3\n  try repeat assumption",
+        "tactic_state_after": "[p : ℕ\n hp : Nat.Prime p\n hp2 : p.Coprime 2\n hp3 : p.Coprime 3\n ⊢ ↑p ∣ a (p - 2)]",
+        "goal": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ p.Coprime 3",
+        "header": "import Archive\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen IMO2005Q4\n\nopen IMO2005Q4\n",
+        "formal_statement": "theorem extracted_formal_statement_3 {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) : p.Coprime 3 := sorry",
+        "original_theorem_name": "IMO2005Q4.a.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# IMO 2005 Q4\n\nProblem: Determine all positive integers relatively prime to all the terms of the infinite sequence\n`a n = 2 ^ n + 3 ^ n + 6 ^ n - 1`, for `n ≥ 1`.\n\nThis is quite an easy problem, in which the key point is a modular arithmetic calculation with\nthe sequence `a n` relative to an arbitrary prime.\n-/\n\nnamespace IMO2005Q4\n\n/-- The sequence considered in the problem, `2 ^ n + 3 ^ n + 6 ^ n - 1`. -/\ndef a (n : ℕ) : ℤ :=\n  2 ^ n + 3 ^ n + 6 ^ n - 1\n\n",
+        "original_theorem_content": "/-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the\n`(p - 2)`th term of the sequence has `p` as a factor. -/\ntheorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :\n    ↑p ∣ a (p - 2) := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2005Q4.lean",
+        "line": 25,
+        "tactic_state_before": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ ↑p ∣ a (p - 2)",
+        "proof": "rw [Ne, ← Nat.prime_dvd_prime_iff_eq hp (by decide), ← Nat.Prime.coprime_iff_not_dvd hp] at hp2 hp3\n  try repeat assumption",
+        "tactic_state_after": "[p : ℕ\n hp : Nat.Prime p\n hp2 : p.Coprime 2\n hp3 : p.Coprime 3\n ⊢ ↑p ∣ a (p - 2)]",
+        "goal": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ p.Coprime 2",
+        "header": "import Archive\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen IMO2005Q4\n\nopen IMO2005Q4\n",
+        "formal_statement": "theorem extracted_formal_statement_4 {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) : p.Coprime 2 := sorry",
+        "original_theorem_name": "IMO2005Q4.a.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# IMO 2005 Q4\n\nProblem: Determine all positive integers relatively prime to all the terms of the infinite sequence\n`a n = 2 ^ n + 3 ^ n + 6 ^ n - 1`, for `n ≥ 1`.\n\nThis is quite an easy problem, in which the key point is a modular arithmetic calculation with\nthe sequence `a n` relative to an arbitrary prime.\n-/\n\nnamespace IMO2005Q4\n\n/-- The sequence considered in the problem, `2 ^ n + 3 ^ n + 6 ^ n - 1`. -/\ndef a (n : ℕ) : ℤ :=\n  2 ^ n + 3 ^ n + 6 ^ n - 1\n\n",
+        "original_theorem_content": "/-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the\n`(p - 2)`th term of the sequence has `p` as a factor. -/\ntheorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :\n    ↑p ∣ a (p - 2) := by"
+    },
+    {
+        "filename": "mathlib/Archive/Imo/Imo2005Q4.lean",
+        "line": 25,
+        "tactic_state_before": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ ↑p ∣ a (p - 2)",
+        "proof": "rw [Ne, ← Nat.prime_dvd_prime_iff_eq hp (by decide), ← Nat.Prime.coprime_iff_not_dvd hp] at hp2 hp3\n  try repeat assumption",
+        "tactic_state_after": "[p : ℕ\n hp : Nat.Prime p\n hp2 : p.Coprime 2\n hp3 : p.Coprime 3\n ⊢ ↑p ∣ a (p - 2)]",
+        "goal": "p : ℕ\nhp : Nat.Prime p\nhp2 : p ≠ 2\nhp3 : p ≠ 3\n⊢ p.Coprime 3",
+        "header": "import Archive\nimport Mathlib.FieldTheory.Finite.Basic\n\nopen IMO2005Q4\n\nopen IMO2005Q4\n",
+        "formal_statement": "theorem extracted_formal_statement_5 {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) : p.Coprime 3 := sorry",
+        "original_theorem_name": "IMO2005Q4.a.eq_1",
+        "original_theorem_importsAndContext": "import Mathlib.FieldTheory.Finite.Basic\n\n/-!\n# IMO 2005 Q4\n\nProblem: Determine all positive integers relatively prime to all the terms of the infinite sequence\n`a n = 2 ^ n + 3 ^ n + 6 ^ n - 1`, for `n ≥ 1`.\n\nThis is quite an easy problem, in which the key point is a modular arithmetic calculation with\nthe sequence `a n` relative to an arbitrary prime.\n-/\n\nnamespace IMO2005Q4\n\n/-- The sequence considered in the problem, `2 ^ n + 3 ^ n + 6 ^ n - 1`. -/\ndef a (n : ℕ) : ℤ :=\n  2 ^ n + 3 ^ n + 6 ^ n - 1\n\n",
+        "original_theorem_content": "/-- Key lemma (a modular arithmetic calculation):  Given a prime `p` other than `2` or `3`, the\n`(p - 2)`th term of the sequence has `p` as a factor. -/\ntheorem find_specified_factor {p : ℕ} (hp : Nat.Prime p) (hp2 : p ≠ 2) (hp3 : p ≠ 3) :\n    ↑p ∣ a (p - 2) := by"
+    }
+]

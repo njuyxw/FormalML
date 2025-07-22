@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "mathlib/Archive/Examples/IfNormalization/WithoutAesop.lean",
+        "line": 23,
+        "tactic_state_before": "a b c d e : IfExpr\nf : ℕ → Bool\n⊢ eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))",
+        "proof": "cases h : eval f a\n  try repeat assumption",
+        "tactic_state_after": "[case false\n a b c d e : IfExpr\n f : ℕ → Bool\n h : eval f a = false\n ⊢ eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e)),\n case true\n a b c d e : IfExpr\n f : ℕ → Bool\n h : eval f a = true\n ⊢ eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))]",
+        "goal": "a b c d e : IfExpr\nf : ℕ → Bool\nh✝ h : eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))\n⊢ eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))",
+        "header": "import Archive\nimport Archive.Examples.IfNormalization.Statement\n\nimport Mathlib.Data.List.AList\n\nopen IfExpr\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {a b c d e : IfExpr} {f : ℕ → Bool}\n  (h_1 h : eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))) :\n  eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e)) := sorry",
+        "original_theorem_name": "IfExpr.eval_ite_ite'",
+        "original_theorem_importsAndContext": "import Archive.Examples.IfNormalization.Statement\n\nimport Mathlib.Data.List.AList\n\n/-!\n# A variant of Chris Hughes' solution for the if normalization challenge.\n\nIn this variant we eschew the use of `aesop`, and instead write out the proofs.\n\n(In order to avoid duplicated names with `Result.lean`,\nwe put primes on the declarations in the file.)\n-/\n\nnamespace IfExpr\n\nattribute [local simp] eval normalized hasNestedIf hasConstantIf hasRedundantIf disjoint vars\n  List.disjoint\n\n",
+        "original_theorem_content": "theorem eval_ite_ite' {a b c d e : IfExpr} {f : ℕ → Bool} :\n    (ite (ite a b c) d e).eval f = (ite a (ite b d e) (ite c d e)).eval f := by"
+    },
+    {
+        "filename": "mathlib/Archive/Examples/IfNormalization/WithoutAesop.lean",
+        "line": 25,
+        "tactic_state_before": "case true\na b c d e : IfExpr\nf : ℕ → Bool\nh : eval f a = true\n⊢ eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))",
+        "proof": "simp_all\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "a b c d e : IfExpr\nf : ℕ → Bool\nh : eval f a = true\n⊢ eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e))",
+        "header": "import Archive\nimport Archive.Examples.IfNormalization.Statement\n\nimport Mathlib.Data.List.AList\n\nopen IfExpr\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {a b c d e : IfExpr} {f : ℕ → Bool} (h : eval f a = true) :\n  eval f ((a.ite b c).ite d e) = eval f (a.ite (b.ite d e) (c.ite d e)) := sorry",
+        "original_theorem_name": "IfExpr.eval_ite_ite'",
+        "original_theorem_importsAndContext": "import Archive.Examples.IfNormalization.Statement\n\nimport Mathlib.Data.List.AList\n\n/-!\n# A variant of Chris Hughes' solution for the if normalization challenge.\n\nIn this variant we eschew the use of `aesop`, and instead write out the proofs.\n\n(In order to avoid duplicated names with `Result.lean`,\nwe put primes on the declarations in the file.)\n-/\n\nnamespace IfExpr\n\nattribute [local simp] eval normalized hasNestedIf hasConstantIf hasRedundantIf disjoint vars\n  List.disjoint\n\n",
+        "original_theorem_content": "theorem eval_ite_ite' {a b c d e : IfExpr} {f : ℕ → Bool} :\n    (ite (ite a b c) d e).eval f = (ite a (ite b d e) (ite c d e)).eval f := by"
+    }
+]

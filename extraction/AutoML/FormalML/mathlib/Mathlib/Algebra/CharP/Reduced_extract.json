@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Algebra/CharP/Reduced.lean",
+        "line": 42,
+        "tactic_state_before": "R : Type u_1\ninst✝² : CommRing R\ninst✝¹ : IsReduced R\np k m : ℕ\ninst✝ : ExpChar R p\nx : R\n⊢ x ^ (p ^ k * m) = 1 ↔ x ^ m = 1",
+        "proof": "rw [pow_mul']\n  try repeat assumption",
+        "tactic_state_after": "[R : Type u_1\n inst✝² : CommRing R\n inst✝¹ : IsReduced R\n p k m : ℕ\n inst✝ : ExpChar R p\n x : R\n ⊢ (x ^ m) ^ p ^ k = 1 ↔ x ^ m = 1]",
+        "goal": "R : Type u_1\ninst✝² : CommRing R\ninst✝¹ : IsReduced R\np k m : ℕ\ninst✝ : ExpChar R p\nx : R\nh : (x ^ m) ^ p ^ k = 1 ↔ x ^ m = 1\n⊢ x ^ (p ^ k * m) = 1 ↔ x ^ m = 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.CharP.Lemmas\n\nimport Mathlib.RingTheory.Nilpotent.Defs\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {R : Type u_1} [inst : CommRing R] [inst_1 : IsReduced R] (p k m : ℕ)\n  [inst_2 : ExpChar R p] (x : R) (h : (x ^ m) ^ p ^ k = 1 ↔ x ^ m = 1) : x ^ (p ^ k * m) = 1 ↔ x ^ m = 1 := sorry",
+        "original_theorem_name": "ExpChar.pow_prime_pow_mul_eq_one_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.CharP.Lemmas\n\nimport Mathlib.RingTheory.Nilpotent.Defs\n\n/-!\n# Results about characteristic p reduced rings\n-/\n\n\nopen Finset\n\nsection\n\nvariable (R : Type*) [CommRing R] [IsReduced R] (p n : ℕ) [ExpChar R p]\n\ntheorem iterateFrobenius_inj : Function.Injective (iterateFrobenius R p n) := fun x y H ↦ by\n  rw [← sub_eq_zero] at H ⊢\n  simp_rw [iterateFrobenius_def, ← sub_pow_expChar_pow] at H\n  exact IsReduced.eq_zero _ ⟨_, H⟩\n\ntheorem frobenius_inj : Function.Injective (frobenius R p) :=\n  iterateFrobenius_one (R := R) p ▸ iterateFrobenius_inj R p 1\n\nend\n\n/-- If `ringChar R = 2`, where `R` is a finite reduced commutative ring,\nthen every `a : R` is a square. -/\ntheorem isSquare_of_charTwo' {R : Type*} [Finite R] [CommRing R] [IsReduced R] [CharP R 2]\n    (a : R) : IsSquare a := by\n  cases nonempty_fintype R\n  exact\n    Exists.imp (fun b h => pow_two b ▸ Eq.symm h)\n      (((Fintype.bijective_iff_injective_and_card _).mpr ⟨frobenius_inj R 2, rfl⟩).surjective a)\n\nvariable {R : Type*} [CommRing R] [IsReduced R]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem ExpChar.pow_prime_pow_mul_eq_one_iff (p k m : ℕ) [ExpChar R p] (x : R) :\n    x ^ (p ^ k * m) = 1 ↔ x ^ m = 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/CharP/Reduced.lean",
+        "line": 43,
+        "tactic_state_before": "R : Type u_1\ninst✝² : CommRing R\ninst✝¹ : IsReduced R\np k m : ℕ\ninst✝ : ExpChar R p\nx : R\n⊢ (x ^ m) ^ p ^ k = 1 ↔ x ^ m = 1",
+        "proof": "convert ← (iterateFrobenius_inj R p k).eq_iff\n  try repeat assumption",
+        "tactic_state_after": "[case h.e'_1.h.e'_3\n R : Type u_1\n inst✝² : CommRing R\n inst✝¹ : IsReduced R\n p k m : ℕ\n inst✝ : ExpChar R p\n x : R\n ⊢ (iterateFrobenius R p k) 1 = 1]",
+        "goal": "R : Type u_1\ninst✝² : CommRing R\ninst✝¹ : IsReduced R\np k m : ℕ\ninst✝ : ExpChar R p\nx : R\nh : (iterateFrobenius R p k) 1 = 1\n⊢ (x ^ m) ^ p ^ k = 1 ↔ x ^ m = 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.CharP.Lemmas\n\nimport Mathlib.RingTheory.Nilpotent.Defs\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {R : Type u_1} [inst : CommRing R] [inst_1 : IsReduced R] (p k m : ℕ)\n  [inst_2 : ExpChar R p] (x : R) (h : (iterateFrobenius R p k) 1 = 1) : (x ^ m) ^ p ^ k = 1 ↔ x ^ m = 1 := sorry",
+        "original_theorem_name": "ExpChar.pow_prime_pow_mul_eq_one_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.CharP.Lemmas\n\nimport Mathlib.RingTheory.Nilpotent.Defs\n\n/-!\n# Results about characteristic p reduced rings\n-/\n\n\nopen Finset\n\nsection\n\nvariable (R : Type*) [CommRing R] [IsReduced R] (p n : ℕ) [ExpChar R p]\n\ntheorem iterateFrobenius_inj : Function.Injective (iterateFrobenius R p n) := fun x y H ↦ by\n  rw [← sub_eq_zero] at H ⊢\n  simp_rw [iterateFrobenius_def, ← sub_pow_expChar_pow] at H\n  exact IsReduced.eq_zero _ ⟨_, H⟩\n\ntheorem frobenius_inj : Function.Injective (frobenius R p) :=\n  iterateFrobenius_one (R := R) p ▸ iterateFrobenius_inj R p 1\n\nend\n\n/-- If `ringChar R = 2`, where `R` is a finite reduced commutative ring,\nthen every `a : R` is a square. -/\ntheorem isSquare_of_charTwo' {R : Type*} [Finite R] [CommRing R] [IsReduced R] [CharP R 2]\n    (a : R) : IsSquare a := by\n  cases nonempty_fintype R\n  exact\n    Exists.imp (fun b h => pow_two b ▸ Eq.symm h)\n      (((Fintype.bijective_iff_injective_and_card _).mpr ⟨frobenius_inj R 2, rfl⟩).surjective a)\n\nvariable {R : Type*} [CommRing R] [IsReduced R]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem ExpChar.pow_prime_pow_mul_eq_one_iff (p k m : ℕ) [ExpChar R p] (x : R) :\n    x ^ (p ^ k * m) = 1 ↔ x ^ m = 1 := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Algebra/CharP/Reduced.lean",
+        "line": 44,
+        "tactic_state_before": "case h.e'_1.h.e'_3\nR : Type u_1\ninst✝² : CommRing R\ninst✝¹ : IsReduced R\np k m : ℕ\ninst✝ : ExpChar R p\nx : R\n⊢ (iterateFrobenius R p k) 1 = 1",
+        "proof": "apply map_one\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "R : Type u_1\ninst✝² : CommRing R\ninst✝¹ : IsReduced R\np k m : ℕ\ninst✝ : ExpChar R p\nx : R\n⊢ (iterateFrobenius R p k) 1 = 1",
+        "header": "import Mathlib\nimport Mathlib.Algebra.CharP.Lemmas\n\nimport Mathlib.RingTheory.Nilpotent.Defs\n\nopen Finset\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {R : Type u_1} [inst : CommRing R] [inst_1 : IsReduced R] (p k : ℕ)\n  [inst_2 : ExpChar R p] : (iterateFrobenius R p k) 1 = 1 := sorry",
+        "original_theorem_name": "ExpChar.pow_prime_pow_mul_eq_one_iff",
+        "original_theorem_importsAndContext": "import Mathlib.Algebra.CharP.Lemmas\n\nimport Mathlib.RingTheory.Nilpotent.Defs\n\n/-!\n# Results about characteristic p reduced rings\n-/\n\n\nopen Finset\n\nsection\n\nvariable (R : Type*) [CommRing R] [IsReduced R] (p n : ℕ) [ExpChar R p]\n\ntheorem iterateFrobenius_inj : Function.Injective (iterateFrobenius R p n) := fun x y H ↦ by\n  rw [← sub_eq_zero] at H ⊢\n  simp_rw [iterateFrobenius_def, ← sub_pow_expChar_pow] at H\n  exact IsReduced.eq_zero _ ⟨_, H⟩\n\ntheorem frobenius_inj : Function.Injective (frobenius R p) :=\n  iterateFrobenius_one (R := R) p ▸ iterateFrobenius_inj R p 1\n\nend\n\n/-- If `ringChar R = 2`, where `R` is a finite reduced commutative ring,\nthen every `a : R` is a square. -/\ntheorem isSquare_of_charTwo' {R : Type*} [Finite R] [CommRing R] [IsReduced R] [CharP R 2]\n    (a : R) : IsSquare a := by\n  cases nonempty_fintype R\n  exact\n    Exists.imp (fun b h => pow_two b ▸ Eq.symm h)\n      (((Fintype.bijective_iff_injective_and_card _).mpr ⟨frobenius_inj R 2, rfl⟩).surjective a)\n\nvariable {R : Type*} [CommRing R] [IsReduced R]\n\n",
+        "original_theorem_content": "@[simp]\ntheorem ExpChar.pow_prime_pow_mul_eq_one_iff (p k m : ℕ) [ExpChar R p] (x : R) :\n    x ^ (p ^ k * m) = 1 ↔ x ^ m = 1 := by"
+    }
+]

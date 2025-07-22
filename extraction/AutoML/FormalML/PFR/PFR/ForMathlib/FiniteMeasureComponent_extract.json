@@ -1,0 +1,28 @@
+[
+    {
+        "filename": "PFR/PFR/ForMathlib/FiniteMeasureComponent.lean",
+        "line": 33,
+        "tactic_state_before": "case h.e'_5.h\nα : Type u_1\ninst✝² : TopologicalSpace α\ninst✝¹ : MeasurableSpace α\ninst✝ : OpensMeasurableSpace α\ns : Set α\ns_clopen : IsClopen s\nx✝ : ProbabilityMeasure α\n⊢ (↑x✝).real s = ∫ (x : α), (BoundedContinuousFunction.indicator s s_clopen) x ∂↑x✝",
+        "proof": "have s_mble : MeasurableSet s := s_clopen.isOpen.measurableSet\n  try repeat assumption",
+        "tactic_state_after": "[case h.e'_5.h\n α : Type u_1\n inst✝² : TopologicalSpace α\n inst✝¹ : MeasurableSpace α\n inst✝ : OpensMeasurableSpace α\n s : Set α\n s_clopen : IsClopen s\n x✝ : ProbabilityMeasure α\n s_mble : MeasurableSet s\n ⊢ (↑x✝).real s = ∫ (x : α), (BoundedContinuousFunction.indicator s s_clopen) x ∂↑x✝]",
+        "goal": "α : Type u_1\ninst✝² : TopologicalSpace α\ninst✝¹ : MeasurableSpace α\ninst✝ : OpensMeasurableSpace α\ns : Set α\ns_clopen : IsClopen s\nx✝ : ProbabilityMeasure α\n⊢ MeasurableSet s",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Measure.ProbabilityMeasure\n\nimport PFR.ForMathlib.MeasureReal.Defs\n\nopen MeasureTheory Topology Metric Filter Set ENNReal NNReal\n\nopen scoped Topology ENNReal NNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {α : Type u_1} [inst : TopologicalSpace α] [inst_1 : MeasurableSpace α]\n  [inst_2 : OpensMeasurableSpace α] {s : Set α} (s_clopen : IsClopen s) : MeasurableSet s := sorry",
+        "original_theorem_name": "continuous_probabilityMeasure_apply_of_isClopen",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Measure.ProbabilityMeasure\n\nimport PFR.ForMathlib.MeasureReal.Defs\n\n/-!\n# The measure of a connected component of a space depends continuously on a finite measure\n-/\n\nopen MeasureTheory Topology Metric Filter Set ENNReal NNReal\nopen scoped Topology ENNReal NNReal\n\nsection measure_of_component\n\n/-- The measure of any connected component depends continuously on the `FiniteMeasure`.-/\nlemma continuous_finiteMeasure_apply_of_isClopen\n    {α : Type*} [TopologicalSpace α] [MeasurableSpace α] [OpensMeasurableSpace α]\n    {s : Set α} (s_clopen : IsClopen s) :\n    Continuous fun μ : FiniteMeasure α ↦ (μ : Measure α).real s := by\n  convert FiniteMeasure.continuous_integral_boundedContinuousFunction\n    (BoundedContinuousFunction.indicator s s_clopen)\n  have s_mble : MeasurableSet s := s_clopen.isOpen.measurableSet\n  simp [integral_indicator, s_mble, Measure.real]\n\n",
+        "original_theorem_content": "/-- The probability of any connected component depends continuously on the `ProbabilityMeasure`.-/\nlemma continuous_probabilityMeasure_apply_of_isClopen\n    {α : Type*} [TopologicalSpace α] [MeasurableSpace α] [OpensMeasurableSpace α]\n    {s : Set α} (s_clopen : IsClopen s) :\n    Continuous fun μ : ProbabilityMeasure α ↦ (μ : Measure α).real s := by"
+    },
+    {
+        "filename": "PFR/PFR/ForMathlib/FiniteMeasureComponent.lean",
+        "line": 22,
+        "tactic_state_before": "case h.e'_5.h\nα : Type u_1\ninst✝² : TopologicalSpace α\ninst✝¹ : MeasurableSpace α\ninst✝ : OpensMeasurableSpace α\ns : Set α\ns_clopen : IsClopen s\nx✝ : FiniteMeasure α\n⊢ (↑x✝).real s = ∫ (x : α), (BoundedContinuousFunction.indicator s s_clopen) x ∂↑x✝",
+        "proof": "have s_mble : MeasurableSet s := s_clopen.isOpen.measurableSet\n  try repeat assumption",
+        "tactic_state_after": "[case h.e'_5.h\n α : Type u_1\n inst✝² : TopologicalSpace α\n inst✝¹ : MeasurableSpace α\n inst✝ : OpensMeasurableSpace α\n s : Set α\n s_clopen : IsClopen s\n x✝ : FiniteMeasure α\n s_mble : MeasurableSet s\n ⊢ (↑x✝).real s = ∫ (x : α), (BoundedContinuousFunction.indicator s s_clopen) x ∂↑x✝]",
+        "goal": "α : Type u_1\ninst✝² : TopologicalSpace α\ninst✝¹ : MeasurableSpace α\ninst✝ : OpensMeasurableSpace α\ns : Set α\ns_clopen : IsClopen s\nx✝ : FiniteMeasure α\n⊢ MeasurableSet s",
+        "header": "import PFR\nimport Mathlib.MeasureTheory.Measure.ProbabilityMeasure\n\nimport PFR.ForMathlib.MeasureReal.Defs\n\nopen MeasureTheory Topology Metric Filter Set ENNReal NNReal\n\nopen scoped Topology ENNReal NNReal\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {α : Type u_1} [inst : TopologicalSpace α] [inst_1 : MeasurableSpace α]\n  [inst_2 : OpensMeasurableSpace α] {s : Set α} (s_clopen : IsClopen s) : MeasurableSet s := sorry",
+        "original_theorem_name": "continuous_finiteMeasure_apply_of_isClopen",
+        "original_theorem_importsAndContext": "import Mathlib.MeasureTheory.Measure.ProbabilityMeasure\n\nimport PFR.ForMathlib.MeasureReal.Defs\n\n/-!\n# The measure of a connected component of a space depends continuously on a finite measure\n-/\n\nopen MeasureTheory Topology Metric Filter Set ENNReal NNReal\nopen scoped Topology ENNReal NNReal\n\nsection measure_of_component\n\n",
+        "original_theorem_content": "/-- The measure of any connected component depends continuously on the `FiniteMeasure`.-/\nlemma continuous_finiteMeasure_apply_of_isClopen\n    {α : Type*} [TopologicalSpace α] [MeasurableSpace α] [OpensMeasurableSpace α]\n    {s : Set α} (s_clopen : IsClopen s) :\n    Continuous fun μ : FiniteMeasure α ↦ (μ : Measure α).real s := by"
+    }
+]

@@ -1,0 +1,41 @@
+[
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Ultra/ContinuousMaps.lean",
+        "line": 15,
+        "tactic_state_before": "X : Type u_1\nY : Type u_2\ninst✝³ : TopologicalSpace X\ninst✝² : CompactSpace X\ninst✝¹ : MetricSpace Y\ninst✝ : IsUltrametricDist Y\n⊢ IsUltrametricDist C(X, Y)",
+        "proof": "constructor\n  try repeat assumption",
+        "tactic_state_after": "[case dist_triangle_max\n X : Type u_1\n Y : Type u_2\n inst✝³ : TopologicalSpace X\n inst✝² : CompactSpace X\n inst✝¹ : MetricSpace Y\n inst✝ : IsUltrametricDist Y\n ⊢ ∀ (x y z : C(X, Y)), dist x z ≤ dist x y ⊔ dist y z]",
+        "goal": "X : Type u_1\nY : Type u_2\ninst✝³ : TopologicalSpace X\ninst✝² : CompactSpace X\ninst✝¹ : MetricSpace Y\ninst✝ : IsUltrametricDist Y\nh : ∀ (x y z : C(X, Y)), dist x z ≤ dist x y ⊔ dist y z\n⊢ IsUltrametricDist C(X, Y)",
+        "header": "import Mathlib\nimport Mathlib.Topology.ContinuousMap.Compact\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_0 {X : Type u_1} {Y : Type u_2} [inst : TopologicalSpace X]\n  [inst_1 : CompactSpace X] [inst_2 : MetricSpace Y] [inst_3 : IsUltrametricDist Y]\n  (h : ∀ (x y z : C(X, Y)), dist x z ≤ dist x y ⊔ dist y z) : IsUltrametricDist C(X, Y) := sorry",
+        "original_theorem_name": "ContinuousMap.isUltrametricDist",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.ContinuousMap.Compact\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n\n/-!\n# Ultrametric structure on continuous maps\n-/\n\n",
+        "original_theorem_content": "/-- Continuous maps from a compact space to an ultrametric space are an ultrametric space. -/\ninstance ContinuousMap.isUltrametricDist {X Y : Type*}\n    [TopologicalSpace X] [CompactSpace X] [MetricSpace Y] [IsUltrametricDist Y] :\n    IsUltrametricDist C(X, Y) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Ultra/ContinuousMaps.lean",
+        "line": 17,
+        "tactic_state_before": "case dist_triangle_max\nX : Type u_1\nY : Type u_2\ninst✝³ : TopologicalSpace X\ninst✝² : CompactSpace X\ninst✝¹ : MetricSpace Y\ninst✝ : IsUltrametricDist Y\nf g h : C(X, Y)\n⊢ dist f h ≤ dist f g ⊔ dist g h",
+        "proof": "rw [ContinuousMap.dist_le (by positivity)]\n  try repeat assumption",
+        "tactic_state_after": "[case dist_triangle_max\n X : Type u_1\n Y : Type u_2\n inst✝³ : TopologicalSpace X\n inst✝² : CompactSpace X\n inst✝¹ : MetricSpace Y\n inst✝ : IsUltrametricDist Y\n f g h : C(X, Y)\n ⊢ ∀ (x : X), dist (f x) (h x) ≤ dist f g ⊔ dist g h]",
+        "goal": "X : Type u_1\nY : Type u_2\ninst✝³ : TopologicalSpace X\ninst✝² : CompactSpace X\ninst✝¹ : MetricSpace Y\ninst✝ : IsUltrametricDist Y\nf g h✝ : C(X, Y)\nh : ∀ (x : X), dist (f x) (h✝ x) ≤ dist f g ⊔ dist g h✝\n⊢ dist f h✝ ≤ dist f g ⊔ dist g h✝",
+        "header": "import Mathlib\nimport Mathlib.Topology.ContinuousMap.Compact\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_1 {X : Type u_1} {Y : Type u_2} [inst : TopologicalSpace X]\n  [inst_1 : CompactSpace X] [inst_2 : MetricSpace Y] [inst_3 : IsUltrametricDist Y] (f g h_1 : C(X, Y))\n  (h : ∀ (x : X), dist (f x) (h_1 x) ≤ dist f g ⊔ dist g h_1) : dist f h_1 ≤ dist f g ⊔ dist g h_1 := sorry",
+        "original_theorem_name": "ContinuousMap.isUltrametricDist",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.ContinuousMap.Compact\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n\n/-!\n# Ultrametric structure on continuous maps\n-/\n\n",
+        "original_theorem_content": "/-- Continuous maps from a compact space to an ultrametric space are an ultrametric space. -/\ninstance ContinuousMap.isUltrametricDist {X Y : Type*}\n    [TopologicalSpace X] [CompactSpace X] [MetricSpace Y] [IsUltrametricDist Y] :\n    IsUltrametricDist C(X, Y) := by"
+    },
+    {
+        "filename": "mathlib/Mathlib/Topology/MetricSpace/Ultra/ContinuousMaps.lean",
+        "line": 20,
+        "tactic_state_before": "case dist_triangle_max.refine_2\nX : Type u_1\nY : Type u_2\ninst✝³ : TopologicalSpace X\ninst✝² : CompactSpace X\ninst✝¹ : MetricSpace Y\ninst✝ : IsUltrametricDist Y\nf g h : C(X, Y)\nx : X\n⊢ dist (g x) (h x) ≤ dist g h",
+        "proof": "exact ContinuousMap.dist_apply_le_dist x\n  try repeat assumption",
+        "tactic_state_after": "[]",
+        "goal": "X : Type u_1\nY : Type u_2\ninst✝³ : TopologicalSpace X\ninst✝² : CompactSpace X\ninst✝¹ : MetricSpace Y\ninst✝ : IsUltrametricDist Y\nf g h : C(X, Y)\nx : X\n⊢ dist (g x) (h x) ≤ dist g h",
+        "header": "import Mathlib\nimport Mathlib.Topology.ContinuousMap.Compact\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n",
+        "formal_statement": "theorem extracted_formal_statement_2 {X : Type u_1} {Y : Type u_2} [inst : TopologicalSpace X]\n  [inst_1 : CompactSpace X] [inst_2 : MetricSpace Y] [inst_3 : IsUltrametricDist Y] (g h : C(X, Y)) (x : X) :\n  dist (g x) (h x) ≤ dist g h := sorry",
+        "original_theorem_name": "ContinuousMap.isUltrametricDist",
+        "original_theorem_importsAndContext": "import Mathlib.Topology.ContinuousMap.Compact\n\nimport Mathlib.Topology.MetricSpace.Ultra.Basic\n\n/-!\n# Ultrametric structure on continuous maps\n-/\n\n",
+        "original_theorem_content": "/-- Continuous maps from a compact space to an ultrametric space are an ultrametric space. -/\ninstance ContinuousMap.isUltrametricDist {X Y : Type*}\n    [TopologicalSpace X] [CompactSpace X] [MetricSpace Y] [IsUltrametricDist Y] :\n    IsUltrametricDist C(X, Y) := by"
+    }
+]
