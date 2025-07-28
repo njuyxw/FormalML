@@ -169,7 +169,9 @@ class KiminaProver(BaseProver):
             "full_code": full_codes,
         }
 class DeepSeekProverV2nonCoT(BaseProver):
-    def __init__(self, model_path="deepseek-ai/DeepSeek-Prover-V2-7B", gpu=1, max_model_len=8192, temperature=1.0, max_tokens=8192, top_p=0.95, n=32, seed=0, **kwargs):
+    def __init__(self, model_path=None, gpu=1, max_model_len=8192, temperature=1.0, max_tokens=8192, top_p=0.95, n=32, seed=0, **kwargs):
+        if model_path is None:
+            model_path = "deepseek-ai/DeepSeek-Prover-V2-7B"  # 默认官方模型路径
         super().__init__(model_path, gpu, max_model_len, temperature, max_tokens, top_p, n, seed, **kwargs)
     def build_prompt(self, data):
         formal_statement = f"{data.get('header', LEAN4_DEFAULT_HEADER)}{data.get('informal_prefix', '')}{data['formal_statement']}"

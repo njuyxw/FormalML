@@ -19,6 +19,8 @@ def main():
     parser = argparse.ArgumentParser(description='Generate proofs using whole-generation prover')
     parser.add_argument('--prover_name', type=str, default='deepseekProver_v2_non_cot',
                       help='Prover to use')
+    parser.add_argument('--model_path', type=str, default=None,
+                    help='没给就是用官方huggingface的模型，给了就是用自己本地的模型（可以是微调后的或没有微调的）')
     parser.add_argument('--gpu', type=int, default=1,
                       help='Number of GPUs to use')
     parser.add_argument('--num_samples', type=int, default=32,
@@ -33,7 +35,9 @@ def main():
                       help='Total number of segments to split data into')
     parser.add_argument('--dataset_path', type=str, default="/data0/zzh/FormalML/extraction/AutoML/FormalML",
                       help='Path or name of the dataset to use')
-    parser.add_argument('--num_problems', type=int, default='100',
+    parser.add_argument('--output_path', type=str, default=None,
+                    help='')
+    parser.add_argument('--num_problems', type=int, default='-1',
                       help='Number of problems to generate proofs. Set to -1 to use all problems.')
     args = parser.parse_args()
 
@@ -47,7 +51,10 @@ def main():
     #else:
     #    dataset = load_dataset(args.dataset_path)
     #    print(f"HuggingFace dataset: {args.dataset_path}")
-    json_files = glob(os.path.join(args.dataset_path, "**/*.json"), recursive=True)
+    if args.dataset_path.endswith('.json') and os.path.isfile(args.dataset_path):
+        json_files = [args.dataset_path]
+    else:
+        json_files = glob(os.path.join(args.dataset_path, "**/*.json"), recursive=True)
     # 过滤掉空 JSON 文件
     valid_json_files = []
     for f in json_files:
@@ -73,6 +80,7 @@ def main():
     # Initialize prover
     
     prover = prover_dict[args.prover_name](
+        model_path=args.model_path, 
         gpu=args.gpu,
         n=args.num_samples,
         max_tokens=args.max_tokens,
@@ -122,7 +130,11 @@ def main():
         print(f"segment {segment} results saved to {segment_output_path}")
     
     # save all results
-    all_output_path = f"results/{dataset_name}_{args.num_samples}_{args.prover_name}_results.json"
+    if args.output_path:
+        all_output_path = args.output_path
+    else:
+        all_output_path = f"results/{dataset_name}_{args.num_samples}_{args.prover_name}_results.json"
+
     with open(all_output_path, "w") as f:
         json.dump(all_formatted_results, f, indent=2, ensure_ascii=False)
     
