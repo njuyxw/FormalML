@@ -4,7 +4,6 @@ export HF_ENDPOINT=https://hf-mirror.com
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate finetune
 
-cd ../LLaMA-Factory
 
 #generation
 #原始的deepseekProverV2NonCot
@@ -24,7 +23,7 @@ python evaluation/eval.py\
 python evaluation/sample.py\
     --generation_file ../FormalMLDataset/round0_generation.json\
     --eval_file ../FormalMLDataset/round0_generation_eval.json\
-    --output_file ../LLaMA-Factory/data/train_alpaca.json
+    --output_file LLaMA-Factory/data/train_alpaca.json
 
 #接下来是循环3轮SFT->generation->eval->sample
 NUM_ROUNDS=3
@@ -33,14 +32,14 @@ do
     echo "========== Round ${i} =========="
     #SFT
     echo ">>> Training (SFT) round $i"
-    cd ../LLaMA-Factory/my_expertIterationConfigs/round${i}
+    cd LLaMA-Factory/my_expertIterationConfigs/round${i}
     ./train.sh
 
-    cd ../../../../FormalML
+    cd ../../..
 
     python evaluation/generation.py\
         --prover_name deepseekProver_v2_non_cot\
-        --model_path ../LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft
+        --model_path LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft
         --gpu 4\
         --num_samples 32\
         --dataset_path ../FormalMLDataset/train.json\
@@ -57,7 +56,7 @@ do
     python evaluation/sample.py\
         --generation_file ../FormalMLDataset/round${i}_generation.json\
         --eval_file ../FormalMLDataset/round${i}_generation_eval.json\
-        --output_file ../LLaMA-Factory/data/train_alpaca.json
+        --output_file LLaMA-Factory/data/train_alpaca.json
 
 
 #下面是评估每一轮模型在测试集上的结果,包括原始模型和3个微调后的模型
@@ -77,7 +76,7 @@ for (( i=1; i<=NUM_ROUNDS; i++ ))
 do
     python evaluation/generation.py\
         --prover_name deepseekProver_v2_non_cot\
-        --model_path ../LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft\
+        --model_path LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft\
         --gpu 4\
         --num_samples 32\
         --dataset_path ../FormalMLDataset/test.json\
