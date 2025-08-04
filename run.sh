@@ -1,6 +1,6 @@
 #在FormalML目录下运行
-
-
+set -e #如果任何命令报错就停止脚本。
+export HF_ENDPOINT=https://hf-mirror.com
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate finetune
 

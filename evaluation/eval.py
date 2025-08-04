@@ -67,6 +67,7 @@ if __name__ == "__main__":
         total_problems = len(results)
         passed_problems = sum(1 for r in results if any(r["passed"]))
         pass_rate = passed_problems / total_problems if total_problems > 0 else 0.0
+        print("pass rate:",pass_rate)
         output_data = {
             "statistics": {
                 "total_problems": total_problems,
