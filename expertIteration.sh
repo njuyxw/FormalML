@@ -7,22 +7,22 @@ conda activate finetune
 
 #generation
 #原始的deepseekProverV2NonCot
-python evaluation/generation.py\
-    --prover_name deepseekProver_v2_non_cot\
-    --gpu 4\
-    --num_samples 32\
-    --dataset_path ../FormalMLDataset/train.json\
-    --output_path ../FormalMLDataset/round0_train_generation.json\
-    --num_problems -1
+# python evaluation/generation.py\
+#     --prover_name deepseekProver_v2_non_cot\
+#     --gpu 4\
+#     --num_samples 8\
+#     --dataset_path ../FormalMLDataset/train.json\
+#     --output_path results/round0_train_generation.json\
+#     --num_problems -1
 
 #eval
 python evaluation/eval.py\
-    --input_file ../FormalMLDataset/round0_train_generation.json
+    --input_file results/round0_train_generation.json
 
 #sample
 python evaluation/sample.py\
-    --generation_file ../FormalMLDataset/round0_generation.json\
-    --eval_file ../FormalMLDataset/round0_generation_eval.json\
+    --generation_file results/round0_generation.json\
+    --eval_file results/round0_generation_eval.json\
     --output_file LLaMA-Factory/data/train_alpaca.json
 
 #接下来是循环3轮SFT->generation->eval->sample
@@ -41,21 +41,21 @@ do
         --prover_name deepseekProver_v2_non_cot\
         --model_path LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft
         --gpu 4\
-        --num_samples 32\
+        --num_samples 8\
         --dataset_path ../FormalMLDataset/train.json\
-        --output_path ../FormalMLDataset/round${i}_generation.json\
+        --output_path results/round${i}_generation.json\
         --num_problems -1
 
     #eval
     echo ">>> Evaluation round $i"
     python evaluation/eval.py\
-        --input_file ../FormalMLDataset/round${i}_generation.json
+        --input_file results/round${i}_generation.json
 
     #sample
     echo ">>> Sampling round $i"
     python evaluation/sample.py\
-        --generation_file ../FormalMLDataset/round${i}_generation.json\
-        --eval_file ../FormalMLDataset/round${i}_generation_eval.json\
+        --generation_file results/round${i}_generation.json\
+        --eval_file results/round${i}_generation_eval.json\
         --output_file LLaMA-Factory/data/train_alpaca.json
 
 
@@ -63,14 +63,14 @@ do
 python evaluation/generation.py\
     --prover_name deepseekProver_v2_non_cot\
     --gpu 4\
-    --num_samples 32\
+    --num_samples 8\
     --dataset_path ../FormalMLDataset/test.json\
-    --output_path ../FormalMLDataset/round0_test_generation.json\
+    --output_path results/round0_test_generation.json\
     --num_problems -1
 
 #eval
 python evaluation/eval.py\
-    --input_file ../FormalMLDataset/round0_test_generation.json
+    --input_file results/round0_test_generation.json
 
 for (( i=1; i<=NUM_ROUNDS; i++ ))
 do
@@ -80,9 +80,9 @@ do
         --gpu 4\
         --num_samples 32\
         --dataset_path ../FormalMLDataset/test.json\
-        --output_path ../FormalMLDataset/round${i}_test_generation.json\
+        --output_path results/round${i}_test_generation.json\
         --num_problems -1
 
     #eval
     python evaluation/eval.py\
-        --input_file ../FormalMLDataset/round${i}_test_generation.json
+        --input_file results/round${i}_test_generation.json

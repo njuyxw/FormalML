@@ -20,7 +20,7 @@ class BaseProver(ABC):
             swap_space=8,
             tensor_parallel_size=gpu,
             max_model_len=max_model_len,
-            download_dir="/data0/zzh/hub",  # 明确指定下载目录
+            download_dir="/home/zzh/hub",  # 明确指定下载目录
         )   
         self.sampling_params = SamplingParams(
             temperature=temperature,
@@ -39,21 +39,21 @@ class BaseProver(ABC):
 
     def __call__(self, data_list, use_tqdm=True):
         model_inputs = [self.build_prompt(data) for data in data_list]
-        # model_outputs = self.model.generate(
-        #     model_inputs,
-        #     self.sampling_params,#pass@n中的n
-        #     use_tqdm=False,
-        # )
-        model_outputs = []
-        iterator = tqdm(model_inputs, desc="Generating", total=len(model_inputs)) if use_tqdm else model_inputs
+        model_outputs = self.model.generate(
+            model_inputs,
+            self.sampling_params,#pass@n中的n
+            use_tqdm=True,
+        )
+        # model_outputs = []
+        # iterator = tqdm(model_inputs, desc="Generating", total=len(model_inputs)) if use_tqdm else model_inputs
 
-        for prompt in iterator:
-            result = self.model.generate(
-                [prompt],
-                self.sampling_params,  
-                use_tqdm=False,        # 禁用 vLLM 自带进度条
-            )
-            model_outputs.extend(result)
+        # for prompt in iterator:
+        #     result = self.model.generate(
+        #         [prompt],
+        #         self.sampling_params,  
+        #         use_tqdm=False,        # 禁用 vLLM 自带进度条
+        #     )
+        #     model_outputs.extend(result)
         
         assert len(model_outputs) == len(model_inputs)
         results = []

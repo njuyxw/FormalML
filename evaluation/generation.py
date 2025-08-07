@@ -33,7 +33,7 @@ def main():
                       help='Top-p sampling parameter')
     parser.add_argument('--total_segments', type=int, default=1,
                       help='Total number of segments to split data into')
-    parser.add_argument('--dataset_path', type=str, default="/data0/zzh/FormalML/extraction/AutoML/FormalML",
+    parser.add_argument('--dataset_path', type=str, default="",
                       help='Path or name of the dataset to use')
     parser.add_argument('--output_path', type=str, default=None,
                     help='')
