@@ -11,7 +11,7 @@ conda activate finetune
 #     --prover_name deepseekProver_v2_non_cot\
 #     --gpu 4\
 #     --num_samples 8\
-#     --dataset_path ../FormalMLDataset/train.json\
+#     --dataset_path dataset/train.json\
 #     --output_path results/round0_train_generation.json\
 #     --num_problems -1
 
@@ -42,7 +42,7 @@ do
         --model_path LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft
         --gpu 4\
         --num_samples 8\
-        --dataset_path ../FormalMLDataset/train.json\
+        --dataset_path dataset/train.json\
         --output_path results/round${i}_generation.json\
         --num_problems -1
 
@@ -64,7 +64,7 @@ python evaluation/generation.py\
     --prover_name deepseekProver_v2_non_cot\
     --gpu 4\
     --num_samples 8\
-    --dataset_path ../FormalMLDataset/test.json\
+    --dataset_path dataset/test.json\
     --output_path results/round0_test_generation.json\
     --num_problems -1
 
@@ -79,7 +79,7 @@ do
         --model_path LLaMA-Factory/saves/deepseekprover-v2/expertIteration/round${i}/full/sft\
         --gpu 4\
         --num_samples 32\
-        --dataset_path ../FormalMLDataset/test.json\
+        --dataset_path dataset/test.json\
         --output_path results/round${i}_test_generation.json\
         --num_problems -1
 
