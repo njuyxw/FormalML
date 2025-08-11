@@ -5,12 +5,12 @@ import json
 import os
 from tqdm import tqdm,trange
 import time
-import psutil
 from collections import defaultdict
+import psutil
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Evaluate Lean proofs from a JSON file, classified by header import')
-    parser.add_argument('--input_file', type=str, default='/data0/zzh/FormalML/evaluation/results/leanbench_32_deepseekProver_v2_non_cot_results.json',help='Path to the input JSON file')
+    parser.add_argument('--input_file', type=str, default='',help='Path to the input JSON file')
     args = parser.parse_args()
 
     # Load input data
@@ -35,20 +35,32 @@ if __name__ == "__main__":
                 problem_id_map.append((problem_id, i))
         
         # if out of mem, reduce batch_size
-        batch_size = 128
+        batch_size = 512
         all_results = []
         verifier = LeanVerifier()
         verifier.initialize()
         for batch_start in tqdm(range(0, len(all_proofs), batch_size), desc=f"Verifying"):
+            mem = psutil.virtual_memory()
+            if mem.available < 50 * 1024 * 1024 * 1024:
+                print('Available memory < 50G, restarting server...')
+                verifier.shutdown()
+                os.system("pkill -9 -f repl")
+                time.sleep(2)
+                verifier = LeanVerifier()
+                verifier.initialize()
+            
             batch_proofs = all_proofs[batch_start:batch_start+batch_size]
             response = verifier.verify_batch(batch_proofs, timeout=30)
             results = verifier.parse_results(response)
-            all_results.extend(results)
+
+            with open("eval_partial_results.jsonl", 'a', encoding='utf-8') as f:
+                for r in results:
+                    f.write(json.dumps(r, ensure_ascii=False) + "\n")
         
-        
-        
-        
-        
+        with open("eval_partial_results.jsonl", "r", encoding="utf-8") as f:
+            all_results = [json.loads(line) for line in f if line.strip()]
+
+        print(f"读取到 {len(all_results)} 条数据")        
         problem_results = defaultdict(list)
         for idx, result in enumerate(all_results):
             problem_id, proof_idx = problem_id_map[idx]

@@ -1,8 +1,10 @@
+#!/usr/bin/env bash
 #在FormalML目录下运行
-set -e #如果任何命令报错就停止脚本。
+set -euo pipefail #如果任何命令报错就停止脚本。
+
 export HF_ENDPOINT=https://hf-mirror.com
 source ~/miniconda3/etc/profile.d/conda.sh
-conda activate finetune
+conda activate leanbenchmark
 
 
 #generation
@@ -16,14 +18,14 @@ conda activate finetune
 #     --num_problems -1
 
 #eval
-python evaluation/eval.py\
-    --input_file results/round0_train_generation.json
+# python evaluation/eval.py\
+#     --input_file results/round0_train_generation.json
 
 #sample
-python evaluation/sample.py\
-    --generation_file results/round0_generation.json\
-    --eval_file results/round0_generation_eval.json\
-    --output_file LLaMA-Factory/data/train_alpaca.json
+# python evaluation/sample.py\
+#     --generation_file results/round0_train_generation.json\
+#     --eval_file results/round0_train_generation_eval.json\
+#     --output_file LLaMA-Factory/data/train_alpaca.json
 
 #接下来是循环3轮SFT->generation->eval->sample
 NUM_ROUNDS=3
@@ -57,7 +59,7 @@ do
         --generation_file results/round${i}_generation.json\
         --eval_file results/round${i}_generation_eval.json\
         --output_file LLaMA-Factory/data/train_alpaca.json
-
+done
 
 #下面是评估每一轮模型在测试集上的结果,包括原始模型和3个微调后的模型
 python evaluation/generation.py\
@@ -86,3 +88,4 @@ do
     #eval
     python evaluation/eval.py\
         --input_file results/round${i}_test_generation.json
+done

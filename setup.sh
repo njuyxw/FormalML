@@ -1,3 +1,4 @@
+set -euxo pipefail #比set -e更严格 
 #用于配置这个项目的环境
 git submodule init 
 git submodule update

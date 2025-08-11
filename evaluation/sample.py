@@ -8,7 +8,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract correct proofs from data file using evaluation results.")
     parser.add_argument("--generation_file", type=str, help="Path to the data JSON file")
     parser.add_argument("--eval_file", type=str, help="Path to the evaluation result JSON file")
-    args = parser.parse_args()
     parser.add_argument("--output_file", type=str, help="")
     args = parser.parse_args()
     # 如果未提供 eval_file，则使用 generation_file 加上 _eval 后缀
