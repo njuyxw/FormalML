@@ -176,23 +176,25 @@ class DeepSeekProverV2nonCoT(BaseProver):
     def build_prompt(self, data):
         formal_statement = f"{data.get('header', LEAN4_DEFAULT_HEADER)}{data.get('informal_prefix', '')}{data['formal_statement']}"
         prompt = (
-            "Complete the following Lean 4 code:\n"
-            f"```lean4\n{formal_statement}\n```\n"
+            "Prove the following Lean 4 theorem:\n"
+            "Please just output the proof, don't ouput any other things!\n"
+            f"{formal_statement}"
         )
         return prompt
     def postprocess(self, model_input, model_output):
         def extract_code(text):
-            match = re.search(r'(theorem extracted_formal_statement_.*?)```', text, re.DOTALL)
-            if match:
-                return match.group(1).strip()
-            return "None"
+            # match = re.search(r'(theorem extracted_formal_statement_.*?)```', text, re.DOTALL)
+            # if match:
+            #     return match.group(1).strip()
+            # return "None"
+            return text
         
         outputs = [output.text for output in model_output.outputs]
         full_codes = [extract_code(out) for out in outputs]
         return {
             "model_input": model_input,
             "model_outputs": outputs,
-            "full_code": full_codes,
+            "full_code": full_codes,#现在的full_code只包含proof，它是一个列表
         }
 class STP(BaseProver):
     def __init__(self, model_path="kfdong/STP_model_Lean_0320", gpu=1, max_model_len=4096, temperature=1.0, max_tokens=2048, top_p=0.95, n=32,seed=0, **kwargs):

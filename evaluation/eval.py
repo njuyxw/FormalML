@@ -18,10 +18,9 @@ if __name__ == "__main__":
         data = json.load(f)
 
     for problem in data:
-        proofs = problem["full_proof"]#浅拷贝
+        proofs = problem["proof"]#浅拷贝
         for j in range(len(proofs)):
-            if problem['header'] not in proofs[j]:
-                proofs[j] = problem['header'] + proofs[j]
+            proofs[j] = problem['header'] +problem['formal_statement']+ proofs[j]
             
     
     def evaluate(data):
@@ -29,7 +28,7 @@ if __name__ == "__main__":
         all_proofs=[]
         for problem in data:
             problem_id = problem["problem_id"]
-            proofs = problem["full_proof"]
+            proofs = [problem["header"]+problem["formal_statement"]+proof for proof in problem["proof"]]
             all_proofs.extend(proofs)
             for i, proof in enumerate(proofs):
                 problem_id_map.append((problem_id, i))
@@ -39,6 +38,8 @@ if __name__ == "__main__":
         all_results = []
         verifier = LeanVerifier()
         verifier.initialize()
+        with open("eval_partial_results.jsonl", "w", encoding="utf-8") as f:#先清空临时储存结果的文件
+            pass
         for batch_start in tqdm(range(0, len(all_proofs), batch_size), desc=f"Verifying"):
             mem = psutil.virtual_memory()
             if mem.available < 50 * 1024 * 1024 * 1024:
@@ -68,7 +69,6 @@ if __name__ == "__main__":
         results = []
         for problem in data:
             problem_id = problem["problem_id"]
-            proofs = problem["full_proof"]
             proof_results = sorted(problem_results[problem_id], key=lambda x: x[0])
             passed_list = [result["is_valid_no_sorry"] for (_, result) in proof_results]
 

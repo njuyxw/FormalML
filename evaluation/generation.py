@@ -113,7 +113,7 @@ def main():
                 "header": current_segment_data[i]["header"],
                 "formal_statement": current_segment_data[i]["formal_statement"],
                 "model_output": result["model_outputs"],
-                "full_proof": result["full_code"]
+                "proof": result["full_code"],
             }
             
             segment_formatted_results.append(formatted_result)

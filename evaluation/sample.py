@@ -28,23 +28,16 @@ if __name__ == "__main__":
         problem_id = item["problem_id"]
         header = item["header"]
         formal_statement = item["formal_statement"]
-        full_proofs = item["full_proof"]
+        proofs = item["proof"]#一个有k个proof的列表
         passed_list = eval_results[problem_id]["passed"]
 
         for i, passed in enumerate(passed_list):
             if passed:
-                proof = full_proofs[i]
-
-                # 去掉 formal_statement 前缀
-                if proof.startswith(formal_statement):
-                    proof_body = proof[len(formal_statement):].lstrip("\n")
-                else:
-                    proof_body = proof  # fallback：如果开头不是 formal_statement 就全保留
-
+                proof = proofs[i]
                 alpaca_item = {
                     "instruction": instruction,
                     "input": header.strip() + "\n" + formal_statement.strip(),
-                    "output": proof_body.strip()
+                    "output": proof,
                 }
                 alpaca_dataset.append(alpaca_item)
 

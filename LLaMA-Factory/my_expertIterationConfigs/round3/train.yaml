@@ -1,5 +1,5 @@
 ### model
-model_name_or_path: ../models/DeepSeek-Prover-V2-7B
+model_name_or_path: deepseek-ai/DeepSeek-Prover-V2-7B
 trust_remote_code: true
 
 ### method
@@ -31,13 +31,12 @@ report_to: none
 ### train
 per_device_train_batch_size: 8
 gradient_accumulation_steps: 2
-learning_rate: 2e-4
+learning_rate: 1e-5
 num_train_epochs: 3
 lr_scheduler_type: cosine
 warmup_ratio: 0.1
 bf16: true
 ddp_timeout: 180000000
 resume_from_checkpoint: null
-
 ### deepspeed
-deepspeed: my_expertIterationConfigs/round3/train.yaml
+deepspeed: my_expertIterationConfigs/round3/deepspeed_config.json  #相对于当前命令行的相对路径，而不是相对于train.yaml的相对路径。
